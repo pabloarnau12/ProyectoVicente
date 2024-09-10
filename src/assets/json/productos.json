@@ -2,17 +2,17 @@
   "productos": [
     {
       "id": 1,
-      "nombre": "Proteína en Polvo",
-      "tipo": "Proteínas",
-      "descripcion": "Proteína en polvo para la recuperación muscular y el crecimiento.",
+      "nombre": "La Valero",
+      "tipo": "Moda",
+      "descripcion": "Hermanas Valero es una tienda de ropa Chestana en la que encontraras prendas para todo tipo de personas.",
       "descripcion_extendida": "La proteína en polvo es un suplemento esencial para aquellos que desean aumentar su masa muscular y mejorar su recuperación después de los entrenamientos. Esta proteína en particular ha sido diseñada para ser fácilmente absorbida por el cuerpo, proporcionando un suministro rápido de aminoácidos que promueven la reparación y el crecimiento muscular. Perfecta para consumir después de cada entrenamiento o como parte de un batido nutritivo en cualquier momento del día.",
       "precio": 35,
-      "foto": "./assets/images/img_productos/imagenProteina.jpg",
+      "foto": "./assets/images/img_productos/valero.png",
       "related_products": [
         {
-          "nombre": "BCAAs",
+          "nombre": "Atmosfera",
           "precio": 25,
-          "foto": "./assets/images/img_productos/proteina2.jpg",
+          "foto": "./assets/images/img_productos/atmosfera.png",
           "id": 2
         },
         {
@@ -31,12 +31,12 @@
     },
     {
       "id": 2,
-      "nombre": "BCAAs",
-      "tipo": "Proteínas",
+      "nombre": "Atmosfera",
+      "tipo": "Moda",
       "descripcion": "Suplemento de BCAAs en polvo para mejorar la recuperación muscular",
       "descripcion_extendida": "Los BCAAs, o aminoácidos de cadena ramificada, son fundamentales para la síntesis de proteínas musculares y la recuperación después del ejercicio. Este suplemento en polvo ofrece una forma rápida y conveniente de proporcionar a los músculos los nutrientes necesarios para reparar y crecer más fuertes. Ideal para consumir antes, durante o después del entrenamiento, los BCAAs ayudan a reducir la fatiga muscular y mejorar el rendimiento.",
       "precio": 25,
-      "foto": "./assets/images/img_productos/proteina2.jpg",
+      "foto": "./assets/images/img_productos/atmosfera.png",
       "related_products": [
         {
           "nombre": "Proteína en Polvo",
