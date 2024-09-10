@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <img src="./assets/images/logo.png" style="width: 50px; height: 50px;" class="img-fluid m-2" alt="Logo">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="/catalogo" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Catálogo</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link " aria-current="page" routerLink="/contacto" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Contacto</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          
+          <a href="#" class="btn btn-outline-light m-2" aria-current="page" routerLink="/iniciarsesion" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Iniciar Sesión</a>
+        </form>
+      </div>
+    </div>
+  </nav>

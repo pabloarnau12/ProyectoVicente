@@ -1,0 +1,47 @@
+@if (Productos) {
+  <div class="container-fluid text-center pb-5 ">
+  
+      <div class="container mt-5 mb-5">
+        <h1 class="large">CATÁLOGO</h1>
+      </div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 row-cols-md-4 justify-content-center" >
+        @for (Productos of Productos.productos; track Productos) {
+      
+        <div class="col mb-5">
+          <div class="card shadow-sm caja" style="height: 100%; ">
+            <img src="{{Productos.foto}}" alt="imagen card" style="width: 100%;">
+            <div class="card-body" >
+              <div class="col-12">
+                  <h4 class="card-title  fs-2">{{Productos.nombre}}</h4>
+              </div>
+              <p class="card-text fs-4">{{Productos.descripcion}}</p>
+  
+              <div class=" justify-content-center align-items-center">
+  
+                <div class="text-center mt-5 mb-5">
+                  <p class="text-body-primary fs-4">{{Productos.precio}}€</p>
+                </div>
+  
+  
+                <div class="d-flex justify-content-center align-items-center ">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" [routerLink]="['/pagina-producto/' + Productos.id]">Ver Detalles</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" [routerLink]="['/paginapago/' + Productos.id]">Comprar</button>
+                  </div>
+                </div>
+  
+  
+              </div>
+  
+            </div>
+          </div>
+        </div>
+        
+      }
+      
+    </div>
+  
+  </div>
+  
+  }
+  

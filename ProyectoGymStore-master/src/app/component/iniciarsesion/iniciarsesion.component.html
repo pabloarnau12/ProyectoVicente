@@ -1,0 +1,43 @@
+<div class="row vh-100 g-0 bg-black">
+    <!-- Left Side -->
+    <div class="col-lg-6 position-relative d-none d-lg-block left-side bg-black">
+        <div class="bg-holder position-relative" style="background-image: url('../../../assets/images/entrada\ \(1\).png');">
+            <div class="overlay d-flex align-items-center justify-content-center">
+
+            </div>
+        </div>
+    </div>
+<!-- Right Side -->
+<div class="col-lg-6 d-flex align-items-center justify-content-center right-side bg-black ">
+    <div class="form-2-wrapper p-2">
+       <div class="logo text-center">
+       <img src="../../../assets/images/logo.png" style="width: 100px; height: 100px;">
+       </div>
+        <h2 class="text-center text-white m-4">Iniciar Sesión con tus credenciales</h2>
+        <form action="#">
+
+            <div class="mb-3">
+                <label fi="email" class="form-label text-white ">Email o Usuario</label>
+                <input type="text" class="form-control border-primary" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label text-white ">Contraseña</label>
+                <input type="password" class="form-control border-primary" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary login-btn w-100">Iniciar sesión</button>
+
+            
+        </form>
+
+    
+        <div class="social-login mt-3">
+            <hr class="text-secondary divider border-primary">
+            <button class="btn btn-outline-primary border-white text-white w-100 mb-3"><i class="fa-brands fa-google text-danger"></i> Sign With Google</button>
+            <button class="btn btn-outline-primary  border-white text-white w-100 mb-3"><i class="fa-brands fa-facebook-f text-primary"></i> Sign With Facebook</button>
+            
+        </div>
+        <!-- Register Link -->
+        <p class="text-center text-white register-test mt-3">¿Todavía no tienes una cuenta? <a href="#"  aria-current="page" routerLink="/registrarse" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}"class="text-decoration-none">Registrate aquí</a></p>
+    </div>
+</div>
+</div>

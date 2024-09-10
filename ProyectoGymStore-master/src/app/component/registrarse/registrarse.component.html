@@ -1,0 +1,53 @@
+<div class="row vh-100 g-0 bg-black">
+    <!-- Left Side -->
+    <div class="col-lg-6 position-relative d-none d-lg-block left-side bg-black">
+        <div class="bg-holder position-relative" style="background-image: url('../../../assets/images/logo2.jpg');">
+            <div class="overlay d-flex align-items-center justify-content-center">
+
+            </div>
+        </div>
+    </div>
+<!-- Right Side -->
+<div class="col-lg-6 d-flex align-items-center justify-content-center right-side bg-white ">
+    <div class="form-2-wrapper p-2">
+       <div class="logo text-center">
+       <img src="../../../assets/images/logo.png" style="width: 100px; height: 100px;">
+       </div>
+        <h2 class="text-center m-4">Regístrate con tus datos personales</h2>
+        <form action="#">
+               <hr class="text-secondary divider border-primary">
+
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control border-primary" placeholder="Nombre" id="nombre" name="nombre" required>
+                <input type="text" class="form-control border-primary" placeholder="Apellidos" id="Apellidos" name="Apellidos" required>
+            </div>
+
+            <div class="mb-3">
+                <label fi="telefono" class="form-label  ">Número de Telefono</label>
+                <input type="text" class="form-control border-primary" id="telefono" name="telefono"  required>
+
+            </div>
+
+            <div class="mb-3">
+                <label fi="email" class="form-label  ">Correo Electronico</label>
+                <input type="email" class="form-control border-primary" id="email" name="email" required>
+            </div>
+  
+            <div class="mb-3">
+                <label fi="usuario" class="form-label  ">Usuario</label>
+                <input type="text" class="form-control border-primary" id="usuario" name="usuario" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label  ">Contraseña</label>
+                <input type="password" class="form-control border-primary" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary login-btn w-100">Registrarse</button>
+        </form>
+
+        <!-- Register Link -->
+        <p class="text-center register-test mt-3">¿Ya tienes una cuenta? <a href="#"  aria-current="page" routerLink="/iniciarsesion" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}"class="text-decoration-none">Iniciar Sesión</a></p>
+    </div>
+</div>
+</div>

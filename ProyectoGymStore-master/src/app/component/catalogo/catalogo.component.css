@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900');
+
+h1.large{
+
+    color:#5d5959;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size:5em;
+    font-weight: bolder;
+}
+
+.caja{
+    transition: transform 0.3s ease-in-out;
+}
+.caja:hover {
+    transform: scale(1.05);
+  }

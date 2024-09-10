@@ -1,0 +1,497 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Proteína en Polvo",
+      "tipo": "Proteínas",
+      "descripcion": "Proteína en polvo para la recuperación muscular y el crecimiento.",
+      "descripcion_extendida": "La proteína en polvo es un suplemento esencial para aquellos que desean aumentar su masa muscular y mejorar su recuperación después de los entrenamientos. Esta proteína en particular ha sido diseñada para ser fácilmente absorbida por el cuerpo, proporcionando un suministro rápido de aminoácidos que promueven la reparación y el crecimiento muscular. Perfecta para consumir después de cada entrenamiento o como parte de un batido nutritivo en cualquier momento del día.",
+      "precio": 35,
+      "foto": "./assets/images/img_productos/imagenProteina.jpg",
+      "related_products": [
+        {
+          "nombre": "BCAAs",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/proteina2.jpg",
+          "id": 2
+        },
+        {
+          "nombre": "Creatina",
+          "precio": 20,
+          "foto": "./assets/images/img_productos/proteina3.jpg",
+          "id": 3
+        },
+        {
+          "nombre": "Omega 3",
+          "precio": 15,
+          "foto": "./assets/images/img_productos/proteina4.jpg",
+          "id": 4
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "BCAAs",
+      "tipo": "Proteínas",
+      "descripcion": "Suplemento de BCAAs en polvo para mejorar la recuperación muscular",
+      "descripcion_extendida": "Los BCAAs, o aminoácidos de cadena ramificada, son fundamentales para la síntesis de proteínas musculares y la recuperación después del ejercicio. Este suplemento en polvo ofrece una forma rápida y conveniente de proporcionar a los músculos los nutrientes necesarios para reparar y crecer más fuertes. Ideal para consumir antes, durante o después del entrenamiento, los BCAAs ayudan a reducir la fatiga muscular y mejorar el rendimiento.",
+      "precio": 25,
+      "foto": "./assets/images/img_productos/proteina2.jpg",
+      "related_products": [
+        {
+          "nombre": "Proteína en Polvo",
+          "precio": 35,
+          "foto": "./assets/images/img_productos/imagenProteina.jpg",
+          "id": 1
+        },
+        {
+          "nombre": "Creatina",
+          "precio": 20,
+          "foto": "./assets/images/img_productos/proteina3.jpg",
+          "id": 3
+        },
+        {
+          "nombre": "Omega 3",
+          "precio": 15,
+          "foto": "./assets/images/img_productos/proteina4.jpg",
+          "id": 4
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Creatina",
+      "tipo": "Proteínas",
+      "descripcion": "Suplemento de creatina monohidratada para aumentar la fuerza y la resistencia muscular.",
+      "descripcion_extendida": "La creatina es uno de los suplementos más estudiados y utilizados en el mundo del fitness y el deporte. Al aumentar los niveles de fosfocreatina en los músculos, ayuda a mejorar la fuerza, la potencia y la resistencia durante los entrenamientos de alta intensidad. Además, la creatina puede favorecer la recuperación muscular y aumentar la síntesis de proteínas. Este suplemento es esencial para cualquier persona que busque mejorar su rendimiento en el gimnasio o en su deporte favorito.",
+      "precio": 20,
+      "foto": "./assets/images/img_productos/proteina3.jpg",
+      "related_products": [
+        {
+          "nombre": "Proteína en Polvo",
+          "precio": 35,
+          "foto": "./assets/images/img_productos/imagenProteina.jpg",
+          "id": 1
+        },
+        {
+          "nombre": "BCAAs",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/proteina2.jpg",
+          "id": 2
+        },
+        {
+          "nombre": "Omega 3",
+          "precio": 15,
+          "foto": "./assets/images/img_productos/proteina4.jpg",
+          "id": 4
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "nombre": "Omega 3",
+      "tipo": "Proteínas",
+      "descripcion": "Suplemento de omega 3 en cápsulas para promover la salud cardiovascular y la recuperación muscular.",
+      "descripcion_extendida": "Los ácidos grasos omega 3 son esenciales para la salud del corazón, el cerebro y las articulaciones. Este suplemento proporciona una dosis concentrada de ácidos grasos EPA y DHA, que son especialmente beneficiosos para reducir la inflamación, promover la salud cardiovascular y mejorar la recuperación muscular. Ideal para aquellos que desean maximizar su salud y rendimiento físico.",
+      "precio": 15,
+      "foto": "./assets/images/img_productos/proteina4.jpg",
+      "related_products": [
+        {
+          "nombre": "Proteína en Polvo",
+          "precio": 35,
+          "foto": "./assets/images/img_productos/imagenProteina.jpg",
+          "id": 1
+        },
+        {
+          "nombre": "BCAAs",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/proteina2.jpg",
+          "id": 2
+        },
+        {
+          "nombre": "Creatina",
+          "precio": 20,
+          "foto": "./assets/images/img_productos/proteina3.jpg",
+          "id": 3
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "nombre": "Camiseta Deportiva",
+      "tipo": "Ropa Deportiva",
+      "descripcion": "Camiseta deportiva transpirable para entrenamientos intensos.",
+      "descripcion_extendida": "Esta camiseta deportiva está diseñada para brindar comodidad y transpirabilidad durante tus entrenamientos más intensos. Fabricada con materiales de alta calidad que absorben la humedad y se secan rápidamente, te mantendrá fresco y seco incluso en los momentos más exigentes. Su diseño ligero y elástico te permitirá moverte con total libertad, convirtiéndola en la opción perfecta para cualquier actividad deportiva.",
+      "precio": 25,
+      "foto": "./assets/images/img_productos/ropa1.jpg",
+      "related_products": [
+        {
+          "nombre": "Pantalones Deportivos",
+          "precio": 30,
+          "foto": "./assets/images/img_productos/ropa2.jpg",
+          "id": 6
+        },
+        {
+          "nombre": "Zapatillas Deportivas",
+          "precio": 60,
+          "foto": "./assets/images/img_productos/ropa4.jpg",
+          "id": 8
+        },
+        {
+          "nombre": "Sudadera con Capucha",
+          "precio": 40,
+          "foto": "./assets/images/img_productos/ropa3.jpg",
+          "id": 7
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "nombre": "Pantalones Deportivos",
+      "tipo": "Ropa Deportiva",
+      "descripcion": "Pantalones deportivos cómodos y elásticos para cualquier tipo de ejercicio.",
+      "descripcion_extendida": "Estos pantalones deportivos son la elección perfecta para cualquier tipo de entrenamiento. Su tejido elástico y transpirable te proporciona la máxima comodidad y libertad de movimiento, mientras que su diseño moderno y versátil los hace ideales tanto para el gimnasio como para uso diario. Ya sea levantando pesas, corriendo o practicando yoga, estos pantalones te mantendrán fresco y cómodo en todo momento.",
+      "precio": 30,
+      "foto": "./assets/images/img_productos/ropa2.jpg",
+      "related_products": [
+        {
+          "nombre": "Camiseta Deportiva",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/ropa1.jpg",
+          "id": 5
+        },
+        {
+          "nombre": "Sudadera con Capucha",
+          "precio": 40,
+          "foto": "./assets/images/img_productos/ropa3.jpg",
+          "id": 7
+        },
+        {
+          "nombre": "Zapatillas Deportivas",
+          "precio": 60,
+          "foto": "./assets/images/img_productos/ropa4.jpg",
+          "id": 8
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "nombre": "Sudadera con Capucha",
+      "tipo": "Ropa Deportiva",
+      "descripcion": "Sudadera con capucha y bolsillos frontales, ideal para entrenamientos al aire libre.",
+      "descripcion_extendida": "Esta sudadera con capucha es perfecta para mantenerse abrigado y cómodo durante tus entrenamientos al aire libre. Confeccionada con un tejido suave y cálido, te proporcionará el calor necesario en los días más fríos. Sus bolsillos frontales son ideales para guardar tus objetos personales y mantener tus manos calientes. Ya sea para correr, hacer senderismo o simplemente pasear, esta sudadera te mantendrá cómodo y con estilo.",
+      "precio": 40,
+      "foto": "./assets/images/img_productos/ropa3.jpg",
+      "related_products": [
+        {
+          "nombre": "Camiseta Deportiva",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/ropa1.jpg",
+          "id": 5
+        },
+        {
+          "nombre": "Pantalones Deportivos",
+          "precio": 30,
+          "foto": "./assets/images/img_productos/ropa2.jpg",
+          "id": 6
+        },
+        {
+          "nombre": "Zapatillas Deportivas",
+          "precio": 60,
+          "foto": "./assets/images/img_productos/ropa4.jpg",
+          "id": 8
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "nombre": "Zapatillas Deportivas",
+      "tipo": "Ropa Deportiva",
+      "descripcion": "Zapatillas deportivas ligeras y transpirables para correr y entrenar en el gimnasio.",
+      "descripcion_extendida": "Estas zapatillas deportivas han sido diseñadas para brindarte el máximo rendimiento en cada entrenamiento. Su construcción ligera y transpirable te proporciona comodidad durante tus carreras o sesiones de entrenamiento en el gimnasio. La suela duradera y flexible ofrece una tracción excepcional en una variedad de superficies, mientras que su diseño moderno y elegante te garantiza lucir bien tanto dentro como fuera del gimnasio.",
+      "precio": 60,
+      "foto": "./assets/images/img_productos/ropa4.jpg",
+      "related_products": [
+        {
+          "nombre": "Camiseta Deportiva",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/ropa1.jpg",
+          "id": 5
+        },
+        {
+          "nombre": "Pantalones Deportivos",
+          "precio": 30,
+          "foto": "./assets/images/img_productos/ropa2.jpg",
+          "id": 6
+        },
+        {
+          "nombre": "Sudadera con Capucha",
+          "precio": 40,
+          "foto": "./assets/images/img_productos/ropa3.jpg",
+          "id": 7
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "nombre": "Bandas de Resistencia",
+      "tipo": "Accesorios Fitness",
+      "descripcion": "Bandas elásticas de resistencia para ejercicios de fortalecimiento muscular.",
+      "descripcion_extendida": "Las bandas de resistencia son una herramienta versátil para fortalecer y tonificar todo el cuerpo. Perfectas para entrenamientos en casa o en el gimnasio, estas bandas ofrecen una resistencia progresiva que se adapta a tu nivel de condición física. Desde ejercicios de piernas hasta entrenamiento de brazos y espalda, las bandas de resistencia te permiten realizar una amplia variedad de movimientos para desarrollar fuerza, flexibilidad y coordinación.",
+      "precio": 15,
+      "foto": "./assets/images/img_productos/accesorio1.jpg",
+      "related_products": [
+        {
+          "nombre": "Cinta de Correr",
+          "precio": 600,
+          "foto": "./assets/images/img_productos/accesorio2.jpg",
+          "id": 10
+        },
+        {
+          "nombre": "Bicicleta Estática",
+          "precio": 250,
+          "foto": "./assets/images/img_productos/accesorio3.jpg",
+          "id": 11
+        },
+        {
+          "nombre": "Mancuernas de Neopreno",
+          "precio": 50,
+          "foto": "./assets/images/img_productos/accesorio4.jpg",
+          "id": 12
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "nombre": "Cinta de Correr",
+      "tipo": "Accesorios Fitness",
+      "descripcion": "Cinta de correr plegable con inclinación ajustable para entrenamientos cardiovasculares en casa.",
+      "descripcion_extendida": "Esta cinta de correr plegable es perfecta para mantenerse en forma desde la comodidad de tu hogar. Con su diseño compacto y su inclinación ajustable, te permite realizar entrenamientos cardiovasculares efectivos y variados. Su superficie de carrera amortiguada reduce el impacto en las articulaciones, mientras que su monitor integrado te proporciona datos en tiempo real sobre tu velocidad, distancia, tiempo y calorías quemadas. ¡Es el complemento ideal para cualquier rutina de ejercicio en casa!",
+      "precio": 600,
+      "foto": "./assets/images/img_productos/accesorio2.jpg",
+      "related_products": [
+        {
+          "nombre": "Bicicleta Estática",
+          "precio": 250,
+          "foto": "./assets/images/img_productos/accesorio3.jpg",
+          "id": 11
+        },
+        {
+          "nombre": "Bandas de Resistencia",
+          "precio": 15,
+          "foto": "./assets/images/img_productos/accesorio1.jpg",
+          "id": 9
+        },
+        {
+          "nombre": "Mancuernas de Neopreno",
+          "precio": 50,
+          "foto": "./assets/images/img_productos/accesorio4.jpg",
+          "id": 12
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "nombre": "Bicicleta Estática",
+      "tipo": "Accesorios Fitness",
+      "descripcion": "Bicicleta estática con resistencia ajustable y monitor de ritmo cardíaco.",
+      "descripcion_extendida": "Esta bicicleta estática te ofrece un entrenamiento cardiovascular eficaz desde la comodidad de tu hogar. Con su resistencia ajustable, puedes personalizar la intensidad de tu entrenamiento para adaptarlo a tus necesidades. El monitor integrado te proporciona información en tiempo real sobre tu ritmo cardíaco, tiempo, distancia y calorías quemadas, lo que te ayuda a mantener un seguimiento preciso de tus objetivos de fitness. Su diseño ergonómico y su asiento acolchado te brindan comodidad durante sesiones de entrenamiento prolongadas.",
+      "precio": 250,
+      "foto": "./assets/images/img_productos/accesorio3.jpg",
+      "related_products": [
+        {
+          "nombre": "Cinta de Correr",
+          "precio": 600,
+          "foto": "./assets/images/img_productos/accesorio2.jpg",
+          "id": 10
+        },
+        {
+          "nombre": "Bandas de Resistencia",
+          "precio": 15,
+          "foto": "./assets/images/img_productos/accesorio1.jpg",
+          "id": 9
+        },
+        {
+          "nombre": "Mancuernas de Neopreno",
+          "precio": 50,
+          "foto": "./assets/images/img_productos/accesorio4.jpg",
+          "id": 12
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "nombre": "Mancuernas de Neopreno",
+      "tipo": "Accesorios Fitness",
+      "descripcion": "Juego de mancuernas recubiertas de neopreno para ejercicios de fuerza.",
+      "descripcion_extendida": "Estas mancuernas de neopreno son una adición imprescindible para cualquier rutina de entrenamiento de fuerza. Con su revestimiento de neopreno suave y antideslizante, ofrecen un agarre cómodo y seguro durante tus entrenamientos. Disponibles en una variedad de pesos, son perfectas para todo, desde ejercicios de tonificación hasta entrenamientos de alta intensidad. Su diseño compacto las hace ideales para usar en casa o en el gimnasio, permitiéndote entrenar en cualquier momento y lugar.",
+      "precio": 50,
+      "foto": "./assets/images/img_productos/accesorio4.jpg",
+      "related_products": [
+        {
+          "nombre": "Bandas de Resistencia",
+          "precio": 15,
+          "foto": "./assets/images/img_productos/accesorio1.jpg",
+          "id": 9
+        },
+        {
+          "nombre": "Cinta de Correr",
+          "precio": 600,
+          "foto": "./assets/images/img_productos/accesorio2.jpg",
+          "id": 10
+        },
+        {
+          "nombre": "Bicicleta Estática",
+          "precio": 250,
+          "foto": "./assets/images/img_productos/accesorio3.jpg",
+          "id": 11
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "nombre": "Barrita energetica",
+      "tipo": "Suplementación Deportiva",
+      "descripcion": " Snack compacto diseñado para proporcionar un rápido impulso de energía.",
+      "descripcion_extendida": "Una barrita energética es un snack compacto y fácil de llevar, especialmente diseñado para proporcionar un impulso rápido de energía. Está compuesta principalmente de carbohidratos simples y complejos, así como de otros ingredientes energéticos como frutas secas, semillas y cereales. Es ideal para consumir antes o durante actividades físicas intensas o como una opción rápida y conveniente para combatir la fatiga durante el día.",
+      "precio": 5,
+      "foto": "./assets/images/img_productos/suplemento1.jpg",
+      "related_products": [
+        {
+          "nombre": "Fit Chips",
+          "precio": 5,
+          "foto": "./assets/images/img_productos/suplemento2.jpg",
+          "id": 14
+        },
+        {
+          "nombre": "Galletas Fit",
+          "precio": 7,
+          "foto": "./assets/images/img_productos/suplemento3.jpg",
+          "id": 15
+        },
+        {
+          "nombre": "Crema de cacahuete",
+          "precio": 8,
+          "foto": "./assets/images/img_productos/suplemento4.jpg",
+          "id": 16
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "nombre": "Fit Chips",
+      "tipo": "Suplementación Deportiva",
+      "descripcion": "Chips saludables y crujientes para satisfacer tus antojos sin sentirte culpable.",
+      "descripcion_extendida": "Estos Fit Chips son la opción perfecta para satisfacer tus antojos de snack de forma saludable. Están hechos con ingredientes naturales y nutritivos, como batatas, zanahorias y guisantes, y están horneados en lugar de fritos, lo que los hace mucho más saludables que los chips tradicionales. Son bajos en calorías y grasas, pero ricos en sabor, lo que los convierte en el snack perfecto para disfrutar en cualquier momento del día sin sentirte culpable.",
+      "precio": 5,
+      "foto": "./assets/images/img_productos/suplemento2.jpg",
+      "related_products": [
+        {
+          "nombre": "Barrita energetica",
+          "precio": 5,
+          "foto": "./assets/images/img_productos/suplemento1.jpg",
+          "id": 13
+        },
+        {
+          "nombre": "Galletas Fit",
+          "precio": 7,
+          "foto": "./assets/images/img_productos/suplemento3.jpg",
+          "id": 15
+        },
+        {
+          "nombre": "Crema de cacahuete",
+          "precio": 8,
+          "foto": "./assets/images/img_productos/suplemento4.jpg",
+          "id": 16
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "nombre": "Galletas Fit",
+      "tipo": "Suplementación Deportiva",
+      "descripcion": "Galletas crujientes y saludables para satisfacer tu hambre entre comidas.",
+      "descripcion_extendida": "Estas galletas fit son una opción deliciosa y nutritiva para satisfacer tu hambre entre comidas. Están hechas con ingredientes saludables como avena, plátano y nueces, y están endulzadas con ingredientes naturales como miel o stevia en lugar de azúcar refinado. Son ricas en fibra, proteínas y grasas saludables, lo que las convierte en una opción perfecta para mantener tu energía y saciedad durante todo el día.",
+      "precio": 7,
+      "foto": "./assets/images/img_productos/suplemento3.jpg",
+      "related_products": [
+        {
+          "nombre": "Barrita energetica",
+          "precio": 5,
+          "foto": "./assets/images/img_productos/suplemento1.jpg",
+          "id": 13
+        },
+        {
+          "nombre": "Fit Chips",
+          "precio": 5,
+          "foto": "./assets/images/img_productos/suplemento2.jpg",
+          "id": 14
+        },
+        {
+          "nombre": "Crema de cacahuete",
+          "precio": 8,
+          "foto": "./assets/images/img_productos/suplemento4.jpg",
+          "id": 16
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "nombre": "Crema de cacahuete",
+      "tipo": "Suplementación Deportiva",
+      "descripcion": "Crema refrescante diseñada para reponer los electrolitos perdidos durante el ejercicio.",
+      "descripcion_extendida": "Una crema isotónica es una opción refrescante y revitalizante para reponer los electrolitos perdidos durante el ejercicio intenso. Está especialmente formulada para proporcionar una combinación óptima de carbohidratos, sodio y otros minerales que ayudan a mantener el equilibrio hídrico y mejorar la absorción de líquidos. Es perfecta para consumir durante o después de actividades físicas prolongadas o intensas, especialmente en climas cálidos.",
+      "precio": 8,
+      "foto": "./assets/images/img_productos/suplemento4.jpg",
+      "related_products": [
+        {
+          "nombre": "Barrita energetica",
+          "precio": 5,
+          "foto": "./assets/images/img_productos/suplemento1.jpg",
+          "id": 13
+        },
+        {
+          "nombre": "Fit Chips",
+          "precio": 5,
+          "foto": "./assets/images/img_productos/suplemento2.jpg",
+          "id": 14
+        },
+        {
+          "nombre": "Galletas Fit",
+          "precio": 7,
+          "foto": "./assets/images/img_productos/suplemento3.jpg",
+          "id": 15
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "nombre": "OBJETO CREAR BERTHA",
+      "tipo": "Suplementación Deportiva",
+      "descripcion": "Objeto creado para que bertha compruebe si funciona ",
+      "descripcion_extendida": "Objeto creado para que bertha compruebe si funciona , Objeto creado para que bertha compruebe si funciona , Objeto creado para que bertha compruebe si funciona , Objeto creado para que bertha compruebe si funciona , Objeto creado para que bertha compruebe si funciona , Objeto creado para que bertha compruebe si funciona ",
+      "precio": 8,
+      "foto": "./assets/images/img_productos/ropa3.jpg",
+      "related_products": [
+        {
+          "nombre": "Barrita energetica",
+          "precio": 5,
+          "foto": "./assets/images/img_productos/suplemento1.jpg",
+          "id": 13
+        },
+        {
+          "nombre": "Fit Chips",
+          "precio": 5,
+          "foto": "./assets/images/img_productos/suplemento2.jpg",
+          "id": 14
+        },
+        {
+          "nombre": "Galletas Fit",
+          "precio": 7,
+          "foto": "./assets/images/img_productos/suplemento3.jpg",
+          "id": 15
+        }
+      ]
+    }
+  ]
+}

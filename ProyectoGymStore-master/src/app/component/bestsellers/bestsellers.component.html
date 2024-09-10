@@ -1,0 +1,107 @@
+@if (Productos) {
+
+<div class="container-fluid text-center pb-5 ">
+  <div class="row m-5">
+    <h2>MEJORES VENTAS</h2>
+  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center ">
+      <div class="col-6 col-sm-4 col-lg-3 mb-4">
+          <div class="card border-0 rounded-0 shadow" style="height: 100%;">
+              <img src="{{Productos.productos[0].foto}}" class="card-img-top rounded-0" alt="imagen bestsellers">
+              <div class="card-body mt-3 mb-3">
+                <div class="row">
+                  <div class="col-12">
+                    <h4 class="card-title">{{Productos.productos[0].nombre}}</h4>
+                    <p class="card-text text-center">
+                      {{Productos.productos[0].descripcion}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row align-items-center text-center g-0">
+                <div class="col-4">
+                  <h5>{{Productos.productos[0].precio}}€</h5>
+                </div>
+                <div class="col-8">
+                  <a href="#" class="btn btn-dark w-100 p-3 rounded-0 text-warning" [routerLink]="['/paginapago/' + Productos.productos[0].id]">Comprar</a>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-6 col-sm-4 col-lg-3 mb-4">
+          <div class="card border-0 rounded-0 shadow" style="height: 100%;">
+              <img src="{{Productos.productos[4].foto}}" class="card-img-top rounded-0" alt="imagen bestsellers">
+              <div class="card-body mt-3 mb-3">
+                <div class="row">
+                  <div class="col-12">
+                    <h4 class="card-title">{{Productos.productos[4].nombre}} </h4>
+                    <p class="card-text text-center">
+                      {{Productos.productos[4].descripcion}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row align-items-center text-center g-0">
+                <div class="col-4">
+                  <h5>{{Productos.productos[4].precio}}€</h5>
+                </div>
+                <div class="col-8">
+                  <a class="btn btn-dark w-100 p-3 rounded-0 text-warning" [routerLink]="['/paginapago/' + Productos.productos[4].id]">Comprar</a>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-6 col-sm-4 col-lg-3 mb-4">
+          <div class="card border-0 rounded-0 shadow"  style="height: 100%;">
+              <img src="{{Productos.productos[9].foto}}" class="card-img-top rounded-0" alt="imagen bestsellers">
+              <div class="card-body mt-3 mb-3">
+                <div class="row">
+                  <div class="col-12">
+                    <h4 class="card-title">{{Productos.productos[9].nombre}}</h4>
+                    <p class="card-text text-center">
+                      {{Productos.productos[9].descripcion}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row align-items-center text-center g-0">
+                <div class="col-4">
+                  <h5>{{Productos.productos[9].precio}}€</h5>
+                </div>
+                <div class="col-8">
+                  <a href="#" class="btn btn-dark w-100 p-3 rounded-0 text-warning" [routerLink]="['/paginapago/' + Productos.productos[9].id]">Comprar</a>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-6 col-sm-4 col-lg-3 mb-4">
+          <div class="card border-0 rounded-0 shadow"  style="height: 100%;">
+              <img src="{{Productos.productos[12].foto}}" class="card-img-top rounded-0" alt="...">
+              <div class="card-body mt-3 mb-3">
+                <div class="row">
+                  <div class="col-12">
+                    <h4 class="card-title">{{Productos.productos[12].nombre}}</h4>
+                    <p class="card-text text-center">
+                      {{Productos.productos[12].descripcion}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row align-items-center text-center g-0">
+                <div class="col-4">
+                  <h5>{{Productos.productos[12].precio}}€</h5>
+                </div>
+                <div class="col-8">
+                  <a href="#" class="btn btn-dark w-100 p-3 rounded-0 text-warning" [routerLink]="['/paginapago/' + Productos.productos[12].id]">Comprar</a>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+  </div>
+
+}
+
