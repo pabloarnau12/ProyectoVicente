@@ -39,9 +39,9 @@
       "foto": "./assets/images/img_productos/atmosfera.png",
       "related_products": [
         {
-          "nombre": "Proteína en Polvo",
+          "nombre": "Valero",
           "precio": 35,
-          "foto": "./assets/images/img_productos/imagenProteina.jpg",
+          "foto": "./assets/images/img_productos/valero.png",
           "id": 1
         },
         {
