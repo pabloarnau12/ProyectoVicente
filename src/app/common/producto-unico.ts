@@ -1,3 +1,5 @@
+
+
 export interface ProductoUnico {
     id: number
     nombre: string
@@ -6,10 +8,10 @@ export interface ProductoUnico {
     descripcion_extendida:string
     precio: number
     foto: string
-    related_products: RelatedProduct[]
+    related_shops: RelatedShops[]
   }
   
-  export interface RelatedProduct {
+  export interface RelatedShops {
     id: number
     nombre: string
     precio: number

@@ -8,6 +8,7 @@ import { IniciarsesionComponent } from './component/iniciarsesion/iniciarsesion.
 import { RegistrarseComponent } from './component/registrarse/registrarse.component';
 import { PaginaProductoComponent } from './component/pagina-producto/pagina-producto.component';
 import { PaginapagoComponent } from './component/paginapago/paginapago.component';
+import { ProductostiendaComponent } from './component/productostienda/productostienda.component';
 
 
 export const routes: Routes = [
@@ -19,6 +20,7 @@ export const routes: Routes = [
     { path: 'registrarse', title: 'Registrarse',  component: RegistrarseComponent },
     { path: 'pagina-producto/:id', title: 'Producto', component: PaginaProductoComponent},
     { path: 'paginapago/:id', title: 'Producto', component: PaginapagoComponent},
+    { path: 'productostienda/:id', title: 'ProductosTienda', component: ProductostiendaComponent},
     { path: '**', component: NotFoundComponent },
     
 ];

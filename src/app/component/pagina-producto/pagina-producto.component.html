@@ -24,6 +24,7 @@
                 <div class="d-flex">
 
                     <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/paginapago/' + Productos.id]">Comprar</button>
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/productostienda/' + Productos.id]">Productos</button>
                 </div>
             </div>
         </div>
@@ -32,76 +33,41 @@
 
 <section class="py-5 bg-light">
     <div class="container px-4 px-lg-5 mt-5">
-        <h2 class="fw-bolder justify-content-center mb-4">Related products</h2>
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                    <img class="card-img-top" src="{{Productos.related_products[0].foto}}" alt="foto Productos Relacionados" />
-                    
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                           
-                            <h5 class="fw-bolder">{{Productos.related_products[0].nombre}}</h5>
-                            
-                            <span class="text-muted text-decoration-line-through">{{Productos.related_products[0].precio + 20 + '€'}}</span>
-                            {{Productos.related_products[0].precio}}€
-                        </div>
-                    </div>
-                    
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" [routerLink]="['/paginapago/' + Productos.related_products[0].id]">Comprar</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    
-                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                    
-                    <img class="card-img-top" src="{{Productos.related_products[1].foto}}" alt="..." />
-                    
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            
-                            <h5 class="fw-bolder">{{Productos.related_products[1].nombre}}</h5>
-                            
-                            
-                            <span class="text-muted text-decoration-line-through">{{Productos.related_products[1].precio + 20 + '€'}}</span>
-                            {{Productos.related_products[1].precio}}€
-                        </div>
-                    </div>
-                    
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" [routerLink]="['/paginapago/' + Productos.related_products[1].id]">Comprar</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    
-                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                    
-                    <img class="card-img-top" src="{{Productos.related_products[2].foto}}" alt="Imagen productos relacionados" />
-                    
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            
-                            <h5 class="fw-bolder">{{Productos.related_products[2].nombre}}</h5>
-                            
-                            <span class="text-muted text-decoration-line-through">{{Productos.related_products[2].precio + 20 + '€'}}</span>
-                            {{Productos.related_products[2].precio}}
-                        </div>
-                    </div>
-                    
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" [routerLink]="['/paginapago/' + Productos.related_products[2].id]">Comprar</a></div>
-                    </div>
-                </div>
-            </div>
+        <h2 class="fw-bolder justify-content-center mb-4">Tiendas Relacionadas</h2>
         
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+            @for (ProductoRelacionado of Productos.related_shops; track ProductoRelacionado) {
+            <div class="col mb-5">
+                <div class="card h-100">
+
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+
+                    <img class="card-img-top" src="{{ProductoRelacionado.foto}}" alt="foto Productos Relacionados" />
+
+                    <div class="card-body p-4">
+                        <div class="text-center">
+
+                            <h5 class="fw-bolder">{{ProductoRelacionado.nombre}}</h5>
+    
+
+                            <span class="text-muted text-decoration-line-through">{{ProductoRelacionado.precio + 20 + '€'}}</span>
+                            {{ProductoRelacionado.precio}}€
+                        </div>
+                    </div>
+                    
+                    <!-- Botón de compra -->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <a class="btn btn-outline-dark mt-auto" [routerLink]="['/paginapago/' + ProductoRelacionado.id]">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
         </div>
     </div>
+    
 </section>
 
 }

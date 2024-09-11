@@ -8,7 +8,7 @@
       "descripcion_extendida": "La proteína en polvo es un suplemento esencial para aquellos que desean aumentar su masa muscular y mejorar su recuperación después de los entrenamientos. Esta proteína en particular ha sido diseñada para ser fácilmente absorbida por el cuerpo, proporcionando un suministro rápido de aminoácidos que promueven la reparación y el crecimiento muscular. Perfecta para consumir después de cada entrenamiento o como parte de un batido nutritivo en cualquier momento del día.",
       "precio": 35,
       "foto": "./assets/images/img_productos/valero.png",
-      "related_products": [
+      "related_shops": [
         {
           "nombre": "Atmosfera",
           "precio": 25,
@@ -26,93 +26,69 @@
           "precio": 15,
           "foto": "./assets/images/img_productos/proteina4.jpg",
           "id": 4
+        },
+        {
+          "nombre": "LAPEPA",
+          "precio": 15,
+          "foto": "./assets/images/img_productos/proteina4.jpg",
+          "id": 4
+        }
+      ],
+      "productostienda": [
+        {
+          "nombre": "Atmosfera",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/atmosfera.png",
+          "id": 2
+        },
+        {
+          "nombre": "Monster",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/proteina3.jpg",
+          "id": 2
         }
       ]
     },
     {
       "id": 2,
-      "nombre": "Atmosfera",
+      "nombre": "Bar Restaurante Mis huevos 33",
       "tipo": "Moda",
-      "descripcion": "Suplemento de BCAAs en polvo para mejorar la recuperación muscular",
-      "descripcion_extendida": "Los BCAAs, o aminoácidos de cadena ramificada, son fundamentales para la síntesis de proteínas musculares y la recuperación después del ejercicio. Este suplemento en polvo ofrece una forma rápida y conveniente de proporcionar a los músculos los nutrientes necesarios para reparar y crecer más fuertes. Ideal para consumir antes, durante o después del entrenamiento, los BCAAs ayudan a reducir la fatiga muscular y mejorar el rendimiento.",
-      "precio": 25,
-      "foto": "./assets/images/img_productos/atmosfera.png",
-      "related_products": [
+      "descripcion": "Mis huevos 33 es una tienda de ropa Chestana en la que encontraras prendas para todo tipo de personas.",
+      "descripcion_extendida": "La proteína en polvo es un suplemento esencial para aquellos que desean aumentar su masa muscular y mejorar su recuperación después de los entrenamientos. Esta proteína en particular ha sido diseñada para ser fácilmente absorbida por el cuerpo, proporcionando un suministro rápido de aminoácidos que promueven la reparación y el crecimiento muscular. Perfecta para consumir después de cada entrenamiento o como parte de un batido nutritivo en cualquier momento del día.",
+      "precio": 35,
+      "foto": "./assets/images/fotoarnau.jpeg",
+      "related_shops": [
         {
-          "nombre": "Valero",
-          "precio": 35,
-          "foto": "./assets/images/img_productos/valero.png",
-          "id": 1
+          "nombre": "Atmosfera",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/atmosfera.png",
+          "id": 2
         },
         {
-          "nombre": "Creatina",
+          "nombre": "Creatina Cantina",
           "precio": 20,
           "foto": "./assets/images/img_productos/proteina3.jpg",
           "id": 3
         },
         {
-          "nombre": "Omega 3",
+          "nombre": "Omega 5",
           "precio": 15,
           "foto": "./assets/images/img_productos/proteina4.jpg",
           "id": 4
         }
-      ]
-    },
-    {
-      "id": 3,
-      "nombre": "Creatina",
-      "tipo": "Proteínas",
-      "descripcion": "Suplemento de creatina monohidratada para aumentar la fuerza y la resistencia muscular.",
-      "descripcion_extendida": "La creatina es uno de los suplementos más estudiados y utilizados en el mundo del fitness y el deporte. Al aumentar los niveles de fosfocreatina en los músculos, ayuda a mejorar la fuerza, la potencia y la resistencia durante los entrenamientos de alta intensidad. Además, la creatina puede favorecer la recuperación muscular y aumentar la síntesis de proteínas. Este suplemento es esencial para cualquier persona que busque mejorar su rendimiento en el gimnasio o en su deporte favorito.",
-      "precio": 20,
-      "foto": "./assets/images/img_productos/proteina3.jpg",
-      "related_products": [
+      ],
+      "productostienda": [
         {
-          "nombre": "Proteína en Polvo",
-          "precio": 35,
-          "foto": "./assets/images/img_productos/imagenProteina.jpg",
-          "id": 1
-        },
-        {
-          "nombre": "BCAAs",
+          "nombre": "CocaCoca-cola",
           "precio": 25,
-          "foto": "./assets/images/img_productos/proteina2.jpg",
+          "foto": "./assets/images/logoreparto.png",
           "id": 2
         },
         {
-          "nombre": "Omega 3",
-          "precio": 15,
-          "foto": "./assets/images/img_productos/proteina4.jpg",
-          "id": 4
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "nombre": "Omega 3",
-      "tipo": "Proteínas",
-      "descripcion": "Suplemento de omega 3 en cápsulas para promover la salud cardiovascular y la recuperación muscular.",
-      "descripcion_extendida": "Los ácidos grasos omega 3 son esenciales para la salud del corazón, el cerebro y las articulaciones. Este suplemento proporciona una dosis concentrada de ácidos grasos EPA y DHA, que son especialmente beneficiosos para reducir la inflamación, promover la salud cardiovascular y mejorar la recuperación muscular. Ideal para aquellos que desean maximizar su salud y rendimiento físico.",
-      "precio": 15,
-      "foto": "./assets/images/img_productos/proteina4.jpg",
-      "related_products": [
-        {
-          "nombre": "Proteína en Polvo",
-          "precio": 35,
-          "foto": "./assets/images/img_productos/imagenProteina.jpg",
-          "id": 1
-        },
-        {
-          "nombre": "BCAAs",
+          "nombre": "PedroPicaPiedra cocadrink",
           "precio": 25,
-          "foto": "./assets/images/img_productos/proteina2.jpg",
+          "foto": "./assets/images/img_productos/ropa1.jpg",
           "id": 2
-        },
-        {
-          "nombre": "Creatina",
-          "precio": 20,
-          "foto": "./assets/images/img_productos/proteina3.jpg",
-          "id": 3
         }
       ]
     }

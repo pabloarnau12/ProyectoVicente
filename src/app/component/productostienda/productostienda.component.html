@@ -1,0 +1,30 @@
+<div *ngIf="Productos && Productos.productos.length > 0">
+    <!-- Iteramos sobre las tiendas (Productos.productos) -->
+    <div *ngFor="let tienda of Productos.productos" class="container-fluid text-center pb-5">
+      
+      <div class="container mt-5 mb-5">
+        <h1 class="large">Productos de {{tienda.nombre}}</h1>
+        <p>{{tienda.descripcion}}</p>
+      </div>
+  
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 row-cols-md-4 justify-content-center">
+        <!-- Iteramos sobre los productos de la tienda actual (tienda.productostienda) -->
+        <div *ngFor="let productoTienda of tienda.productostienda" class="col mb-5">
+          <div class="card shadow-sm caja" style="height: 100%;">
+            <img [src]="productoTienda.foto" alt="Imagen de {{productoTienda.nombre}}" style="width: 100%;">
+            <div class="card-body">
+              <div class="col-12">
+                <h4 class="card-title fs-2">{{productoTienda.nombre}}</h4>
+              </div>
+              <div class="justify-content-center align-items-center">
+                <div class="text-center mt-5 mb-5">
+                  <p class="text-body-primary fs-4">{{productoTienda.precio}}€</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
