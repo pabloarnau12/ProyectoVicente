@@ -15,15 +15,9 @@
             <div class="col-md-6">
                 <div class="small mb-1">{{Productos.tipo}}</div>
                 <h1 class="display-5 fw-bolder">{{Productos.nombre}}</h1>
-                <div class="fs-5 mb-5">
-                    <span class="text-decoration-line-through text-danger" >{{Productos.precio + 20 + '€  '}}</span>
 
-                    <span class="fs-5"><strong>{{Productos.precio}}€</strong></span>
-                </div>
                 <p class="lead">{{Productos.descripcion_extendida}}</p>
                 <div class="d-flex">
-
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/paginapago/' + Productos.id]">Comprar</button>
                     <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/productostienda/' + Productos.id]">Productos</button>
                 </div>
             </div>
@@ -51,8 +45,6 @@
                             <h5 class="fw-bolder">{{ProductoRelacionado.nombre}}</h5>
     
 
-                            <span class="text-muted text-decoration-line-through">{{ProductoRelacionado.precio + 20 + '€'}}</span>
-                            {{ProductoRelacionado.precio}}€
                         </div>
                     </div>
                     
