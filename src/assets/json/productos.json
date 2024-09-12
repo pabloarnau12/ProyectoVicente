@@ -46,6 +46,42 @@
           "precio": 25,
           "foto": "./assets/images/img_productos/proteina3.jpg",
           "id": 2
+        },
+        {
+          "nombre": "Monster Mango",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/proteina3.jpg",
+          "id": 2
+        },
+        {
+          "nombre": "Monster",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/proteina3.jpg",
+          "id": 2
+        },
+        {
+          "nombre": "Monster",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/proteina3.jpg",
+          "id": 2
+        },
+        {
+          "nombre": "Monster",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/proteina3.jpg",
+          "id": 2
+        },
+        {
+          "nombre": "Monster",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/proteina3.jpg",
+          "id": 2
+        },
+        {
+          "nombre": "Monster",
+          "precio": 25,
+          "foto": "./assets/images/img_productos/proteina3.jpg",
+          "id": 2
         }
       ]
     },

@@ -14,3 +14,24 @@ h1.large{
 .caja:hover {
     transform: scale(1.05);
   }
+
+
+  .card {
+    border: none;
+    border-radius: 0.5rem; /* Opcional: Bordes redondeados */
+    overflow: hidden; /* Opcional: Para asegurar que los bordes redondeados se mantengan */
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: 250px; /* Ajusta según el tamaño deseado */
+    object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionarse */
+  }
+  
+  /* Opcional: Ajusta el tamaño de la tarjeta para pantallas más pequeñas */
+  @media (max-width: 576px) {
+    .card-img-top {
+      height: 150px; /* Ajusta según sea necesario */
+    }
+  }
+  

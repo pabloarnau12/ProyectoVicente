@@ -1,33 +1,58 @@
 import { Component } from '@angular/core';
-import { Productos } from '../../common/productos';
 import { DataService } from '../../service/data.service';
-import { Router } from '@angular/router';
+import { Producto } from '../../common/productos';
 import { NgFor, NgIf } from '@angular/common'; // Importa NgFor y NgIf
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-productostienda',
   standalone: true,
-  imports: [NgFor, NgIf], // Añade NgFor y NgIf a los imports
+  imports: [NgFor, NgIf, RouterLink, RouterLinkActive], // Añade NgFor y NgIf a los imports
   templateUrl: './productostienda.component.html',
   styleUrls: ['./productostienda.component.css']
 })
 export class ProductostiendaComponent {
-  Productos: Productos = { productos: [] };
+  
 
-  constructor(private dataService: DataService, private router: Router) {}
+  constructor(private dataService: DataService, private router: Router, private activeRoute: ActivatedRoute) {}
+
+  Productos!: Producto;
 
   ngOnInit(): void {
     this.loadProductos();
+
+      this.activeRoute.params.subscribe(params => {
+        const id = +params['id']; // El "+" convierte el parámetro a número
+        if (!isNaN(id)) {
+          // Obtener el producto correspondiente al índice
+          this.dataService.getProductobyID2(id).subscribe(Productos => {
+            this.Productos = Productos;
+          });
+        } else {
+          console.error('ID de producto inválido');
+        }
+      });
   }
 
   loadProductos(): void {
-    this.dataService.getProducto().subscribe({
-      next: (data: Productos) => {
-        this.Productos = data;
-      },
-      error: (error) => {
-        console.error('Error al cargar productos', error);
+    this.activeRoute.params.subscribe(params => {
+      const id = +params['id'];
+      if (!isNaN(id)) {
+        this.dataService.getProductobyID2(id).subscribe({
+          next: (producto: Producto) => {
+            console.log(producto);
+
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
+      } 
+      else 
+      {
+        console.error('ID de producto inválido');
       }
     });
-  }
+
+}
 }

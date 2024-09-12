@@ -1,30 +1,37 @@
-<div *ngIf="Productos && Productos.productos.length > 0">
-    <!-- Iteramos sobre las tiendas (Productos.productos) -->
-    <div *ngFor="let tienda of Productos.productos" class="container-fluid text-center pb-5">
-      
+
+
+  <div *ngIf="Productos && Productos.productostienda.length > 0">
+    <div class="container-fluid text-center pb-5">
       <div class="container mt-5 mb-5">
-        <h1 class="large">Productos de {{tienda.nombre}}</h1>
-        <p>{{tienda.descripcion}}</p>
+        <h1 class="large">Productos {{Productos.nombre}}</h1>
       </div>
-  
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 row-cols-md-4 justify-content-center">
-        <!-- Iteramos sobre los productos de la tienda actual (tienda.productostienda) -->
-        <div *ngFor="let productoTienda of tienda.productostienda" class="col mb-5">
-          <div class="card shadow-sm caja" style="height: 100%;">
-            <img [src]="productoTienda.foto" alt="Imagen de {{productoTienda.nombre}}" style="width: 100%;">
-            <div class="card-body">
-              <div class="col-12">
-                <h4 class="card-title fs-2">{{productoTienda.nombre}}</h4>
+    <!-- Iteramos sobre las tiendas (Productos.productos) -->
+    <div class="container px-4 px-lg-5 mt-5">
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+      <div *ngFor="let Producto of Productos.productostienda" class="container-fluid text-center pb-5">
+      
+        <div class="col mb-5">
+          <div class="card h-100">
+              <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+              <img class="card-img-top" src="{{Producto.foto}}" alt="foto Productos Relacionados" />
+              <div class="card-body p-4">
+                  <div class="text-center">
+                      <h5 class="fw-bolder">{{Producto.nombre}}</h5>
+                      <span class="text-muted text-decoration-line-through">{{Producto.precio + 20 + '€'}}</span>
+                      {{Producto.precio}}€
+                  </div>
               </div>
-              <div class="justify-content-center align-items-center">
-                <div class="text-center mt-5 mb-5">
-                  <p class="text-body-primary fs-4">{{productoTienda.precio}}€</p>
-                </div>
+              <!-- Botón de compra -->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                  <div class="text-center">
+                      <a class="btn btn-outline-dark mt-auto" [routerLink]="['/paginapago/' + Producto.id]">Comprar</a>
+                  </div>
               </div>
-            </div>
           </div>
-        </div>
       </div>
+      </div>
+
+    </div>
     </div>
   </div>
-  
+</div>
