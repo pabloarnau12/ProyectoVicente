@@ -9,6 +9,7 @@ import { RegistrarseComponent } from './component/registrarse/registrarse.compon
 import { PaginaProductoComponent } from './component/pagina-producto/pagina-producto.component';
 import { PaginapagoComponent } from './component/paginapago/paginapago.component';
 import { ProductostiendaComponent } from './component/productostienda/productostienda.component';
+import { PruebaComponent } from './component/prueba/prueba.component';
 
 
 export const routes: Routes = [
@@ -21,6 +22,8 @@ export const routes: Routes = [
     { path: 'pagina-producto/:id', title: 'Producto', component: PaginaProductoComponent},
     { path: 'paginapago/:id', title: 'Producto', component: PaginapagoComponent},
     { path: 'productostienda/:id', title: 'ProductosTienda', component: ProductostiendaComponent},
+    { path: 'prueba', title: 'PRUEBA', component: PruebaComponent},
     { path: '**', component: NotFoundComponent },
     
 ];
+
