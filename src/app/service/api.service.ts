@@ -9,11 +9,23 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  private urlApi = "http://localhost:3000/api/productos"
+  private urlApiproductos = "http://localhost:3000/api/productos/"
+  private urlApiTiendas = "http://localhost:3000/api/tiendas/"
 
   public getData(): Observable <any>{
-    return this.http.get<any>(this.urlApi)
+    return this.http.get<any>(this.urlApiproductos)
   }
 
+  public getDatabyID(id : number): Observable <any>{
+    return this.http.get<any>(this.urlApiproductos + id)
+  }
+
+  public getShops(): Observable <any>{
+    return this.http.get<any>(this.urlApiTiendas)
+  }
+
+  public getShopsbyID(id : number): Observable <any>{
+    return this.http.get<any>(this.urlApiTiendas + id)
+  }
 
 }

@@ -36,9 +36,35 @@ app.get('/api/productos', (req, res) => {
   });
 });
 
+app.get('/api/tiendas', (req, res) => {
+  connection.query('SELECT * FROM tiendas', (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+      return;
+    }
+    res.json(results);
+  });
+});
+
 app.get('/api/productos/:id', (req, res) => {
   const { id } = req.params;
   connection.query('SELECT * FROM productos WHERE ID = ?', [id], (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).send('Producto no encontrado');
+      return;
+    }
+    res.json(results[0]);
+  });
+});
+
+
+app.get('/api/tiendas/:id', (req, res) => {
+  const { id } = req.params;
+  connection.query('SELECT * FROM tiendas WHERE ID = ?', [id], (err, results) => {
     if (err) {
       res.status(500).send(err);
       return;

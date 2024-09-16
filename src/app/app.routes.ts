@@ -23,6 +23,7 @@ export const routes: Routes = [
     { path: 'paginapago/:id', title: 'Producto', component: PaginapagoComponent},
     { path: 'productostienda/:id', title: 'ProductosTienda', component: ProductostiendaComponent},
     { path: 'prueba', title: 'PRUEBA', component: PruebaComponent},
+    { path: 'prueba/:id', title: 'PRUEBA', component: PruebaComponent},
     { path: '**', component: NotFoundComponent },
     
 ];

@@ -3,6 +3,7 @@ import { DataService } from '../../service/data.service';
 import { Producto } from '../../common/productos';
 import { NgFor, NgIf } from '@angular/common'; // Importa NgFor y NgIf
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-productostienda',
@@ -13,8 +14,9 @@ import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/r
 })
 export class ProductostiendaComponent {
   
-
-  constructor(private dataService: DataService, private router: Router, private activeRoute: ActivatedRoute) {}
+  productoId: number | null = null;
+  data : any = [];
+  constructor(private dataService: DataService, private router: Router, private activeRoute: ActivatedRoute, private apiService : ApiService, private route : ActivatedRoute) {}
 
   Productos!: Producto;
 
@@ -32,6 +34,15 @@ export class ProductostiendaComponent {
           console.error('ID de producto inválido');
         }
       });
+
+
+          // Obtener el parámetro de la URL y convertirlo a número
+    const idParam = this.route.snapshot.paramMap.get('id');
+    this.productoId = idParam !== null ? Number(idParam) : null;
+
+    console.log(this.productoId); // Muestra el ID como número, por ejemplo, 42
+      this.llenardatabyID();
+      
   }
 
   loadProductos(): void {
@@ -53,6 +64,16 @@ export class ProductostiendaComponent {
         console.error('ID de producto inválido');
       }
     });
+}
 
+llenardatabyID() {
+  if (this.productoId !== null) {
+    this.apiService.getShopsbyID(this.productoId).subscribe(data => {
+      this.data = data;
+      console.log(this.data);
+    });
+  } else {
+    console.error('productoId es null, no se puede hacer la petición.');
+  }
 }
 }
