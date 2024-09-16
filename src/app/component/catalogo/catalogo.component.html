@@ -1,10 +1,10 @@
-@if (Productos) {
+@if (data) {
   <div class="container-fluid text-center pb-5">
     <div class="container mt-5 mb-5">
       <h1 class="large">COMERCIOS</h1>
     </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center">
-      @for (Tiendas of Productos.productos; track Productos) {
+      @for (Tiendas of data; track data) {
         <div class="col d-flex align-items-center mb-5">
           <div class="card caja h-100 shadow-sm">
             <img src="{{Tiendas.foto}}" alt="imagen card" class="card-img-top">
