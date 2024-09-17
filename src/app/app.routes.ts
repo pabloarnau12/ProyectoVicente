@@ -10,7 +10,8 @@ import { ProductostiendaComponent } from './component/productostienda/productost
 import { PruebaComponent } from './component/prueba/prueba.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
-
+import { PerfilComponent } from './component/perfil/perfil.component';
+import { AuthGuard } from './auth/auth.guard'; // Asegúrate de que el guard está configurado
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home',  pathMatch: 'full'},
@@ -18,13 +19,11 @@ export const routes: Routes = [
     { path: 'catalogo', title: 'catalogo',  component: CatalogoComponent },
     { path: 'contacto', title: 'contacto',  component: ContactoComponent },
     { path: 'iniciarsesion', title: 'iniciar sesion',  component: LoginComponent },
-    { path: 'registrarse', title: 'Registrarse',  component: RegisterComponent },
-    { path: ':nombre', title: 'Pagina Tienda', component: PaginaProductoComponent},
-    { path: ':nombre/productos', title: 'Productos de la tienda', component: ProductostiendaComponent},
-    { path: 'paginapago/:id', title: 'Producto', component: PaginapagoComponent},
-    { path: 'productostienda/:id', title: 'ProductosTienda', component: ProductostiendaComponent},
-    { path: 'prueba', title: 'PRUEBA', component: PruebaComponent},
-    { path: 'prueba/:id', title: 'PRUEBA', component: PruebaComponent},
+    { path: 'register', title: 'Registrarse',  component: RegisterComponent },
+    { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+    { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
+    { path: 'catalogo/:nombre', title: 'Pagina Tienda', component: PaginaProductoComponent},
+    { path: 'catalogo/:nombre/productos', title: 'Productos de la tienda', component: ProductostiendaComponent},
     { path: '**', component: NotFoundComponent },
     
 ];

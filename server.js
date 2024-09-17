@@ -28,7 +28,7 @@ connection.connect(err => {
 });
 
 // Rutas de la API
-app.get('/api/productos', (req, res) => {
+app.get('/api/productos/', (req, res) => {
   connection.query('SELECT * FROM productos', (err, results) => {
     if (err) {
       res.status(500).send(err);
@@ -38,7 +38,7 @@ app.get('/api/productos', (req, res) => {
   });
 });
 
-app.get('/api/tiendas', (req, res) => {
+app.get('/api/tiendas/', (req, res) => {
   connection.query('SELECT * FROM tiendas', (err, results) => {
     if (err) {
       res.status(500).send(err);

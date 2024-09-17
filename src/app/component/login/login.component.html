@@ -14,15 +14,15 @@
        <img src="../../../assets/images/logoreparto.png" style="width: 100px; height: 100px;">
        </div>
         <h2 class="text-center text-white m-4">Iniciar Sesión con tus credenciales</h2>
-        <form action="#">
+        <form (ngSubmit)="login()">
 
             <div class="mb-3">
                 <label fi="email" class="form-label text-white ">Email o Usuario</label>
-                <input type="text" class="form-control border-primary" id="email" name="email" required>
+                <input class="form-control border-primary" type="email" id="email" name="email" [(ngModel)]="email" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label text-white ">Contraseña</label>
-                <input type="password" class="form-control border-primary" id="password" name="password" required>
+                <input class="form-control border-primary" type="password" id="password" name="password" [(ngModel)]="password" required>
             </div>
             <button type="submit" class="btn btn-primary login-btn w-100">Iniciar sesión</button>
 
