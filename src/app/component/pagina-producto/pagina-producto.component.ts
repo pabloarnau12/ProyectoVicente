@@ -22,12 +22,12 @@ export class PaginaProductoComponent {
 
   Productos!: ProductoUnico;
   data : any = [];
-  id: number | null = null;
+  nombre: string | null = null;
 
   ngOnInit(): void {
     // this.loadProductos();
-    const idParam = this.activeRoute.snapshot.paramMap.get('id');
-    this.id = idParam !== null ? Number(idParam) : null;
+    const nombreParam = this.activeRoute.snapshot.paramMap.get('nombre'); 
+    this.nombre = nombreParam !== null ? nombreParam : null;
     this.llenardatabyID();
       // this.activeRoute.params.subscribe(params => {
       //   const id = +params['id']; // El "+" convierte el parámetro a número
@@ -65,8 +65,8 @@ export class PaginaProductoComponent {
 // }
 
 llenardatabyID() {
-  if (this.id !== null) {
-    this.apiService.getShopsbyID(this.id).subscribe(data => {
+  if (this.nombre !== null) {
+    this.apiService.getShopsbyID(this.nombre).subscribe(data => {
       this.data = data;
       console.log(this.data);
     });

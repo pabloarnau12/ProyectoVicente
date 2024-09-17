@@ -14,61 +14,62 @@ import { ApiService } from '../../service/api.service';
 })
 export class ProductostiendaComponent {
   
-  productoId: number | null = null;
+  nombre: string | null = null;
+
   data : any = [];
   constructor(private dataService: DataService, private router: Router, private activeRoute: ActivatedRoute, private apiService : ApiService, private route : ActivatedRoute) {}
 
   Productos!: Producto;
 
   ngOnInit(): void {
-    this.loadProductos();
+    // this.loadProductos();
 
-      this.activeRoute.params.subscribe(params => {
-        const id = +params['id']; // El "+" convierte el parámetro a número
-        if (!isNaN(id)) {
-          // Obtener el producto correspondiente al índice
-          this.dataService.getProductobyID2(id).subscribe(Productos => {
-            this.Productos = Productos;
-          });
-        } else {
-          console.error('ID de producto inválido');
-        }
-      });
+      // this.activeRoute.params.subscribe(params => {
+      //   const id = +params['id']; // El "+" convierte el parámetro a número
+      //   if (!isNaN(id)) {
+      //     // Obtener el producto correspondiente al índice
+      //     this.dataService.getProductobyID2(id).subscribe(Productos => {
+      //       this.Productos = Productos;
+      //     });
+      //   } else {
+      //     console.error('ID de producto inválido');
+      //   }
+      // });
 
 
           // Obtener el parámetro de la URL y convertirlo a número
-    const idParam = this.route.snapshot.paramMap.get('id');
-    this.productoId = idParam !== null ? Number(idParam) : null;
+          const nombreParam = this.activeRoute.snapshot.paramMap.get('nombre'); 
+          this.nombre = nombreParam !== null ? nombreParam : null;
 
-    console.log(this.productoId); // Muestra el ID como número, por ejemplo, 42
+    console.log(this.nombre); // Muestra el ID como número, por ejemplo, 42
       this.llenardatabyID();
       
   }
 
-  loadProductos(): void {
-    this.activeRoute.params.subscribe(params => {
-      const id = +params['id'];
-      if (!isNaN(id)) {
-        this.dataService.getProductobyID2(id).subscribe({
-          next: (producto: Producto) => {
-            console.log(producto);
+//   loadProductos(): void {
+//     this.activeRoute.params.subscribe(params => {
+//       const id = +params['id'];
+//       if (!isNaN(id)) {
+//         this.dataService.getProductobyID2(id).subscribe({
+//           next: (producto: Producto) => {
+//             console.log(producto);
 
-          },
-          error: (err) => {
-            console.log(err);
-          }
-        });
-      } 
-      else 
-      {
-        console.error('ID de producto inválido');
-      }
-    });
-}
+//           },
+//           error: (err) => {
+//             console.log(err);
+//           }
+//         });
+//       } 
+//       else 
+//       {
+//         console.error('ID de producto inválido');
+//       }
+//     });
+// }
 
 llenardatabyID() {
-  if (this.productoId !== null) {
-    this.apiService.getShopsbyID(this.productoId).subscribe(data => {
+  if (this.nombre !== null) {
+    this.apiService.getProductsByShop(this.nombre).subscribe(data => {
       this.data = data;
       console.log(this.data);
     });

@@ -62,20 +62,39 @@ app.get('/api/productos/:id', (req, res) => {
 });
 
 
-app.get('/api/tiendas/:id', (req, res) => {
-  const { id } = req.params;
-  connection.query('SELECT * FROM tiendas WHERE ID = ?', [id], (err, results) => {
+app.get('/api/tiendas/:nombre', (req, res) => {
+  const { nombre } = req.params;
+  connection.query('SELECT * FROM tiendas WHERE nombre = ?', [nombre], (err, results) => {
     if (err) {
       res.status(500).send(err);
       return;
     }
     if (results.length === 0) {
-      res.status(404).send('Producto no encontrado');
+      res.status(404).send('tienda no encontrada');
       return;
     }
     res.json(results[0]);
   });
 });
+
+
+app.get('/api/tiendas/:nombre/productos', (req, res) => { 
+  const { nombre } = req.params;
+
+  // Cambiamos la consulta para obtener los productos de la tienda
+  connection.query('SELECT * FROM productos WHERE tienda_nombre = ?', [nombre], (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).send('No se encontraron productos para la tienda especificada');
+      return;
+    }
+    res.json(results); // Devolvemos todos los productos
+  });
+});
+
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);

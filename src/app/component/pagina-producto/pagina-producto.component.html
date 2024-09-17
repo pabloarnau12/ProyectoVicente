@@ -18,20 +18,20 @@
 
                 <p class="lead">{{data.descripcion}}</p>
                 <div class="d-flex">
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/productostienda/' + Productos.id]">Productos</button>
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/' + data.nombre + '/' + 'productos']">Ver Productos</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="py-5 bg-light">
+<!-- <section class="py-5 bg-light">
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="fw-bolder justify-content-center mb-4">Tiendas Relacionadas</h2>
         
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-            @for (ProductoRelacionado of Productos.related_shops; track ProductoRelacionado) {
+             {
             <div class="col mb-5">
                 <div class="card h-100">
 
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     
-                    <!-- Botón de compra -->
+
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center">
                             <a class="btn btn-outline-dark mt-auto" [routerLink]="['/paginapago/' + ProductoRelacionado.id]">Comprar</a>
@@ -60,6 +60,6 @@
         </div>
     </div>
     
-</section>
+</section> -->
 
 }
