@@ -15,10 +15,16 @@
           <li class="nav-item ">
             <a class="nav-link " aria-current="page" routerLink="/contacto" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Contacto</a>
           </li>
+          
         </ul>
         <form class="d-flex" role="search">
-
-          <a href="#" class="btn btn-outline-light m-2" aria-current="page" routerLink="/iniciarsesion" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Iniciar Sesión</a>
+          <div *ngIf="isLoggedIn;">
+            <a href="#" class="btn btn-outline-light m-2" aria-current="page" routerLink="/perfil" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Perfil</a>
+          </div>
+          <div *ngIf="!isLoggedIn;">
+            <a href="#" class="btn btn-outline-light m-2" aria-current="page" routerLink="/iniciarsesion" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Iniciar Sesión</a>
+          </div>
+          
         </form>
       </div>
     </div>

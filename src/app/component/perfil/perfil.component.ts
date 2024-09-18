@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -19,7 +20,7 @@ export class PerfilComponent implements OnInit {
     password: ''
   };
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadProfile();
@@ -36,6 +37,7 @@ export class PerfilComponent implements OnInit {
           this.user.apellidos = profile.apellidos;
           this.user.telefono = profile.telefono;
           this.user.email = profile.email;
+          console.error('Perfil cargado');
         },
         error => {
           console.error('Error al cargar el perfil', error);
@@ -44,6 +46,15 @@ export class PerfilComponent implements OnInit {
     } else {
       console.error('No se encontró el token');
     }
+  }
+
+
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/home']).then(() => {
+      // Forzar la recarga de la página
+      window.location.reload();
+    });
   }
 
 }

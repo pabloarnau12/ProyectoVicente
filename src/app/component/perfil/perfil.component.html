@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container m-5">
     <h2>Perfil de Usuario</h2>
 
       <div class="form-group">
@@ -60,5 +60,8 @@
           class="form-control"
         />
       </div>
+      <form (ngSubmit)="onLogout()">
+        <button type="submit" class="btn btn-primary mt-5 justify-content-center" >Cerrar sesion</button>
+      </form>
   </div>
   

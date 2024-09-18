@@ -22,11 +22,9 @@ export class AuthService {
     return this.http.get<any>(`${this.apiUrl}/perfil`, { headers: { Authorization: `Bearer ${token}` } });
   }
 
-  updateProfile(profile: any, token: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    });
-    return this.http.put<any>(`${this.apiUrl}/perfil`, profile, { headers });
+  logout(): void {
+    localStorage.removeItem('token');
+    console.log('Sesión cerrada correctamente');
+    
   }
 }
