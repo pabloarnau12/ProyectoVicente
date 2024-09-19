@@ -15,28 +15,14 @@ import { ApiService } from '../../service/api.service';
   styleUrl: './catalogo.component.css'
 })
 export class CatalogoComponent {
-  constructor(private dataService: DataService, private router: Router, private apiService : ApiService) { }
+  constructor(private router: Router, private apiService : ApiService) { }
   data : any = [];
-  // Productos: Productos = { productos: [] };
 
   ngOnInit(): void {
-    // this.loadProductos();
+
     this.llenardata();
   }
-  // loadProductos() {
-  //   this.dataService.getProducto().subscribe({
-  //     next: (data) => {
-  //       if (data) {
-  //         console.log(data);
-  //         this.Productos = data;
-  //       }
-  //     },
-  //     error: error => {
-  //       console.log(error);
-  //     },
-  //     complete: () => {}
-  //   });
-  // }
+
   
 
     llenardata(){

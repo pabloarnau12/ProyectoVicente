@@ -15,54 +15,19 @@ import { ApiService } from '../../service/api.service';
 export class PaginaProductoComponent {
 
   constructor(
-    private dataService: DataService,
     private activeRoute: ActivatedRoute,
     private router: Router,
     private apiService : ApiService) { }
 
-  Productos!: ProductoUnico;
   data : any = [];
   nombre: string | null = null;
 
   ngOnInit(): void {
-    // this.loadProductos();
     const nombreParam = this.activeRoute.snapshot.paramMap.get('nombre'); 
     this.nombre = nombreParam !== null ? nombreParam : null;
     this.llenardatabyID();
-      // this.activeRoute.params.subscribe(params => {
-      //   const id = +params['id']; // El "+" convierte el parámetro a número
-      //   if (!isNaN(id)) {
-      //     // Obtener el producto correspondiente al índice
-      //     this.dataService.getProductobyID(id).subscribe(Productos => {
-      //       this.Productos = Productos;
-      //     });
-      //   } else {
-      //     console.error('ID de producto inválido');
-      //   }
-      // });
+
   }
-
-//   loadProductos(): void {
-//     this.activeRoute.params.subscribe(params => {
-//       const id = +params['id'];
-//       if (!isNaN(id)) {
-//         this.dataService.getProductobyID(id).subscribe({
-//           next: (producto: ProductoUnico) => {
-//             console.log(producto);
-
-//           },
-//           error: (err) => {
-//             console.log(err);
-//           }
-//         });
-//       } 
-//       else 
-//       {
-//         console.error('ID de producto inválido');
-//       }
-//     });
-
-// }
 
 llenardatabyID() {
   if (this.nombre !== null) {

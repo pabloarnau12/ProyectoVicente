@@ -3,6 +3,7 @@ import { ProductoUnico } from '../../common/producto-unico';
 import { DataService } from '../../service/data.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Productos } from '../../common/productos';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-bestsellers',
@@ -12,26 +13,21 @@ import { Productos } from '../../common/productos';
   styleUrl: './bestsellers.component.css'
 })
 export class BestsellersComponent implements OnInit{
-  Productos! : Productos;
-
-  constructor(private dataService: DataService, private router: Router) { }
+  data : any = [];
+  constructor(private router: Router, private apiService : ApiService) { }
 
   ngOnInit(): void {
-    this.loadBestSellers();
+
+    this.llenardata();
   }
 
-  loadBestSellers() {
-    this.dataService.getProducto().subscribe({
-      next: (data) => {
-        if (data) {
-          console.log(data);
-          this.Productos = data;
-        }
-      },
-      error: error => {
-        console.log(error);
-      },
-      complete: () => {}
-    });
+
+
+  llenardata(){
+    this.apiService.getShopsbyID("tienda1").subscribe (data =>{
+      this.data = data;
+      console.log(this.data);
+      
+    })
   }
 }
