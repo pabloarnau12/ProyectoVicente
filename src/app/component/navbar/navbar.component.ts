@@ -12,17 +12,15 @@ import { CommonModule } from '@angular/common'; // Importa CommonModule aquí
 })
 export class NavbarComponent {
   isLoggedIn: boolean = false;
-
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, ) { }
 
   ngOnInit(): void {
-    // this.checkLoginStatus();
+    this.checkLoginStatus();
   }
 
-  // Verificar si el usuario está autenticado
-  // checkLoginStatus(): void {
-  //   const token = localStorage.getItem('token');
-  //   this.isLoggedIn = !!token; // Si hay un token, está logueado
-  // }
-
+  
+  checkLoginStatus(): void {
+    const token = localStorage.getItem('token');
+    this.isLoggedIn = !!token; // Si hay un token, está logueado
+  }
 }
