@@ -3,6 +3,7 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { log } = require('console');
 
 const app = express();
 const port = 3000;
@@ -177,18 +178,19 @@ app.post('/api/login', (req, res) => {
 });
 
 // Ruta protegida para obtener el perfil del usuario
-app.get('/api/perfil', (req, res) => {
+app.get('/api/perfil/', (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
 
   if (!token) {
     return res.status(401).json({ message: 'Token no proporcionado' });
   }
-
+ 
+  console.log(token);
   jwt.verify(token, 'tu_clave_secreta', (err, decoded) => {
     if (err) {
       return res.status(403).json({ message: 'Token inválido' });
     }
-
+    console.log('Token decodificado:', decoded);
     connection.query('SELECT * FROM usuarios WHERE id = ?', [decoded.id], (err, results) => {
       if (err) {
         return res.status(500).json({ message: 'Error al obtener el perfil' });
