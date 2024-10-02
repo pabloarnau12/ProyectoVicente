@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../../../service/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule aquí
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';

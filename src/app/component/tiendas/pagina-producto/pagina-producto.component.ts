@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { ProductoUnico } from '../../common/producto-unico';
-import { DataService } from '../../service/data.service';
+import { NavbarComponent } from '../../navbar/navbar.component';
+import { ProductoUnico } from '../../../common/producto-unico';
+import { DataService } from '../../../service/data.service';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { ApiService } from '../../service/api.service';
+import { ApiService } from '../../../service/api.service';
 
 @Component({
   selector: 'app-pagina-producto',

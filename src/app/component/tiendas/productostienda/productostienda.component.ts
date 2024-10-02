@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { DataService } from '../../service/data.service';
-import { Producto } from '../../common/productos';
+import { DataService } from '../../../service/data.service';
+import { Producto } from '../../../common/productos';
 import { NgFor, NgIf } from '@angular/common'; // Importa NgFor y NgIf
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { ApiService } from '../../service/api.service';
+import { ApiService } from '../../../service/api.service';
 
 @Component({
   selector: 'app-productostienda',

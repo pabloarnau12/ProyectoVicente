@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { Productos } from '../../common/productos';
-import { DataService } from '../../service/data.service';
+import { NavbarComponent } from '../../navbar/navbar.component';
+import { Producto, Productos } from '../../../common/productos';
+import { DataService } from '../../../service/data.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { PaginaProductoComponent } from '../pagina-producto/pagina-producto.component';
 import { query } from 'express';
-import { ApiService } from '../../service/api.service';
+import { ApiService } from '../../../service/api.service';
+import { ProductoUnico } from '../../../common/producto-unico';
 
 @Component({
   selector: 'app-catalogo',
@@ -16,7 +17,7 @@ import { ApiService } from '../../service/api.service';
 })
 export class CatalogoComponent {
   constructor(private router: Router, private apiService : ApiService) { }
-  data : any = [];
+  data : ProductoUnico[] = [];
 
   ngOnInit(): void {
 
@@ -25,7 +26,7 @@ export class CatalogoComponent {
 
   
 
-    llenardata(){
+    llenardata(): void{
     this.apiService.getShops().subscribe (data =>{
       this.data = data;
       console.log(this.data);

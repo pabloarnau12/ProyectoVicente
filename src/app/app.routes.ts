@@ -1,16 +1,15 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './component/home/home.component';
+import { HomeComponent } from './component/paginaPrincipal/home/home.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
-import { CatalogoComponent } from './component/catalogo/catalogo.component';
+import { CatalogoComponent } from './component/tiendas/catalogo/catalogo.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
-import { ContactoComponent } from './component/contacto/contacto.component';
-import { PaginaProductoComponent } from './component/pagina-producto/pagina-producto.component';
-import { PaginapagoComponent } from './component/paginapago/paginapago.component';
-import { ProductostiendaComponent } from './component/productostienda/productostienda.component';
-import { PruebaComponent } from './component/prueba/prueba.component';
-import { LoginComponent } from './component/login/login.component';
-import { RegisterComponent } from './component/register/register.component';
-import { PerfilComponent } from './component/perfil/perfil.component';
+import { ContactoComponent } from './component/Contact/contacto/contacto.component';
+import { PaginaProductoComponent } from './component/tiendas/pagina-producto/pagina-producto.component';
+import { PaginapagoComponent } from './component/tiendas/paginapago/paginapago.component';
+import { ProductostiendaComponent } from './component/tiendas/productostienda/productostienda.component';
+import { LoginComponent } from './component/Session/login/login.component';
+import { RegisterComponent } from './component/Session/register/register.component';
+import { PerfilComponent } from './component/Session/perfil/perfil.component';
 import { AuthGuard } from './auth/auth.guard'; // Asegúrate de que el guard está configurado
 
 export const routes: Routes = [

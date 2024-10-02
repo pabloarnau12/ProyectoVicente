@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { DataService } from '../../service/data.service';
+import { DataService } from '../../../service/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductoUnico } from '../../common/producto-unico';
+import { ProductoUnico } from '../../../common/producto-unico';
 import { FormsModule } from '@angular/forms';
 
 @Component({
