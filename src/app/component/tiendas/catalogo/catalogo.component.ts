@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { Producto, Productos } from '../../../common/productos';
-import { DataService } from '../../../service/data.service';
+
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { PaginaProductoComponent } from '../pagina-producto/pagina-producto.component';
 import { query } from 'express';
-import { ApiService } from '../../../service/api.service';
+import { ApiService } from '../../../service/shop.service';
 import { ProductoUnico } from '../../../common/producto-unico';
 
 @Component({

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoUnico } from '../../../common/producto-unico';
-import { DataService } from '../../../service/data.service';
+
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Productos } from '../../../common/productos';
-import { ApiService } from '../../../service/api.service';
+import { ApiService } from '../../../service/shop.service';
 
 @Component({
   selector: 'app-bestsellers',
