@@ -1,26 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
-import { Producto, Productos } from '../../../common/productos';
-
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { PaginaProductoComponent } from '../pagina-producto/pagina-producto.component';
-import { query } from 'express';
 import { ApiService } from '../../../service/shop.service';
-import { ProductoUnico } from '../../../common/producto-unico';
+import { Tiendas } from '../../../common/Tiendas';
+import { ShopComponent } from "../shop/shop.component";
 
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  imports: [NavbarComponent, RouterLink, RouterLinkActive],
+  imports: [NavbarComponent, RouterLink, RouterLinkActive, ShopComponent],
   templateUrl: './catalogo.component.html',
   styleUrl: './catalogo.component.css'
 })
 export class CatalogoComponent {
-  constructor(private router: Router, private apiService : ApiService) { }
-  data : ProductoUnico[] = [];
+  private readonly apiService: ApiService = inject(ApiService);
+
+  constructor() { }
+  data : Tiendas[] = [];
 
   ngOnInit(): void {
-
     this.llenardata();
   }
 

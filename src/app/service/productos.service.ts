@@ -11,7 +11,7 @@ private http: HttpClient = inject(HttpClient);
 constructor() { }
 
   public getData(): Observable <any>{
-    console.log(this.http.get<any>(this.urlApiproductos) + "hola");
+    console.log(this.http.get<any>(this.urlApiproductos));
     return this.http.get<any>(this.urlApiproductos)
   }
 

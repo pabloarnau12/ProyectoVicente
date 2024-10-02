@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
-import { ProductoUnico } from '../../../common/producto-unico';
+
 
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ApiService } from '../../../service/shop.service';

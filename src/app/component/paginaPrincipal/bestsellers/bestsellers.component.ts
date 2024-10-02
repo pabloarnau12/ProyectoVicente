@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoUnico } from '../../../common/producto-unico';
+
 
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { Productos } from '../../../common/productos';
 import { ApiService } from '../../../service/shop.service';
 
 @Component({
