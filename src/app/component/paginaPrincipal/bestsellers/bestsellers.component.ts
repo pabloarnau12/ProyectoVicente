@@ -23,7 +23,7 @@ export class BestsellersComponent implements OnInit{
 
 
   llenardata(){
-    this.apiService.getShopsbyID("tienda1").subscribe (data =>{
+    this.apiService.getShopsbyID("1").subscribe (data =>{
       this.data = data;
       console.log(this.data);
       

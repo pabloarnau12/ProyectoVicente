@@ -17,7 +17,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '', // Cambia esto según tu configuración
-  database: 'reparto' // Cambia esto según tu base de datos
+  database: 'glovopueblos' // Cambia esto según tu base de datos
 });
 
 connection.connect(err => {
@@ -40,7 +40,7 @@ app.get('/api/productos/', (req, res) => {
 });
 
 app.get('/api/tiendas/', (req, res) => {
-  connection.query('SELECT * FROM tiendas', (err, results) => {
+  connection.query('SELECT * FROM establecimientos', (err, results) => {
     if (err) {
       res.status(500).send(err);
       return;
@@ -51,7 +51,7 @@ app.get('/api/tiendas/', (req, res) => {
 
 app.get('/api/productos/:id', (req, res) => {
   const { id } = req.params;
-  connection.query('SELECT * FROM productos WHERE ID = ?', [id], (err, results) => {
+  connection.query('SELECT * FROM productos WHERE ID_Producto = ?', [id], (err, results) => {
     if (err) {
       res.status(500).send(err);
       return;
@@ -65,9 +65,9 @@ app.get('/api/productos/:id', (req, res) => {
 });
 
 
-app.get('/api/tiendas/:nombre', (req, res) => {
-  const { nombre } = req.params;
-  connection.query('SELECT * FROM tiendas WHERE nombre = ?', [nombre], (err, results) => {
+app.get('/api/tiendas/:id', (req, res) => {
+  const { id } = req.params;
+  connection.query('SELECT * FROM establecimientos WHERE ID_Establecimiento = ?', [id], (err, results) => {
     if (err) {
       res.status(500).send(err);
       return;
@@ -81,11 +81,11 @@ app.get('/api/tiendas/:nombre', (req, res) => {
 });
 
 
-app.get('/api/tiendas/:nombre/productos', (req, res) => { 
-  const { nombre } = req.params;
+app.get('/api/tiendas/:id/productos', (req, res) => { 
+  const { id } = req.params;
 
   // Cambiamos la consulta para obtener los productos de la tienda
-  connection.query('SELECT * FROM productos WHERE tienda_nombre = ?', [nombre], (err, results) => {
+  connection.query('SELECT * FROM productos WHERE ID_Establecimiento = ?', [id], (err, results) => {
     if (err) {
       res.status(500).send(err);
       return;
@@ -98,6 +98,26 @@ app.get('/api/tiendas/:nombre/productos', (req, res) => {
   });
 });
 
+app.get('/api/tiendas/:id/productos/:idProducto', (req, res) => { 
+  const { id, idProducto } = req.params;
+
+  // Consulta modificada para obtener un producto específico de una tienda específica
+  connection.query(
+    'SELECT * FROM productos WHERE ID_Establecimiento = ? AND ID_Producto = ?', 
+    [id, idProducto], 
+    (err, results) => {
+      if (err) {
+        res.status(500).send('Error en la consulta: ' + err.message);
+        return;
+      }
+      if (results.length === 0) {
+        res.status(404).send('No se encontró el producto especificado para la tienda dada');
+        return;
+      }
+      res.json(results[0]); // Devolvemos el producto encontrado
+    }
+  );
+});
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
@@ -113,9 +133,9 @@ app.listen(port, () => {
 
 // Ruta de registro
 app.post('/api/registro', (req, res) => {
-  const { nombre, apellidos, telefono, email, password } = req.body;
+  const { nombre, apellidos, email, telefono, password } = req.body;
   
-  if (!nombre || !apellidos || !telefono || !email || !password) {
+  if (!nombre || !apellidos || !email || !telefono || !password) {
     return res.status(400).json({ message: 'Todos los campos son obligatorios' });
   }
 
@@ -127,7 +147,7 @@ app.post('/api/registro', (req, res) => {
 
     // Insertar el nuevo usuario en la base de datos
     connection.query(
-      'INSERT INTO usuarios (nombre, apellidos, telefono, email, password) VALUES (?, ?, ?, ?, ?)',
+      'INSERT INTO usuarios (Nombre, Apellidos, email, telefono, Contraseña) VALUES (?, ?, ?, ?, ?)',
       [nombre, apellidos, telefono, email, hashedPassword],
       (err, results) => {
         if (err) {
@@ -191,7 +211,7 @@ app.get('/api/perfil/', (req, res) => {
       return res.status(403).json({ message: 'Token inválido' });
     }
     console.log('Token decodificado:', decoded);
-    connection.query('SELECT * FROM usuarios WHERE id = ?', [decoded.id], (err, results) => {
+    connection.query('SELECT * FROM usuarios WHERE ID_Usuario = ?', [decoded.id], (err, results) => {
       if (err) {
         return res.status(500).json({ message: 'Error al obtener el perfil' });
       }

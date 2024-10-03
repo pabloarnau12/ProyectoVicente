@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 
 
@@ -13,30 +13,30 @@ import { ApiService } from '../../../service/shop.service';
   styleUrl: './pagina-producto.component.css'
 })
 export class PaginaProductoComponent {
-
+  private readonly apiService: ApiService = inject(ApiService);
   constructor(
-    private activeRoute: ActivatedRoute,
-    private router: Router,
-    private apiService : ApiService) { }
+    private activeRoute: ActivatedRoute) { }
 
   data : any = [];
-  nombre: string | null = null;
+  id: string | null = null;
 
   ngOnInit(): void {
-    const nombreParam = this.activeRoute.snapshot.paramMap.get('nombre'); 
-    this.nombre = nombreParam !== null ? nombreParam : null;
+    console.log(this.id);
+    const nombreParam = this.activeRoute.snapshot.paramMap.get('id'); 
+    this.id = nombreParam !== null ? nombreParam : null;
+    
     this.llenardatabyID();
 
   }
 
-llenardatabyID() {
-  if (this.nombre !== null) {
-    this.apiService.getShopsbyID(this.nombre).subscribe(data => {
-      this.data = data;
-      console.log(this.data);
-    });
-  } else {
-    console.error('productoId es null, no se puede hacer la petición.');
+  llenardatabyID() {
+    if (this.id !== null) {
+      this.apiService.getShopsbyID(this.id).subscribe(data => {
+        this.data = data;
+        console.log(this.data);
+      });
+    } else {
+      console.error('productoId es null, no se puede hacer la petición.');
+    }
   }
-}
 }

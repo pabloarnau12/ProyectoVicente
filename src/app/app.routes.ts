@@ -5,12 +5,13 @@ import { CatalogoComponent } from './component/tiendas/catalogo/catalogo.compone
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { ContactoComponent } from './component/Contact/contacto/contacto.component';
 import { PaginaProductoComponent } from './component/tiendas/pagina-producto/pagina-producto.component';
-import { PaginapagoComponent } from './component/tiendas/paginapago/paginapago.component';
+
 import { ProductostiendaComponent } from './component/tiendas/productostienda/productostienda.component';
 import { LoginComponent } from './component/Session/login/login.component';
 import { RegisterComponent } from './component/Session/register/register.component';
 import { PerfilComponent } from './component/Session/perfil/perfil.component';
 import { AuthGuard } from './auth/auth.guard'; // Asegúrate de que el guard está configurado
+import { ProductDetailComponent } from './component/tiendas/product-detail/product-detail.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home',  pathMatch: 'full'},
@@ -21,8 +22,10 @@ export const routes: Routes = [
     { path: 'register', title: 'Registrarse',  component: RegisterComponent },
     { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
     { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
-    { path: 'catalogo/:nombre', title: 'Pagina Tienda', component: PaginaProductoComponent},
-    { path: 'catalogo/:nombre/productos', title: 'Productos de la tienda', component: ProductostiendaComponent},
+    { path: 'catalogo/:id', title: 'Pagina Tienda', component: PaginaProductoComponent},
+    { path: 'catalogo/:id/productos', title: 'Productos de la tienda', component: ProductostiendaComponent},
+    { path: 'catalogo/:id/productos/:idProducto', title: 'hola', component: ProductDetailComponent},
+
     { path: '**', component: NotFoundComponent },
     
 ];

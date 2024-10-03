@@ -15,12 +15,15 @@ export class ApiService {
     return this.http.get<any>(this.urlApiTiendas)
   }
 
-  public getShopsbyID(nombre : string): Observable <any>{
-    return this.http.get<any>(this.urlApiTiendas + nombre)
+  public getShopsbyID(id : string): Observable <any>{
+    return this.http.get<any>(this.urlApiTiendas + id)
   }
 
-  public getProductsByShop(nombre : string): Observable <any>{
-    return this.http.get<any>(this.urlApiTiendas + nombre + '/productos')
+  public getProductsByShop(id : string): Observable <any>{
+    return this.http.get<any>(this.urlApiTiendas + id + '/productos')
   }
-
+  
+  public getProductsDetails(id : string, idProducto : string): Observable <any>{
+    return this.http.get<any>(this.urlApiTiendas + id + '/productos/' + idProducto)
+  }
 }

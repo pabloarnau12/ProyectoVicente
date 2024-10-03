@@ -20,6 +20,7 @@ export class CatalogoComponent {
 
   ngOnInit(): void {
     this.llenardata();
+    
   }
 
   

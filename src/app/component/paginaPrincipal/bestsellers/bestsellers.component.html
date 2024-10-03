@@ -12,16 +12,16 @@
               <div class="card-body mt-3 mb-3">
                 <div class="row">
                   <div class="col-12">
-                    <h4 class="card-title">{{data.nombre}}</h4>
+                    <h4 class="card-title">{{data.Nombre}}</h4>
                     <p class="card-text text-center">
-                      {{data.descripcion}}
+                      {{data.Horario_Apertura + ' - ' + data.Horario_Cierre}}
                     </p>
                   </div>
                 </div>
               </div>
               <div class="row align-items-center text-center g-0">
                 <div class="col-12">
-                  <a href="#" class="btn btn-dark w-100 p-3 rounded-0 text-warning" [routerLink]="['/catalogo/' + data.nombre]">Comprar</a>
+                  <a href="#" class="btn btn-dark w-100 p-3 rounded-0 text-warning" [routerLink]="['/catalogo/' + data.ID_Establecimiento]">Comprar</a>
                 </div>
               </div>
           </div>

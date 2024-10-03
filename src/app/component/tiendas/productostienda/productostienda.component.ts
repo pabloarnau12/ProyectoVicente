@@ -15,18 +15,22 @@ import { ProductComponent } from "../product/product.component";
   styleUrls: ['./productostienda.component.css']
 })
 export class ProductostiendaComponent {
-  @Input('id') id!: string;
 
   
   private readonly apiService: ApiService = inject(ApiService);
   data : producto[] = [];
-  product !: producto;
+  private id!: string;
   constructor(private activeRoute: ActivatedRoute) {}
 
 
   ngOnInit(): void {
-      this.llenardatabyID();
       
+      this.activeRoute.params.subscribe(params => {
+        this.id = params['id'];
+      });
+      console.log(this.id);
+      this.llenardatabyID();
+
   }
 
 
@@ -34,8 +38,8 @@ export class ProductostiendaComponent {
 llenardatabyID(): void {
   this.apiService.getProductsByShop(this.id).subscribe(
     {
-    next: value => {this.product = value;
-    console.log(this.product);
+    next: value => {this.data = value;
+    console.log(this.data);
     },
     error: err => console.error,
     complete : () => console.log("carga de productos completa") 

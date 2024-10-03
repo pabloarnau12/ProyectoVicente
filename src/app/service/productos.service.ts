@@ -15,7 +15,7 @@ constructor() { }
     return this.http.get<any>(this.urlApiproductos)
   }
 
-  public getDatabyID(id : number): Observable <any>{
+  public getDatabyID(id : string): Observable <any>{
     return this.http.get<any>(this.urlApiproductos + id)
   }
 

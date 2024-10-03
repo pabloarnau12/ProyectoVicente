@@ -4,9 +4,9 @@
       <h1 class="large">COMERCIOS</h1>
     </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center">
-      @for(data of data; track data.id){
+      @for(data of data; track data.ID_Establecimiento){
         <div class="col-xl-3 col-lg-4 col-sm-6 my-2">
-            <app-shop [routerLink] = "'/catalogo/' + data.nombre" [tienda]= "data"/>
+            <app-shop [routerLink] = "'/catalogo/' + data.ID_Establecimiento" [tienda]= "data"/>
         </div>
     }
     </div>

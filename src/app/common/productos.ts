@@ -1,14 +1,13 @@
 
 
 export interface producto {
-    id: number
-    descripcion: string
-    foto:string
-    nombre: string
-    tipo: string
-    precio: number
-    tienda_id: number
-    tienda_nombre: string
-  
+    ID_Producto: number
+    ID_Establecimiento: number
+    Nombre: string
+    Descripcion: string
+    Precio: number
+    Disponibilidad: number
+    Foto:string
+    Tipo: string
   }
   

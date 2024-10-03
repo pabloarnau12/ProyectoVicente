@@ -13,13 +13,15 @@
 
             <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{data.foto}}" alt="..." /></div>
             <div class="col-md-6">
-                <div class="small mb-1">{{data.tipo}}</div>
-                <h1 class="display-5 fw-bolder">{{data.nombre}}</h1>
+                <div class="small mb-1">{{data.Tipo}}</div>
+                <h1 class="display-5 fw-bolder">{{data.Nombre}}</h1>
 
-                <p class="lead">{{data.descripcion}}</p>
+                <p class="lead">{{data.Horario_Apertura + ' - ' + data.Horario_Cierre}}</p>
                 <div class="d-flex">
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/catalogo/' + data.nombre + '/' + 'productos']">Ver Productos</button>
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/catalogo/' + data.ID_Establecimiento + '/' + 'productos']">Ver Productos</button>
                 </div>
+
+                <div class="small mb-1">{{data.Calificacion_Promedio}}</div>
             </div>
         </div>
     </div>
