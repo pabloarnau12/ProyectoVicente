@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-10-2024 a las 14:27:48
+-- Tiempo de generación: 04-10-2024 a las 13:04:23
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -32,17 +32,18 @@ CREATE TABLE `calificaciones` (
   `ID_Pedido` int(11) NOT NULL,
   `Calificacion_Establecimiento` int(11) DEFAULT NULL,
   `Calificacion_Repartidor` int(11) DEFAULT NULL,
-  `Comentario` text DEFAULT NULL
+  `Comentario` text DEFAULT NULL,
+  `ID_Establecimiento` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `calificaciones`
 --
 
-INSERT INTO `calificaciones` (`ID_Calificacion`, `ID_Pedido`, `Calificacion_Establecimiento`, `Calificacion_Repartidor`, `Comentario`) VALUES
-(1, 1, 5, 4, 'Excelente comida y buen servicio'),
-(2, 2, 4, 5, 'Entrega rápida y producto en buen estado'),
-(3, 3, NULL, NULL, NULL);
+INSERT INTO `calificaciones` (`ID_Calificacion`, `ID_Pedido`, `Calificacion_Establecimiento`, `Calificacion_Repartidor`, `Comentario`, `ID_Establecimiento`) VALUES
+(1, 1, 10, 4, 'Excelente comida y buen servicio', 1),
+(2, 2, 8, 5, 'Entrega rápida y producto en buen estado', 1),
+(3, 3, 6, 6, 'mu guapo mucha gracias', 2);
 
 -- --------------------------------------------------------
 
@@ -92,7 +93,7 @@ CREATE TABLE `establecimientos` (
 INSERT INTO `establecimientos` (`ID_Establecimiento`, `Nombre`, `Tipo`, `Direccion`, `Telefono`, `Horario_Apertura`, `Horario_Cierre`, `Calificacion_Promedio`, `foto`) VALUES
 (1, 'La Tasca del Pueblo', 'Restaurante', 'Calle del Sol 3, Pueblo A', '123987456', '10:00:00', '22:00:00', 0.00, '\\assets\\images\\entrada (1).png'),
 (2, 'Farmacia San Juan', 'Farmacia', 'Avenida Libertad 7, Pueblo B', '456321789', '09:00:00', '20:00:00', 0.00, '\\assets\\images\\img_productos\\laurel.png'),
-(3, 'Supermercado El Ahorro', 'Supermercado', 'Plaza Mayor 2, Pueblo C', '789654123', '08:00:00', '21:00:00', 0.00, '\\assets\\images\\banner1.png');
+(3, 'Supermercado El Ahorro', 'Supermercado', 'Plaza Mayor 2, Pueblo C', '789654123', '11:00:00', '21:00:00', 0.00, '\\assets\\images\\banner1.png');
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,8 @@ CREATE TABLE `productos` (
 INSERT INTO `productos` (`ID_Producto`, `ID_Establecimiento`, `Nombre`, `Descripcion`, `Precio`, `Disponibilidad`, `Foto`, `Tipo`) VALUES
 (1, 1, 'Paella', 'Paella valenciana tradicional', 15.99, 1, '\\assets\\images\\paella.png', ''),
 (2, 1, 'Tortilla española', 'Tortilla de patatas casera', 8.50, 1, '\\assets\\images\\tortillapatata.png', ''),
-(3, 2, 'Paracetamol', 'Analgésico y antipirético', 3.99, 1, '\\assets\\images\\multivitaminico.jpg', '');
+(3, 2, 'Paracetamol', 'Analgésico y antipirético', 3.99, 1, '\\assets\\images\\multivitaminico.jpg', ''),
+(4, 3, 'Chorizos ', 'Chorizos de la granjaescula Mediterranea ficticia sistematica de estilo neutral in the night.', 6.99, 1, '\\assets\\images\\chorizos.png', '');
 
 -- --------------------------------------------------------
 
@@ -286,7 +288,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `ID_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `repartidores`

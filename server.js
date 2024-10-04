@@ -119,6 +119,32 @@ app.get('/api/tiendas/:id/productos/:idProducto', (req, res) => {
   );
 });
 
+
+app.get('/api/calificaciones/', (req, res) => {
+  connection.query('SELECT * FROM calificaciones', (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+      return;
+    }
+    res.json(results);
+  });
+});
+
+
+
+app.get('/api/calificaciones/:id', (req, res) => { 
+  const { id } = req.params;
+  connection.query('SELECT * FROM calificaciones WHERE ID_Establecimiento = ?', [id], (err, results) => {
+      if (err) {
+        res.status(500).send('Error en la consulta: ' + err.message);
+        return;
+      }
+
+      res.json(results); // Devolvemos las calificaciones encontradas
+    }
+  );
+});
+
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });

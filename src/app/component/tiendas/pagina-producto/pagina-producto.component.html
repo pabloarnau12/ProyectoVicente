@@ -1,4 +1,4 @@
-@if (data) {
+@if (tienda) {
 
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5" >
@@ -11,17 +11,21 @@
 
         <div class="row gx-4 gx-lg-5 align-items-center">
 
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{data.foto}}" alt="..." /></div>
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{tienda.foto}}" alt="..." /></div>
             <div class="col-md-6">
-                <div class="small mb-1">{{data.Tipo}}</div>
-                <h1 class="display-5 fw-bolder">{{data.Nombre}}</h1>
+                <div class="small mb-1">{{tienda.Tipo}}</div>
+                <h1 class="display-5 fw-bolder">{{tienda.Nombre}}</h1>
 
-                <p class="lead">{{data.Horario_Apertura + ' - ' + data.Horario_Cierre}}</p>
+                <p class="lead" [ngClass]="{ 'text-success': isOpen(), 'text-danger': !isOpen() }">
+                    {{tienda.Horario_Apertura + ' - ' + tienda.Horario_Cierre}}
+                </p>
+                
                 <div class="d-flex">
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/catalogo/' + data.ID_Establecimiento + '/' + 'productos']">Ver Productos</button>
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/catalogo/' + tienda.ID_Establecimiento + '/' + 'productos']">Ver Productos</button>
                 </div>
 
-                <div class="small mb-1">{{data.Calificacion_Promedio}}</div>
+                <div class="small mb-1">Media de valoración: </div>
+                <div class="strong" [ngClass]="{'text-warning' : promedio >= 5 && promedio <= 8, 'text-danger' : promedio < 5, 'text-success': promedio >= 9}">{{promedio}}/10</div>
             </div>
         </div>
     </div>
