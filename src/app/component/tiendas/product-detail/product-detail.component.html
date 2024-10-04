@@ -13,7 +13,7 @@
     
                 <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{product.Foto}}" alt="..." /></div>
                 <div class="col-md-6">
-                    <div class="small mb-1">{{product.Tipo}}</div>
+                    <div class=" mb-1">{{product.Descripcion}}</div>
                     <h1 class="display-5 fw-bolder">{{product.Nombre}}</h1>
     
 
@@ -21,7 +21,7 @@
                         <button class="btn btn-outline-dark flex-shrink-0" type="button">Comprar</button>
                     </div>
     
-                    <div class="small mb-1">{{product.Precio}}</div>
+                    <div class="mb-1 mt-5">{{ product.Precio | currency : "EUR" }}</div>
                 </div>
             </div>
         </div>

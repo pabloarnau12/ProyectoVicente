@@ -3,11 +3,12 @@ import { ApiService } from '../../../service/shop.service';
 import { producto } from '../../../common/productos';
 import { ProductosService } from '../../../service/productos.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CurrencyPipe],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })

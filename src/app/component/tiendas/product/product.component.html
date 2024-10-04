@@ -4,7 +4,7 @@
       <div class="card-body d-flex flex-column">
         <h4 class="card-title fs-2">{{product.Nombre}}</h4>
         <p class="card-text fs-4 flex-grow-1">{{product.Descripcion}}</p>
-        <p class="card-text fs-4 flex-grow-1">{{product.Precio}}</p>
+        <p class="card-text fs-4 flex-grow-1">{{ product.Precio| currency : "EUR" }}</p>
         <div class="text-center mt-auto">
         </div>
       </div>

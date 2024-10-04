@@ -1,11 +1,12 @@
 import { Component, inject, Input } from '@angular/core';
 import { producto } from '../../../common/productos';
 import { ApiService } from '../../../service/shop.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
