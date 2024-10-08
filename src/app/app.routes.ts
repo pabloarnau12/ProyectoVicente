@@ -25,7 +25,6 @@ export const routes: Routes = [
     { path: 'catalogo/:id', title: 'Pagina Tienda', component: PaginaProductoComponent},
     { path: 'catalogo/:id/productos', title: 'Productos de la tienda', component: ProductostiendaComponent},
     { path: 'catalogo/:id/productos/:idProducto', title: 'hola', component: ProductDetailComponent},
-
     { path: '**', component: NotFoundComponent },
     
 ];

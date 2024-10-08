@@ -173,7 +173,7 @@ app.post('/api/registro', (req, res) => {
 
     // Insertar el nuevo usuario en la base de datos
     connection.query(
-      'INSERT INTO usuarios (Nombre, Apellidos, email, telefono, Contraseña) VALUES (?, ?, ?, ?, ?)',
+      'INSERT INTO usuarios (Nombre, Apellidos, Email, Telefono, Contraseña) VALUES (?, ?, ?, ?, ?)',
       [nombre, apellidos, telefono, email, hashedPassword],
       (err, results) => {
         if (err) {
@@ -188,35 +188,44 @@ app.post('/api/registro', (req, res) => {
 // Ruta de inicio de sesión
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
+  console.log('Intento de login para:', email);
 
   if (!email || !password) {
+    console.log('Email o contraseña faltantes');
     return res.status(400).json({ message: 'Email y contraseña son obligatorios' });
   }
 
   // Buscar al usuario en la base de datos
-  connection.query('SELECT * FROM usuarios WHERE email = ?', [email], (err, results) => {
+  connection.query('SELECT * FROM usuarios WHERE Email = ?', [email], (err, results) => {
     if (err) {
+      console.error('Error al buscar el usuario:', err);
       return res.status(500).json({ message: 'Error al buscar el usuario' });
     }
     
     if (results.length === 0) {
+      console.log('Usuario no encontrado');
       return res.status(401).json({ message: 'Email o contraseña incorrectos' });
     }
 
     const user = results[0];
+    console.log('Usuario encontrado:', user.ID_Usuario);
 
     // Comparar la contraseña proporcionada con la almacenada
-    bcrypt.compare(password, user.password, (err, isMatch) => {
+    bcrypt.compare(password, user.Contraseña, (err, isMatch) => {
       if (err) {
+        console.error('Error al comparar contraseñas:', err);
         return res.status(500).json({ message: 'Error al comparar contraseñas' });
       }
       
       if (!isMatch) {
+        console.log('Contraseña incorrecta');
         return res.status(401).json({ message: 'Email o contraseña incorrectos' });
       }
 
+      console.log('Login exitoso para el usuario:', user.ID_Usuario);
+
       // Crear un token JWT
-      const token = jwt.sign({ id: user.id, email: user.email }, 'tu_clave_secreta', { expiresIn: '1h' });
+      const token = jwt.sign({ id: user.ID_Usuario, email: user.Email }, 'tu_clave_secreta', { expiresIn: '1h' });
 
       res.json({ token });
     });

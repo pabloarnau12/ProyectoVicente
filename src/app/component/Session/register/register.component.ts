@@ -22,7 +22,7 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router ) { }
 
   register() {
-    this.authService.register(this.nombre, this.apellidos, this.telefono, this.email, this.password).subscribe(
+    this.authService.register(this.nombre, this.apellidos, this.email, this.telefono , this.password).subscribe(
       response => {
         console.log('Registro exitoso', response);
         alert('Usuario registrado con exito');
