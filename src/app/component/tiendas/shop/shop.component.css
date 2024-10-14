@@ -9,7 +9,7 @@
 
   .card {
     border: none;
-    border-radius: 0.5rem; /* Opcional: Bordes redondeados */
+    
     overflow: hidden; /* Opcional: Para asegurar que los bordes redondeados se mantengan */
   }
   
