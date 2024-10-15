@@ -1,14 +1,35 @@
+<div class="container mt-3">
+  <input 
+    type="text" 
+    [(ngModel)]="searchTerm" 
+    (ngModelChange)="filterData()"
+    placeholder="Buscar por nombre" 
+    class="form-control mb-3"
+  >
+</div>
+
 @if (data.length > 0) {
   <div class="container text-center pb-5">
     <div class="container mt-5 mb-5">
       <h1 class="large">Products</h1>
     </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center">
-      @for(data of data; track data.ID_Producto){
-        <div class="col-xl-3 col-lg-4 col-sm-6 my-2">
-            <app-product [routerLink] = "'/catalogo/' + data.ID_Establecimiento + '/productos/' + data.ID_Producto" [product]= "data"/>
-        </div>
-    }
+      @if(filteredData.length > 0){
+
+          @for(item of filteredData; track item.ID_Producto){
+          <div class="col-xl-3 col-lg-4 col-sm-6 mb-2 mt-2">
+            <app-product [routerLink] = "'/catalogo/' + item.ID_Establecimiento + '/productos/' + item.ID_Producto" [product]= "item"/>
+          </div>
+        }
+
+      }@else(){
+          @for(data of data; track data.ID_Producto){
+            <div class="col-xl-3 col-lg-4 col-sm-6 my-2">
+                <app-product [routerLink] = "'/catalogo/' + data.ID_Establecimiento + '/productos/' + data.ID_Producto" [product]= "data"/>
+            </div>
+        }
+      }
+
     </div>
   </div>
 }@else {

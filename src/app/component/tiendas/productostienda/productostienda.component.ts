@@ -6,11 +6,12 @@ import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/r
 import { ApiService } from '../../../service/shop.service';
 import { producto } from '../../../common/productos';
 import { ProductComponent } from "../product/product.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-productostienda',
   standalone: true,
-  imports: [NgFor, NgIf, RouterLink, RouterLinkActive, ProductComponent], // Añade NgFor y NgIf a los imports
+  imports: [NgFor, NgIf, RouterLink, RouterLinkActive, ProductComponent, FormsModule], // Añade NgFor y NgIf a los imports
   templateUrl: './productostienda.component.html',
   styleUrls: ['./productostienda.component.css']
 })
@@ -23,6 +24,10 @@ export class ProductostiendaComponent {
   constructor(private activeRoute: ActivatedRoute) {}
 
 
+  filteredData: producto[] = [];
+  tiposUnicos: string[] = [];
+  searchTerm: string = '';
+  
   ngOnInit(): void {
       
       this.activeRoute.params.subscribe(params => {
@@ -33,7 +38,16 @@ export class ProductostiendaComponent {
 
   }
 
-
+  filterData(): void {
+    if (this.searchTerm) {
+      this.filteredData = this.data.filter(item => 
+        item.Nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    } else {
+      this.filteredData = this.data;
+      
+    }
+  }
 
 llenardatabyID(): void {
   this.apiService.getProductsByShop(this.id).subscribe(
