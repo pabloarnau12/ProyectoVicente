@@ -1,4 +1,4 @@
-<div class="col align-items-center mb-5 h-100">
+<!-- <div class="col align-items-center mb-5 h-100">
     <div class="card caja h-100 shadow-sm ">
       <img src="{{product.Foto}}" alt="imagen card" class="card-img-top">
       <div class="card-body d-flex flex-column">
@@ -9,7 +9,15 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
   
+  <div class="card custom-card">
+    <img src="{{product.Foto}}" alt="Heirloom Tomato" class="card-img-top">
+    <div class="card-body">
+        <h5 class="product-name">{{product.Nombre}}</h5>
+        <p class="price">{{ product.Precio| currency : "EUR" }}</p>
+        <p class="location">{{product.Descripcion}}</p>
+    </div>
+</div>
