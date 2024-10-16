@@ -9,6 +9,7 @@ import { producto } from '../../../common/productos';
 import { Tiendas } from '../../../common/Tiendas';
 import { CalificacionesService } from '../../../service/calificaciones.service';
 import { calificacion } from '../../../common/Calificaciones';
+import { takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-pagina-producto',
@@ -26,6 +27,8 @@ export class PaginaProductoComponent implements OnInit{
 
   currentTime: Date = new Date();
   tienda: any;
+  
+  relatedShops: Tiendas[] = [];
   id: string | null = null;
   califications: calificacion[] = [];
   promedio: any;
@@ -36,6 +39,7 @@ export class PaginaProductoComponent implements OnInit{
     this.id = nombreParam !== null ? nombreParam : null;
     this.llenardatabyID();
     this.getCalificacionesbyID();
+    this.getRelatedShops();
 
   }
 
@@ -91,5 +95,20 @@ export class PaginaProductoComponent implements OnInit{
       console.log('No hay calificaciones para calcular el promedio.');
       this.promedio = 0;
     }
+  }
+
+
+  getRelatedShops() {
+    this.apiService.getShops().subscribe(
+      (data: Tiendas[]) => {
+
+        this.relatedShops = data.filter(shop => shop.Tipo === this.tienda.Tipo && shop.Nombre != this.tienda.Nombre).slice(0,5);
+        console.log(this.relatedShops);
+      },
+      (error) => {
+        console.error('Error al obtener las tiendas:', error);
+      }
+      
+    );
   }
 }

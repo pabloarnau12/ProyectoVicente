@@ -31,41 +31,48 @@
     </div>
 </section>
 
-<!-- <section class="py-5 bg-light">
-    <div class="container px-4 px-lg-5 mt-5">
-        <h2 class="fw-bolder justify-content-center mb-4">Tiendas Relacionadas</h2>
-        
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-             {
-            <div class="col mb-5">
-                <div class="card h-100">
+@if(relatedShops.length > 0){
 
-                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-
-                    <img class="card-img-top" src="{{ProductoRelacionado.foto}}" alt="foto Productos Relacionados" />
-
-                    <div class="card-body p-4">
-                        <div class="text-center">
-
-                            <h5 class="fw-bolder">{{ProductoRelacionado.nombre}}</h5>
     
-
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2 class="fw-bolder justify-content-center mb-4">Tiendas Relacionadas</h2>
+            
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                @for (tiendaRelacionada of relatedShops; track tienda.ID_Establecimiento) {
+                <div class="col mb-5">
+                    <div class="card h-100">
+    
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+    
+                        <img class="card-img-top" src="{{tiendaRelacionada.foto}}" alt="foto Productos Relacionados" />
+    
+                        <div class="card-body p-4">
+                            <div class="text-center">
+    
+                                <h5 class="fw-bolder">{{tiendaRelacionada.Nombre}}</h5>
+        
+    
+                            </div>
                         </div>
-                    </div>
-                    
 
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center">
-                            <a class="btn btn-outline-dark mt-auto" [routerLink]="['/paginapago/' + ProductoRelacionado.id]">Comprar</a>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/catalogo/' + tiendaRelacionada.ID_Establecimiento + '/' + 'productos']">Ver Productos</button>
+                            </div>
                         </div>
+                        
+                  
+
                     </div>
                 </div>
-            </div>
             }
+            </div>
         </div>
-    </div>
+        
+    </section>
     
-</section> -->
+}
 
 }
