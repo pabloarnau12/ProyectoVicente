@@ -1,38 +1,38 @@
-<div class="row vh-100 g-0 bg-black">
+<!-- <div class="row vh-100 g-0 "> -->
     <!-- Left Side -->
-    <div class="col-lg-6 position-relative d-none d-lg-block left-side bg-black">
+    <!-- <div class="col-lg-6 position-relative d-none d-lg-block left-side bg-black">
         <div class="bg-holder position-relative" style="background-image: url('../../../assets/images/logoreparto.png');">
             <div class="overlay d-flex align-items-center justify-content-center">
 
             </div>
         </div>
-    </div>
+    </div> -->
 <!-- Right Side -->
-<div class="col-lg-6 d-flex align-items-center justify-content-center right-side bg-black ">
+<div class="col-lg-12 d-flex align-items-center justify-content-center right-side ">
     <div class="form-2-wrapper p-2">
        <div class="logo text-center">
        <img src="../../../assets/images/logoreparto.png" style="width: 100px; height: 100px;">
        </div>
-        <h2 class="text-center text-white m-4">Iniciar Sesión con tus credenciales</h2>
+        <h2 class="text-center m-4">Iniciar Sesión con tus credenciales</h2>
         <form (ngSubmit)="login()">
 
             <div class="mb-3">
-                <label fi="email" class="form-label text-white ">Email o Usuario</label>
+                <label fi="email" class="form-label ">Email o Usuario</label>
                 <input class="form-control border-primary" type="email" id="email" name="email" [(ngModel)]="email" required>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label text-white ">Contraseña</label>
+                <label for="password" class="form-label ">Contraseña</label>
                 <input class="form-control border-primary" type="password" id="password" name="password" [(ngModel)]="password" required>
             </div>
-            <button type="submit" class="btn btn-primary login-btn w-100">Iniciar sesión</button>
+            <button type="submit" class="btn btn-success login-btn w-100">Iniciar sesión</button>
 
             
         </form>
 
     
         <!-- Register Link -->
-        <a href="#" class="btn btn-outline-primary border-white text-white w-100 mt-3" aria-current="page" routerLink="/register" routerLinkActive="active">¿No tienes una cuenta?, ¡Regístrate!</a>
+        <a href="#" class="btn btn-success login-btn w-100 mt-5" aria-current="page" routerLink="/register" routerLinkActive="active">¿No tienes una cuenta?, ¡Regístrate!</a>
         
     </div>
 </div>
-</div>
+<!-- </div> -->
