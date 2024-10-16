@@ -19,10 +19,12 @@
         </ul>
         <form class="d-flex" role="search">
           <div *ngIf="isLoggedIn;">
-            <a href="#" class="btn btn-outline-light border-0 m-2" aria-current="page" routerLink="/perfil" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Perfil</a>
+
+            <a class="btn btn-outline-light border-0 " aria-current="page" routerLink="/perfil" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Perfil</a>
           </div>
           <div *ngIf="!isLoggedIn;">
-            <a href="#" class="btn btn-outline-light border-0 m-2" aria-current="page" routerLink="/iniciarsesion" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Iniciar Sesión</a>
+              
+            <a class="nav-link text-light" aria-current="page" routerLink="/iniciarsesion" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Iniciar Sesión</a>
           </div>
           
         </form>
