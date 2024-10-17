@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2024 a las 13:04:23
+-- Tiempo de generación: 17-10-2024 a las 09:50:16
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -91,9 +91,11 @@ CREATE TABLE `establecimientos` (
 --
 
 INSERT INTO `establecimientos` (`ID_Establecimiento`, `Nombre`, `Tipo`, `Direccion`, `Telefono`, `Horario_Apertura`, `Horario_Cierre`, `Calificacion_Promedio`, `foto`) VALUES
-(1, 'La Tasca del Pueblo', 'Restaurante', 'Calle del Sol 3, Pueblo A', '123987456', '10:00:00', '22:00:00', 0.00, '\\assets\\images\\entrada (1).png'),
-(2, 'Farmacia San Juan', 'Farmacia', 'Avenida Libertad 7, Pueblo B', '456321789', '09:00:00', '20:00:00', 0.00, '\\assets\\images\\img_productos\\laurel.png'),
-(3, 'Supermercado El Ahorro', 'Supermercado', 'Plaza Mayor 2, Pueblo C', '789654123', '11:00:00', '21:00:00', 0.00, '\\assets\\images\\banner1.png');
+(1, 'La Tasca del Pueblo', 'Supermercado', 'Calle del Sol 3, Pueblo A', '123987456', '10:00:00', '22:00:00', 0.00, '\\assets\\images\\entrada (1).png'),
+(2, 'Farmacia San Juan', 'Supermercado', 'Avenida Libertad 7, Pueblo B', '456321789', '09:00:00', '20:00:00', 0.00, '\\assets\\images\\img_productos\\laurel.png'),
+(3, 'Supermercado El Ahorro', 'Supermercado', 'Plaza Mayor 2, Pueblo C', '789654123', '11:00:00', '21:00:00', 0.00, '\\assets\\images\\banner1.png'),
+(4, 'Abordo Maria', 'Supermercado', 'Avenida Castilla, 7 puerta 3', '654987321', '08:00:00', '22:00:00', 0.00, '\\assets\\images\\banner1.png'),
+(5, 'Joso bujarra', 'Supermercado', 'Calle mis huevikos, 19 gol', '647539322', '08:00:00', '22:00:00', 0.00, '\\assets\\images\\banner1.png');
 
 -- --------------------------------------------------------
 
@@ -142,10 +144,10 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`ID_Producto`, `ID_Establecimiento`, `Nombre`, `Descripcion`, `Precio`, `Disponibilidad`, `Foto`, `Tipo`) VALUES
-(1, 1, 'Paella', 'Paella valenciana tradicional', 15.99, 1, '\\assets\\images\\paella.png', ''),
-(2, 1, 'Tortilla española', 'Tortilla de patatas casera', 8.50, 1, '\\assets\\images\\tortillapatata.png', ''),
-(3, 2, 'Paracetamol', 'Analgésico y antipirético', 3.99, 1, '\\assets\\images\\multivitaminico.jpg', ''),
-(4, 3, 'Chorizos ', 'Chorizos de la granjaescula Mediterranea ficticia sistematica de estilo neutral in the night.', 6.99, 1, '\\assets\\images\\chorizos.png', '');
+(1, 1, 'Paella', 'Paella valenciana tradicional', 15.99, 5, '\\assets\\images\\paella.png', ''),
+(2, 1, 'Tortilla española', 'Tortilla de patatas casera', 8.50, 12, '\\assets\\images\\tortillapatata.png', ''),
+(3, 1, 'Paracetamol', 'Analgésico y antipirético', 3.99, 10, '\\assets\\images\\multivitaminico.jpg', ''),
+(4, 3, 'Chorizos ', 'Chorizos de la granjaescula Mediterranea ficticia sistematica de estilo neutral in the night.', 6.99, 16, '\\assets\\images\\chorizos.png', '');
 
 -- --------------------------------------------------------
 
@@ -199,7 +201,9 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`ID_Usuario`, `Nombre`, `Apellidos`, `Email`, `Telefono`, `Direccion`, `Contraseña`, `Fecha_Registro`, `foto`) VALUES
 (1, 'María', 'González', 'maria@email.com', '123456789', 'Calle Mayor 1, Pueblo A', 'contraseña_hash_1', '2024-10-03 09:20:06', '0'),
 (2, 'Juan', 'Martínez', 'juan@email.com', '987654321', 'Plaza Central 5, Pueblo B', 'contraseña_hash_2', '2024-10-03 09:20:06', '0'),
-(3, 'Ana', 'López', 'ana@email.com', '456789123', 'Avenida Principal 10, Pueblo C', 'contraseña_hash_3', '2024-10-03 09:20:06', '0');
+(3, 'Ana', 'López', 'ana@email.com', '456789123', 'Avenida Principal 10, Pueblo C', '$2b$10$SPfCyfzTAbgl7ux./DaaXuhSS3gSmi3io1flMmv3SZBlxZ9tFktQe', '2024-10-03 09:20:06', '0'),
+(5, 'Julen', 'alonso', '654', 'julenmj@gmail.c', '', '$2b$10$bWBnvotI5DHtieCfzQiEGui0/Kxp7h4pclhc69E1uwRchR31AQ9aK', '2024-10-08 11:27:09', ''),
+(6, 'admin', 'admin', 'admin@gmail.com', '83838', '', '$2b$10$I5zJS09SxgY.l/AaHRyMdO2z6XjD9T8//an8RHz5uwFTZqeIWYuf.', '2024-10-08 11:40:57', '');
 
 --
 -- Índices para tablas volcadas
@@ -276,7 +280,7 @@ ALTER TABLE `detalles_pedido`
 -- AUTO_INCREMENT de la tabla `establecimientos`
 --
 ALTER TABLE `establecimientos`
-  MODIFY `ID_Establecimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Establecimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
@@ -300,7 +304,7 @@ ALTER TABLE `repartidores`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
