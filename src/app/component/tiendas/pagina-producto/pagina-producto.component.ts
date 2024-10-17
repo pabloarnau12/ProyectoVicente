@@ -24,22 +24,20 @@ export class PaginaProductoComponent implements OnInit{
   private readonly apiCalificaciones : CalificacionesService = inject(CalificacionesService)
   constructor(private activeRoute: ActivatedRoute) { }
 
-
+  media: any;
   currentTime: Date = new Date();
-  tienda: any;
-  
+  tienda: any;  
   relatedShops: Tiendas[] = [];
   id: string | null = null;
-  califications: calificacion[] = [];
-  promedio: any;
+
 
   ngOnInit(): void {
     
     const nombreParam = this.activeRoute.snapshot.paramMap.get('id'); 
     this.id = nombreParam !== null ? nombreParam : null;
     this.llenardatabyID();
-    this.getCalificacionesbyID();
     this.getRelatedShops();
+    this.calcularMedia();
 
   }
 
@@ -64,40 +62,6 @@ export class PaginaProductoComponent implements OnInit{
            currentTimeString <= this.tienda.Horario_Cierre;
   }
 
-
-  getCalificacionesbyID() {
-    if (this.id !== null) {
-      this.apiCalificaciones.getCalificacionesbyID(this.id).subscribe(
-        data => {
-          this.califications = data;
-          console.log(this.califications);
-          this.calcularPromedio();
-        },
-        error => {
-          console.error('Error al obtener calificaciones:', error);
-        }
-      );
-    } else {
-      console.error('productoId es null, no se puede hacer la petición.');
-    }
-  }
-  
-  calcularPromedio() {
-    if (this.califications && this.califications.length > 0) {
-      const suma = this.califications.reduce((acumulador, califications) => {
-        // Asumiendo que cada calificación tiene una propiedad 'valor'
-        return acumulador + califications.Calificacion_Establecimiento;
-      }, 0);
-      
-      this.promedio = suma / this.califications.length;
-      console.log('Promedio de calificaciones:', this.promedio);
-    } else {
-      console.log('No hay calificaciones para calcular el promedio.');
-      this.promedio = 0;
-    }
-  }
-
-
   getRelatedShops() {
     this.apiService.getShops().subscribe(
       (data: Tiendas[]) => {
@@ -110,5 +74,22 @@ export class PaginaProductoComponent implements OnInit{
       }
       
     );
+  }
+
+
+  calcularMedia() {
+    if (this.id !== null) {
+      this.apiCalificaciones.getCalificacionesbyID(this.id).subscribe(
+        data => {
+          this.media = data.media_calificacion;
+          console.log(this.media);
+        },
+        error => {
+          console.error('Error al obtener calificaciones:', error);
+        }
+      );
+    } else {
+      console.error('productoId es null, no se puede hacer la petición.');
+    }
   }
 }

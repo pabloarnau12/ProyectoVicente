@@ -132,19 +132,43 @@ app.get('/api/calificaciones/', (req, res) => {
 
 
 
+// app.get('/api/calificaciones/:id', (req, res) => { 
+//   const { id } = req.params;
+//   connection.query('SELECT * FROM calificaciones WHERE ID_Establecimiento = ?', [id], (err, results) => {
+//       if (err) {
+//         res.status(500).send('Error en la consulta: ' + err.message);
+//         return;
+//       }
+
+//       res.json(results); // Devolvemos las calificaciones encontradas
+//     }
+//   );
+// });
+
+
+
 app.get('/api/calificaciones/:id', (req, res) => { 
   const { id } = req.params;
-  connection.query('SELECT * FROM calificaciones WHERE ID_Establecimiento = ?', [id], (err, results) => {
+  connection.query(
+    'SELECT AVG(Calificacion) AS media_calificacion FROM calificaciones WHERE ID_Establecimiento = ?', 
+    [id], 
+    (err, results) => {
       if (err) {
         res.status(500).send('Error en la consulta: ' + err.message);
+        console.log(results)
         return;
       }
 
-      res.json(results); // Devolvemos las calificaciones encontradas
+      let mediaCalificacion = 0;
+      if (results.length > 0 && results[0].media_calificacion !== null) {
+        // Convertimos a número y redondeamos a 2 decimales
+        mediaCalificacion = Number(results[0].media_calificacion.toFixed(2));
+      }
+
+      res.json({ media_calificacion: mediaCalificacion });
     }
   );
 });
-
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
