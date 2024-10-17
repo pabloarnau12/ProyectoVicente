@@ -5,13 +5,13 @@ import { ApiService } from '../../../service/shop.service';
 import { Tiendas } from '../../../common/Tiendas';
 import { ShopComponent } from "../shop/shop.component";
 import { FormsModule, NgModel } from '@angular/forms';
-
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  imports: [NavbarComponent, RouterLink, RouterLinkActive, ShopComponent, FormsModule],
+  imports: [NavbarComponent, RouterLink, RouterLinkActive, ShopComponent, FormsModule, MatIconModule],
   templateUrl: './catalogo.component.html',
   styleUrl: './catalogo.component.css'
 })

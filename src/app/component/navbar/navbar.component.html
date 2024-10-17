@@ -17,7 +17,9 @@
           </li>
           
         </ul>
-        <form class="d-flex" role="search">
+        
+        <form class="d-flex me-3" role="search">
+          
           <div *ngIf="isLoggedIn;">
 
             <a class="btn btn-outline-light border-0 " aria-current="page" routerLink="/perfil" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Perfil</a>
@@ -28,6 +30,7 @@
           </div>
           
         </form>
+        <mat-icon class="m-2" >shopping_cart</mat-icon>
       </div>
     </div>
   </nav>
