@@ -20,4 +20,7 @@
         <p class="price">{{ product.Precio| currency : "EUR" }}</p>
         <p class="location">{{product.Descripcion}}</p>
     </div>
+    <div>
+      <button class="btn" (click)="addToCart(product)"><mat-icon>add_shopping_cart</mat-icon></button>
+    </div>
 </div>

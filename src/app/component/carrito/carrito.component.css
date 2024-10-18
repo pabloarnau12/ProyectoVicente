@@ -1,0 +1,29 @@
+/* Estilos del carrito como sidebar */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Empieza fuera de la pantalla */
+    width: 400px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    transition: right 0.3s ease; /* Animación para deslizar */
+    z-index: 1;
+  }
+  
+  .cart-sidebar.open {
+    right: 0; /* Cuando está abierto, el carrito se desliza */
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .img-carrito{
+    height: 200px;
+    width: 350px;
+  }
+  
