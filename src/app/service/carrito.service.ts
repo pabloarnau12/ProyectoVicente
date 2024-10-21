@@ -25,12 +25,13 @@ export class CarritoService {
   addToCart(product: any) {
     const currentCart = this.cart();
     const existingProduct = currentCart.find((item: any) => item.ID_Producto === product.ID_Producto);
-
+    currentCart.push({ ...product, quantity: 1 });
     if (existingProduct) {
       existingProduct.quantity += 1;
-    } else {
-      currentCart.push({ ...product, quantity: 1 });
-    }
+    } 
+    // else {
+    //   currentCart.push({ ...product, quantity: 1 });
+    // }
 
     this.cart.set(currentCart);  // Actualizamos el estado del carrito
     this.saveCart(currentCart);   // Guardar en localStorage
@@ -56,5 +57,40 @@ export class CarritoService {
 
   saveCart(cart: any) {
     localStorage.setItem(this.key, JSON.stringify(cart));
+  }
+
+
+  // increasyQuantity(product: any){
+  //   const currentCart = this.cart();
+  //   const newQuantity  = product.quantity + 1;
+  //   console.log("Se ha aumentado la cantidad de " + product.Nombre + ": " + newQuantity);
+
+  // }
+  increaseQuantity(productId: number) {
+    const currentCart = this.cart();
+    const existingProduct = currentCart.find((item: any) => item.ID_Producto === productId);
+    
+    if (existingProduct) {
+      existingProduct.quantity += 1; // Aumenta la cantidad en 1
+      this.cart.set(currentCart);  // Actualiza la señal
+      this.saveCart(currentCart);   // Guarda el nuevo estado en localStorage
+      console.log(`Se ha aumentado la cantidad de ${existingProduct.Nombre} a ${existingProduct.quantity}`);
+    } else {
+      console.log("El producto no está en el carrito.");
+    }
+  }
+
+  decreaseQuantity(productId: number) {
+    const currentCart = this.cart();
+    const existingProduct = currentCart.find((item: any) => item.ID_Producto === productId);
+    
+    if (existingProduct) {
+      existingProduct.quantity -= 1; // Aumenta la cantidad en 1
+      this.cart.set(currentCart);  // Actualiza la señal
+      this.saveCart(currentCart);   // Guarda el nuevo estado en localStorage
+      console.log(`Se ha disminuido la cantidad de ${existingProduct.Nombre} a ${existingProduct.quantity}`);
+    } else {
+      console.log("El producto no está en el carrito.");
+    }
   }
 }

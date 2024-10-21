@@ -6,7 +6,7 @@ import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-carrito',
   standalone: true,
-  imports: [CurrencyPipe, MatIcon],
+  imports: [CurrencyPipe, MatIcon,],
   templateUrl: './carrito.component.html',
   styleUrl: './carrito.component.css'
 })
@@ -47,5 +47,17 @@ export class CarritoComponent {
     if (sidebar) {
       sidebar.classList.remove('open'); // Elimina la clase 'open' para cerrar el carrito
     }
+  }
+
+  increaseQuantity(productID: number){
+    console.log("sumado");
+    this.CarritoService.increaseQuantity(productID);
+
+  }
+
+  decreaseQuantity(productID: number){
+    console.log("restado");
+    this.CarritoService.increaseQuantity(productID);
+
   }
 }

@@ -2,30 +2,28 @@ import { Component, inject, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 
 
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute,RouterLink, RouterLinkActive } from '@angular/router';
 import { ApiService } from '../../../service/shop.service';
-import { DatePipe, NgClass } from '@angular/common';
-import { producto } from '../../../common/productos';
+import { NgClass } from '@angular/common';
+
 import { Tiendas } from '../../../common/Tiendas';
 import { CalificacionesService } from '../../../service/calificaciones.service';
-import { calificacion } from '../../../common/Calificaciones';
-import { takeWhile } from 'rxjs';
+
 
 @Component({
   selector: 'app-pagina-producto',
   standalone: true,
-  imports: [NavbarComponent, RouterLink, RouterLinkActive, NgClass, DatePipe],
+  imports: [NavbarComponent, RouterLink, RouterLinkActive, NgClass],
   templateUrl: './pagina-producto.component.html',
   styleUrl: './pagina-producto.component.css'
 })
 export class PaginaProductoComponent implements OnInit{
-
   private readonly apiService: ApiService = inject(ApiService);
   private readonly apiCalificaciones : CalificacionesService = inject(CalificacionesService)
   constructor(private activeRoute: ActivatedRoute) { }
 
   media: any;
-  currentTime: Date = new Date();
+
   tienda: any;  
   relatedShops: Tiendas[] = [];
   id: string | null = null;
@@ -52,24 +50,19 @@ export class PaginaProductoComponent implements OnInit{
     }
   }
 
-  formatTime(date: Date): string {
-    return date.toTimeString().split(' ')[0];
-  }
-
   isOpen(): boolean {
-    const currentTimeString = this.formatTime(this.currentTime);
+    const currentTime = new Date();
     
-    console.log(this.formatTime(this.currentTime));
-    // console.log(this.formatTime(this.tienda.Horario_Apertura));
-    if(currentTimeString >= this.formatTime(this.tienda.Horario_Apertura) && currentTimeString <= this.formatTime(this.tienda.Horario_Cierre)){
-        return true;
-    }else{
+    const currentTimeString = currentTime.toTimeString().split(' ')[0]; 
+    
+    if (currentTimeString >= this.tienda.Horario_Apertura && currentTimeString <= this.tienda.Horario_Cierre) {
+      return true;
+    } else {
       return false;
     }
-    // return currentTimeString >= this.tienda.Horario_Apertura && 
-    //        currentTimeString <= this.tienda.Horario_Cierre;
   }
-
+  
+  
   getRelatedShops() {
     this.apiService.getShops().subscribe(
       (data: Tiendas[]) => {

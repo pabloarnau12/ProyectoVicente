@@ -5,13 +5,6 @@
 .caja:hover {
     transform: scale(1.05);
   }
-
-
-  .card {
-    border: none;
-    
-    overflow: hidden; /* Opcional: Para asegurar que los bordes redondeados se mantengan */
-  }
   
   .card-img-top {
     width: 100%;

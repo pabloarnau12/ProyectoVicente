@@ -16,11 +16,9 @@
                 <div class="small mb-1">{{tienda.Tipo}}</div>
                 <h1 class="display-5 fw-bolder">{{tienda.Nombre}}</h1>
 
-                <p class="lead"  [ngClass]="{ 'text-success': isOpen(), 'text-danger': !isOpen() }">
+                <p class="lead" [ngClass]="{ 'text-success': isOpen(), 'text-danger': !isOpen() }">
 
-                    {{tienda.Horario_Apertura | date : 'shortTime'}}
-                    -
-                    {{ tienda.Horario_Cierre | date : "shortTime" }}
+                {{tienda.Horario_Apertura}} - {{ tienda.Horario_Cierre}}
                 </p>
                 
                 <div class="d-flex">
