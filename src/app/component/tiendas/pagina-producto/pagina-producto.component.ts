@@ -58,8 +58,16 @@ export class PaginaProductoComponent implements OnInit{
 
   isOpen(): boolean {
     const currentTimeString = this.formatTime(this.currentTime);
-    return currentTimeString >= this.tienda.Horario_Apertura && 
-           currentTimeString <= this.tienda.Horario_Cierre;
+    
+    console.log(this.formatTime(this.currentTime));
+    // console.log(this.formatTime(this.tienda.Horario_Apertura));
+    if(currentTimeString >= this.formatTime(this.tienda.Horario_Apertura) && currentTimeString <= this.formatTime(this.tienda.Horario_Cierre)){
+        return true;
+    }else{
+      return false;
+    }
+    // return currentTimeString >= this.tienda.Horario_Apertura && 
+    //        currentTimeString <= this.tienda.Horario_Cierre;
   }
 
   getRelatedShops() {

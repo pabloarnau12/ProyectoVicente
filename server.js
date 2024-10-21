@@ -3,7 +3,6 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { log } = require('console');
 
 const app = express();
 const port = 3000;
@@ -264,7 +263,7 @@ app.post('/api/login', (req, res) => {
 });
 
 // Ruta protegida para obtener el perfil del usuario
-app.get('/api/perfil/', (req, res) => {
+app.get('/api/perfil', (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
 
   if (!token) {

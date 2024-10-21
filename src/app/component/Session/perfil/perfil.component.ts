@@ -12,14 +12,7 @@ import { Router } from '@angular/router';
 })
 export class PerfilComponent implements OnInit {
   // Usamos un objeto para almacenar la información del usuario
-  user = {
-    nombre: '',
-    apellidos: '',
-    telefono: '',
-    email: '',
-    password: ''
-  };
-
+  user !: any;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -32,12 +25,7 @@ export class PerfilComponent implements OnInit {
     if (token) {
       this.authService.getProfile(token).subscribe(
         profile => {
-          // Asignar la información del perfil al objeto user
-          this.user.nombre = profile.nombre;
-          this.user.apellidos = profile.apellidos;
-          this.user.telefono = profile.telefono;
-          this.user.email = profile.email;
-          console.error('Perfil cargado');
+          this.user = profile ;
         },
         error => {
           console.error('Error al cargar el perfil', error);
