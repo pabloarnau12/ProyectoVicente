@@ -1,17 +1,19 @@
-<div class="container mt-3">
-  <input 
-    type="text" 
-    [(ngModel)]="searchTerm" 
-    (ngModelChange)="filterData()"
-    placeholder="Buscar por nombre" 
-    class="form-control mb-3"
-  >
-</div>
+
 
 @if (data.length > 0) {
-  <div class="container text-center pb-5">
+  <div class="container text-center p-5">
+    <div class="container text-center  ">
+      <h1 class=" display-1">Products </h1>
+    </div>
+
     <div class="container mt-5 mb-5">
-      <h1 class="large">Products</h1>
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (ngModelChange)="filterData()"
+        placeholder="Buscar entre {{data.length}} productos" 
+        class="form-control mb-3  border-success"
+      >
     </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center">
       @if(filteredData.length > 0){
