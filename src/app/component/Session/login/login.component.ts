@@ -3,6 +3,7 @@ import { AuthService } from '../../../service/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule aquí
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -25,10 +26,17 @@ export class LoginComponent {
         this.router.navigate(['/home']).then(() => {
           // Forzar la recarga de la página
           window.location.reload();
+
         });
       },
       error => {
-        console.error('Error en el login', error);
+        console.error('Error en el login papasito', error);
+                // Mostrar el mensaje de error usando SweetAlert2 o Toastr
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: "Email o Contraseña Incorrectos",
+              });
       }
     );
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-perfil',
@@ -36,6 +37,22 @@ export class PerfilComponent implements OnInit {
     }
   }
 
+  secondOportunityLogout(){
+    Swal.fire({
+      title: "¿Seguro que quieres marcharte?",
+      showDenyButton: true, 
+      showCancelButton: true, 
+      showConfirmButton: false,
+      denyButtonText: `Cerrar Sesión`, 
+      cancelButtonText: 'Cancelar', 
+
+    }).then((result) => {
+      if (result.isDenied) {
+        this.onLogout(); // Llama a la función para cerrar sesión
+      }
+    });
+    
+  }
 
   onLogout(): void {
     this.authService.logout();

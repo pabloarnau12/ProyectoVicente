@@ -88,6 +88,9 @@
           <input type="tel" class="form-control" id="telefono" value="{{user.Telefono}}" readonly>
         </div>
         <button class="btn btn-primary">Editar información</button>
+        <form (ngSubmit)="secondOportunityLogout()">
+          <button type="submit" class="btn  bg-danger-subtle text-danger mt-5 justify-content-center" >Cerrar sesion</button>
+        </form>
       </div>
     </div>
   
