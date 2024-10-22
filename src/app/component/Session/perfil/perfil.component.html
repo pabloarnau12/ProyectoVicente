@@ -1,4 +1,4 @@
-<div class="container m-5">
+<!-- <div class="container m-5">
     <h2>Perfil de Usuario</h2>
 
       <div class="form-group">
@@ -65,4 +65,155 @@
       </form>
 
   </div>
+   -->
+   <div class="container mt-5">
+    <!-- Información Personal -->
+    <div class="row mb-5">
+      <div class="col-md-4 text-center">
+        <img src="https://via.placeholder.com/150" class="rounded-circle mb-3" alt="Foto de perfil">
+        <button class="btn btn-outline-secondary btn-sm">Cambiar foto</button>
+      </div>
+      <div class="col-md-8">
+        <h2>Información Personal</h2>
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre completo</label>
+          <input type="text" class="form-control" id="nombre" value="{{user.Nombre}} {{user.Apellidos}}" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo electrónico</label>
+          <input type="email" class="form-control" id="email" value="{{user.Email}}" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Teléfono</label>
+          <input type="tel" class="form-control" id="telefono" value="{{user.Telefono}}" readonly>
+        </div>
+        <button class="btn btn-primary">Editar información</button>
+      </div>
+    </div>
   
+    <!-- Direcciones -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <h2>Mis Direcciones</h2>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{user.Direccion}}
+            <div>
+              <button class="btn btn-sm btn-outline-primary me-2">Editar</button>
+              <button class="btn btn-sm btn-outline-danger">Eliminar</button>
+            </div>
+          </li>
+        </ul>
+        <button class="btn btn-success mt-3">Agregar nueva dirección</button>
+      </div>
+    </div>
+  
+    <!-- Pedidos Activos -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <h2>Pedidos Activos</h2>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Pedido #12345</h5>
+            <p class="card-text">Restaurante: La Pizzería</p>
+            <p class="card-text">Estado: En preparación</p>
+            <button class="btn btn-info me-2">Ver detalles</button>
+            <button class="btn btn-warning">Cancelar pedido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Historial de Pedidos -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <h2>Historial de Pedidos</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Restaurante</th>
+              <th>Total</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2024-10-20</td>
+              <td>Burger King</td>
+              <td>15.99€</td>
+              <td><button class="btn btn-sm btn-outline-secondary">Repetir pedido</button></td>
+            </tr>
+            <tr>
+              <td>2024-10-18</td>
+              <td>Sushi Express</td>
+              <td>25.50€</td>
+              <td><button class="btn btn-sm btn-outline-secondary">Repetir pedido</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- Restaurantes Favoritos -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <h2>Mis Restaurantes Favoritos</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+            <div class="card">
+              <img src="https://via.placeholder.com/150" class="card-img-top" alt="Restaurante 1">
+              <div class="card-body">
+                <h5 class="card-title">La Pizzería</h5>
+                <button class="btn btn-sm btn-outline-danger">Quitar de favoritos</button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <img src="https://via.placeholder.com/150" class="card-img-top" alt="Restaurante 2">
+              <div class="card-body">
+                <h5 class="card-title">Sushi Express</h5>
+                <button class="btn btn-sm btn-outline-danger">Quitar de favoritos</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Preferencias -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <h2>Mis Preferencias</h2>
+        <div class="mb-3">
+          <label class="form-label">Opciones de dieta</label>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="vegetariano">
+            <label class="form-check-label" for="vegetariano">Vegetariano</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="sinGluten">
+            <label class="form-check-label" for="sinGluten">Sin gluten</label>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="notificaciones" class="form-label">Notificaciones</label>
+          <select class="form-select" id="notificaciones">
+            <option>Email</option>
+            <option>SMS</option>
+            <option>Push</option>
+          </select>
+        </div>
+        <button class="btn btn-primary">Guardar preferencias</button>
+      </div>
+    </div>
+  
+    <!-- Programa de Fidelidad -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <h2>Programa de Fidelidad</h2>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Nivel Oro</h5>
+            <p class="card-text">Puntos acumulados
