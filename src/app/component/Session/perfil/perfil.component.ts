@@ -13,22 +13,23 @@ import Swal from 'sweetalert2';
 })
 export class PerfilComponent implements OnInit {
   // Usamos un objeto para almacenar la información del usuario
-  user !: any;
+  user: any = {}; // Inicializa user como un objeto vacío
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadProfile();
   }
 
-  // Cargar el perfil del usuario
   loadProfile(): void {
-    const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+    const token = localStorage.getItem('token');
     if (token) {
       this.authService.getProfile(token).subscribe(
-        profile => {
-          this.user = profile ;
+        (profile) => {
+          this.user = profile;
+          console.log('Perfil cargado:', this.user); // Para depuración
         },
-        error => {
+        (error) => {
           console.error('Error al cargar el perfil', error);
         }
       );
