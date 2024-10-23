@@ -19,7 +19,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/productos', productosRoutes);
 app.use('/api/tiendas', tiendasRoutes);
 app.use('/api/calificaciones', calificacionesRoutes);
-app.use('/api/perfil', perfilRoutes);  // Protegida por JWT
+// app.use('/api/perfil', perfilRoutes);  // Protegida por JWT
 
 // Servidor
 const port = process.env.PORT || 3000;
