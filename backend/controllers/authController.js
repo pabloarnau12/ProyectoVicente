@@ -62,37 +62,6 @@ exports.getPerfil = (req, res) => {
   });
 };
 
-
-
-// exports.updateAddress = (req, res) => {
-//   const { id } = req.user;  // ID del usuario autenticado (del token JWT)
-//   const { direccion, ciudad, estado, codigo_postal } = req.body;  // Nuevos datos de la dirección
-
-//   // Validar que los campos requeridos están presentes
-//   if (!direccion || !ciudad || !estado || !codigo_postal) {
-//     return res.status(400).json({ message: 'Todos los campos de la dirección son requeridos' });
-//   }
-
-//   // Consulta SQL para actualizar la dirección del usuario
-//   const query = `
-//     UPDATE usuarios
-//     SET direccion = ?, ciudad = ?, estado = ?, codigo_postal = ?
-//     WHERE ID_Usuario = ?
-//   `;
-
-//   connection.query(query, [direccion, ciudad, estado, codigo_postal, id], (err, results) => {
-//     if (err) {
-//       return res.status(500).json({ message: 'Error al actualizar la dirección' });
-//     }
-
-//     if (results.affectedRows === 0) {
-//       return res.status(404).json({ message: 'Usuario no encontrado' });
-//     }
-
-//     res.json({ message: 'Dirección actualizada correctamente' });
-//   });
-// };
-
 exports.updateAddress = (req, res) =>{
   console.log("entra en el metodo address");
   const { id } = req.user

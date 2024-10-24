@@ -1,27 +1,17 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthGuard implements CanActivate {
+// Nueva función de guard para Angular 17
+export const authGuard = (): boolean => {
+  const router = inject(Router);
+  const token = localStorage.getItem('token');
 
-  constructor(private router: Router) {}
-
-  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-
-
-      const token = localStorage.getItem('token');
-      if (token) {
-        console.log("token conseguido");
-        console.log(token);
-        return true;
-      } else {
-
-        this.router.navigate(['/login']);
-        return false;
-      }
-
+  if (token) {
+    console.log("Token encontrado:", token);
+    return true;  // Permitir acceso si hay token
+  } else {
+    console.log("Token no encontrado. Redirigiendo a la página de inicio de sesión...");
+    router.navigate(['/iniciarsesion']);  // Redirigir a login si no hay token
+    return false;  // Bloquear acceso
   }
-}
+};
