@@ -22,7 +22,7 @@ app.use('/api/calificaciones', calificacionesRoutes);
 // app.use('/api/perfil', perfilRoutes);  // Protegida por JWT
 
 // Servidor
-const port = process.env.PORT || 3306;
+const port = process.env.PORT || 3300;
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });

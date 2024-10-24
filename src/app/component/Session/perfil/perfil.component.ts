@@ -47,6 +47,8 @@ export class PerfilComponent implements OnInit {
       showConfirmButton: false,
       denyButtonText: `Cerrar Sesión`, 
       cancelButtonText: 'Cancelar', 
+      
+      
 
     }).then((result) => {
       if (result.isDenied) {
@@ -66,9 +68,9 @@ export class PerfilComponent implements OnInit {
 
   async tryfuncion() {
     const { value: address } = await Swal.fire({
-      title: "Enter your new address",
+      title: "Introduce tu nueva dirección",
       input: "text",
-      inputLabel: "Your new address",
+      inputLabel: "Nueva dirección",
       inputValue: "",
       showCancelButton: true,
     });

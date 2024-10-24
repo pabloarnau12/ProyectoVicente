@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CalificacionesService {
   private http: HttpClient = inject(HttpClient);
-  private urlApiCalificaciones = "http://localhost:3306/api/calificaciones/"
+  private urlApiCalificaciones = "http://localhost:3300/api/calificaciones/"
   constructor() { }
 
 

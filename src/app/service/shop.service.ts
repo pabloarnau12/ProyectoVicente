@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   private http: HttpClient = inject(HttpClient);
-  private urlApiTiendas = "http://localhost:3306/api/tiendas/"
+  private urlApiTiendas = "http://localhost:3300/api/tiendas/"
   constructor() { }
 
 
