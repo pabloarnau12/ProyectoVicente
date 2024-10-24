@@ -7,6 +7,7 @@ exports.verifyToken = (req, res, next) => {
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) return res.status(403).json({ message: 'Token inválido' });
     req.user = decoded; // Agregamos el usuario decodificado a la request
+    // console.log(req.user)
     next();
   });
 };

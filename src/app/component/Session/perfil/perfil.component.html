@@ -68,19 +68,16 @@
   
    <div class="container mt-5">
     <!-- Información Personal -->
-    <div class="row mb-5 ">
-      <div class="col-md-3 text-center">
-        <div class="rounded-circle border border-dark">
-          <img src="{{user.foto}}" class="rounded-circle  m-3" style="width: 250px" alt="Foto de perfil">
-        </div>
-        
-        <button class="btn btn-outline-secondary btn-sm m-5">Cambiar foto</button>
+    <div class="row m-5">
+      <div class="col-md-3 text-center m-3">
+          <img src="{{user.foto}}" class="m-3 img-thumbnail" alt="Foto de perfil">      
+          <!-- <mat-icon>add_a_photo</mat-icon> -->
       </div>
 
         
 
       
-      <div class="col-md-8">
+      <div class="col-md-8 m-3">
         <h2>Información Personal</h2>
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre completo</label>
@@ -94,27 +91,27 @@
           <label for="telefono" class="form-label">Teléfono</label>
           <input type="tel" class="form-control" id="telefono" value="{{user.Telefono}}" readonly>
         </div>
-        <button class="btn btn-primary">Editar información</button>
-        <form (ngSubmit)="secondOportunityLogout()">
-          <button type="submit" class="btn  bg-danger-subtle text-danger mt-5 justify-content-center" >Cerrar sesion</button>
-        </form>
+        <div class="row m-0">
+          <button class="btn btn-primary m-1 col-4 ">Editar información</button>
+          <button class="btn bg-danger-subtle text-danger m-1 col-4" type="submit" (click)="secondOportunityLogout()">Cerrar sesion</button>
+        </div>
+
       </div>
     </div>
   
     <!-- Direcciones -->
     <div class="row mb-5">
       <div class="col-12">
-        <h2>Mis Direcciones</h2>
+        <h2>Mi Dirección</h2>
         <ul class="list-group">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
+          <li id="pep"class="list-group-item d-flex justify-content-between align-items-center">
             {{user.Direccion}}
             <div>
-              <button class="btn btn-sm btn-outline-primary me-2">Editar</button>
+              <button class="btn btn-sm btn-outline-primary me-2" (click)="tryfuncion()">Editar</button>
               <button class="btn btn-sm btn-outline-danger">Eliminar</button>
             </div>
           </li>
         </ul>
-        <button class="btn btn-success mt-3">Agregar nueva dirección</button>
       </div>
     </div>
   

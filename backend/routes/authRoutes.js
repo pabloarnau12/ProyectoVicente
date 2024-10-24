@@ -6,5 +6,7 @@ const authController = require('../controllers/authController');
 
 router.post('/registro', authController.register);
 router.post('/login', authController.login);
-router.get('/perfil', verifyToken,authController.getPerfil)
+router.get('/perfil', verifyToken,authController.getPerfil);
+router.patch('/perfil/direccion',verifyToken,authController.updateAddress);
+
 module.exports = router;

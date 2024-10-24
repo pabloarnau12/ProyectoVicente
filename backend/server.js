@@ -12,7 +12,7 @@ const authRoutes = require('./routes/authRoutes');
 const productosRoutes = require('./routes/productosRoutes');
 const tiendasRoutes = require('./routes/tiendasRoutes');
 const calificacionesRoutes = require('./routes/calificacionesRoutes');
-const perfilRoutes = require('./routes/perfilRoutes');
+// const perfilRoutes = require('./routes/perfilRoutes');
 
 // Usar rutas
 app.use('/api/auth', authRoutes);
