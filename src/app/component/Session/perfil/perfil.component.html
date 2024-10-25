@@ -70,8 +70,13 @@
     <!-- Información Personal -->
     <div class="row m-5">
       <div class="col-md-3 text-center m-3">
-          <img src="{{user.foto}}" class="m-3 img-thumbnail" alt="Foto de perfil">      
-          <!-- <mat-icon>add_a_photo</mat-icon> -->
+        @if(user.foto){
+          <img src="{{user.foto}}" class="m-3 img-thumbnail" alt="Foto de perfil">   
+        }@else{
+          <mat-icon>add_a_photo</mat-icon>
+        }
+   
+          
       </div>
 
         

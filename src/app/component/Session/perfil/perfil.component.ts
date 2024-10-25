@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatIcon } from '@angular/material/icon';
-import { ordersService } from '../../../service/orders.sevice';
+import { ordersService } from '../../../service/orders.service';
 
 @Component({
   selector: 'app-perfil',
