@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatIcon } from '@angular/material/icon';
+import { ordersService } from '../../../service/orders.sevice';
 
 @Component({
   selector: 'app-perfil',
@@ -15,11 +16,13 @@ import { MatIcon } from '@angular/material/icon';
 export class PerfilComponent implements OnInit {
   // Usamos un objeto para almacenar la información del usuario
   user: any = {}; // Inicializa user como un objeto vacío
+  ActiveOrders: any[] = []
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private pedidosService: ordersService) { }
 
   ngOnInit(): void {
     this.loadProfile();
+    this.pedidosActivos();
   }
 
   loadProfile(): void {
@@ -94,6 +97,21 @@ export class PerfilComponent implements OnInit {
         console.error("No se ha proporcionado el Token");
       }
     }
+  }
+
+
+  pedidosActivos(): void {
+    // const token = localStorage.getItem('token');
+
+      this.pedidosService.activeOrders(this.user.ID_Usuario).subscribe(
+        (profile) => {
+          this.ActiveOrders = profile;
+          console.log('PEDIDOS cargados:', this.ActiveOrders); // Para depuración
+        },
+        (error) => {
+          console.error('error al cargar perfiles', error);
+        }
+      );
   }
   
 
