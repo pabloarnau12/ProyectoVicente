@@ -12,6 +12,7 @@ const authRoutes = require('./routes/authRoutes');
 const productosRoutes = require('./routes/productosRoutes');
 const tiendasRoutes = require('./routes/tiendasRoutes');
 const calificacionesRoutes = require('./routes/calificacionesRoutes');
+const pedidosRoutes = require('./routes/pedidosRoutes');
 // const perfilRoutes = require('./routes/perfilRoutes');
 
 // Usar rutas
@@ -19,6 +20,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/productos', productosRoutes);
 app.use('/api/tiendas', tiendasRoutes);
 app.use('/api/calificaciones', calificacionesRoutes);
+app.use('/api/pedidos', pedidosRoutes);
 // app.use('/api/perfil', perfilRoutes);  // Protegida por JWT
 
 // Servidor

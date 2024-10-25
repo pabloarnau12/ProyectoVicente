@@ -115,17 +115,26 @@
       </div>
     </div>
   
-    <!-- Pedidos Activos -->
     <div class="row mb-5">
       <div class="col-12">
         <h2>Pedidos Activos</h2>
         <div class="card mb-3">
           <div class="card-body">
-            <h5 class="card-title">Pedido #12345</h5>
-            <p class="card-text">Restaurante: La Pizzería</p>
-            <p class="card-text">Estado: En preparación</p>
-            <button class="btn btn-info me-2">Ver detalles</button>
-            <button class="btn btn-warning">Cancelar pedido</button>
+    @if(ActiveOrders.length == 0){
+        <p>No hay Pedidos Activos</p>
+    }@else{
+
+      @for(order of ActiveOrders; track ActiveOrders){
+        <h5 class="card-title"></h5>
+        <p class="card-text">Estado: {{order.Estado_Pedido}}</p>
+        <p class="card-text">Total: {{order.Total}}</p>
+        <p class="card-text">Fecha y hora: {{order.Fecha_Hora_Pedido}}</p>
+        <button class="btn btn-info me-2">Ver detalles</button>
+        <button class="btn btn-warning">Cancelar pedido</button>
+        <hr>
+      }
+
+    }
           </div>
         </div>
       </div>
