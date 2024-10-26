@@ -27,12 +27,14 @@ export class CarritoComponent {
   removeFromCart(productId: number): void {
     this.CarritoService.removeFromCart(productId); // Llamar al método del servicio
     this.loadCart(); // Recargar el carrito después de eliminar
+    console.log(this.cart);
   }
 
   // Método para limpiar el carrito
   clearCart(): void {
     this.CarritoService.clearCart();
     this.loadCart(); // Recargar el carrito después de limpiar
+    console.log(this.cart);
   }
   openCart(): void {
     const sidebar = document.getElementById('cartSidebar');
@@ -52,12 +54,13 @@ export class CarritoComponent {
   increaseQuantity(productID: number){
     console.log("sumado");
     this.CarritoService.increaseQuantity(productID);
-
+    console.log(this.cart);
   }
 
   decreaseQuantity(productID: number){
     console.log("restado");
     this.CarritoService.increaseQuantity(productID);
+    console.log(this.cart);
 
   }
 }
