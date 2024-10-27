@@ -25,16 +25,17 @@ export class CarritoService {
   addToCart(product: any) {
     const currentCart = this.cart();
     const existingProduct = currentCart.find((item: any) => item.ID_Producto === product.ID_Producto);
-    currentCart.push({ ...product, quantity: 1 });
+    // currentCart.push({ ...product, quantity: 1 });
     if (existingProduct) {
       existingProduct.quantity += 1;
     } 
-    // else {
-    //   currentCart.push({ ...product, quantity: 1 });
-    // }
+    else {
+      currentCart.push({ ...product, quantity: 1 });
+    }
 
     this.cart.set(currentCart);  // Actualizamos el estado del carrito
     this.saveCart(currentCart);   // Guardar en localStorage
+    console.log(this.cart())
     console.log(product.Nombre + " se ha añadido al carrito");
   }
 
