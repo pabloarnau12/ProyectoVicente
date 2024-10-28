@@ -4,6 +4,7 @@ const favoriteshopsController = require('../controllers/favoriteshopsController'
 
 
 router.get('/', favoriteshopsController.getFavoriteShops);
+router.get('/:id', favoriteshopsController.getFavoriteShopsbyUser);
 
 
 module.exports = router;

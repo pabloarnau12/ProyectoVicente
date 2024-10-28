@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatIcon } from '@angular/material/icon';
 import { ordersService } from '../../../service/orders.service';
+import { FavoriteShopService } from '../../../service/favorite-shop.service';
 
 @Component({
   selector: 'app-perfil',
@@ -17,12 +18,13 @@ export class PerfilComponent implements OnInit {
   // Usamos un objeto para almacenar la información del usuario
   user: any = {}; // Inicializa user como un objeto vacío
   ActiveOrders: any[] = []
+  FavoriteShops: any[] = [];
 
-  constructor(private authService: AuthService, private router: Router, private pedidosService: ordersService) { }
+  constructor(private authService: AuthService, private router: Router, private pedidosService: ordersService, private FavoriteShopService : FavoriteShopService) { }
 
   ngOnInit(): void {
     this.loadProfile();
-    this.pedidosActivos();
+
   }
 
   loadProfile(): void {
@@ -32,6 +34,10 @@ export class PerfilComponent implements OnInit {
         (profile) => {
           this.user = profile;
           console.log('Perfil cargado:', this.user); // Para depuración
+
+
+          this.pedidosActivos();
+          this.getFavoriteShops();
         },
         (error) => {
           console.error('Error al cargar el perfil', error);
@@ -50,8 +56,6 @@ export class PerfilComponent implements OnInit {
       showConfirmButton: false,
       denyButtonText: `Cerrar Sesión`, 
       cancelButtonText: 'Cancelar', 
-      
-      
 
     }).then((result) => {
       if (result.isDenied) {
@@ -114,6 +118,18 @@ export class PerfilComponent implements OnInit {
           console.error('error al cargar perfiles', error);
         }
       );
+  }
+
+  getFavoriteShops(): void{
+    this.FavoriteShopService.getFavoriteShopsByUser(this.user.ID_Usuario).subscribe(
+      (data) =>{
+        this.FavoriteShops = data;
+        console.log("tiendas favoritas cargadas: " + this.FavoriteShops);
+      },
+      (error) => {
+        console.error('error al cargar las tiendas favoritas', error);
+      }
+    )
   }
   
 

@@ -176,32 +176,34 @@
       </div>
     </div>
   
-    <!-- Restaurantes Favoritos -->
     <div class="row mb-5">
       <div class="col-12">
         <h2>Mis Restaurantes Favoritos</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <div class="card">
-              <img src="https://via.placeholder.com/150" class="card-img-top" alt="Restaurante 1">
-              <div class="card-body">
-                <h5 class="card-title">La Pizzería</h5>
-                <button class="btn btn-sm btn-outline-danger">Quitar de favoritos</button>
+    
+    @if(FavoriteShops.length == 0){
+      <p>No hay tiendas favoritas todavía</p>
+    }@else{
+
+      @for(favoriteShop of FavoriteShops; track FavoriteShops){
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <div class="card">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Restaurante 2">
+                <div class="card-body">
+                  <h5 class="card-title">Sushi Express</h5>
+                  <h5 class="card-text">Agregado en: {{favoriteShop.fecha_agregado}}</h5>
+                  <button class="btn btn-sm btn-outline-danger">Quitar de favoritos</button>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card">
-              <img src="https://via.placeholder.com/150" class="card-img-top" alt="Restaurante 2">
-              <div class="card-body">
-                <h5 class="card-title">Sushi Express</h5>
-                <button class="btn btn-sm btn-outline-danger">Quitar de favoritos</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        }
+    }
+
+  </div>
+</div>
+    <!-- Restaurantes Favoritos -->
+    
   
     <!-- Preferencias -->
     <div class="row mb-5">
