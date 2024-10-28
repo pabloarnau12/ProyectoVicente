@@ -24,20 +24,34 @@ export class CarritoService {
 
   addToCart(product: any) {
     const currentCart = this.cart();
-    const existingProduct = currentCart.find((item: any) => item.ID_Producto === product.ID_Producto);
-    // currentCart.push({ ...product, quantity: 1 });
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } 
-    else {
-      currentCart.push({ ...product, quantity: 1 });
+    if (currentCart.length === 0) {
+        // Si el carrito está vacío, añadimos el producto directamente
+        currentCart.push({ ...product, quantity: 1 });
+    } else {
+        const primerProducto = currentCart[0];
+        if (product.ID_Establecimiento === primerProducto.ID_Establecimiento) {
+            // El producto es del mismo establecimiento
+            const existingProduct = currentCart.find((item: any) => item.ID_Producto === product.ID_Producto);
+            if (existingProduct) {
+                // Si el producto ya está en el carrito, aumentamos la cantidad
+                existingProduct.quantity += 1;
+            } else {
+                // Si es un nuevo producto del mismo establecimiento, lo añadimos
+                currentCart.push({ ...product, quantity: 1});
+
+            }
+        } else {
+            // El producto es de un establecimiento diferente
+            console.log("Los pedidos deben ser de un mismo establecimiento");
+            return; // Salimos de la función sin añadir el producto
+        }
     }
 
     this.cart.set(currentCart);  // Actualizamos el estado del carrito
     this.saveCart(currentCart);   // Guardar en localStorage
-    console.log(this.cart())
+    console.log(this.cart());
     console.log(product.Nombre + " se ha añadido al carrito");
-  }
+}
 
   removeFromCart(productId: number) {
     let cart = this.getCart(); 
@@ -61,12 +75,15 @@ export class CarritoService {
   }
 
 
-  // increasyQuantity(product: any){
-  //   const currentCart = this.cart();
-  //   const newQuantity  = product.quantity + 1;
-  //   console.log("Se ha aumentado la cantidad de " + product.Nombre + ": " + newQuantity);
 
-  // }
+
+
+
+
+
+
+
+  
   increaseQuantity(productId: number) {
     const currentCart = this.cart();
     const existingProduct = currentCart.find((item: any) => item.ID_Producto === productId);
