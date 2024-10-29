@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2024 a las 09:50:16
+-- Tiempo de generación: 29-10-2024 a las 14:50:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -48,29 +48,6 @@ INSERT INTO `calificaciones` (`ID_Calificacion`, `ID_Pedido`, `Calificacion_Esta
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalles_pedido`
---
-
-CREATE TABLE `detalles_pedido` (
-  `ID_Detalle` int(11) NOT NULL,
-  `ID_Pedido` int(11) NOT NULL,
-  `ID_Producto` int(11) NOT NULL,
-  `Cantidad` int(11) NOT NULL,
-  `Precio_Unitario` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `detalles_pedido`
---
-
-INSERT INTO `detalles_pedido` (`ID_Detalle`, `ID_Pedido`, `ID_Producto`, `Cantidad`, `Precio_Unitario`) VALUES
-(1, 1, 1, 1, 15.99),
-(2, 1, 2, 1, 8.50),
-(3, 2, 3, 1, 3.99);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `establecimientos`
 --
 
@@ -91,7 +68,7 @@ CREATE TABLE `establecimientos` (
 --
 
 INSERT INTO `establecimientos` (`ID_Establecimiento`, `Nombre`, `Tipo`, `Direccion`, `Telefono`, `Horario_Apertura`, `Horario_Cierre`, `Calificacion_Promedio`, `foto`) VALUES
-(1, 'La Tasca del Pueblo', 'Supermercado', 'Calle del Sol 3, Pueblo A', '123987456', '10:00:00', '22:00:00', 0.00, '\\assets\\images\\entrada (1).png'),
+(1, 'La Tasca del Pueblo', 'Supermercado', 'Calle del Sol 3, Pueblo A', '123987456', '20:00:00', '22:00:00', 0.00, '\\assets\\images\\entrada (1).png'),
 (2, 'Farmacia San Juan', 'Supermercado', 'Avenida Libertad 7, Pueblo B', '456321789', '09:00:00', '20:00:00', 0.00, '\\assets\\images\\img_productos\\laurel.png'),
 (3, 'Supermercado El Ahorro', 'Supermercado', 'Plaza Mayor 2, Pueblo C', '789654123', '11:00:00', '21:00:00', 0.00, '\\assets\\images\\banner1.png'),
 (4, 'Abordo Maria', 'Supermercado', 'Avenida Castilla, 7 puerta 3', '654987321', '08:00:00', '22:00:00', 0.00, '\\assets\\images\\banner1.png'),
@@ -133,13 +110,36 @@ INSERT INTO `establecimientos` (`ID_Establecimiento`, `Nombre`, `Tipo`, `Direcci
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `favoritas_tiendas`
+--
+
+CREATE TABLE `favoritas_tiendas` (
+  `ID_FavoritasTiendas` int(11) NOT NULL,
+  `ID_Usuario` int(11) NOT NULL,
+  `ID_Establecimiento` int(11) NOT NULL,
+  `fecha_agregado` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `favoritas_tiendas`
+--
+
+INSERT INTO `favoritas_tiendas` (`ID_FavoritasTiendas`, `ID_Usuario`, `ID_Establecimiento`, `fecha_agregado`) VALUES
+(19, 6, 34, '2024-10-29 14:01:10'),
+(20, 6, 1, '2024-10-29 14:01:32'),
+(23, 11, 1, '2024-10-29 14:15:56'),
+(24, 11, 2, '2024-10-29 14:15:58'),
+(25, 11, 4, '2024-10-29 14:16:00');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pedidos`
 --
 
 CREATE TABLE `pedidos` (
   `ID_Pedido` int(11) NOT NULL,
   `ID_Usuario` int(11) NOT NULL,
-  `ID_Repartidor` int(11) DEFAULT NULL,
   `ID_Establecimiento` int(11) NOT NULL,
   `Fecha_Hora_Pedido` timestamp NOT NULL DEFAULT current_timestamp(),
   `Estado_Pedido` enum('Pendiente','En proceso','En camino','Entregado','Cancelado') DEFAULT 'Pendiente',
@@ -150,10 +150,33 @@ CREATE TABLE `pedidos` (
 -- Volcado de datos para la tabla `pedidos`
 --
 
-INSERT INTO `pedidos` (`ID_Pedido`, `ID_Usuario`, `ID_Repartidor`, `ID_Establecimiento`, `Fecha_Hora_Pedido`, `Estado_Pedido`, `Total`) VALUES
-(1, 1, 1, 1, '2024-10-03 09:21:03', 'En proceso', 24.49),
-(2, 2, 2, 2, '2024-10-03 09:21:03', 'Entregado', 3.99),
-(3, 3, NULL, 3, '2024-10-03 09:21:03', 'Pendiente', 35.75);
+INSERT INTO `pedidos` (`ID_Pedido`, `ID_Usuario`, `ID_Establecimiento`, `Fecha_Hora_Pedido`, `Estado_Pedido`, `Total`) VALUES
+(1, 6, 4, '2024-10-03 09:21:03', 'En proceso', 24.49),
+(2, 2, 16, '2024-10-03 09:21:03', 'Entregado', 3.99),
+(3, 6, 3, '2024-10-03 09:21:03', 'Pendiente', 35.75);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedido_productos`
+--
+
+CREATE TABLE `pedido_productos` (
+  `ID` int(11) NOT NULL,
+  `ID_Pedido` int(11) NOT NULL,
+  `ID_Producto` int(11) NOT NULL,
+  `cantidad` tinyint(4) NOT NULL,
+  `precio` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pedido_productos`
+--
+
+INSERT INTO `pedido_productos` (`ID`, `ID_Pedido`, `ID_Producto`, `cantidad`, `precio`) VALUES
+(1, 1, 1, 2, 3),
+(2, 3, 5, 6, 6),
+(3, 3, 25, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -177,10 +200,10 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`ID_Producto`, `ID_Establecimiento`, `Nombre`, `Descripcion`, `Precio`, `Disponibilidad`, `Foto`, `Tipo`) VALUES
-(1, 1, 'Paella', 'Paella valenciana tradicional', 15.99, 5, '\\assets\\images\\paella.png', ''),
-(2, 1, 'Tortilla española', 'Tortilla de patatas casera', 8.50, 12, '\\assets\\images\\tortillapatata.png', ''),
-(3, 1, 'Paracetamol', 'Analgésico y antipirético', 3.99, 10, '\\assets\\images\\multivitaminico.jpg', ''),
-(4, 3, 'Chorizos ', 'Chorizos de la granjaescula Mediterranea ficticia sistematica de estilo neutral in the night.', 6.99, 16, '\\assets\\images\\chorizos.png', ''),
+(1, 1, 'Paella', 'Paella valenciana tradicional', 15.99, 5, '\\assets\\images\\paella.png', 'guay'),
+(2, 1, 'Tortilla española', 'Tortilla de patatas casera', 8.50, 12, '\\assets\\images\\tortillapatata.png', 'cbhuli'),
+(3, 1, 'Paracetamol', 'Analgésico y antipirético', 3.99, 10, '\\assets\\images\\multivitaminico.jpg', 'asdf'),
+(4, 3, 'Chorizos ', 'Chorizos de la granjaescula Mediterranea ficticia sistematica de estilo neutral in the night.', 6.99, 16, '\\assets\\images\\chorizos.png', 'hgfgh'),
 (5, 1, 'Queso Manchego', 'Queso curado de oveja', 12.50, 8, '\\assets\\images\\queso_manchego.png', 'Lácteos'),
 (6, 2, 'Ibuprofeno 600mg', 'Anti-inflamatorio de venta libre', 5.99, 20, '\\assets\\images\\ibuprofeno.png', 'Medicamento'),
 (7, 2, 'Vitaminas C', 'Suplemento de Vitamina C 500mg', 9.50, 15, '\\assets\\images\\vitamina_c.png', 'Suplemento'),
@@ -221,29 +244,23 @@ INSERT INTO `productos` (`ID_Producto`, `ID_Establecimiento`, `Nombre`, `Descrip
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `repartidores`
+-- Estructura de tabla para la tabla `roles`
 --
 
-CREATE TABLE `repartidores` (
-  `ID_Repartidor` int(11) NOT NULL,
-  `Nombre` varchar(50) NOT NULL,
-  `Apellidos` varchar(50) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  `Telefono` varchar(15) NOT NULL,
-  `Vehiculo` varchar(50) DEFAULT NULL,
-  `Estado` enum('Activo','Inactivo') DEFAULT 'Activo',
-  `Calificacion_Promedio` decimal(3,2) DEFAULT 0.00,
-  `foto` varchar(255) NOT NULL
+CREATE TABLE `roles` (
+  `ID_rol` tinyint(4) NOT NULL,
+  `Nombre` varchar(50) DEFAULT NULL,
+  `Descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `repartidores`
+-- Volcado de datos para la tabla `roles`
 --
 
-INSERT INTO `repartidores` (`ID_Repartidor`, `Nombre`, `Apellidos`, `Email`, `Telefono`, `Vehiculo`, `Estado`, `Calificacion_Promedio`, `foto`) VALUES
-(1, 'Carlos', 'Sánchez', 'carlos@email.com', '111222333', 'Bicicleta', 'Activo', 0.00, ''),
-(2, 'Laura', 'Fernández', 'laura@email.com', '444555666', 'Moto', 'Activo', 0.00, ''),
-(3, 'Pedro', 'Ramírez', 'pedro@email.com', '777888999', 'Coche', 'Inactivo', 0.00, '');
+INSERT INTO `roles` (`ID_rol`, `Nombre`, `Descripcion`) VALUES
+(1, 'repartidores', 'Este rol es para los repartidores'),
+(2, 'Admin', '[soi io]'),
+(3, 'Usuarios', '[Cuenta para los usuarios]');
 
 -- --------------------------------------------------------
 
@@ -260,19 +277,24 @@ CREATE TABLE `usuarios` (
   `Direccion` varchar(255) NOT NULL,
   `Contraseña` varchar(255) NOT NULL,
   `Fecha_Registro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `foto` varchar(255) NOT NULL
+  `foto` varchar(255) NOT NULL,
+  `vehiculo` varchar(255) DEFAULT NULL,
+  `estado` enum('activo','ocupado','recogiendo pedido','en camino') DEFAULT NULL,
+  `calificacion_promedio` tinyint(4) DEFAULT NULL,
+  `ID_ROL` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`ID_Usuario`, `Nombre`, `Apellidos`, `Email`, `Telefono`, `Direccion`, `Contraseña`, `Fecha_Registro`, `foto`) VALUES
-(1, 'María', 'González', 'maria@email.com', '123456789', 'Calle Mayor 1, Pueblo A', 'contraseña_hash_1', '2024-10-03 09:20:06', '0'),
-(2, 'Juan', 'Martínez', 'juan@email.com', '987654321', 'Plaza Central 5, Pueblo B', 'contraseña_hash_2', '2024-10-03 09:20:06', '0'),
-(3, 'Ana', 'López', 'ana@email.com', '456789123', 'Avenida Principal 10, Pueblo C', '$2b$10$SPfCyfzTAbgl7ux./DaaXuhSS3gSmi3io1flMmv3SZBlxZ9tFktQe', '2024-10-03 09:20:06', '0'),
-(5, 'Julen', 'alonso', '654', 'julenmj@gmail.c', '', '$2b$10$bWBnvotI5DHtieCfzQiEGui0/Kxp7h4pclhc69E1uwRchR31AQ9aK', '2024-10-08 11:27:09', ''),
-(6, 'admin', 'admin', 'admin@gmail.com', '83838', '', '$2b$10$I5zJS09SxgY.l/AaHRyMdO2z6XjD9T8//an8RHz5uwFTZqeIWYuf.', '2024-10-08 11:40:57', '');
+INSERT INTO `usuarios` (`ID_Usuario`, `Nombre`, `Apellidos`, `Email`, `Telefono`, `Direccion`, `Contraseña`, `Fecha_Registro`, `foto`, `vehiculo`, `estado`, `calificacion_promedio`, `ID_ROL`) VALUES
+(1, 'María', 'González', 'maria@email.com', '123456789', 'Calle Mayor 1, Pueblo A', 'contraseña_hash_1', '2024-10-03 09:20:06', '0', NULL, NULL, NULL, NULL),
+(2, 'Juan', 'Martínez', 'juan@email.com', '987654321', 'Plaza Central 5, Pueblo B', 'contraseña_hash_2', '2024-10-03 09:20:06', '0', NULL, NULL, NULL, NULL),
+(3, 'Ana', 'López', 'ana@email.com', '456789123', 'Avenida Principal 10, Pueblo C', '$2b$10$SPfCyfzTAbgl7ux./DaaXuhSS3gSmi3io1flMmv3SZBlxZ9tFktQe', '2024-10-03 09:20:06', '0', NULL, NULL, NULL, NULL),
+(5, 'Julen', 'alonso', '654', 'julenmj@gmail.c', '', '$2b$10$bWBnvotI5DHtieCfzQiEGui0/Kxp7h4pclhc69E1uwRchR31AQ9aK', '2024-10-08 11:27:09', '', NULL, NULL, NULL, NULL),
+(6, 'admin', 'admin', 'admin@gmail.com', '83838', 'calle matias perra', '$2b$10$I5zJS09SxgY.l/AaHRyMdO2z6XjD9T8//an8RHz5uwFTZqeIWYuf.', '2024-10-08 11:40:57', '', NULL, NULL, NULL, NULL),
+(11, 'Pablo', 'Arnau Lopez', 'pabloarlo00@gmail.com', '646836481', 'C/ Enrique Tierno Galvan Cheste', '$2b$10$xIeHT0pe.nHnKl6.0lm6UuempoL4PXThrob6o7tywpHa3CNg5Yp6q', '2024-10-29 13:15:13', '', NULL, NULL, NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -286,18 +308,18 @@ ALTER TABLE `calificaciones`
   ADD KEY `ID_Pedido` (`ID_Pedido`);
 
 --
--- Indices de la tabla `detalles_pedido`
---
-ALTER TABLE `detalles_pedido`
-  ADD PRIMARY KEY (`ID_Detalle`),
-  ADD KEY `ID_Pedido` (`ID_Pedido`),
-  ADD KEY `ID_Producto` (`ID_Producto`);
-
---
 -- Indices de la tabla `establecimientos`
 --
 ALTER TABLE `establecimientos`
   ADD PRIMARY KEY (`ID_Establecimiento`);
+
+--
+-- Indices de la tabla `favoritas_tiendas`
+--
+ALTER TABLE `favoritas_tiendas`
+  ADD PRIMARY KEY (`ID_FavoritasTiendas`),
+  ADD KEY `ID_Usuario` (`ID_Usuario`),
+  ADD KEY `ID_Establecimiento` (`ID_Establecimiento`);
 
 --
 -- Indices de la tabla `pedidos`
@@ -305,8 +327,15 @@ ALTER TABLE `establecimientos`
 ALTER TABLE `pedidos`
   ADD PRIMARY KEY (`ID_Pedido`),
   ADD KEY `ID_Usuario` (`ID_Usuario`),
-  ADD KEY `ID_Repartidor` (`ID_Repartidor`),
   ADD KEY `ID_Establecimiento` (`ID_Establecimiento`);
+
+--
+-- Indices de la tabla `pedido_productos`
+--
+ALTER TABLE `pedido_productos`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ID_Pedido` (`ID_Pedido`),
+  ADD KEY `ID_Producto` (`ID_Producto`);
 
 --
 -- Indices de la tabla `productos`
@@ -316,18 +345,18 @@ ALTER TABLE `productos`
   ADD KEY `ID_Establecimiento` (`ID_Establecimiento`);
 
 --
--- Indices de la tabla `repartidores`
+-- Indices de la tabla `roles`
 --
-ALTER TABLE `repartidores`
-  ADD PRIMARY KEY (`ID_Repartidor`),
-  ADD UNIQUE KEY `Email` (`Email`);
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`ID_rol`);
 
 --
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`ID_Usuario`),
-  ADD UNIQUE KEY `Email` (`Email`);
+  ADD UNIQUE KEY `Email` (`Email`),
+  ADD KEY `fk_roles` (`ID_ROL`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -340,16 +369,16 @@ ALTER TABLE `calificaciones`
   MODIFY `ID_Calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `detalles_pedido`
---
-ALTER TABLE `detalles_pedido`
-  MODIFY `ID_Detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT de la tabla `establecimientos`
 --
 ALTER TABLE `establecimientos`
-  MODIFY `ID_Establecimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_Establecimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT de la tabla `favoritas_tiendas`
+--
+ALTER TABLE `favoritas_tiendas`
+  MODIFY `ID_FavoritasTiendas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
@@ -358,22 +387,28 @@ ALTER TABLE `pedidos`
   MODIFY `ID_Pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `pedido_productos`
+--
+ALTER TABLE `pedido_productos`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `ID_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- AUTO_INCREMENT de la tabla `repartidores`
+-- AUTO_INCREMENT de la tabla `roles`
 --
-ALTER TABLE `repartidores`
-  MODIFY `ID_Repartidor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `roles`
+  MODIFY `ID_rol` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
@@ -386,25 +421,37 @@ ALTER TABLE `calificaciones`
   ADD CONSTRAINT `calificaciones_ibfk_1` FOREIGN KEY (`ID_Pedido`) REFERENCES `pedidos` (`ID_Pedido`);
 
 --
--- Filtros para la tabla `detalles_pedido`
+-- Filtros para la tabla `favoritas_tiendas`
 --
-ALTER TABLE `detalles_pedido`
-  ADD CONSTRAINT `detalles_pedido_ibfk_1` FOREIGN KEY (`ID_Pedido`) REFERENCES `pedidos` (`ID_Pedido`),
-  ADD CONSTRAINT `detalles_pedido_ibfk_2` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`);
+ALTER TABLE `favoritas_tiendas`
+  ADD CONSTRAINT `favoritas_tiendas_ibfk_1` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID_Usuario`),
+  ADD CONSTRAINT `favoritas_tiendas_ibfk_2` FOREIGN KEY (`ID_Establecimiento`) REFERENCES `establecimientos` (`ID_Establecimiento`);
 
 --
 -- Filtros para la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
   ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID_Usuario`),
-  ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`ID_Repartidor`) REFERENCES `repartidores` (`ID_Repartidor`),
   ADD CONSTRAINT `pedidos_ibfk_3` FOREIGN KEY (`ID_Establecimiento`) REFERENCES `establecimientos` (`ID_Establecimiento`);
+
+--
+-- Filtros para la tabla `pedido_productos`
+--
+ALTER TABLE `pedido_productos`
+  ADD CONSTRAINT `pedido_productos_ibfk_1` FOREIGN KEY (`ID_Pedido`) REFERENCES `pedidos` (`ID_Pedido`) ON DELETE CASCADE,
+  ADD CONSTRAINT `pedido_productos_ibfk_2` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`ID_Establecimiento`) REFERENCES `establecimientos` (`ID_Establecimiento`);
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `fk_roles` FOREIGN KEY (`ID_ROL`) REFERENCES `roles` (`ID_rol`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
