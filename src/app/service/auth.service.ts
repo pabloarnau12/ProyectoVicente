@@ -14,8 +14,8 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/login`, { email, password });
   }
 
-  register(nombre: string, apellidos: string, telefono: string, email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/registro`, { nombre, apellidos, telefono, email, password });
+  register(nombre: string, apellidos: string, email: string,telefono: string,  password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/registro`, { nombre, apellidos, email, telefono, password });
   }
 
   getProfile(token: string): Observable<any> {

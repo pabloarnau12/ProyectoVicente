@@ -15,8 +15,8 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   nombre: string = '';
   apellidos: string = '';
-  telefono: string = '';
   email: string = '';
+  telefono: string = '';
   password: string = '';
 
   constructor(private authService: AuthService, private router: Router ) { }
