@@ -188,10 +188,11 @@
           <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
               <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Restaurante 2">
+                <img src="{{favoriteShop.foto}}" class="card-img-top" alt="Restaurante 2">
                 <div class="card-body">
-                  <h5 class="card-title">Sushi Express</h5>
-                  <h5 class="card-text">Agregado en: {{favoriteShop.fecha_agregado}}</h5>
+                  <h5 class="card-title">{{favoriteShop.Nombre}}</h5>
+                  <h5 class="card-text">{{favoriteShop.Tipo}}</h5>
+                  <h5 class="card-text">{{favoriteShop.Direccion}}</h5>
                   <button class="btn btn-sm btn-outline-danger">Quitar de favoritos</button>
                 </div>
               </div>
