@@ -125,11 +125,11 @@
         <h2>Pedidos Activos</h2>
         <div class="card mb-3">
           <div class="card-body">
-    @if(ActiveOrders.length == 0){
+    @if(ActiveOrders().length == 0){
         <p>No hay Pedidos Activos</p>
     }@else{
 
-      @for(order of ActiveOrders; track ActiveOrders){
+      @for(order of ActiveOrders(); track ActiveOrders){
         <h5 class="card-title"></h5>
         <p class="card-text">Estado: {{order.Estado_Pedido}}</p>
         <p class="card-text">Total: {{order.Total}}</p>
@@ -180,25 +180,25 @@
       <div class="col-12">
         <h2>Mis Restaurantes Favoritos</h2>
     
-    @if(FavoriteShops.length == 0){
+    @if(FavoriteShops().length == 0){
       <p>No hay tiendas favoritas todavía</p>
     }@else{
-
-      @for(favoriteShop of FavoriteShops; track FavoriteShops){
-          <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="row row-cols-1 row-cols-md-3 g-4 ">
+      @for(favoriteShop of FavoriteShops(); track FavoriteShops){
+          
             <div class="col">
-              <div class="card">
-                <img src="{{favoriteShop.foto}}" class="card-img-top" alt="Restaurante 2">
+              <div class="card h-100">
+                <img src="{{favoriteShop.foto}}" class="card-img-top h-100" alt="{{favoriteShop.Nombre}}">
                 <div class="card-body">
                   <h5 class="card-title">{{favoriteShop.Nombre}}</h5>
                   <h5 class="card-text">{{favoriteShop.Tipo}}</h5>
                   <h5 class="card-text">{{favoriteShop.Direccion}}</h5>
-                  <button class="btn btn-sm btn-outline-danger">Quitar de favoritos</button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="deleteFavorite(favoriteShop.ID_Establecimiento)">Quitar de favoritos</button>
                 </div>
               </div>
             </div>
-          </div>
         }
+      </div>
     }
 
   </div>

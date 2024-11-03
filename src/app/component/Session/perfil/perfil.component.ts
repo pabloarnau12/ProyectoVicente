@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,14 +17,14 @@ import { FavoriteShopService } from '../../../service/favorite-shop.service';
 export class PerfilComponent implements OnInit {
   // Usamos un objeto para almacenar la información del usuario
   user: any = {}; // Inicializa user como un objeto vacío
-  ActiveOrders: any[] = []
-  FavoriteShops: any[] = [];
+  ActiveOrders = signal<any[]>([]);
+  FavoriteShops = signal<any[]>([]);
+  tienda: any;  
 
-  constructor(private authService: AuthService, private router: Router, private pedidosService: ordersService, private FavoriteShopService : FavoriteShopService) { }
-
+  constructor(private authService: AuthService, private router: Router, private pedidosService: ordersService) { }
+  private readonly apiFavoriteShops : FavoriteShopService = inject(FavoriteShopService)
   ngOnInit(): void {
     this.loadProfile();
-
   }
 
   loadProfile(): void {
@@ -34,8 +34,6 @@ export class PerfilComponent implements OnInit {
         (profile) => {
           this.user = profile;
           console.log('Perfil cargado:', this.user); // Para depuración
-
-
           this.pedidosActivos();
           this.getFavoriteShops();
         },
@@ -110,8 +108,8 @@ export class PerfilComponent implements OnInit {
     // const token = localStorage.getItem('token');
 
       this.pedidosService.activeOrders(this.user.ID_Usuario).subscribe(
-        (profile) => {
-          this.ActiveOrders = profile;
+        (orders) => {
+          this.ActiveOrders.set(orders);
           console.log('PEDIDOS cargados:', this.ActiveOrders); // Para depuración
         },
         (error) => {
@@ -120,16 +118,28 @@ export class PerfilComponent implements OnInit {
       );
   }
 
-  getFavoriteShops(): void{
-    this.FavoriteShopService.getFavoriteShopsByUser(this.user.ID_Usuario).subscribe(
-      (data) =>{
-        this.FavoriteShops = data;
-        console.log("tiendas favoritas cargadas: " + this.FavoriteShops);
+  getFavoriteShops(): void {
+    this.apiFavoriteShops.getFavoriteShopsByUser(this.user.ID_Usuario).subscribe(
+      (shops) => {
+        this.FavoriteShops.set(shops); 
+        console.log("Datos cargados en el signal:", shops); 
+
       },
       (error) => {
-        console.error('error al cargar las tiendas favoritas', error);
+        console.error("Error al cargar las tiendas favoritas", error);
       }
-    )
+    );
+  }
+
+  deleteFavorite(ID_Establecimiento : string): void {
+    this.apiFavoriteShops.removeFavoriteShop(this.user.ID_Usuario, ID_Establecimiento).subscribe(
+      () => {
+        this.FavoriteShops.update(shops => 
+          shops.filter(shop => shop.ID_Establecimiento !== ID_Establecimiento)
+        );
+      },
+      error => Swal.fire('Error al eliminar la tienda de favoritos')
+    );
   }
   
 
