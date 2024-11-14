@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatIcon } from '@angular/material/icon';
 import { ordersService } from '../../../service/orders.service';
@@ -11,7 +11,7 @@ import { FavoriteShopService } from '../../../service/favorite-shop.service';
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   standalone: true,
-  imports: [FormsModule, MatIcon],
+  imports: [FormsModule, MatIcon, RouterLink],
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
@@ -131,7 +131,10 @@ export class PerfilComponent implements OnInit {
     );
   }
 
-  deleteFavorite(ID_Establecimiento : string): void {
+  deleteFavorite(event: Event, ID_Establecimiento : string): void {
+
+    event.stopPropagation();
+    
     this.apiFavoriteShops.removeFavoriteShop(this.user.ID_Usuario, ID_Establecimiento).subscribe(
       () => {
         this.FavoriteShops.update(shops => 

@@ -17,7 +17,7 @@
                 <span>
                     <h1 class="display-5 fw-bolder" style="display: inline; vertical-align: middle;">{{tienda.Nombre}}</h1>
                     @if(isFavorite == true){
-                        <mat-icon style="vertical-align: middle;" (click)="deleteFavorite()">favorite</mat-icon>
+                        <mat-icon style="vertical-align: middle;" class="favorite-icon" (click)="deleteFavorite()">favorite</mat-icon>
                     }@else{
                         
                         <mat-icon style="vertical-align: middle;" (click)="addFavorite()">favorite_border</mat-icon>
@@ -27,7 +27,6 @@
                       </button> -->
                     
                 </span>
-                
                 
                 <p class="lead" [ngClass]="{ 'text-success': isOpen(), 'text-danger': !isOpen() }">
 

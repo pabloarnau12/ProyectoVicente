@@ -1,21 +1,71 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900');
-.caja{
-    transition: transform 0.3s ease-in-out;
+
+/* Caja del card */
+.caja {
+  border-radius: 12px; /* Bordes redondeados */
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Evita que los contenidos se desborden */
 }
+
 .caja:hover {
-    transform: scale(1.05);
-  }
-  
+  transform: scale(1.05); /* Efecto de escala al hacer hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Imagen del card */
+.card-img-top {
+  width: 100%;
+  height: 250px;
+  object-fit: cover; /* Asegura que la imagen se ajuste bien */
+  border-top-left-radius: 12px; /* Bordes redondeados en la parte superior */
+  border-top-right-radius: 12px;
+}
+
+/* Estilo para el título y el texto */
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-text {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Estilo del icono de favorito */
+.favorite-icon {
+  font-size: 32px;
+  color: #ff5f57; /* Color atractivo para el icono */
+  transition: color 0.3s ease;
+}
+
+.favorite-icon:hover {
+  color: #d43f00; /* Color más intenso cuando el icono se pasa por encima */
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 576px) {
   .card-img-top {
-    width: 100%;
-    height: 250px; /* Ajusta según el tamaño deseado */
-    object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionarse */
+    height: 150px; /* Ajusta la altura de la imagen en pantallas más pequeñas */
   }
-  
-  /* Opcional: Ajusta el tamaño de la tarjeta para pantallas más pequeñas */
-  @media (max-width: 576px) {
-    .card-img-top {
-      height: 150px; /* Ajusta según sea necesario */
-    }
+
+  .card-title {
+    font-size: 1.5rem; /* Reduce el tamaño del título en pantallas pequeñas */
   }
-  
+
+  .card-text {
+    font-size: 1.125rem; /* Reduce el tamaño del texto en pantallas pequeñas */
+  }
+
+  .favorite-icon {
+    font-size: 28px; /* Ajusta el tamaño del icono */
+  }
+}

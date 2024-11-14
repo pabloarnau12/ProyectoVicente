@@ -1,0 +1,10 @@
+/* Estilo del icono de favorito */
+.favorite-icon {
+    /* font-size: 32px; */
+    color: #ff5f57; /* Color atractivo para el icono */
+    transition: color 0.3s ease;
+  }
+  
+  .favorite-icon:hover {
+    color: #d43f00; /* Color más intenso cuando el icono se pasa por encima */
+  }

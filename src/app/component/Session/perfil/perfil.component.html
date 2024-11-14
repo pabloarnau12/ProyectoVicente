@@ -185,15 +185,14 @@
     }@else{
       <div class="row row-cols-1 row-cols-md-3 g-4 ">
       @for(favoriteShop of FavoriteShops(); track FavoriteShops){
-          
-            <div class="col">
+            <div class="col" style="cursor: pointer;" [routerLink]="'/catalogo/' + favoriteShop.ID_Establecimiento ">
               <div class="card h-100">
                 <img src="{{favoriteShop.foto}}" class="card-img-top h-100" alt="{{favoriteShop.Nombre}}">
                 <div class="card-body">
                   <h5 class="card-title">{{favoriteShop.Nombre}}</h5>
                   <h5 class="card-text">{{favoriteShop.Tipo}}</h5>
                   <h5 class="card-text">{{favoriteShop.Direccion}}</h5>
-                  <button class="btn btn-sm btn-outline-danger" (click)="deleteFavorite(favoriteShop.ID_Establecimiento)">Quitar de favoritos</button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="deleteFavorite($event, favoriteShop.ID_Establecimiento)">Quitar de favoritos</button>
                 </div>
               </div>
             </div>

@@ -1,54 +1,28 @@
-<div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
-    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<div class="static-slider9 position-relative">
+  <!-- Contenedor de Imagen de Fondo con Opacidad -->
+  <div class="background-overlay"></div>
+  <div class="container h-100 d-flex align-items-center">
+    <div class="row w-100 align-items-center">
+      <!-- Columna de Texto y Formulario -->
+      <div class="col-md-6 info-detail text-center text-md-left">
+        <h1 class="title">¿Listo para descubrir los mejores sabores cerca de ti?</h1>
+        <h6 class="subtitle">Encuentra tus platos favoritos y recibe en minutos. ¡Rápido, fresco y delicioso!</h6>
+        <p class="text-dark font-weight-medium">Ingresa tu correo electrónico para obtener la App</p>
+        <form class="form-inline justify-content-center justify-content-md-start mt-3">
+          <div class="input-group">
+            <input type="email" class="form-control form-control-lg" id="inputEmail" placeholder="Correo electrónico">
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-lg btn-success-gradient text-white">Obtener la App</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- Columna de Imagen Representativa de Food Delivery -->
+      <div class="col-md-6 d-none d-md-block">
+        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3&q=80&w=800" 
+             class="food-delivery-img img-fluid rounded" 
+             alt="Imagen de comida">
+      </div>
+    </div>
   </div>
-  <div class="carousel-inner">
-
-    <div class="carousel-item active carousel-item-start" style="background-image: url('../../../../assets/images/bannerwomen.png');">
-      <div class="container">
-        <div class="carousel-caption">
-          <h1>GymStore</h1>
-          <p>Bienvenido a GymStore, donde el rendimiento, la calidad y la innovación se encuentran para llevar tu entrenamiento al siguiente nivel. Aquí podras encontrar
-            un amplio catálogo de productos y servicios relacionados con el fitness, que te permitirán llevar tu entrenamiento al siguiente nivel desde la comodidad de tu casa.
-          </p>
-          <p><a class="btn btn-lg btn-primary" aria-current="page" routerLink="/registrarse" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Inscríbete hoy</a></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="carousel-item carousel-item-next carousel-item-start" style="background-image: url('https://plus.unsplash.com/premium_photo-1681488124242-c58c37c79af6?q=80&w=1992&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-      <div class="container">
-        <div class="carousel-caption">
-          <h1>Contáctanos</h1>
-          <p>Así es, en Gymstore tienes contacto en todo momento con el equipo. Nuestro equipo consta de varios expertos en fitness que conocen las necesidades del mercado, por ello, los productos que
-            ofrecemos son hechos por y para personas que practiquen y disfruten de la actividad deportiva. Además nuestro equipo destaca por ser muy receptivo a las críticas con el fin de mejorar el servicio
-            que ofrecemos en base a las recomendaciones de nuestros clientes, otorgando el servicio que nuestros clientes merecen.
-          </p>
-          <p><a class="btn btn-lg btn-primary" aria-current="page" routerLink="/contacto" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Contacto</a></p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1418669112725-fb499fb61127?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-      <div class="container">
-        <div class="carousel-caption text-end">
-          <h1>NUESTRO CATALOGO</h1>
-          <p>Te ofrecemos más de 15 productos de deporte de máxima calidad. Estos se ajustan a las necesidades de nuestros clientes, añadiendo periodicamente nuevos productos que los propios clientes
-            pidan o que nuestro equipo vea necesarios. Nuestros productos se caracterizan por un coste asequible, disponiendo de todo tipo de controles y certificaciones en los mismos. Además nuestros
-            clientes más fieles pueden acceder a códigos promocionales que pueden hacer mucho más asequibles sus compras.
-          </p>
-          <p><a class="btn btn-lg btn-primary" aria-current="page" routerLink="/catalogo" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Catalogo</a></p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>

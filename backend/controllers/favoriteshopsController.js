@@ -3,6 +3,17 @@ const connection = require('../config/db');
 exports.getFavoriteShops = (req, res) =>{
     connection.query('SELECT * FROM favoritas_tiendas', (err, results) => {
       if (err) return res.status(500).send(err);
+
+      const defaultPhoto = 'https://via.placeholder.com/300x200.png?text=No+Image+Available'; // Aquí puedes poner la URL de la foto base
+
+      // Recorremos los resultados y asignamos la foto base si está vacía
+      results.forEach(tienda => {
+        if (!tienda.foto || tienda.foto.trim() === '') {
+          tienda.foto = defaultPhoto; // Asignamos la foto base
+          console.log("NO TIENE FOTO");
+        }
+      });
+
       res.json(results);
     });
   };
@@ -18,6 +29,18 @@ exports.getFavoriteShopsbyUser = (req, res) => {
 
   connection.query(query, [id], (err, results) => {
     if (err) return res.status(500).send(err);
+
+    const defaultPhoto = 'https://via.placeholder.com/300x200.png?text=No+Image+Available'; // Aquí puedes poner la URL de la foto base
+
+    // Recorremos los resultados y asignamos la foto base si está vacía
+    results.forEach(tienda => {
+      if (!tienda.foto || tienda.foto.trim() === '') {
+        tienda.foto = defaultPhoto; // Asignamos la foto base
+        console.log("NO TIENE FOTO");
+      }
+    });
+
+
     if (results.length === 0) return res.status(404).send('No se encontraron Tiendas favoritas para el usuario especificado');
     res.json(results);
   });
