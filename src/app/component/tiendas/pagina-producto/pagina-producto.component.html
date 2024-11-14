@@ -1,91 +1,79 @@
 @if (tienda) {
-
-<section class="py-5">
-    <div class="container px-4 px-lg-5 my-5" >
-        <button class="btn" [routerLink]="['/catalogo']">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
-
-            </svg>  
-        </button>
-
-        <div class="row gx-4 gx-lg-5 align-items-center">
-
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{tienda.foto}}" alt="..." /></div>
-            <div class="col-md-6">
-                <div class="small mb-1">{{tienda.Tipo}}</div>
-                <span>
-                    <h1 class="display-5 fw-bolder" style="display: inline; vertical-align: middle;">{{tienda.Nombre}}</h1>
-                    @if(isFavorite == true){
-                        <mat-icon style="vertical-align: middle;" class="favorite-icon" (click)="deleteFavorite()">favorite</mat-icon>
-                    }@else{
-                        
-                        <mat-icon style="vertical-align: middle;" (click)="addFavorite()">favorite_border</mat-icon>
-                    }
-                    <!-- <button (click)="isFavorite ? deleteFavorite() : addFavorite()">
-                        {{ isFavorite ? 'Eliminar de Favoritos' : 'Añadir a Favoritos' }}
-                      </button> -->
-                    
-                </span>
-                
-                <p class="lead" [ngClass]="{ 'text-success': isOpen(), 'text-danger': !isOpen() }">
-
-                {{tienda.Horario_Apertura}} - {{ tienda.Horario_Cierre}}
-                </p>
-                
-                <div class="d-flex">
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/catalogo/' + tienda.ID_Establecimiento + '/' + 'productos']">Ver Productos</button>
-                </div>
-
-                <div class="small mb-1">Media de valoración: </div>
-                <div class="strong" [ngClass]="{'text-warning' : media >= 5 && media <= 8, 'text-danger' : media < 5, 'text-success': media >= 9}">{{media}}/10</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-@if(relatedShops.length > 0){
-
-    
     <section class="py-5 bg-light">
-        <div class="container px-4 px-lg-5 mt-5">
-            <h2 class="fw-bolder justify-content-center mb-4">Tiendas Relacionadas</h2>
-            
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                @for (tiendaRelacionada of relatedShops; track tienda.ID_Establecimiento) {
-                <div class="col mb-5">
-                    <div class="card h-100">
+        <div class="container px-4 px-lg-5 my-5">
+            <!-- Botón para regresar al catálogo -->
+            <button class="btn btn-outline-primary mb-4" [routerLink]="['/catalogo']">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+                </svg>  
+                Regresar al catálogo
+            </button>
     
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <!-- Imagen de la tienda -->
+                <div class="col-md-6">
+                    <img class="card-img-top mb-5 mb-md-0 rounded shadow-lg" src="{{tienda.foto}}" alt="Imagen Tienda" />
+                </div>
+                <div class="col-md-6">
+                    <div class="small mb-1 text-muted">{{tienda.Tipo}}</div>
 
-    
-                        <img class="card-img-top" src="{{tiendaRelacionada.foto}}" alt="foto Productos Relacionados" />
-    
-                        <div class="card-body p-4">
-                            <div class="text-center">
-    
-                                <h5 class="fw-bolder">{{tiendaRelacionada.Nombre}}</h5>
-        
-    
-                            </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <h1 class="display-5 fw-bolder mb-0">{{tienda.Nombre}}</h1>
+                        <!-- Botón de favoritos -->
+                        <div class="ms-3">
+                            <mat-icon class="favorite-icon" (click)="isFavorite ? deleteFavorite() : addFavorite()">
+                                {{ isFavorite ? 'favorite' : 'favorite_border' }}
+                            </mat-icon>
                         </div>
+                    </div>
 
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <button class="btn btn-outline-dark flex-shrink-0" type="button" [routerLink]="['/catalogo/' + tiendaRelacionada.ID_Establecimiento + '/' + 'productos']">Ver Productos</button>
-                            </div>
-                        </div>
-                        
-                  
 
+
+                    <!-- Horarios -->
+                    <p class="lead mb-4" [ngClass]="{ 'text-success': isOpen(), 'text-danger': !isOpen() }">
+                        {{tienda.Horario_Apertura}} - {{tienda.Horario_Cierre}}
+                    </p>
+    
+                    <!-- Botón para ver productos -->
+                    <div class="d-flex justify-content-start">
+                        <button class="btn btn-success" type="button" [routerLink]="['/catalogo/' + tienda.ID_Establecimiento + '/' + 'productos']">Ver Productos</button>
+                    </div>
+    
+                    <!-- Valoración de la tienda -->
+                    <div class="mt-4">
+                        <div class="small mb-1">Media de valoración:</div>
+                        <div class="strong" [ngClass]="{'text-warning' : media >= 5 && media <= 8, 'text-danger' : media < 5, 'text-success': media >= 9}">{{media}}/10</div>
                     </div>
                 </div>
-            }
             </div>
         </div>
-        
     </section>
     
-}
-
+    @if(relatedShops.length > 0) {
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2 class="fw-bolder text-center mb-4">Tiendas Relacionadas</h2>
+            <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                @for (tiendaRelacionada of relatedShops; track tienda.ID_Establecimiento) {
+                <div class="col mb-5">
+                    <div class="card h-100 shadow-lg border-light rounded">
+                        <!-- Imagen de tienda relacionada -->
+                        <img class="card-img-top" src="{{tiendaRelacionada.foto}}" alt="Foto Tienda Relacionada" />
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <h5 class="fw-bolder">{{tiendaRelacionada.Nombre}}</h5>
+                            </div>
+                        </div>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <button class="btn btn-outline-dark" type="button" [routerLink]="['/catalogo/' + tiendaRelacionada.ID_Establecimiento + '/' + 'productos']">Ver Productos</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+    }
 }

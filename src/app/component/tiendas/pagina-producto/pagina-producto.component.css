@@ -8,3 +8,156 @@
   .favorite-icon:hover {
     color: #d43f00; /* Color más intenso cuando el icono se pasa por encima */
   }
+
+ /* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+/* Sección de tienda */
+section.py-5 {
+    background-color: #f5f5f5;
+    padding: 80px 0;
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+}
+
+/* Imagen principal de la tienda */
+.card-img-top.mb-5 {
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-img-top.mb-5:hover {
+    transform: scale(1.1);
+}
+
+/* Imagen de tienda secundaria */
+.card-footer .card-img-top {
+    height: 200px;
+}
+
+/* Estilo para la imagen de la tienda en la sección principal */
+.col-md-6 img {
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el nombre de la tienda */
+h1.display-5.fw-bolder {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+/* Subtítulo de la tienda */
+.small.mb-1 {
+    font-size: 1rem;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+/* Estilo para los botones principales */
+.btn {
+    font-size: 1rem;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-outline-primary {
+    border: 2px solid #3498db;
+    color: #3498db;
+}
+
+.btn-outline-primary:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.btn-success {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #27ae60;
+}
+
+/* Estilo para el horario de apertura */
+.lead {
+    font-size: 1.125rem;
+    margin-top: 20px;
+    color: #16a085;
+}
+
+/* Tiendas relacionadas */
+section.py-5.bg-light {
+    background-color: #ecf0f1;
+    padding: 60px 0;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-footer {
+    padding: 0.75rem 1.5rem;
+}
+
+.card-footer .btn-outline-dark {
+    color: #2c3e50;
+    border-color: #95a5a6;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.card-footer .btn-outline-dark:hover {
+    background-color: #95a5a6;
+    color: #fff;
+}
+
+/* Contenedor de las tiendas relacionadas */
+.row-cols-2 .col-md-3 {
+    padding: 1rem;
+}
+
+/* Fondo claro para la sección de tiendas relacionadas */
+.card-footer {
+    background-color: #f4f4f4;
+}
+
+/* Media Queries para pequeños dispositivos */
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 250px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+    }
+
+    h1.display-5.fw-bolder {
+        font-size: 2rem;
+    }
+
+}
