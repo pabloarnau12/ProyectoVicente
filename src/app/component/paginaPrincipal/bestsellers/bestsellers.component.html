@@ -1,4 +1,4 @@
-@if (data) {
+<!-- @if (data) {
 
 <div class="container-fluid text-center pb-5 ">
   <div class="row m-5">
@@ -33,4 +33,36 @@
   </div>
 
 }
+ -->
 
+ <div class="popular-categories position-relative" [routerLink]="'/catalogo/'">
+  <h2>Categorías Populares</h2>
+  
+  <div class="category-grid">
+    <!-- Item 1 -->
+    <div class="category-item">
+      <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg" alt="Pizzas">
+      <h3>Pizzas</h3>
+    </div>
+    <!-- Item 2 -->
+    <div class="category-item">
+      <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_960_720.jpg" alt="Comida Rápida">
+      <h3>Comida Rápida</h3>
+    </div>
+    <!-- Item 3 -->
+    <div class="category-item">
+      <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=1080" alt="Postres">
+      <h3>Postres</h3>
+    </div>
+    <!-- Item 4 -->
+    <div class="category-item">
+      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1080" alt="Saludables">
+      <h3>Saludables</h3>
+    </div>
+  </div>
+
+  <!-- Superposición para el enlace general -->
+  <div class="overlay-link">
+    <span>Explora el Catálogo Completo</span>
+  </div>
+</div>

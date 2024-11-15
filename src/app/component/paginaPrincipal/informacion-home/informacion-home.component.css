@@ -1,0 +1,49 @@
+.food-delivery-info-section {
+    background-image: url("https://images.unsplash.com/photo-1551218808-94e220e084d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3&q=80&w=1600");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #E3F2E1;
+    padding: 80px 0;
+    color: #333;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    position: relative;
+  }
+  
+  .food-delivery-info-section .container {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+  }
+  
+  .food-delivery-info-section h1 {
+    color: #2A6E38;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .food-delivery-info-section p {
+    color: #4A4A4A;
+    font-size: 1.15rem;
+    margin-top: 20px;
+  }
+  
+  .food-delivery-info-section .btn-explore-menu {
+    background-color: #5DBB63;
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .food-delivery-info-section .btn-explore-menu:hover {
+    background-color: #489C4A;
+  }
+  
