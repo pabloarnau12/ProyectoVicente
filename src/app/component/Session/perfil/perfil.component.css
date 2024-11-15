@@ -1,0 +1,52 @@
+/* Contenedor del formulario */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Estilo del formulario */
+  .image-upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Estilos para el grupo de campos */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Etiquetas */
+  .form-label {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+  }
+  
+  /* Campos de entrada */
+  .form-control {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+  }
+  
+  /* Botón de envío */
+  .btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  

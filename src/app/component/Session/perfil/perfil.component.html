@@ -70,10 +70,30 @@
     <!-- Información Personal -->
     <div class="row m-5">
       <div class="col-md-3 text-center m-3">
-        @if(user.foto){
-          <img src="{{user.foto}}" class="m-3 img-thumbnail" alt="Foto de perfil">   
+        @if(user.profile_picture){
+          <img src="{{user.profile_picture}}" class="m-3 img-thumbnail" alt="Foto de perfil">   
+          
         }@else{
-          <mat-icon>add_a_photo</mat-icon>
+          <div class="form-container">
+            <form (submit)="onSubmit()" enctype="multipart/form-data" class="image-upload-form">
+              <div class="form-group">
+                <label for="file" class="form-label">Selecciona una imagen</label>
+                <input
+                  type="file"
+                  id="file"
+                  (change)="onFileChange($event)"
+                  accept="image/*"
+                  class="form-control"
+                />
+              </div>
+          
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Subir Imagen</button>
+              </div>
+            </form>
+          </div>
+          
+          
         }
    
           

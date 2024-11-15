@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { MatIcon } from '@angular/material/icon';
 import { ordersService } from '../../../service/orders.service';
 import { FavoriteShopService } from '../../../service/favorite-shop.service';
+import { ImageUploadService } from '../../../service/image-upload.service';
 
 @Component({
   selector: 'app-perfil',
@@ -20,8 +21,9 @@ export class PerfilComponent implements OnInit {
   ActiveOrders = signal<any[]>([]);
   FavoriteShops = signal<any[]>([]);
   tienda: any;  
+  selectedFile: File | null = null;
 
-  constructor(private authService: AuthService, private router: Router, private pedidosService: ordersService) { }
+  constructor(private authService: AuthService, private router: Router, private pedidosService: ordersService, private imageUploadService: ImageUploadService ) { }
   private readonly apiFavoriteShops : FavoriteShopService = inject(FavoriteShopService)
   ngOnInit(): void {
     this.loadProfile();
@@ -90,6 +92,7 @@ export class PerfilComponent implements OnInit {
           response => {
             console.log("Respuesta del servidor:", response);
             Swal.fire(response.message); // Mostrar mensaje de éxito
+            this.loadProfile();
           },
           error => {
             console.error("Error al actualizar la dirección:", error);
@@ -145,5 +148,24 @@ export class PerfilComponent implements OnInit {
     );
   }
   
+
+//  subida de imagen de perfil
+onFileChange(event: any) {
+  this.selectedFile = event.target.files[0];
+}
+onSubmit() {
+  if (this.selectedFile) {
+    this.imageUploadService.uploadImage(this.selectedFile).subscribe({
+      next: (response: any) => {
+        console.log('Imagen subida:', response.url);
+        alert('Imagen subida exitosamente: ' + response.url);
+        this.loadProfile();
+      },
+      error: (error) => {
+        console.error('Error al subir la imagen:', error);
+      },
+    });
+  }
+}
 
 }
