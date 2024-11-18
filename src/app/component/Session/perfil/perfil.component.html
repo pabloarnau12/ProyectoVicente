@@ -1,97 +1,51 @@
-<!-- <div class="container m-5">
-    <h2>Perfil de Usuario</h2>
 
-      <div class="form-group">
-        <label for="nombre">Nombre:</label>
-        <input
-          type="text"
-          id="nombre"
-          name="nombre"
-          [(ngModel)]="user.Nombre"
-          required
-          class="form-control"
-          readonly
-        />
-      </div>
-      <div class="form-group">
-        <label for="apellidos">Apellidos:</label>
-        <input
-          type="text"
-          id="apellidos"
-          name="apellidos"
-          [(ngModel)]="user.Apellidos"
-          required
-          class="form-control"
-          readonly
-        />
-      </div>
-      <div class="form-group">
-        <label for="telefono">Teléfono:</label>
-        <input
-          type="text"
-          id="telefono"
-          name="telefono"
-          [(ngModel)]="user.Telefono"
-          required
-          class="form-control"
-          readonly
-        />
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          [(ngModel)]="user.Email"
-          required
-          class="form-control"
-          readonly
-        />
-      </div>
-      <div class="form-group">
-        <label for="password">Contraseña:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          [(ngModel)]="user.Password"
-          required
-          class="form-control"
-        />
-      </div>
-      <form (ngSubmit)="onLogout()">
-        <button type="submit" class="btn  bg-danger-subtle text-danger mt-5 justify-content-center" >Cerrar sesion</button>
-      </form>
-
-  </div> -->
   
    <div class="container mt-5">
     <!-- Información Personal -->
     <div class="row m-5">
       <div class="col-md-3 text-center m-3">
         @if(user.profile_picture){
-          <img src="{{user.profile_picture}}" class="m-3 img-thumbnail" alt="Foto de perfil">   
-          
-        }@else{
-          <div class="form-container">
-            <form (submit)="onSubmit()" enctype="multipart/form-data" class="image-upload-form">
-              <div class="form-group">
-                <label for="file" class="form-label">Selecciona una imagen</label>
-                <input
-                  type="file"
-                  id="file"
-                  (change)="onFileChange($event)"
-                  accept="image/*"
-                  class="form-control"
-                />
-              </div>
-          
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary">Subir Imagen</button>
-              </div>
+          <img src="{{user.profile_picture}}" class="m-3 img-thumbnail" alt="Foto de perfil">
+          @if (!isloading) {
+            <form (submit)="onSubmit()">
+              <input type="file" id="file" (change)="onFileChange($event)" accept="image/*" class="photo-control"/>
+              <button type="submit" class="btn btn-primary photo-button">Subir Imagen</button>
             </form>
-          </div>
+          } @else {
+            <div class="container text-center mt-5 pb-5">
+              <h1 class="large">Cargando...</h1>
+              <div class="spinner-border text-succes " role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            </div>
+          }  
+
+        }@else{
+          @if(!isloading){
+            <div class="user-photo-container">
+              <form (submit)="onSubmit()" enctype="multipart/form-data" class="photo-upload-form">
+                <div class="photo-group">
+                  <label for="file" class="photo-label">Selecciona una imagen</label>
+                  <input type="file" id="file" (change)="onFileChange($event)" accept="image/*" class="photo-control"/>
+                </div>
+            
+                <div class="photo-group">
+                  <button type="submit" class="btn btn-primary photo-button">Subir Imagen</button>
+                </div>
+              </form>
+            </div>
+          }@else{
+            <div class="container text-center mt-5 pb-5">
+                <h1 class="large">Cargando...</h1>
+                <div class="spinner-border text-succes " role="status">
+                  <span class="visually-hidden">Loading...</span>
+                  <div class="container mt-5 mb-5">
+                    
+                  </div>
+              </div>
+            </div>
+          }
+
           
           
         }

@@ -12,16 +12,17 @@ import { ImageUploadService } from '../../../service/image-upload.service';
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   standalone: true,
-  imports: [FormsModule, MatIcon, RouterLink],
+  imports: [FormsModule, RouterLink],
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-  // Usamos un objeto para almacenar la información del usuario
-  user: any = {}; // Inicializa user como un objeto vacío
+
+  user: any = {};
   ActiveOrders = signal<any[]>([]);
   FavoriteShops = signal<any[]>([]);
   tienda: any;  
   selectedFile: File | null = null;
+  isloading: Boolean = false;
 
   constructor(private authService: AuthService, private router: Router, private pedidosService: ordersService, private imageUploadService: ImageUploadService ) { }
   private readonly apiFavoriteShops : FavoriteShopService = inject(FavoriteShopService)
@@ -41,6 +42,7 @@ export class PerfilComponent implements OnInit {
         },
         (error) => {
           console.error('Error al cargar el perfil', error);
+          this.onLogout()
         }
       );
     } else {
@@ -155,11 +157,12 @@ onFileChange(event: any) {
 }
 onSubmit() {
   if (this.selectedFile) {
+    this.isloading = true;
     this.imageUploadService.uploadImage(this.selectedFile).subscribe({
       next: (response: any) => {
         console.log('Imagen subida:', response.url);
-        alert('Imagen subida exitosamente: ' + response.url);
         this.loadProfile();
+        this.isloading = false;
       },
       error: (error) => {
         console.error('Error al subir la imagen:', error);
