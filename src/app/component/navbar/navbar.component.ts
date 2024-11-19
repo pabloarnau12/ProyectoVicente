@@ -23,6 +23,19 @@ export class NavbarComponent {
   
   checkLoginStatus(): void {
     const token = localStorage.getItem('token');
-    this.isLoggedIn = !!token; // Si hay un token, está logueado
+    if(token){
+      this.authService.getProfile(token).subscribe({
+        next:() =>{
+            this.isLoggedIn = true;
+            console.log("usuario sesionado");
+        },
+        error : () => {
+            this.isLoggedIn = false;
+            console.log("usuario no sesionado")
+        }
+      })
+    }
+    
+    // this.isLoggedIn = !!token;
   }
 }

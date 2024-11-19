@@ -1,63 +1,45 @@
-
-  
-   <div class="container mt-5">
-    <!-- Información Personal -->
-    <div class="row m-5">
-      <div class="col-md-3 text-center m-3">
-        @if(user.profile_picture){
-          <img src="{{user.profile_picture}}" class="m-3 img-thumbnail" alt="Foto de perfil">
-          @if (!isloading) {
+<div class="container mt-5">
+  <!-- Información Personal -->
+  <div class="card shadow mb-5">
+    <div class="row m-3 align-items-center">
+      <!-- Foto de perfil -->
+      <div class="col-md-3 text-center">
+        @if(user.profile_picture) {
+          <img src="{{user.profile_picture}}" class="rounded-circle img-thumbnail mb-3" alt="Foto de perfil">
+          @if(!isloading) {
             <form (submit)="onSubmit()">
-              <input type="file" id="file" (change)="onFileChange($event)" accept="image/*" class="photo-control"/>
-              <button type="submit" class="btn btn-primary photo-button">Subir Imagen</button>
+              <input type="file" id="file" (change)="onFileChange($event)" accept="image/*" class="form-control">
+              <button type="submit" class="btn btn-primary mt-2">Subir Imagen</button>
             </form>
           } @else {
-            <div class="container text-center mt-5 pb-5">
-              <h1 class="large">Cargando...</h1>
-              <div class="spinner-border text-succes " role="status">
+            <div class="text-center mt-3">
+              <h5>Cargando...</h5>
+              <div class="spinner-border text-success" role="status">
                 <span class="visually-hidden">Loading...</span>
-            </div>
-            </div>
-          }  
-
-        }@else{
-          @if(!isloading){
-            <div class="user-photo-container">
-              <form (submit)="onSubmit()" enctype="multipart/form-data" class="photo-upload-form">
-                <div class="photo-group">
-                  <label for="file" class="photo-label">Selecciona una imagen</label>
-                  <input type="file" id="file" (change)="onFileChange($event)" accept="image/*" class="photo-control"/>
-                </div>
-            
-                <div class="photo-group">
-                  <button type="submit" class="btn btn-primary photo-button">Subir Imagen</button>
-                </div>
-              </form>
-            </div>
-          }@else{
-            <div class="container text-center mt-5 pb-5">
-                <h1 class="large">Cargando...</h1>
-                <div class="spinner-border text-succes " role="status">
-                  <span class="visually-hidden">Loading...</span>
-                  <div class="container mt-5 mb-5">
-                    
-                  </div>
               </div>
             </div>
           }
-
-          
-          
+        } @else {
+          @if(!isloading) {
+            <form (submit)="onSubmit()">
+              <label for="file" class="form-label">Selecciona una imagen</label>
+              <input type="file" id="file" (change)="onFileChange($event)" accept="image/*" class="form-control">
+              <button type="submit" class="btn btn-primary mt-2">Subir Imagen</button>
+            </form>
+          } @else {
+            <div class="text-center mt-3">
+              <h5>Cargando...</h5>
+              <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          }
         }
-   
-          
       </div>
 
-        
-
-      
-      <div class="col-md-8 m-3">
-        <h2>Información Personal</h2>
+      <!-- Información Personal -->
+      <div class="col-md-8">
+        <h4>Información Personal</h4>
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre completo</label>
           <input type="text" class="form-control" id="nombre" value="{{user.Nombre}} {{user.Apellidos}}">
@@ -70,127 +52,122 @@
           <label for="telefono" class="form-label">Teléfono</label>
           <input type="tel" class="form-control" id="telefono" value="{{user.Telefono}}" readonly>
         </div>
-        <div class="row m-0">
-          <button class="btn btn-primary m-1 col-4 ">Editar información</button>
-          <button class="btn bg-danger-subtle text-danger m-1 col-4" type="submit" (click)="secondOportunityLogout()">Cerrar sesion</button>
+        <div class="d-flex">
+          <button class="btn btn-primary me-2">Editar Información</button>
+          <button class="btn btn-danger" (click)="secondOportunityLogout()">Cerrar Sesión</button>
         </div>
-
       </div>
     </div>
-  
-    <!-- Direcciones -->
-    <div class="row mb-5">
-      <div class="col-12">
-        <h2>Mi Dirección</h2>
-        <ul class="list-group">
-          <li id="pep"class="list-group-item d-flex justify-content-between align-items-center">
-            {{user.Direccion}}
-            <div>
-              <button class="btn btn-sm btn-outline-primary me-2" (click)="tryfuncion()">Editar</button>
-              <button class="btn btn-sm btn-outline-danger">Eliminar</button>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  
-    <div class="row mb-5">
-      <div class="col-12">
-        <h2>Pedidos Activos</h2>
-        <div class="card mb-3">
-          <div class="card-body">
-    @if(ActiveOrders().length == 0){
-        <p>No hay Pedidos Activos</p>
-    }@else{
+  </div>
 
-      @for(order of ActiveOrders(); track ActiveOrders){
-        <h5 class="card-title"></h5>
-        <p class="card-text">Estado: {{order.Estado_Pedido}}</p>
-        <p class="card-text">Total: {{order.Total}}</p>
-        <p class="card-text">Fecha y hora: {{order.Fecha_Hora_Pedido}}</p>
-        <button class="btn btn-info me-2">Ver detalles</button>
-        <button class="btn btn-warning">Cancelar pedido</button>
-        <hr>
-      }
-
-    }
+  <!-- Mi Dirección -->
+  <div class="card shadow mb-5">
+    <div class="card-body">
+      <h4>Mi Dirección</h4>
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{user.Direccion}}
+          <div>
+            <button class="btn btn-sm btn-outline-primary me-2" (click)="tryfuncion()">Editar</button>
+            <button class="btn btn-sm btn-outline-danger">Eliminar</button>
           </div>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
-  
-    <!-- Historial de Pedidos -->
-    <div class="row mb-5">
-      <div class="col-12">
-        <h2>Historial de Pedidos</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Restaurante</th>
-              <th>Total</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>2024-10-20</td>
-              <td>Burger King</td>
-              <td>15.99€</td>
-              <td><button class="btn btn-sm btn-outline-secondary">Repetir pedido</button></td>
-            </tr>
-            <tr>
-              <td>2024-10-18</td>
-              <td>Sushi Express</td>
-              <td>25.50€</td>
-              <td><button class="btn btn-sm btn-outline-secondary">Repetir pedido</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  </div>
+
+  <!-- Pedidos Activos -->
+  <div class="card shadow mb-5">
+    <div class="card-body">
+      <h4>Pedidos Activos</h4>
+      @if(ActiveOrders().length == 0) {
+        <p class="text-muted">No hay Pedidos Activos</p>
+      } @else {
+        @for(order of ActiveOrders(); track ActiveOrders) {
+          <div class="mb-3">
+            <h5>Pedido #{{order.ID_Pedido}}</h5>
+            <p>Estado: {{order.Estado_Pedido}}</p>
+            <p>Total: {{order.Total}}</p>
+            <p>Fecha y hora: {{order.Fecha_Hora_Pedido}}</p>
+            <button class="btn btn-info btn-sm me-2">Ver detalles</button>
+            <button class="btn btn-warning btn-sm">Cancelar pedido</button>
+          </div>
+          <hr>
+        }
+      }
     </div>
-  
-    <div class="row mb-5">
-      <div class="col-12">
-        <h2>Mis Restaurantes Favoritos</h2>
-    
-    @if(FavoriteShops().length == 0){
-      <p>No hay tiendas favoritas todavía</p>
-    }@else{
-      <div class="row row-cols-1 row-cols-md-3 g-4 ">
-      @for(favoriteShop of FavoriteShops(); track FavoriteShops){
-            <div class="col" style="cursor: pointer;" [routerLink]="'/catalogo/' + favoriteShop.ID_Establecimiento ">
+  </div>
+
+  <!-- Historial de Pedidos -->
+  <div class="card shadow mb-5">
+    <div class="card-body">
+      <h4>Historial de Pedidos</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Restaurante</th>
+            <th>Total</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2024-10-20</td>
+            <td>Burger King</td>
+            <td>15.99€</td>
+            <td><button class="btn btn-sm btn-outline-secondary">Repetir pedido</button></td>
+          </tr>
+          <tr>
+            <td>2024-10-18</td>
+            <td>Sushi Express</td>
+            <td>25.50€</td>
+            <td><button class="btn btn-sm btn-outline-secondary">Repetir pedido</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Restaurantes Favoritos -->
+  <div class="card shadow mb-5">
+    <div class="card-body">
+      <h4>Mis Restaurantes Favoritos</h4>
+      @if(FavoriteShops().length == 0) {
+        <p class="text-muted">No hay tiendas favoritas todavía</p>
+      } @else {
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          @for(favoriteShop of FavoriteShops(); track FavoriteShops) {
+            <div class="col" [routerLink]="'/catalogo/' + favoriteShop.ID_Establecimiento">
               <div class="card h-100">
-                <img src="{{favoriteShop.foto}}" class="card-img-top h-100" alt="{{favoriteShop.Nombre}}">
+                <img src="{{favoriteShop.foto}}" class="card-img-top" alt="{{favoriteShop.Nombre}}">
                 <div class="card-body">
                   <h5 class="card-title">{{favoriteShop.Nombre}}</h5>
-                  <h5 class="card-text">{{favoriteShop.Tipo}}</h5>
-                  <h5 class="card-text">{{favoriteShop.Direccion}}</h5>
+                  <p class="card-text">{{favoriteShop.Tipo}}</p>
+                  <p class="card-text">{{favoriteShop.Direccion}}</p>
                   <button class="btn btn-sm btn-outline-danger" (click)="deleteFavorite($event, favoriteShop.ID_Establecimiento)">Quitar de favoritos</button>
                 </div>
               </div>
             </div>
-        }
-      </div>
-    }
-
+          }
+        </div>
+      }
+    </div>
   </div>
-</div>
-    <!-- Restaurantes Favoritos -->
-    
-  
-    <!-- Preferencias -->
-    <div class="row mb-5">
-      <div class="col-12">
-        <h2>Mis Preferencias</h2>
+
+  <!-- Preferencias -->
+  <div class="card shadow mb-5">
+    <div class="card-body">
+      <h4>Mis Preferencias</h4>
+      <form>
         <div class="mb-3">
           <label class="form-label">Opciones de dieta</label>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="vegetariano">
+            <input class="form-check-input" type="checkbox" id="vegetariano">
             <label class="form-check-label" for="vegetariano">Vegetariano</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="sinGluten">
+            <input class="form-check-input" type="checkbox" id="sinGluten">
             <label class="form-check-label" for="sinGluten">Sin gluten</label>
           </div>
         </div>
@@ -202,15 +179,22 @@
             <option>Push</option>
           </select>
         </div>
-        <button class="btn btn-primary">Guardar preferencias</button>
+        <button class="btn btn-primary">Guardar Preferencias</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Programa de Fidelidad -->
+  <div class="card shadow mb-5">
+    <div class="card-body">
+      <h4>Programa de Fidelidad</h4>
+      <h5 class="card-title">Nivel Oro</h5>
+      <p>Puntos acumulados</p>
+      <div class="progress my-3">
+        <div class="progress-bar bg-success" role="progressbar" [style.width.%]="user.ID_Usuario" [attr.aria-valuenow]="user.ID_Usuario" aria-valuemin="0" aria-valuemax="100">
+          {{user.ID_Usuario}}%
+        </div>
       </div>
     </div>
-  
-    <!-- Programa de Fidelidad -->
-    <div class="row mb-5">
-      <div class="col-12">
-        <h2>Programa de Fidelidad</h2>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Nivel Oro</h5>
-            <p class="card-text">Puntos acumulados
+  </div>
+</div>
