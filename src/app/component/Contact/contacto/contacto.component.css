@@ -1,0 +1,47 @@
+/* Estilos generales para el contacto */
+.container {
+    max-width: 800px;
+  }
+  
+  /* Estilos para el formulario */
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .card-header {
+    background-color: #0056b3;
+    color: #fff;
+  }
+  
+  .card-body {
+    padding: 2rem;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+  }
+  
+  input[type="text"], input[type="email"], textarea {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  button[type="submit"] {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #00409a;
+  }
+  
+  ul.list-unstyled {
+    padding-left: 0;
+    font-size: 1.1rem;
+  }
+  

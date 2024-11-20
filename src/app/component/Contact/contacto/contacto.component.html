@@ -1,13 +1,45 @@
-<div class="row-11 ">
-
-    <div class="col-12 mt-5 mb-5">
-        <app-columnas-contacto></app-columnas-contacto>
-    </div>
-
-
-
-    <div class="col-12 mt-5 mb-5 ">
-        <app-formulario-contacto></app-formulario-contacto>
+<div class="container mt-5">
+    <!-- Encabezado de la página de contacto -->
+    <div class="contact-header text-center">
+      <h1>Contacto</h1>
+      <p>Estamos aquí para ayudarte. ¿Tienes alguna pregunta? ¡Contáctanos!</p>
     </div>
   
-</div>
+    <div class="row mb-5">
+      <!-- Formulario de contacto -->
+      <div class="col-md-8 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-center">Envíanos un mensaje</h5>
+            <form (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre completo</label>
+                <input type="text" id="nombre" class="form-control" [(ngModel)]="nombre" name="nombre" required>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" id="email" class="form-control" [(ngModel)]="email" name="email" required>
+              </div>
+              <div class="mb-3">
+                <label for="mensaje" class="form-label">Mensaje</label>
+                <textarea id="mensaje" class="form-control" [(ngModel)]="mensaje" name="mensaje" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Enviar mensaje</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Información de contacto -->
+    <div class="row mb-5">
+      <div class="col-md-6 mx-auto text-center">
+        <h5 class="contact-info">Información de contacto</h5>
+        <p><strong>Dirección:</strong> Calle de la Comida, 123, Ciudad, País</p>
+        <p><strong>Teléfono:</strong> +123 456 789</p>
+        <p><strong>Email:</strong> contacto&#64;glovopueblos.com</p>
+      </div>
+    </div>
+  
+  </div>
+  
