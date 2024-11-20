@@ -15,7 +15,7 @@ import { NotFoundComponent } from "../../not-found/not-found.component";
   @if(user.ID_ROL == 3){<app-perfil-client></app-perfil-client>}
   @if(user.ID_ROL != 3 && user.ID_ROL != 2 && user.ID_ROL != 1){ <app-not-found></app-not-found>}`,
   standalone: true,
-  imports: [FormsModule, RouterLink, PerfilRepartidorComponent, PerfilAdminComponent, PerfilClientComponent, NotFoundComponent],
+  imports: [FormsModule,PerfilRepartidorComponent, PerfilAdminComponent, PerfilClientComponent, NotFoundComponent],
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
