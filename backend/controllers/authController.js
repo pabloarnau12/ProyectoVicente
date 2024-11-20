@@ -45,8 +45,14 @@ exports.login = (req, res) => {
         message: 'Email o contraseña incorrectos', 
         errorcode: "INVALID_CREDENTIALS", });
 
-      const token = jwt.sign({ id: user.ID_Usuario, email: user.Email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // connection.query('SELECT ID_ROL FROM usuarios WHERE Email = ?', [email], (err, results) => {
+    //   if (err) return res.status(500).json({ message: 'Error al buscar el usuario' });
+
+    //   const ID_ROL = results[0];
+    // })
+      const token = jwt.sign({ id: user.ID_Usuario, email: user.Email, rol: user.ID_ROL }, process.env.JWT_SECRET, { expiresIn: '1h' });
       res.json({ token });
+      console.log(user.ID_Usuario, user.Email, user.ID_ROL);
     });
   });
 };
@@ -88,5 +94,40 @@ exports.updateAddress = (req, res) =>{
     }
 
     res.json({ message: 'Dirección actualizada correctamente' });
+  });
+}
+
+
+exports.updateStatus = (req, res) => {
+  const {id} = req.user
+  const {status} = req.body
+
+
+  if(!status){
+    return res.status(400).json({ message : 'Es necesario que introduzcas un estado'});
+  }
+
+
+  if (!['activo', 'ocupado', 'recogiendo pedido', 'en camino'].includes(status)) {
+    return res.status(400).json({ message: 'Estado no válido' });
+  }
+
+  const query =
+  `
+    UPDATE usuarios
+    SET estado = ?
+    WHERE ID_Usuario = ?
+  `;
+
+  
+  connection.query(query, [status, id], (err, results) => {
+    if(err){
+      return res.status(500).json({ message: 'Error al actualizar el estado' });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    res.json({ message: 'estado actualizado correctamente' });
   });
 }

@@ -36,5 +36,11 @@ export class AuthService {
   
     return this.http.patch<any>(`${this.apiUrl}/perfil/direccion`, { direccion }, { headers });
   }
+
+  updateStatus(status: string, token: string): Observable<any>{
+    const headers = { Authorization: `Bearer ${token}` };
+    // return this.http.patch('/perfil/status', { status }, { headers });
+    return this.http.patch<any>(`${this.apiUrl}/perfil/status`, { status }, { headers });
+  }
   
 }

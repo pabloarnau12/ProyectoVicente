@@ -1,0 +1,202 @@
+/* Estilos generales */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Información Personal */
+.img-thumbnail {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1a252f;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Pedidos Activos */
+.card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.card-title {
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-text {
+    margin: 5px 0;
+}
+
+/* Estado y menú */
+.mat-icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: #2c3e50;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mat-icon-button:hover {
+    background-color: #1a252f;
+}
+
+/* Spinner de carga */
+.spinner-border {
+    width: 2rem;
+    height: 2rem;
+    border-width: 0.25em;
+}
+
+.text-center h5 {
+    margin-top: 10px;
+}
+
+
+
+/* Estilo de la tarjeta de estado */
+.estado-card {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+/* Cabecera del estado */
+.estado-header {
+    margin-bottom: 15px;
+}
+
+.estado-header h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.estado-header span {
+    color: #27ae60;
+    font-weight: normal;
+}
+
+/* Estilo del botón de cambiar estado */
+.change-status-btn {
+    background-color: #27ae60;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.change-status-btn mat-icon {
+    margin-right: 8px;
+}
+
+/* Hover para el botón de cambiar estado */
+.change-status-btn:hover {
+    background-color: #2ecc71;
+}
+
+/* Estilos del menú desplegable */
+.mat-menu-item {
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+.mat-menu-item:hover {
+    background-color: #f5f5f5;
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 768px) {
+    .estado-card {
+        padding: 15px;
+    }
+
+    .change-status-btn {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .estado-header h2 {
+        font-size: 18px;
+    }
+}
