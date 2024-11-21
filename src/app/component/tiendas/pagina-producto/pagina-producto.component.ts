@@ -13,7 +13,7 @@ import { AuthService } from '../../../service/auth.service';
 @Component({
   selector: 'app-pagina-producto',
   standalone: true,
-  imports: [NavbarComponent, RouterLink, RouterLinkActive, NgClass, MatIcon],
+  imports: [RouterLink, NgClass, MatIcon],
   templateUrl: './pagina-producto.component.html',
   styleUrl: './pagina-producto.component.css'
 })

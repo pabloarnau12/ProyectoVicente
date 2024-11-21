@@ -2,16 +2,24 @@ import { Component, inject } from '@angular/core';
 import { CarritoService } from '../../service/carrito.service';
 import { CurrencyPipe } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
+import { PaymentsService } from '../../service/payments.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-carrito',
   standalone: true,
-  imports: [CurrencyPipe, MatIcon,],
+  imports: [MatIcon,],
   templateUrl: './carrito.component.html',
   styleUrl: './carrito.component.css'
 })
 export class CarritoComponent {
   private readonly CarritoService = inject(CarritoService);
+  private readonly paymentService = inject(PaymentsService);
+
+  constructor(private router : Router){
+
+  }
   cart: any[] = [];
 
   ngOnInit(): void {
@@ -63,4 +71,19 @@ export class CarritoComponent {
     console.log(this.cart);
 
   }
+
+  onCheckout() {
+
+    const token = localStorage.getItem('token');
+    if(token){
+      this.paymentService.processPayment(this.cart).subscribe((response: any) => {
+        window.location.href = response.approvalUrl; // Redirige a PayPal
+      });
+    }else{
+      this.router.navigate(['/iniciarsesion']);
+    }
+
+
+  }
+
 }

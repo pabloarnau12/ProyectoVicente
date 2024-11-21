@@ -15,7 +15,7 @@ const calificacionesRoutes = require('./routes/calificacionesRoutes');
 const pedidosRoutes = require('./routes/pedidosRoutes');
 const favoriteShopsRoutes = require('./routes/favoriteshopsRoutes');
 const cloudinaryRoutes = require('./routes/cloudinaryRoutes');
-
+const paymentsRoutes = require('./routes/paymentsRoutes');
 
 // Usar rutas
 app.use('/api/auth', authRoutes);
@@ -25,6 +25,10 @@ app.use('/api/calificaciones', calificacionesRoutes);
 app.use('/api/pedidos', pedidosRoutes);
 app.use('/api/favorite_shops', favoriteShopsRoutes);
 app.use('/api/upload', cloudinaryRoutes);
+app.use('/api/payments', paymentsRoutes);
+
+
+
 
 // Servidor
 const port = process.env.PORT || 3300;
