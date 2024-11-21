@@ -12,6 +12,7 @@ import { RegisterComponent } from './component/Session/register/register.compone
 import { PerfilComponent } from './component/Session/perfil/perfil.component';
 import { authGuard } from './auth/auth.guard'; // Asegúrate de que el guard está configurado
 import { ProductDetailComponent } from './component/tiendas/product-detail/product-detail.component';
+import { TramitarPagosComponent } from './component/tramitar-pagos/tramitar-pagos.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home',  pathMatch: 'full'},
@@ -24,7 +25,8 @@ export const routes: Routes = [
     { path: 'perfil', component: PerfilComponent, canActivate: [authGuard] },
     { path: 'catalogo/:id', title: 'Pagina Tienda', component: PaginaProductoComponent},
     { path: 'catalogo/:id/productos', title: 'Productos de la tienda', component: ProductostiendaComponent},
-    { path: 'catalogo/:id/productos/:idProducto', title: 'hola', component: ProductDetailComponent},
+    { path: 'catalogo/:id/productos/:idProducto', title: 'Detalle del producto', component: ProductDetailComponent},
+    { path: 'payment', title: 'Pagina de Pago', component: TramitarPagosComponent},
     { path: '**', component: NotFoundComponent },
     
 ];

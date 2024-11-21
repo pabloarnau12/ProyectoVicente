@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  imports: [NavbarComponent, RouterLink, RouterLinkActive, ShopComponent, FormsModule, MatIconModule],
+  imports: [RouterLink, ShopComponent, FormsModule, MatIconModule],
   templateUrl: './catalogo.component.html',
   styleUrl: './catalogo.component.css'
 })

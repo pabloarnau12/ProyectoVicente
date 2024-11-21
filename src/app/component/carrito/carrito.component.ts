@@ -3,13 +3,13 @@ import { CarritoService } from '../../service/carrito.service';
 import { CurrencyPipe } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { PaymentsService } from '../../service/payments.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-carrito',
   standalone: true,
-  imports: [MatIcon,],
+  imports: [MatIcon, RouterLink],
   templateUrl: './carrito.component.html',
   styleUrl: './carrito.component.css'
 })
@@ -72,18 +72,9 @@ export class CarritoComponent {
 
   }
 
-  onCheckout() {
-
-    const token = localStorage.getItem('token');
-    if(token){
-      this.paymentService.processPayment(this.cart).subscribe((response: any) => {
-        window.location.href = response.approvalUrl; // Redirige a PayPal
-      });
-    }else{
-      this.router.navigate(['/iniciarsesion']);
-    }
-
-
+  getTotal(): string {
+    return this.cart
+      .reduce((total, item) => total + item.Precio * item.quantity, 0).toFixed(2);
   }
 
 }

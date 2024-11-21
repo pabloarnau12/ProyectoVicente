@@ -56,9 +56,9 @@
           Total aproximado
         </div>
         <div class="total">
-          13,50 €
+          {{getTotal()}}
         </div>
-        <button class="checkout-btn" (click)="onCheckout()">
+        <button class="checkout-btn" [routerLink] = "'/payment'">
           Tramitar pedido
         </button>
       </div>
