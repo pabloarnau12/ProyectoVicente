@@ -6,7 +6,7 @@ import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-shop',
   standalone: true,
-  imports: [NgStyle, MatIcon],
+  imports: [],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css'
 })
