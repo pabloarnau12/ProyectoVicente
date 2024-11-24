@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2024 a las 14:50:47
+-- Tiempo de generación: 24-11-2024 a las 23:56:56
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -73,39 +73,39 @@ INSERT INTO `establecimientos` (`ID_Establecimiento`, `Nombre`, `Tipo`, `Direcci
 (3, 'Supermercado El Ahorro', 'Supermercado', 'Plaza Mayor 2, Pueblo C', '789654123', '11:00:00', '21:00:00', 0.00, '\\assets\\images\\banner1.png'),
 (4, 'Abordo Maria', 'Supermercado', 'Avenida Castilla, 7 puerta 3', '654987321', '08:00:00', '22:00:00', 0.00, '\\assets\\images\\banner1.png'),
 (5, 'Joso bujarra', 'Supermercado', 'Calle mis huevikos, 19 gol', '647539322', '08:00:00', '22:00:00', 0.00, '\\assets\\images\\banner1.png'),
-(6, 'Cafetería El Descanso', 'Cafetería', 'Calle Olmo 14, Pueblo D', '659871234', '08:00:00', '23:00:00', 0.00, '\\assets\\images\\cafeteria1.png'),
-(7, 'Panadería La Espiga', 'Panadería', 'Calle Mayor 10, Pueblo E', '658741236', '06:00:00', '14:00:00', 0.00, '\\assets\\images\\panaderia.png'),
-(8, 'Restaurante La Brasa', 'Restaurante', 'Calle Real 7, Pueblo F', '657843921', '12:00:00', '23:00:00', 0.00, '\\assets\\images\\restaurante1.png'),
-(9, 'Librería Central', 'Librería', 'Calle de los libros 25, Pueblo G', '652987412', '09:00:00', '19:00:00', 0.00, '\\assets\\images\\libreria.png'),
-(10, 'Gimnasio Fitness Plus', 'Gimnasio', 'Avenida Deportes 3, Pueblo H', '632987451', '06:00:00', '22:00:00', 0.00, '\\assets\\images\\gimnasio1.png'),
-(11, 'Centro Médico Salus', 'Centro Médico', 'Calle Salud 11, Pueblo I', '642157894', '08:00:00', '18:00:00', 0.00, '\\assets\\images\\medico1.png'),
-(12, 'Clínica Dental Sorriso', 'Clínica Dental', 'Plaza Sonrisa 5, Pueblo J', '651237894', '09:00:00', '19:00:00', 0.00, '\\assets\\images\\clinica_dental.png'),
-(13, 'Taller Mecánico Turbo', 'Taller Mecánico', 'Calle Motor 12, Pueblo K', '652987412', '08:00:00', '18:00:00', 0.00, '\\assets\\images\\taller1.png'),
-(14, 'Bar Los Amigos', 'Bar', 'Calle Amistad 8, Pueblo L', '653214785', '12:00:00', '00:00:00', 0.00, '\\assets\\images\\bar1.png'),
-(15, 'Floristería Las Rosas', 'Floristería', 'Calle Jardín 2, Pueblo M', '621478965', '09:00:00', '19:00:00', 0.00, '\\assets\\images\\floristeria.png'),
-(16, 'Pizzería Bella Napoli', 'Restaurante', 'Calle Italia 3, Pueblo N', '654123789', '13:00:00', '23:00:00', 0.00, '\\assets\\images\\pizzeria1.png'),
-(17, 'Supermercado Central', 'Supermercado', 'Calle Comercio 9, Pueblo O', '678953214', '08:00:00', '22:00:00', 0.00, '\\assets\\images\\supermercado.png'),
-(18, 'Heladería La Crema', 'Heladería', 'Plaza Fría 4, Pueblo P', '657483219', '11:00:00', '23:00:00', 0.00, '\\assets\\images\\heladeria.png'),
-(19, 'Papelería El Escriba', 'Papelería', 'Calle Tinta 7, Pueblo Q', '629783412', '09:00:00', '18:00:00', 0.00, '\\assets\\images\\papeleria.png'),
-(20, 'Zapatería Paso Firme', 'Zapatería', 'Calle Calzado 16, Pueblo R', '651298734', '10:00:00', '20:00:00', 0.00, '\\assets\\images\\zapateria.png'),
-(21, 'Boutique Chic', 'Ropa', 'Avenida Moda 10, Pueblo S', '653147892', '10:00:00', '20:00:00', 0.00, '\\assets\\images\\boutique.png'),
-(22, 'Frutería El Huerto', 'Frutería', 'Calle Fruta 14, Pueblo T', '654871235', '07:00:00', '14:00:00', 0.00, '\\assets\\images\\fruteria.png'),
-(23, 'Restaurante El Sabor', 'Restaurante', 'Calle Sabor 21, Pueblo U', '657894213', '13:00:00', '23:00:00', 0.00, '\\assets\\images\\restaurante2.png'),
-(24, 'Librería Letras', 'Librería', 'Avenida Palabras 13, Pueblo V', '621478965', '10:00:00', '18:00:00', 0.00, '\\assets\\images\\libreria2.png'),
-(25, 'Barbería El Corte', 'Barbería', 'Calle Afeitado 6, Pueblo W', '629783412', '09:00:00', '20:00:00', 0.00, '\\assets\\images\\barberia.png'),
-(26, 'Carnicería El Bistec', 'Carnicería', 'Calle Carne 3, Pueblo X', '623478951', '09:00:00', '14:00:00', 0.00, '\\assets\\images\\carniceria.png'),
-(27, 'Tienda de Electrónica TecnoPlus', 'Electrónica', 'Avenida Tecnología 18, Pueblo Y', '634789125', '10:00:00', '21:00:00', 0.00, '\\assets\\images\\electronica.png'),
-(28, 'Lavandería Rápido Limpio', 'Lavandería', 'Calle Lavado 12, Pueblo Z', '647298531', '07:00:00', '21:00:00', 0.00, '\\assets\\images\\lavanderia.png'),
-(29, 'Cafetería La Taza', 'Cafetería', 'Plaza Central 9, Pueblo A1', '612478952', '08:00:00', '23:00:00', 0.00, '\\assets\\images\\cafeteria2.png'),
-(30, 'Farmacia Salud Viva', 'Farmacia', 'Avenida Medicina 2, Pueblo B1', '623147895', '08:00:00', '20:00:00', 0.00, '\\assets\\images\\farmacia.png'),
-(31, 'Ferretería La Llave', 'Ferretería', 'Calle Herramientas 17, Pueblo C1', '631478962', '09:00:00', '19:00:00', 0.00, '\\assets\\images\\ferreteria.png'),
-(32, 'Peluquería Estilo', 'Peluquería', 'Calle Corte 11, Pueblo D1', '653789124', '09:00:00', '20:00:00', 0.00, '\\assets\\images\\peluqueria.png'),
-(33, 'Centro Estético Belleza Total', 'Centro Estético', 'Avenida Belleza 8, Pueblo E1', '624789513', '10:00:00', '21:00:00', 0.00, '\\assets\\images\\estetica.png'),
-(34, 'Auto Lavado Express', 'Lavado de Coches', 'Calle Vehículo 15, Pueblo F1', '621478596', '08:00:00', '20:00:00', 0.00, '\\assets\\images\\autolavado.png'),
-(35, 'Mercado Local', 'Mercado', 'Calle Comercio 20, Pueblo G1', '623478596', '07:00:00', '15:00:00', 0.00, '\\assets\\images\\mercado.png'),
-(36, 'Tienda de Mascotas Peludos', 'Mascotas', 'Calle Animal 22, Pueblo H1', '622478596', '10:00:00', '19:00:00', 0.00, '\\assets\\images\\mascotas.png'),
-(37, 'Joyería Brillo', 'Joyería', 'Calle Oro 8, Pueblo I1', '634789521', '10:00:00', '20:00:00', 0.00, '\\assets\\images\\joyeria.png'),
-(38, 'Óptica Visión Clara', 'Óptica', 'Avenida Ojos 4, Pueblo J1', '612478596', '09:00:00', '18:00:00', 0.00, '\\assets\\images\\optica.png');
+(6, 'Cafetería El Descanso', 'Cafetería', 'Calle Olmo 14, Pueblo D', '659871234', '08:00:00', '23:00:00', 0.00, ''),
+(7, 'Panadería La Espiga', 'Panadería', 'Calle Mayor 10, Pueblo E', '658741236', '06:00:00', '14:00:00', 0.00, ''),
+(8, 'Restaurante La Brasa', 'Restaurante', 'Calle Real 7, Pueblo F', '657843921', '12:00:00', '23:00:00', 0.00, ''),
+(9, 'Librería Central', 'Librería', 'Calle de los libros 25, Pueblo G', '652987412', '09:00:00', '19:00:00', 0.00, ''),
+(10, 'Gimnasio Fitness Plus', 'Gimnasio', 'Avenida Deportes 3, Pueblo H', '632987451', '06:00:00', '22:00:00', 0.00, ''),
+(11, 'Centro Médico Salus', 'Centro Médico', 'Calle Salud 11, Pueblo I', '642157894', '08:00:00', '18:00:00', 0.00, ''),
+(12, 'Clínica Dental Sorriso', 'Clínica Dental', 'Plaza Sonrisa 5, Pueblo J', '651237894', '09:00:00', '19:00:00', 0.00, ''),
+(13, 'Taller Mecánico Turbo', 'Taller Mecánico', 'Calle Motor 12, Pueblo K', '652987412', '08:00:00', '18:00:00', 0.00, ''),
+(14, 'Bar Los Amigos', 'Bar', 'Calle Amistad 8, Pueblo L', '653214785', '12:00:00', '00:00:00', 0.00, ''),
+(15, 'Floristería Las Rosas', 'Floristería', 'Calle Jardín 2, Pueblo M', '621478965', '09:00:00', '19:00:00', 0.00, ''),
+(16, 'Pizzería Bella Napoli', 'Restaurante', 'Calle Italia 3, Pueblo N', '654123789', '13:00:00', '23:00:00', 0.00, ''),
+(17, 'Supermercado Central', 'Supermercado', 'Calle Comercio 9, Pueblo O', '678953214', '08:00:00', '22:00:00', 0.00, ''),
+(18, 'Heladería La Crema', 'Heladería', 'Plaza Fría 4, Pueblo P', '657483219', '11:00:00', '23:00:00', 0.00, ''),
+(19, 'Papelería El Escriba', 'Papelería', 'Calle Tinta 7, Pueblo Q', '629783412', '09:00:00', '18:00:00', 0.00, ''),
+(20, 'Zapatería Paso Firme', 'Zapatería', 'Calle Calzado 16, Pueblo R', '651298734', '10:00:00', '20:00:00', 0.00, ''),
+(21, 'Boutique Chic', 'Ropa', 'Avenida Moda 10, Pueblo S', '653147892', '10:00:00', '20:00:00', 0.00, ''),
+(22, 'Frutería El Huerto', 'Frutería', 'Calle Fruta 14, Pueblo T', '654871235', '07:00:00', '14:00:00', 0.00, ''),
+(23, 'Restaurante El Sabor', 'Restaurante', 'Calle Sabor 21, Pueblo U', '657894213', '13:00:00', '23:00:00', 0.00, ''),
+(24, 'Librería Letras', 'Librería', 'Avenida Palabras 13, Pueblo V', '621478965', '10:00:00', '18:00:00', 0.00, ''),
+(25, 'Barbería El Corte', 'Barbería', 'Calle Afeitado 6, Pueblo W', '629783412', '09:00:00', '20:00:00', 0.00, ''),
+(26, 'Carnicería El Bistec', 'Carnicería', 'Calle Carne 3, Pueblo X', '623478951', '09:00:00', '14:00:00', 0.00, ''),
+(27, 'Tienda de Electrónica TecnoPlus', 'Electrónica', 'Avenida Tecnología 18, Pueblo Y', '634789125', '10:00:00', '21:00:00', 0.00, ''),
+(28, 'Lavandería Rápido Limpio', 'Lavandería', 'Calle Lavado 12, Pueblo Z', '647298531', '07:00:00', '21:00:00', 0.00, ''),
+(29, 'Cafetería La Taza', 'Cafetería', 'Plaza Central 9, Pueblo A1', '612478952', '08:00:00', '23:00:00', 0.00, ''),
+(30, 'Farmacia Salud Viva', 'Farmacia', 'Avenida Medicina 2, Pueblo B1', '623147895', '08:00:00', '20:00:00', 0.00, ''),
+(31, 'Ferretería La Llave', 'Ferretería', 'Calle Herramientas 17, Pueblo C1', '631478962', '09:00:00', '19:00:00', 0.00, ''),
+(32, 'Peluquería Estilo', 'Peluquería', 'Calle Corte 11, Pueblo D1', '653789124', '09:00:00', '20:00:00', 0.00, ''),
+(33, 'Centro Estético Belleza Total', 'Centro Estético', 'Avenida Belleza 8, Pueblo E1', '624789513', '10:00:00', '21:00:00', 0.00, ''),
+(34, 'Auto Lavado Express', 'Lavado de Coches', 'Calle Vehículo 15, Pueblo F1', '621478596', '08:00:00', '20:00:00', 0.00, ''),
+(35, 'Mercado Local', 'Mercado', 'Calle Comercio 20, Pueblo G1', '623478596', '07:00:00', '15:00:00', 0.00, ''),
+(36, 'Tienda de Mascotas Peludos', 'Mascotas', 'Calle Animal 22, Pueblo H1', '622478596', '10:00:00', '19:00:00', 0.00, ''),
+(37, 'Joyería Brillo', 'Joyería', 'Calle Oro 8, Pueblo I1', '634789521', '10:00:00', '20:00:00', 0.00, ''),
+(38, 'Óptica Visión Clara', 'Óptica', 'Avenida Ojos 4, Pueblo J1', '612478596', '09:00:00', '18:00:00', 0.00, '');
 
 -- --------------------------------------------------------
 
@@ -125,11 +125,13 @@ CREATE TABLE `favoritas_tiendas` (
 --
 
 INSERT INTO `favoritas_tiendas` (`ID_FavoritasTiendas`, `ID_Usuario`, `ID_Establecimiento`, `fecha_agregado`) VALUES
-(19, 6, 34, '2024-10-29 14:01:10'),
-(20, 6, 1, '2024-10-29 14:01:32'),
-(23, 11, 1, '2024-10-29 14:15:56'),
-(24, 11, 2, '2024-10-29 14:15:58'),
-(25, 11, 4, '2024-10-29 14:16:00');
+(72, 11, 10, '2024-11-15 18:07:13'),
+(73, 11, 4, '2024-11-15 18:07:15'),
+(79, 6, 4, '2024-11-19 23:51:09'),
+(80, 6, 5, '2024-11-20 00:13:38'),
+(81, 6, 2, '2024-11-20 00:26:28'),
+(82, 18, 9, '2024-11-20 17:22:35'),
+(84, 18, 1, '2024-11-21 12:30:44');
 
 -- --------------------------------------------------------
 
@@ -143,17 +145,18 @@ CREATE TABLE `pedidos` (
   `ID_Establecimiento` int(11) NOT NULL,
   `Fecha_Hora_Pedido` timestamp NOT NULL DEFAULT current_timestamp(),
   `Estado_Pedido` enum('Pendiente','En proceso','En camino','Entregado','Cancelado') DEFAULT 'Pendiente',
-  `Total` decimal(10,2) NOT NULL
+  `Total` decimal(10,2) NOT NULL,
+  `productos` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`productos`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `pedidos`
 --
 
-INSERT INTO `pedidos` (`ID_Pedido`, `ID_Usuario`, `ID_Establecimiento`, `Fecha_Hora_Pedido`, `Estado_Pedido`, `Total`) VALUES
-(1, 6, 4, '2024-10-03 09:21:03', 'En proceso', 24.49),
-(2, 2, 16, '2024-10-03 09:21:03', 'Entregado', 3.99),
-(3, 6, 3, '2024-10-03 09:21:03', 'Pendiente', 35.75);
+INSERT INTO `pedidos` (`ID_Pedido`, `ID_Usuario`, `ID_Establecimiento`, `Fecha_Hora_Pedido`, `Estado_Pedido`, `Total`, `productos`) VALUES
+(1, 6, 4, '2024-10-03 09:21:03', 'En proceso', 24.49, ''),
+(2, 2, 16, '2024-10-03 09:21:03', 'Entregado', 3.99, ''),
+(3, 6, 3, '2024-10-03 09:21:03', 'Pendiente', 35.75, '');
 
 -- --------------------------------------------------------
 
@@ -277,7 +280,7 @@ CREATE TABLE `usuarios` (
   `Direccion` varchar(255) NOT NULL,
   `Contraseña` varchar(255) NOT NULL,
   `Fecha_Registro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `foto` varchar(255) NOT NULL,
+  `profile_picture` varchar(255) NOT NULL,
   `vehiculo` varchar(255) DEFAULT NULL,
   `estado` enum('activo','ocupado','recogiendo pedido','en camino') DEFAULT NULL,
   `calificacion_promedio` tinyint(4) DEFAULT NULL,
@@ -288,13 +291,20 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`ID_Usuario`, `Nombre`, `Apellidos`, `Email`, `Telefono`, `Direccion`, `Contraseña`, `Fecha_Registro`, `foto`, `vehiculo`, `estado`, `calificacion_promedio`, `ID_ROL`) VALUES
-(1, 'María', 'González', 'maria@email.com', '123456789', 'Calle Mayor 1, Pueblo A', 'contraseña_hash_1', '2024-10-03 09:20:06', '0', NULL, NULL, NULL, NULL),
-(2, 'Juan', 'Martínez', 'juan@email.com', '987654321', 'Plaza Central 5, Pueblo B', 'contraseña_hash_2', '2024-10-03 09:20:06', '0', NULL, NULL, NULL, NULL),
+INSERT INTO `usuarios` (`ID_Usuario`, `Nombre`, `Apellidos`, `Email`, `Telefono`, `Direccion`, `Contraseña`, `Fecha_Registro`, `profile_picture`, `vehiculo`, `estado`, `calificacion_promedio`, `ID_ROL`) VALUES
+(1, 'María', 'González', 'maria@email.com', '123456789', 'Calle Mayor 1, Pueblo A', 'contraseña_hash_1', '2024-10-03 09:20:06', '', 'bicicleta', 'activo', NULL, 1),
+(2, 'Juan', 'Martínez', 'juan@email.com', '987654321', 'Plaza Central 5, Pueblo B', 'contraseña_hash_2', '2024-10-03 09:20:06', '', 'moto', 'ocupado', NULL, 1),
 (3, 'Ana', 'López', 'ana@email.com', '456789123', 'Avenida Principal 10, Pueblo C', '$2b$10$SPfCyfzTAbgl7ux./DaaXuhSS3gSmi3io1flMmv3SZBlxZ9tFktQe', '2024-10-03 09:20:06', '0', NULL, NULL, NULL, NULL),
 (5, 'Julen', 'alonso', '654', 'julenmj@gmail.c', '', '$2b$10$bWBnvotI5DHtieCfzQiEGui0/Kxp7h4pclhc69E1uwRchR31AQ9aK', '2024-10-08 11:27:09', '', NULL, NULL, NULL, NULL),
-(6, 'admin', 'admin', 'admin@gmail.com', '83838', 'calle matias perra', '$2b$10$I5zJS09SxgY.l/AaHRyMdO2z6XjD9T8//an8RHz5uwFTZqeIWYuf.', '2024-10-08 11:40:57', '', NULL, NULL, NULL, NULL),
-(11, 'Pablo', 'Arnau Lopez', 'pabloarlo00@gmail.com', '646836481', 'C/ Enrique Tierno Galvan Cheste', '$2b$10$xIeHT0pe.nHnKl6.0lm6UuempoL4PXThrob6o7tywpHa3CNg5Yp6q', '2024-10-29 13:15:13', '', NULL, NULL, NULL, NULL);
+(6, 'admin', 'admin', 'admin@gmail.com', '83838', 'casa', '$2b$10$I5zJS09SxgY.l/AaHRyMdO2z6XjD9T8//an8RHz5uwFTZqeIWYuf.', '2024-10-08 11:40:57', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1732115190/profile_pictures/user_6.jpg', NULL, NULL, NULL, 3),
+(11, 'Pablo', 'Arnau Lopez', 'pabloarlo00@gmail.com', '646836481', 'asdf', '$2b$10$xIeHT0pe.nHnKl6.0lm6UuempoL4PXThrob6o7tywpHa3CNg5Yp6q', '2024-10-29 13:15:13', '', NULL, NULL, NULL, NULL),
+(12, 'prueba', 'foto perfil', 'pruebafoto@gmail.com', '6468348', '', '$2b$10$uotjzUkWWuR4qSiF8d5qOuB.Amlzub9rgVh5onP2ASll5RA1XqPhe', '2024-11-15 16:59:51', '', NULL, NULL, NULL, NULL),
+(13, 'joso', 'loepz', 'joso@gmail.com', '645', '', '$2b$10$hoinzwVtn2mL90WpAgSpxuK./Dco5EjXPM3R82eJqri.sA/G3UVZq', '2024-11-15 18:31:46', '', NULL, NULL, NULL, NULL),
+(14, 'pablo', 'garcia', 'pablo{{ 2*2 }}@gmail.com', '83838', '', '$2b$10$N/cOgO5BnBdBSlDVaLE.GOBMgnzLqKKv4SPUT3Q6dufZv.1hXQljO', '2024-11-16 12:59:50', '', NULL, NULL, NULL, NULL),
+(15, '{{2*2 }}', '{{ 2 * 2 }}', '{{ 2*2 }}@gmail.com', '{{2 * 2}', 'asdfasdf', '$2b$10$VE3mjVixqe.dIOp1vwkXPuUhaL2UtI5.DqJkvR63nJdwSK7hNBvNC', '2024-11-16 13:02:53', '', NULL, NULL, NULL, NULL),
+(16, 'pruebaloading', 'pruebaloading', 'loading@gmail.com', '1272', '', '$2b$10$xDojRbsjYIrdmcqpb9SfpOri1QQkVb6HSosId0d/Nnn9mEaH9iSYi', '2024-11-16 13:15:46', '', NULL, NULL, NULL, NULL),
+(17, 'pruieba2', 'prueba2', 'prueba2@gmail.com', '1231', '', '$2b$10$806Gf5O.CbMVggDY567EGenGV7rucYMGXyz/VSx0gVPvA199THzUW', '2024-11-16 13:18:04', '', NULL, NULL, NULL, NULL),
+(18, 'repartidor', 'repartidor', 'repartidor@gmail.com', '6', 'ocupado', '$2b$10$RTbZ2o0b0pdulftrYuUJEu5U25nZN4ra.8RZM/ZcHKDjbx4kUnNJq', '2024-11-20 14:45:24', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1732115433/profile_pictures/user_18.jpg', 'moto', 'recogiendo pedido', NULL, 1);
 
 --
 -- Índices para tablas volcadas
@@ -378,7 +388,7 @@ ALTER TABLE `establecimientos`
 -- AUTO_INCREMENT de la tabla `favoritas_tiendas`
 --
 ALTER TABLE `favoritas_tiendas`
-  MODIFY `ID_FavoritasTiendas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID_FavoritasTiendas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
@@ -408,7 +418,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restricciones para tablas volcadas
