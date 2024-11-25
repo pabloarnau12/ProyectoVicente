@@ -21,8 +21,8 @@
         <form class="d-flex me-3" role="search">
           
           <div *ngIf="isLoggedIn;">
-
-            <a class="btn btn-outline-light border-0 " aria-current="page" routerLink="/perfil" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Perfil</a>
+            <!-- <a class="btn btn-outline-light border-0 " aria-current="page" routerLink="/perfil" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">Perfil</a> -->
+            <mat-icon aria-current="page" routerLink="/perfil" routerLinkActive="active " [routerLinkActiveOptions]="{exact: true}">account_circle</mat-icon>
           </div>
           <div *ngIf="!isLoggedIn;">
               

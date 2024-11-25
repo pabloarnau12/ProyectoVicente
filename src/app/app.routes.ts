@@ -15,7 +15,7 @@ import { ProductDetailComponent } from './component/tiendas/product-detail/produ
 import { TramitarPagosComponent } from './component/tramitar-pagos/tramitar-pagos.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/home',  pathMatch: 'full'},
+    
     { path: 'home', title: 'home',  component: HomeComponent },
     { path: 'catalogo', title: 'catalogo',  component: CatalogoComponent },
     { path: 'contacto', title: 'contacto',  component: ContactoComponent },
@@ -27,6 +27,7 @@ export const routes: Routes = [
     { path: 'catalogo/:id/productos', title: 'Productos de la tienda', component: ProductostiendaComponent},
     { path: 'catalogo/:id/productos/:idProducto', title: 'Detalle del producto', component: ProductDetailComponent},
     { path: 'payment', title: 'Pagina de Pago', component: TramitarPagosComponent},
+    { path: '', redirectTo: '/home',  pathMatch: 'full'},
     { path: '**', component: NotFoundComponent },
     
 ];
