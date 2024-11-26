@@ -8,6 +8,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { ordersService } from '../../../../service/orders.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-perfil-repartidor',
@@ -26,12 +28,15 @@ export class PerfilRepartidorComponent implements OnInit {
   user: any = {};
   selectedFile: File | null = null;
   isloading: Boolean = false;
+  pedidos: any[] = []
+
 
   ngOnInit(): void {
     this.loadProfile();
+
   }
 
-constructor(private authService: AuthService, private router: Router, private imageUploadService: ImageUploadService ){
+constructor(private authService: AuthService, private router: Router, private imageUploadService: ImageUploadService , private pedidosService: ordersService ){
   
 }
 
@@ -42,6 +47,7 @@ constructor(private authService: AuthService, private router: Router, private im
         (profile) => {
           this.user = profile;
           console.log('Perfil cargado:', this.user); // Para depuración
+          this.loadOrders();
         },
         (error) => {
           console.error('Error al cargar el perfil', error);
@@ -128,6 +134,17 @@ constructor(private authService: AuthService, private router: Router, private im
     }
   
 
+  }
+
+  loadOrders(){
+    this.pedidosService.OrdersByState('Pendiente').subscribe(
+      (response) => {
+        this.pedidos = response;
+      },
+      (error)=>{
+        console.error("Error: ", error)
+      }
+    )
   }
   
 

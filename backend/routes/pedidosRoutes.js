@@ -3,7 +3,10 @@ const router = express.Router();
 const pedidosController = require('../controllers/pedidosController');
 
 router.get('/', pedidosController.getAllPedidos);
-router.get('/:id', pedidosController.getPedidosById);
+router.get('/estado', pedidosController.getPedidosByState);
 router.get('/usuario/:id', pedidosController.getPedidosByUser);
+router.get('/:id', pedidosController.getPedidosById);
+
 
 module.exports = router;
+

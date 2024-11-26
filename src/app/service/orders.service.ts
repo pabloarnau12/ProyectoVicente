@@ -11,7 +11,11 @@ export class ordersService {
   constructor(private http: HttpClient) { }
 
   activeOrders(id: string): Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/pedidos/usuario/`+6);
+    return this.http.get<any>(`${this.apiUrl}/pedidos/usuario/`+id);
   }
   
+  OrdersByState(estado : string): Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/pedidos/estado?estado=${encodeURIComponent(estado)}`);
+  }
+
 }

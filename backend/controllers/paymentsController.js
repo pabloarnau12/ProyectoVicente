@@ -80,7 +80,7 @@ paypal.configure({
         const customData = JSON.parse(transactions[0].custom);
         const ID_Establecimiento = customData.ID_Establecimiento;
         const ID_Usuario = customData.ID_Usuario;
-        const Estado_Pedido = 'En proceso'
+        const Estado_Pedido = 'Pendiente'
 
         try {
 
