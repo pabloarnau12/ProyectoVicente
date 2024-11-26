@@ -9,7 +9,7 @@ export class PaymentsService {
   constructor(private http : HttpClient) { }
 
 
-  processPayment(cart: any){
-    return this.http.post(this.apiUrl, {cart});
+  processPayment(cart: any, user: any){
+    return this.http.post(this.apiUrl, {cart, user});
   }
 }

@@ -1,5 +1,5 @@
 const paypal = require('paypal-rest-sdk');
-
+const connection = require('../config/db');
 
 // Configurar PayPal SDK
 paypal.configure({
@@ -10,7 +10,7 @@ paypal.configure({
   
   // Crear el pago
   exports.createPayment = (req, res) => {
-    const { cart } = req.body;
+    const { cart, user } = req.body;
   
     // Convertir carrito al formato de PayPal
     const items = cart.map((product) => ({
@@ -38,6 +38,7 @@ paypal.configure({
             total: totalAmount,
           },
           description: 'Compra en tu tienda online',
+          custom: JSON.stringify({ ID_Establecimiento: cart[0].ID_Establecimiento, ID_Usuario: user.ID_Usuario }),
         },
       ],
     };
@@ -51,6 +52,8 @@ paypal.configure({
   
       const approvalUrl = payment.links.find((link) => link.rel === 'approval_url').href;
       res.json({ approvalUrl }); // Enviar URL de aprobación al frontend
+      // console.log(cart[0].ID_Establecimiento, user.ID_Usuario)
+      // console.log(createPaymentJson)
     });
   };
 
@@ -63,15 +66,38 @@ paypal.configure({
     const executePaymentJson = {
       payer_id: payerId,
     };
-  
-    paypal.payment.execute(paymentId, executePaymentJson, (error, payment) => {
+ 
+    paypal.payment.execute(paymentId, executePaymentJson, async (error, payment) => {
       if (error) {
         console.error('Error al completar el pago:', error);
         return res.status(500).send('Error al completar el pago');
       }
-  
-      console.log('Pago completado:', payment);
-      res.json({ message: 'Pago completado con éxito', payment });
+      
+      try {
+        const { transactions } = payment;
+        const carritoData = JSON.stringify(transactions[0].item_list.items || []);
+        const totalAmount = parseFloat(transactions[0].amount.total);
+        const customData = JSON.parse(transactions[0].custom);
+        const ID_Establecimiento = customData.ID_Establecimiento;
+        const ID_Usuario = customData.ID_Usuario;
+        const Estado_Pedido = 'En proceso'
+
+        try {
+
+          await connection.execute(
+            `INSERT INTO pedidos (ID_Usuario, ID_Establecimiento, Estado_Pedido, total, productos, payment_id) VALUES (?, ?, ?, ?, ?, ?)`,
+            [ID_Usuario, ID_Establecimiento, Estado_Pedido, totalAmount.toFixed(2), carritoData, paymentId]
+          );
+        } catch (err) {
+          console.error('Error al insertar el pedido:', err);
+          res.status(500).send('Error al guardar el pedido en la base de datos');
+        }
+
+        res.json({ message: 'Pago completado con éxito', payment });
+    } catch (err) {
+        console.error('Error al guardar el pedido:', err);
+        res.status(500).send('Error al guardar el pedido en la base de datos');
+    }
     });
   };
   
