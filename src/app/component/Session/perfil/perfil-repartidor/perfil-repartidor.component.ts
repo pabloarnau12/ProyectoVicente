@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { ordersService } from '../../../../service/orders.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-perfil-repartidor',
@@ -18,7 +19,8 @@ import { ordersService } from '../../../../service/orders.service';
     MatMenuModule,
     MatButtonModule,
     MatCardModule,  
-    MatIconModule,  
+    MatIconModule,
+    DatePipe  
   ],
   templateUrl: './perfil-repartidor.component.html',
   styleUrl: './perfil-repartidor.component.css'

@@ -117,7 +117,7 @@
                           </div>
                           <div class="product-details">
                             <h3>Establecimiento #{{pedido.ID_Establecimiento}}</h3>
-                            <p><strong>Hora:</strong> {{pedido.Fecha_Hora_Pedido}}</p>
+                            <p><strong>Hora:</strong> {{ pedido.Fecha_Hora_Pedido | date:'d/M/y H:mm:ss' }}</p>
                             <p><strong>Usuario:</strong> {{pedido.Nombre}} {{pedido.Apellidos}}</p>
                             <p><strong>Dirección:</strong> {{pedido.Direccion}}</p>
                           </div>
