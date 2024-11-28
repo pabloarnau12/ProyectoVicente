@@ -32,7 +32,6 @@ export class PerfilRepartidorComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProfile();
-
   }
 
 constructor(private authService: AuthService, private router: Router, private imageUploadService: ImageUploadService , private pedidosService: ordersService ){

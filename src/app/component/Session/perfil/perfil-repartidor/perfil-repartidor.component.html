@@ -79,27 +79,6 @@
         </div>
     </div> -->
 
-
-    <div class="container mt-4">
-        <mat-card>
-            <h2>Pedidos</h2>
-            
-            @if(pedidos.length > 0){
-                @for(pedido of pedidos; track pedido){
-                    <div class="card">
-                        <p>{{pedido.ID_Establecimiento}}</p>
-                        <p>{{pedido.Fecha_Hora_Pedido}}</p>
-                        <p>{{pedido.Nombre}} {{pedido.Apellidos}}</p>
-                        <p>{{pedido.Direccion}}</p>
-                    </div>
-
-                }
-            }@else{
-                <h2>no hay pedidos</h2>
-            }
-        </mat-card>
-    </div>
-
     <div class="container mt-4">
         <!-- Tarjeta de estado -->
         <mat-card class="estado-card">
@@ -123,6 +102,35 @@
             </div>
         </mat-card>
     </div>
+
+    <div class="container mt-4">
+        <mat-card>
+            <h2>Pedidos</h2>
+            
+            @if(pedidos.length > 0){
+                <div class="horizontal-scroll">
+                    <div class="product-list">
+                      @for(pedido of pedidos; track pedido) {
+                        <div class="product-card m-2">
+                          <div class="product-image">
+                            <img src="{{pedido.FotoEstablecimiento}}" alt="Foto del establecimiento">
+                          </div>
+                          <div class="product-details">
+                            <h3>Establecimiento #{{pedido.ID_Establecimiento}}</h3>
+                            <p><strong>Hora:</strong> {{pedido.Fecha_Hora_Pedido}}</p>
+                            <p><strong>Usuario:</strong> {{pedido.Nombre}} {{pedido.Apellidos}}</p>
+                            <p><strong>Dirección:</strong> {{pedido.Direccion}}</p>
+                          </div>
+                        </div>
+                      }
+                    </div>
+                  </div>
+            }@else{
+                <h2>no hay pedidos</h2>
+            }
+        </mat-card>
+    </div>
+
     
       
       

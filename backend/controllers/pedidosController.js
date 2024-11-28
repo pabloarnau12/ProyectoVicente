@@ -38,10 +38,13 @@ exports.getPedidosByUser = (req, res) => {
         pedidos.*, 
         usuarios.Nombre, 
         usuarios.Apellidos, 
-        usuarios.Telefono 
+        usuarios.Telefono, 
+        establecimientos.foto AS FotoEstablecimiento
       FROM pedidos 
       INNER JOIN usuarios 
         ON pedidos.ID_Usuario = usuarios.ID_Usuario
+      INNER JOIN establecimientos 
+        ON pedidos.ID_Establecimiento = establecimientos.ID_Establecimiento
       WHERE pedidos.Estado_Pedido = ?
     `;
   
