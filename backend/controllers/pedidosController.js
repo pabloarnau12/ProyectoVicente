@@ -26,18 +26,30 @@ exports.getPedidosByUser = (req, res) => {
     });
   };
 
-exports.getPedidosByState = (req, res) => {
+  exports.getPedidosByState = (req, res) => {
 
-  const Estado_Pedido = req.query.estado
-  if (!Estado_Pedido) {
-    return res.status(400).json({ error: 'El parámetro estado es requerido.' });
-  }
-
-  connection.query ('SELECT * FROM pedidos WHERE Estado_Pedido = ?', [Estado_Pedido], (err, results)=> {
-    if (err) return res.status(500).send(err);
-    if (results.length === 0) return res.status(404).send('No se encontraron pedidos con este estado');
-    res.json(results)
-
-  });
-
-}
+    const Estado_Pedido = req.query.estado;
+    if (!Estado_Pedido) {
+      return res.status(400).json({ error: 'El parámetro estado es requerido.' });
+    }
+  
+    const query = `
+      SELECT 
+        pedidos.*, 
+        usuarios.Nombre, 
+        usuarios.Apellidos, 
+        usuarios.Telefono 
+      FROM pedidos 
+      INNER JOIN usuarios 
+        ON pedidos.ID_Usuario = usuarios.ID_Usuario
+      WHERE pedidos.Estado_Pedido = ?
+    `;
+  
+    connection.query(query, [Estado_Pedido], (err, results) => {
+      if (err) return res.status(500).send(err);
+      if (results.length === 0) return res.status(404).send('No se encontraron pedidos con este estado');
+      res.json(results);
+    });
+  
+  };
+  

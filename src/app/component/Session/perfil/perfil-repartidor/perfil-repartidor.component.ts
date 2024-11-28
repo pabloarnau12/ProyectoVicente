@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { ordersService } from '../../../../service/orders.service';
-import { error } from 'console';
 
 @Component({
   selector: 'app-perfil-repartidor',

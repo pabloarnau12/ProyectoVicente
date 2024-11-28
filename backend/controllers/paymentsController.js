@@ -38,7 +38,7 @@ paypal.configure({
             total: totalAmount,
           },
           description: 'Compra en tu tienda online',
-          custom: JSON.stringify({ ID_Establecimiento: cart[0].ID_Establecimiento, ID_Usuario: user.ID_Usuario }),
+          custom: JSON.stringify({ ID_Establecimiento: cart[0].ID_Establecimiento, ID_Usuario: user.ID_Usuario, Direccion: user.Direccion }),
         },
       ],
     };
@@ -80,13 +80,14 @@ paypal.configure({
         const customData = JSON.parse(transactions[0].custom);
         const ID_Establecimiento = customData.ID_Establecimiento;
         const ID_Usuario = customData.ID_Usuario;
-        const Estado_Pedido = 'Pendiente'
-
+        const Estado_Pedido = 'Pendiente';
+        const Direccion = customData.Direccion;
+        console.log(Direccion);
         try {
 
           await connection.execute(
-            `INSERT INTO pedidos (ID_Usuario, ID_Establecimiento, Estado_Pedido, total, productos, payment_id) VALUES (?, ?, ?, ?, ?, ?)`,
-            [ID_Usuario, ID_Establecimiento, Estado_Pedido, totalAmount.toFixed(2), carritoData, paymentId]
+            `INSERT INTO pedidos (ID_Usuario, ID_Establecimiento, Estado_Pedido, total, productos, payment_id, Direccion) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            [ID_Usuario, ID_Establecimiento, Estado_Pedido, totalAmount.toFixed(2), carritoData, paymentId, Direccion]
           );
         } catch (err) {
           console.error('Error al insertar el pedido:', err);

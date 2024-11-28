@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { PaymentsService } from '../../service/payments.service';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class TramitarPagosComponent implements OnInit{
   private readonly paymentService: PaymentsService = inject(PaymentsService);
 
 
-  user: any[] = []
+  user: any = {}
   cart: any[] = []
   constructor(private router: Router, private authService: AuthService){
 
@@ -69,6 +70,39 @@ export class TramitarPagosComponent implements OnInit{
       });
     } else {
       this.router.navigate(['/iniciarsesion']); // Redirige al login si no hay token
+    }
+  }
+
+  async tryfuncion() {
+    const { value: address } = await Swal.fire({
+      title: "Introduce tu nueva dirección",
+      input: "text",
+      inputLabel: "Nueva dirección",
+      inputValue: "",
+      showCancelButton: true,
+    });
+  
+    if (address) {
+      Swal.fire(`Tu nueva dirección es ${address}`);
+      const token = localStorage.getItem('token');
+      console.log("Token obtenido:", token); // Agrega esto para verificar el token
+
+      if (token) {
+        this.authService.updateAddress(address, token).subscribe(
+          response => {
+            console.log("Respuesta del servidor:", response);
+            Swal.fire(response.message); // Mostrar mensaje de éxito
+            this.loadProfile();
+          },
+          error => {
+            console.error("Error al actualizar la dirección:", error);
+            Swal.fire("Error al actualizar la dirección"); // Mostrar mensaje de error
+          }
+        );
+        console.log("Dirección enviada al backend:", address);
+      } else {
+        console.error("No se ha proporcionado el Token");
+      }
     }
   }
   

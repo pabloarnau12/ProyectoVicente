@@ -38,6 +38,16 @@
     <!-- Información de envío -->
     <section class="shipping-info">
       <h2>Información de Envío</h2>
+      <ul class="list-group">
+        <p>Tú Direccion: </p>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{user.Direccion}}
+          <div>
+            <button class="btn btn-sm btn-outline-primary me-2" (click)="tryfuncion()">Editar</button>
+            <!-- <button class="btn btn-sm btn-outline-danger">Eliminar</button> -->
+          </div>
+        </li>
+      </ul>
     </section>
   
     <!-- Selección de método de pago -->
