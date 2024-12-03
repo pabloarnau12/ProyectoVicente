@@ -1,11 +1,11 @@
-import { Component, inject, NgModule } from '@angular/core';
-import { NavbarComponent } from '../../navbar/navbar.component';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../service/shop.service';
 import { Tiendas } from '../../../common/Tiendas';
 import { ShopComponent } from "../shop/shop.component";
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { CategoriasService } from '../../../service/categorias.service';
 
 
 @Component({
@@ -17,11 +17,12 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class CatalogoComponent {
   private readonly apiService: ApiService = inject(ApiService);
+  private readonly categoriasService: CategoriasService = inject(CategoriasService);
 
   constructor() { }
   data : Tiendas[] = [];
-
-
+  categorias: any
+  categoriasSelected: any;
 
   filteredData: Tiendas[] = [];
   tiposUnicos: string[] = [];
@@ -30,11 +31,11 @@ export class CatalogoComponent {
 
   ngOnInit(): void {
     this.llenardata();
-    
+    this.loadCategorias();
   }
 
 
-  filterData(): void {
+  filterDatabyName(): void {
     if (this.searchTerm) {
       this.filteredData = this.data.filter(item => 
         item.Nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
@@ -45,10 +46,30 @@ export class CatalogoComponent {
     }
   }
 
+  filterDatabyCategory() : void{
+    if(this.categoriasSelected){
+      this.filteredData = this.data.filter(item =>
+        item.Categoria.toLowerCase().includes(this.categoriasSelected.toLowerCase())
+      );
+      console.log("metodea")
+    }else{
+      this.filteredData = this.data;
+    }
+  }
+
   llenardata(): void{
   this.apiService.getShops().subscribe (data =>{
     this.data = data;
     console.log(this.data);  
     })
+  }
+
+  loadCategorias(): void{
+    this.categoriasService.getCategoriasEstablecimientos().subscribe(
+      categorias => {
+        this.categorias = categorias
+        console.log(this.categorias);
+      }
+    )
   }
 }

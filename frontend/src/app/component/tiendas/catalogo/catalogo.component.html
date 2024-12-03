@@ -4,11 +4,36 @@
 
 
     <div class="search-container" w-tid="10">
-      <input type="text" class="search-input" placeholder="Buscar tiendas..." w-tid="11" [(ngModel)]="searchTerm" (ngModelChange)="filterData()">
+      <input type="text" class="search-input" placeholder="Buscar tiendas..." w-tid="11" [(ngModel)]="searchTerm" (ngModelChange)="filterDatabyName()">
     </div>
-    
-      <div class="stores-grid" w-tid="18">
+    <div class="categories">
+      <select class="category-dropdown" [(ngModel)]="categoriasSelected" (ngModelChange)="filterDatabyCategory()">
+          <option value="">Seleccionar categoría...</option>
+          @for(categoria of categorias; track categoria){
+            <option>{{categoria.Nombre}}</option>
+          } 
+      </select>
+      <div class="categories-wrapper">
+          <input type="text" class="category-search" placeholder="Buscar categoría...">
+          <div class="category-list">
+
+          </div>
+      </div>
+  </div>
+  
+  @if(filteredData.length > 0){
+    <div class="results-counter" style="max-width: 1200px; margin: 1rem auto; padding: 0 2rem; color: #666;text-align: left;" w-tid="19">
+      <span id="results-count" w-tid="20">{{filteredData.length}}</span> resultados encontrados
+    </div>
+  }@else{
+    <div class="results-counter" style="max-width: 1200px; margin: 1rem auto; padding: 0 2rem; color: #666;text-align: left;" w-tid="19">
+      <span id="results-count" w-tid="20">{{data.length}}</span> resultados encontrados
+    </div>
+  }
+      
+  <div class="stores-grid" w-tid="18">
       @if (filteredData.length > 0) { 
+
           @for(item of filteredData; track item.ID_Establecimiento){
             <app-shop [routerLink]="'/catalogo/' + item.ID_Establecimiento" [tienda]="item"/>
         }

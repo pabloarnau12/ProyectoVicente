@@ -16,6 +16,7 @@ const pedidosRoutes = require('./routes/pedidosRoutes');
 const favoriteShopsRoutes = require('./routes/favoriteshopsRoutes');
 const cloudinaryRoutes = require('./routes/cloudinaryRoutes');
 const paymentsRoutes = require('./routes/paymentsRoutes');
+const categoriasRoutes = require('./routes/categoriasRoutes');
 
 // Usar rutas
 app.use('/api/auth', authRoutes);
@@ -26,6 +27,7 @@ app.use('/api/pedidos', pedidosRoutes);
 app.use('/api/favorite_shops', favoriteShopsRoutes);
 app.use('/api/upload', cloudinaryRoutes);
 app.use('/api/payments', paymentsRoutes);
+app.use('/api/categorias', categoriasRoutes);
 
 
 
