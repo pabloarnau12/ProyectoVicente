@@ -70,7 +70,8 @@ export class PaginaProductoComponent implements OnInit{
     this.apiService.getShops().subscribe(
       (data: Tiendas[]) => {
 
-        this.relatedShops = data.filter(shop => shop.Tipo === this.tienda.Tipo && shop.Nombre != this.tienda.Nombre).slice(0,4);
+        this.relatedShops = data.filter(shop => shop.Categoria === this.tienda.Categoria && shop.Nombre != this.tienda.Nombre).slice(0,4);
+        console.log(this.tienda.Categoria + "hola")
         console.log(this.relatedShops);
       },
       (error) => {

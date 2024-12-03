@@ -1,71 +1,79 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900');
 
-/* Caja del card */
-.caja {
-  border-radius: 12px; /* Bordes redondeados */
-  background-color: #fff;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Evita que los contenidos se desborden */
+.store-card {
+
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  text-align: left;
 }
 
-.caja:hover {
-  transform: scale(1.05); /* Efecto de escala al hacer hover */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+.store-card:hover {
+  transform: translateY(-5px);
 }
 
-/* Imagen del card */
-.card-img-top {
+.store-image {
   width: 100%;
-  height: 250px;
-  object-fit: cover; /* Asegura que la imagen se ajuste bien */
-  border-top-left-radius: 12px; /* Bordes redondeados en la parte superior */
-  border-top-right-radius: 12px;
+  height: 200px;
+  background-color: #2ecc71;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.store-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Estilo para el título y el texto */
-.card-body {
-  padding: 20px;
+.store-info {
+  padding: 1.5rem;
 }
 
-.card-title {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 600;
+.store-name {
+  font-size: 1.5rem;
   color: #333;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
 }
 
-.card-text {
-  font-family: 'Source Sans Pro', sans-serif;
-  color: #555;
-  line-height: 1.5;
+.store-category {
+  color: #2ecc71;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  
 }
 
-/* Estilo del icono de favorito */
-.favorite-icon {
-  font-size: 32px;
-  color: #ff5f57; /* Color atractivo para el icono */
-  transition: color 0.3s ease;
+.store-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.favorite-icon:hover {
-  color: #d43f00; /* Color más intenso cuando el icono se pasa por encima */
+.star {
+  color: #f1c40f;
 }
 
-/* Ajustes para pantallas más pequeñas */
-@media (max-width: 576px) {
-  .card-img-top {
-    height: 150px; /* Ajusta la altura de la imagen en pantallas más pequeñas */
-  }
+.order-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  .card-title {
-    font-size: 1.5rem; /* Reduce el tamaño del título en pantallas pequeñas */
-  }
+.order-btn:hover {
+  background-color: #2ecc71;
+}
 
-  .card-text {
-    font-size: 1.125rem; /* Reduce el tamaño del texto en pantallas pequeñas */
-  }
-
-  .favorite-icon {
-    font-size: 28px; /* Ajusta el tamaño del icono */
+@media (max-width: 768px) {
+  .stores-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      padding: 1rem;
   }
 }

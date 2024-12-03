@@ -1,7 +1,7 @@
 export interface Tiendas {
   ID_Establecimiento: number
   Nombre: string
-  Tipo: string
+  Categoria: string
   Direccion: string
   Telefono: string
   Horario_Apertura: Date

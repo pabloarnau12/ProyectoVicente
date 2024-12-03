@@ -2,51 +2,80 @@ const connection = require('../config/db');
 
 // Obtener todas las tiendas
 exports.getAllTiendas = (req, res) => {
-  connection.query('SELECT * FROM establecimientos', (err, results) => {
+  const query = `
+    SELECT 
+      establecimientos.*, 
+      categorias_establecimientos.Nombre AS Categoria
+    FROM 
+      establecimientos
+    LEFT JOIN 
+      categorias_establecimientos
+    ON 
+      establecimientos.Categoria = categorias_establecimientos.ID_Categoria
+  `;
+
+  connection.query(query, (err, results) => {
     if (err) return res.status(500).send(err);
 
     // URL de la foto base
-    const defaultPhoto = 'https://via.placeholder.com/300x200.png?text=No+Image+Available'; // Aquí puedes poner la URL de la foto base
+    const defaultPhoto = 'https://via.placeholder.com/300x200.png?text=No+Image+Available'; 
 
     // Recorremos los resultados y asignamos la foto base si está vacía
     results.forEach(tienda => {
       if (!tienda.foto || tienda.foto.trim() === '') {
         tienda.foto = defaultPhoto; // Asignamos la foto base
-        console.log("NO TIENE FOTO");
       }
     });
 
-    // Enviamos los resultados con la foto adecuada
+    // Enviamos los resultados con la foto adecuada y el nombre de la categoría
     res.json(results);
   });
 };
+
 
 
 // Obtener una tienda por ID
 exports.getTiendaById = (req, res) => {
   const { id } = req.params;
   
-  // Consulta para obtener el establecimiento por ID
-  connection.query('SELECT * FROM establecimientos WHERE ID_Establecimiento = ?', [id], (err, results) => {
+  // Consulta para obtener el establecimiento con su categoría por ID
+  const query = `
+    SELECT 
+      establecimientos.*, 
+      categorias_establecimientos.Nombre AS Categoria
+    FROM 
+      establecimientos
+    LEFT JOIN 
+      categorias_establecimientos
+    ON 
+      establecimientos.Categoria = categorias_establecimientos.ID_Categoria
+    WHERE 
+      establecimientos.ID_Establecimiento = ?
+  `;
+
+  connection.query(query, [id], (err, results) => {
     if (err) return res.status(500).send(err);
-    
+
     // Si no se encuentra la tienda
     if (results.length === 0) return res.status(404).send('Tienda no encontrada');
     
     // URL de la foto base
-    const defaultPhoto = 'https://via.placeholder.com/300x200.png?text=No+Image+Available'; // Foto predeterminada
+    const defaultPhoto = 'https://via.placeholder.com/300x200.png?text=No+Image+Available';
 
-    // Verificar si la foto está vacía y asignar la foto base
-    const tienda = results[0]; // Solo hay un resultado, ya que estamos buscando por ID
+    // Obtenemos la tienda
+    const tienda = results[0];
+
+    // Verificamos si la foto está vacía y asignamos la foto base
     if (!tienda.foto || tienda.foto.trim() === '') {
-      tienda.foto = defaultPhoto; // Asignar la foto base
+      tienda.foto = defaultPhoto; // Asignamos la foto base
       console.log("No hay foto");
     }
 
-    // Enviar el resultado con la foto actualizada
+    // Enviamos el resultado con la foto y el nombre de la categoría
     res.json(tienda);
   });
 };
+
 
 
 // Obtener productos de una tienda específica

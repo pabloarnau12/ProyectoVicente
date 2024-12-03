@@ -1,4 +1,4 @@
-<div class="col align-items-center mb-5 h-100">
+<!-- <div class="col align-items-center mb-5 h-100">
     <div class="caja h-100 shadow-lg">
       <img src="{{tienda.foto}}" alt="imagen card" class="card-img-top">
       <div class="card-body d-flex flex-column">
@@ -7,4 +7,33 @@
       
       </div>
     </div>
+  </div> -->
+  <!-- <div class="store-card">
+    <div class="store-image" >
+        <img src="{{tienda.foto}}" alt="Super Fresh Market">
+    </div>
+    <div class="store-info">
+        <h3 class="store-name">Super Fresh Market</h3>
+        <p class="store-category">Supermercado</p>
+        <div class="store-rating">
+            <span class="star">★★★★☆</span>
+            <span >4.2</span>
+        </div>
+        <button class="order-btn">Ordenar ahora</button>
+    </div>
+</div> -->
+
+<div class="store-card">
+  <div class="store-image">
+      <img src="{{tienda.foto}}" alt="TechStore">
   </div>
+  <div class="store-info">
+      <p class="store-name">{{tienda.Nombre}}</p>
+      <p class="store-category">{{tienda.Categoria}}</p>
+      <div class="store-rating">
+          <span class="star">★★★★☆</span>
+          <span>{{tienda.Calificacion_Promedio}}</span>
+      </div>
+      <button class="order-btn">Ordenar ahora</button>
+  </div>
+</div>

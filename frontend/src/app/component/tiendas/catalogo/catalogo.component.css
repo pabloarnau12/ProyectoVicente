@@ -8,30 +8,39 @@ h1.large{
     font-weight: bolder;
 }
 
-.caja{
-    transition: transform 0.3s ease-in-out;
+  
+  .stores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-.caja:hover {
-    transform: scale(1.05);
-  }
 
+@media (max-width: 768px) {
+  .stores-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      padding: 1rem;
+  }
+}
 
-  .card {
-    border: none;
-    border-radius: 0.5rem; /* Opcional: Bordes redondeados */
-    overflow: hidden; /* Opcional: Para asegurar que los bordes redondeados se mantengan */
-  }
-  
-  .card-img-top {
-    width: 100%;
-    height: 250px; /* Ajusta según el tamaño deseado */
-    object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionarse */
-  }
-  
-  /* Opcional: Ajusta el tamaño de la tarjeta para pantallas más pequeñas */
-  @media (max-width: 576px) {
-    .card-img-top {
-      height: 150px; /* Ajusta según sea necesario */
-    }
-  }
-  
+.search-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #2ecc71;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+}
