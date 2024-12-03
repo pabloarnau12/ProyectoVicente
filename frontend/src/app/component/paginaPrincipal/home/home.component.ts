@@ -5,11 +5,12 @@ import { InformacionHomeComponent } from '../informacion-home/informacion-home.c
 import { BestsellersComponent } from '../bestsellers/bestsellers.component';
 import { AboutUsComponent } from '../about-us/about-us.component';
 import { FooterComponent } from '../footer/footer.component';
+import { PopularcategoriesComponent } from "../popularcategories/popularcategories.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, AreaBannerComponent, InformacionHomeComponent, BestsellersComponent,AboutUsComponent,FooterComponent],
+  imports: [RouterLink, AreaBannerComponent, InformacionHomeComponent, BestsellersComponent, AboutUsComponent, FooterComponent, PopularcategoriesComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

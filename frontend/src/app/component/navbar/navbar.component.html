@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg ">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -6,10 +6,9 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <img src="./assets/images/logoreparto.png" style="width: 50px; height: 50px;" class="img-fluid m-2" alt="Logo">
 
-      <!-- Envolver los elementos en un contenedor centrado -->
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 nav-links">
         <li class="nav-item">
-          <a class="nav-link m-2" aria-current="page" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+          <a class="nav-link m-2 " aria-current="page" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         </li>
         <li class="nav-item m-2">
           <a class="nav-link" aria-current="page" routerLink="/catalogo" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Catálogo</a>
@@ -21,13 +20,32 @@
 
       <form class="d-flex me-3" role="search">
         <div *ngIf="isLoggedIn;">
-          <mat-icon aria-current="page" routerLink="/perfil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" style="color: white">account_circle</mat-icon>
+          <mat-icon aria-current="page" routerLink="/perfil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">account_circle</mat-icon>
         </div>
         <div *ngIf="!isLoggedIn;">
-          <a class="nav-link text-light" aria-current="page" routerLink="/iniciarsesion" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Iniciar Sesión</a>
+          <a class="nav-link " aria-current="page" routerLink="/iniciarsesion" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Iniciar Sesión</a>
         </div>
       </form>
       <app-carrito></app-carrito>
     </div>
   </div>
 </nav>
+<!-- <nav class="navbar">
+  <div class="logo">LocalEats</div>
+  <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+  <div class="nav-links">
+      <a href="https://localeats.com/home">Home</a>
+      <a href="https://localeats.com/catalogo">Catálogo</a>
+      <a href="https://localeats.com/contact">Contacto</a>
+      <a href="https://localeats.com/login">Iniciar Sesión</a>
+      <svg class="cart-icon" viewBox="0 0 24 24">
+          <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+          
+      </svg>
+      <app-carrito></app-carrito>
+  </div>
+</nav> -->
