@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2024 a las 23:27:24
+-- Tiempo de generación: 07-12-2024 a las 14:05:58
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -43,7 +43,31 @@ CREATE TABLE `calificaciones` (
 INSERT INTO `calificaciones` (`ID_Calificacion`, `ID_Pedido`, `Calificacion_Establecimiento`, `Calificacion_Repartidor`, `Comentario`, `ID_Establecimiento`) VALUES
 (1, 1, 10, 4, 'Excelente comida y buen servicio', 1),
 (2, 2, 8, 5, 'Entrega rápida y producto en buen estado', 1),
-(3, 3, 6, 6, 'mu guapo mucha gracias', 2);
+(3, 3, 6, 6, 'mu guapo mucha gracias', 2),
+(9, 5, 1, 1, 'un 1 sabes manin', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `calificaciones_establecimientos`
+--
+
+CREATE TABLE `calificaciones_establecimientos` (
+  `ID_Calificacion` int(11) NOT NULL,
+  `ID_Usuario` int(11) NOT NULL,
+  `Calificacion_Establecimiento` int(11) NOT NULL,
+  `Comentario` text NOT NULL,
+  `ID_Establecimiento` int(11) NOT NULL,
+  `Fecha_Calificacion` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `calificaciones_establecimientos`
+--
+
+INSERT INTO `calificaciones_establecimientos` (`ID_Calificacion`, `ID_Usuario`, `Calificacion_Establecimiento`, `Comentario`, `ID_Establecimiento`, `Fecha_Calificacion`) VALUES
+(1, 6, 9, 'Muy bueno todo me encanta tienda de diez pana meño dueño es pana de panameño', 1, '2024-12-07'),
+(2, 13, 1, 'pesimo no me ha gustado nada fatal expericencia', 1, '2024-12-07');
 
 -- --------------------------------------------------------
 
@@ -111,7 +135,7 @@ CREATE TABLE `establecimientos` (
 --
 
 INSERT INTO `establecimientos` (`ID_Establecimiento`, `Nombre`, `Direccion`, `Telefono`, `Horario_Apertura`, `Horario_Cierre`, `Calificacion_Promedio`, `foto`, `Categoria`) VALUES
-(1, 'La Tasca del Pueblo', 'Calle del Sol 3, Pueblo A', '123987456', '20:00:00', '22:00:00', 0.00, '\\assets\\images\\entrada (1).png', 1),
+(1, 'La Tasca del Pueblo', 'Calle del Sol 3, Pueblo A', '123987456', '20:00:00', '22:00:00', 6.33, '\\assets\\images\\entrada (1).png', 1),
 (2, 'Farmacia San Juan', 'Avenida Libertad 7, Pueblo B', '456321789', '09:00:00', '20:00:00', 0.00, '\\assets\\images\\img_productos\\laurel.png', 3),
 (3, 'Supermercado El Ahorro', 'Plaza Mayor 2, Pueblo C', '789654123', '11:00:00', '21:00:00', 0.00, '\\assets\\images\\banner1.png', 1),
 (4, 'Abordo Maria', 'Avenida Castilla, 7 puerta 3', '654987321', '08:00:00', '22:00:00', 0.00, '\\assets\\images\\banner1.png', 24),
@@ -148,7 +172,8 @@ INSERT INTO `establecimientos` (`ID_Establecimiento`, `Nombre`, `Direccion`, `Te
 (35, 'Mercado Local', 'Calle Comercio 20, Pueblo G1', '623478596', '07:00:00', '15:00:00', 0.00, '', 21),
 (36, 'Tienda de Mascotas Peludos', 'Calle Animal 22, Pueblo H1', '622478596', '10:00:00', '19:00:00', 0.00, '', 20),
 (37, 'Joyería Brillo', 'Calle Oro 8, Pueblo I1', '634789521', '10:00:00', '20:00:00', 0.00, '', 23),
-(38, 'Óptica Visión Clara', 'Avenida Ojos 4, Pueblo J1', '612478596', '09:00:00', '18:00:00', 0.00, '', 5);
+(38, 'Óptica Visión Clara', 'Avenida Ojos 4, Pueblo J1', '612478596', '09:00:00', '18:00:00', 0.00, '', 5),
+(39, '', '', '', '00:00:00', '00:00:00', 0.00, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -200,7 +225,8 @@ CREATE TABLE `pedidos` (
 INSERT INTO `pedidos` (`ID_Pedido`, `ID_Usuario`, `ID_Establecimiento`, `Fecha_Hora_Pedido`, `Estado_Pedido`, `Total`, `productos`, `payment_id`, `Direccion`) VALUES
 (4, 6, 1, '2024-11-26 12:50:19', 'En proceso', 12.49, '[{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"},{\"name\":\"Paracetamol\",\"sku\":\"3\",\"price\":\"3.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5C4IAY1BV72026Y69435416', ''),
 (5, 18, 1, '2024-11-26 21:27:51', 'En proceso', 20.99, '[{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2,\"image_url\":\"\"},{\"name\":\"Paracetamol\",\"sku\":\"3\",\"price\":\"3.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5DD2RQ1M9752336B916191E', ''),
-(6, 6, 1, '2024-11-28 18:53:45', 'Pendiente', 12.49, '[{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"},{\"name\":\"Paracetamol\",\"sku\":\"3\",\"price\":\"3.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5ELYKQ1J659179LC9388012', 'C/ Enrique Tierno Galvan Cheste, 7');
+(6, 6, 1, '2024-11-28 18:53:45', 'Pendiente', 12.49, '[{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"},{\"name\":\"Paracetamol\",\"sku\":\"3\",\"price\":\"3.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5ELYKQ1J659179LC9388012', 'C/ Enrique Tierno Galvan Cheste, 7'),
+(7, 6, 1, '2024-12-05 09:18:34', 'Pendiente', 10.50, '[{\"name\":\"Paella\",\"sku\":\"1\",\"price\":\"2.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"},{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5IW7XA28J143174N6043916', 'asdf');
 
 -- --------------------------------------------------------
 
@@ -362,6 +388,14 @@ ALTER TABLE `calificaciones`
   ADD KEY `ID_Pedido` (`ID_Pedido`);
 
 --
+-- Indices de la tabla `calificaciones_establecimientos`
+--
+ALTER TABLE `calificaciones_establecimientos`
+  ADD PRIMARY KEY (`ID_Calificacion`),
+  ADD KEY `fk_id_usuario` (`ID_Usuario`),
+  ADD KEY `fk_id_establecimiento` (`ID_Establecimiento`);
+
+--
 -- Indices de la tabla `categorias_establecimientos`
 --
 ALTER TABLE `categorias_establecimientos`
@@ -427,7 +461,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
-  MODIFY `ID_Calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `calificaciones_establecimientos`
+--
+ALTER TABLE `calificaciones_establecimientos`
+  MODIFY `ID_Calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias_establecimientos`
@@ -439,7 +479,7 @@ ALTER TABLE `categorias_establecimientos`
 -- AUTO_INCREMENT de la tabla `establecimientos`
 --
 ALTER TABLE `establecimientos`
-  MODIFY `ID_Establecimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `ID_Establecimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `favoritas_tiendas`
@@ -451,7 +491,7 @@ ALTER TABLE `favoritas_tiendas`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `ID_Pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_Pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido_productos`
@@ -486,6 +526,13 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `calificaciones`
   ADD CONSTRAINT `calificaciones_ibfk_1` FOREIGN KEY (`ID_Pedido`) REFERENCES `pedidos` (`ID_Pedido`);
+
+--
+-- Filtros para la tabla `calificaciones_establecimientos`
+--
+ALTER TABLE `calificaciones_establecimientos`
+  ADD CONSTRAINT `fk_id_establecimiento` FOREIGN KEY (`ID_Establecimiento`) REFERENCES `establecimientos` (`ID_Establecimiento`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_id_usuario` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID_Usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `establecimientos`
