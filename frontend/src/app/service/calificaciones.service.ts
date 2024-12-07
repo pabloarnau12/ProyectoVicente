@@ -11,12 +11,16 @@ export class CalificacionesService {
   constructor() { }
 
 
-  public getCalificaciones(): Observable <any>{
-    return this.http.get<any>(this.urlApiCalificaciones)
+  public getCalificacionesEstablecimientos(): Observable <any>{
+    return this.http.get<any>(this.urlApiCalificaciones + '/establecimientos')
   }
 
-  public getCalificacionesbyID(id: string): Observable <any>{
-    return this.http.get<any>(this.urlApiCalificaciones + id);
+  public getCalificacionesEstablecimientosbyID(id: string): Observable <any>{
+    return this.http.get<any>(this.urlApiCalificaciones + '/establecimientos/'+ id);
+  }
+
+  public getCalificacionPromedioEstablecimientos(id: string): Observable<any>{
+    return this.http.get<any>(this.urlApiCalificaciones + '/establecimientos/promedio/'+ id);
   }
 
 }

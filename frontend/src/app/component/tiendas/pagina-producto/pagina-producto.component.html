@@ -76,4 +76,16 @@
         </div>
     </section>
     }
+
+    @if(comentarios.length > 0){
+        @for(comentario of comentarios; track comentarios ){
+            <p class="text-primary">ID COMENTARIO: {{comentario.ID_Establecimiento}}</p>
+            <p class="text-primary">USUARIO: {{comentario.Usuario_Nombre}}</p>
+            <img class="card-img-top" [src]="comentario.Usuario_Foto" alt="foto usuario">
+            <p class="text-primary">Calificacion establecimiento: {{comentario.Calificacion_Establecimiento}}</p>
+            <p class="text-primary">COMENTARIO: {{comentario.Comentario}}</p>
+            <p class="text-primary">Fecha: {{comentario.Fecha_Calificacion}}</p>
+            <hr>
+        }
+    }
 }

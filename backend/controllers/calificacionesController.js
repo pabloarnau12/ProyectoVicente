@@ -1,18 +1,43 @@
 const connection = require('../config/db');
 
 // Obtener todas las calificaciones
-exports.getAllCalificaciones = (req, res) => {
-  connection.query('SELECT * FROM calificaciones', (err, results) => {
+exports.getAllCalificacionesEstablecimientos = (req, res) => {
+  connection.query('SELECT * FROM calificaciones_establecimientos', (err, results) => {
     if (err) return res.status(500).send(err);
     res.json(results);
   });
 };
 
+exports.getAllCalificacionesEstablecimientosbyID = (req, res) => {
+  const { id } = req.params;
+
+  const query = `
+    SELECT 
+      c.*,
+      u.Nombre AS Usuario_Nombre,
+      u.profile_picture AS Usuario_Foto
+    FROM 
+      calificaciones_establecimientos c
+    INNER JOIN 
+      usuarios u 
+    ON 
+      c.ID_Usuario = u.ID_Usuario
+    WHERE 
+      c.ID_Establecimiento = ?
+  `;
+
+  connection.query(query, [id], (err, results) => {
+    if (err) return res.status(500).send(err);
+    res.json(results);
+  });
+};
+
+
 // Obtener la calificación promedio de una tienda
-exports.getCalificacionPromedio = (req, res) => {
+exports.getCalificacionPromedioEstablecimientos = (req, res) => {
   const { id } = req.params;
   connection.query(
-    'SELECT AVG(Calificacion_Establecimiento) AS media_calificacion FROM calificaciones WHERE ID_Establecimiento = ?',
+    'SELECT AVG(Calificacion_Establecimiento) AS media_calificacion FROM calificaciones_establecimientos WHERE ID_Establecimiento = ?',
     [id],
     (err, results) => {
       if (err) return res.status(500).send(err);

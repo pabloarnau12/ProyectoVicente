@@ -1,0 +1,11 @@
+1. Hacer que se pueda editar la informacion de usuario en el perfil
+2. Hacer tabla categorias_productos y operar con eso
+3. Controlar el success y el cancel de la API de paypal para cuando se termine una operacion
+4. Editar carrito, tanto estilo como logica, hace falta crear boton de restar producto etc... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+5. El carrito está en el local storage, cualqueira puede cambiar los datos--> recomendacion: hacer una tabla en la base de datos y que cada usuario tenga su carrito !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+6. Terminar Perfil de repartidores
+7. Empezar perfil admin de cada tienda(añadir producto, cambiar stock, quitar producto, crear promociones)
+8. Terminar en el landing page las tiendas mejor valoradas
+9. El ssitema de comentarios para establecimientos esta hecho AL 50% FALTA TERMINARLO, diseño, hacer un post para guardar nyuevo comentario etc: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+

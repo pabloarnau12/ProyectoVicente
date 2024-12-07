@@ -39,7 +39,7 @@ export class BestsellersComponent implements OnInit{
 
   getCalificacionesbyID() {
 
-      this.apiCalificaciones.getCalificaciones().subscribe(
+      this.apiCalificaciones.getCalificacionesEstablecimientos().subscribe(
         data => {
           this.califications = data;
           console.log(this.califications);

@@ -29,7 +29,7 @@ export class PaginaProductoComponent implements OnInit{
   tienda: any;  
   relatedShops: Tiendas[] = [];
   id: string | null = null;
-
+  comentarios: any[] = []
 
   ngOnInit(): void {
     
@@ -39,6 +39,7 @@ export class PaginaProductoComponent implements OnInit{
     this.getRelatedShops();
     this.calcularMedia();
     this.checkIfFavorite();
+    this.getComentarios();
 
   }
 
@@ -81,10 +82,22 @@ export class PaginaProductoComponent implements OnInit{
     );
   }
 
+  getComentarios(){
+    if(this.id != null){
+      this.apiCalificaciones.getCalificacionesEstablecimientosbyID(this.id).subscribe(
+        data => {
+          this.comentarios = data
+          console.log(this.comentarios)
+        }
+      )
+    }
+    
+  }
+
 
   calcularMedia() {
     if (this.id !== null) {
-      this.apiCalificaciones.getCalificacionesbyID(this.id).subscribe(
+      this.apiCalificaciones.getCalificacionPromedioEstablecimientos(this.id).subscribe(
         data => {
           this.media = data.media_calificacion;
           console.log(this.media);
