@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { ActivatedRoute,Router,RouterLink, RouterLinkActive } from '@angular/router';
 import { ApiService } from '../../../service/shop.service';
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { Tiendas } from '../../../common/Tiendas';
 import { CalificacionesService } from '../../../service/calificaciones.service';
 import { MatIcon } from '@angular/material/icon';
@@ -13,7 +13,7 @@ import { AuthService } from '../../../service/auth.service';
 @Component({
   selector: 'app-pagina-producto',
   standalone: true,
-  imports: [RouterLink, NgClass, MatIcon],
+  imports: [RouterLink, NgClass, MatIcon, CommonModule],
   templateUrl: './pagina-producto.component.html',
   styleUrl: './pagina-producto.component.css'
 })

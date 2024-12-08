@@ -145,7 +145,86 @@ section.py-5.bg-light {
 .card-footer {
     background-color: #f4f4f4;
 }
-
+.comentarios-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f9f9f9; /* Fondo neutro */
+  }
+  
+  .comentario-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: #fff; /* Fondo blanco para tarjetas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comentario-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .comentario-foto {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e0e0; /* Color neutro para el borde */
+  }
+  
+  .comentario-usuario-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .comentario-usuario {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+  }
+  
+  .comentario-fecha {
+    font-size: 0.9rem;
+    color: #888; /* Color claro para la fecha */
+    margin: 0;
+  }
+  
+  .comentario-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .comentario-calificacion {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffcc00; /* Amarillo para las estrellas */
+  }
+  
+  .comentario-texto {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  .no-comentarios {
+    text-align: center;
+    font-size: 1rem;
+    color: #888;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  
 /* Media Queries para pequeños dispositivos */
 @media (max-width: 768px) {
     .card-img-top {
@@ -161,3 +240,5 @@ section.py-5.bg-light {
     }
 
 }
+
+
