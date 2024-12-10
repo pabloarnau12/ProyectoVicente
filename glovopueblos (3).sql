@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-12-2024 a las 14:05:58
+-- Tiempo de generación: 11-12-2024 a las 00:09:43
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -66,8 +66,30 @@ CREATE TABLE `calificaciones_establecimientos` (
 --
 
 INSERT INTO `calificaciones_establecimientos` (`ID_Calificacion`, `ID_Usuario`, `Calificacion_Establecimiento`, `Comentario`, `ID_Establecimiento`, `Fecha_Calificacion`) VALUES
-(1, 6, 9, 'Muy bueno todo me encanta tienda de diez pana meño dueño es pana de panameño', 1, '2024-12-07'),
-(2, 13, 1, 'pesimo no me ha gustado nada fatal expericencia', 1, '2024-12-07');
+(14, 6, 5, 'Cada vez este bar me gusta mas', 1, '2024-12-10'),
+(15, 6, 1, 'no me gusta nada este restaurante', 1, '2024-12-10'),
+(16, 6, 1, 'no me gusta nada este restaurante', 1, '2024-12-10'),
+(17, 6, 1, 'no me gusta nada este restaurante', 1, '2024-12-10'),
+(18, 6, 4, 'es broma si me gusta', 1, '2024-12-10'),
+(19, 6, 3, 'esta es una de mis tiendas favoritas, me encanta todo lo que hacen, es una farmacia 10/10', 2, '2024-12-11'),
+(20, 6, 4, 'asdf', 2, '2024-12-11'),
+(21, 6, 4, 'bien', 2, '2024-12-11');
+
+--
+-- Disparadores `calificaciones_establecimientos`
+--
+DELIMITER $$
+CREATE TRIGGER `actualizar_media_establecimiento` AFTER INSERT ON `calificaciones_establecimientos` FOR EACH ROW BEGIN
+    UPDATE establecimientos
+    SET Calificacion_Promedio = (
+        SELECT AVG(Calificacion_Establecimiento)
+        FROM calificaciones_establecimientos
+        WHERE ID_Establecimiento = NEW.ID_Establecimiento
+    )
+    WHERE ID_Establecimiento = NEW.Id_Establecimiento;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -135,8 +157,8 @@ CREATE TABLE `establecimientos` (
 --
 
 INSERT INTO `establecimientos` (`ID_Establecimiento`, `Nombre`, `Direccion`, `Telefono`, `Horario_Apertura`, `Horario_Cierre`, `Calificacion_Promedio`, `foto`, `Categoria`) VALUES
-(1, 'La Tasca del Pueblo', 'Calle del Sol 3, Pueblo A', '123987456', '20:00:00', '22:00:00', 6.33, '\\assets\\images\\entrada (1).png', 1),
-(2, 'Farmacia San Juan', 'Avenida Libertad 7, Pueblo B', '456321789', '09:00:00', '20:00:00', 0.00, '\\assets\\images\\img_productos\\laurel.png', 3),
+(1, 'La Tasca del Pueblo', 'Calle del Sol 3, Pueblo A', '123987456', '20:00:00', '22:00:00', 2.40, '\\assets\\images\\entrada (1).png', 1),
+(2, 'Farmacia San Juan', 'Avenida Libertad 7, Pueblo B', '456321789', '09:00:00', '20:00:00', 3.67, '\\assets\\images\\img_productos\\laurel.png', 3),
 (3, 'Supermercado El Ahorro', 'Plaza Mayor 2, Pueblo C', '789654123', '11:00:00', '21:00:00', 0.00, '\\assets\\images\\banner1.png', 1),
 (4, 'Abordo Maria', 'Avenida Castilla, 7 puerta 3', '654987321', '08:00:00', '22:00:00', 0.00, '\\assets\\images\\banner1.png', 24),
 (5, 'Joso bujarra', 'Calle mis huevikos, 19 gol', '647539322', '08:00:00', '22:00:00', 0.00, '\\assets\\images\\banner1.png', 13),
@@ -198,7 +220,8 @@ INSERT INTO `favoritas_tiendas` (`ID_FavoritasTiendas`, `ID_Usuario`, `ID_Establ
 (79, 6, 4, '2024-11-19 23:51:09'),
 (82, 18, 9, '2024-11-20 17:22:35'),
 (84, 18, 1, '2024-11-21 12:30:44'),
-(90, 6, 5, '2024-12-03 18:07:53');
+(90, 6, 5, '2024-12-03 18:07:53'),
+(92, 6, 1, '2024-12-10 23:22:00');
 
 -- --------------------------------------------------------
 
@@ -467,7 +490,7 @@ ALTER TABLE `calificaciones`
 -- AUTO_INCREMENT de la tabla `calificaciones_establecimientos`
 --
 ALTER TABLE `calificaciones_establecimientos`
-  MODIFY `ID_Calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_Calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias_establecimientos`
@@ -485,7 +508,7 @@ ALTER TABLE `establecimientos`
 -- AUTO_INCREMENT de la tabla `favoritas_tiendas`
 --
 ALTER TABLE `favoritas_tiendas`
-  MODIFY `ID_FavoritasTiendas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `ID_FavoritasTiendas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
