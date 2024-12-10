@@ -24,6 +24,8 @@ exports.getAllCalificacionesEstablecimientosbyID = (req, res) => {
       c.ID_Usuario = u.ID_Usuario
     WHERE 
       c.ID_Establecimiento = ?
+    ORDER BY 
+    c.Fecha_Calificacion DESC
   `;
 
   connection.query(query, [id], (err, results) => {
@@ -51,3 +53,32 @@ exports.getCalificacionPromedioEstablecimientos = (req, res) => {
     }
   );
 };
+
+exports.addComentarioEstablecimiento = (req, res) => {
+  const {body} = req.body;
+  console.log('body: ' + body)
+  if (!body.ID_Usuario || !body.Calificacion_Establecimiento || !body.Comentario || !body.ID_Establecimiento) {
+    return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+  }
+
+  if (isNaN(body.Calificacion_Establecimiento) || body.Calificacion_Establecimiento < 1 || body.Calificacion_Establecimiento > 5) {
+    return res.status(400).json({ message: 'La calificación debe estar entre 1 y 5' });
+  }
+
+  const query = `
+    INSERT INTO calificaciones_establecimientos (ID_Usuario, Calificacion_Establecimiento, Comentario, ID_Establecimiento) VALUES (?, ?, ?, ?)`;
+
+  connection.query(
+    query, [body.ID_Usuario, body.Calificacion_Establecimiento, body.Comentario, body.ID_Establecimiento], 
+    (err, results) => {
+      if (err) {
+        console.error('Error al insertar en la base de datos:', err);
+        return res.status(500).json({ message: 'Error al insertar en la base de datos' });
+      }
+
+      // Responder con éxito al cliente
+      return res.status(201).json({ message: 'Comentario agregado correctamente' });
+    }
+  );
+};
+

@@ -1,6 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { NavbarComponent } from '../../navbar/navbar.component';
-import { ActivatedRoute,Router,RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject, NgModule, OnInit } from '@angular/core';
+import { ActivatedRoute,Router,RouterLink } from '@angular/router';
 import { ApiService } from '../../../service/shop.service';
 import { CommonModule, NgClass } from '@angular/common';
 import { Tiendas } from '../../../common/Tiendas';
@@ -8,12 +7,15 @@ import { CalificacionesService } from '../../../service/calificaciones.service';
 import { MatIcon } from '@angular/material/icon';
 import { FavoriteShopService } from '../../../service/favorite-shop.service';
 import { AuthService } from '../../../service/auth.service';
+import { FormsModule, NgModel } from '@angular/forms';
+import Swal from 'sweetalert2';
+
 
 
 @Component({
   selector: 'app-pagina-producto',
   standalone: true,
-  imports: [RouterLink, NgClass, MatIcon, CommonModule],
+  imports: [RouterLink, NgClass, MatIcon, CommonModule, FormsModule],
   templateUrl: './pagina-producto.component.html',
   styleUrl: './pagina-producto.component.css'
 })
@@ -24,6 +26,8 @@ export class PaginaProductoComponent implements OnInit{
   private readonly authService : AuthService = inject(AuthService)
   constructor(private activeRoute: ActivatedRoute, private router: Router) { }
 
+  rating: number = 0;  // Calificación seleccionada
+  comment: string = '';  // Comentario del usuario
   media: any;
   isFavorite: boolean = false;
   tienda: any;  
@@ -31,7 +35,7 @@ export class PaginaProductoComponent implements OnInit{
   id: string | null = null;
   comentarios: any[] = []
   estrellas: number[] = Array(5).fill(0);
-  
+
   ngOnInit(): void {
     
     const nombreParam = this.activeRoute.snapshot.paramMap.get('id'); 
@@ -197,5 +201,40 @@ export class PaginaProductoComponent implements OnInit{
             }
           );
       }
+  }
+
+  addnewComment(){
+    const token = localStorage.getItem('token');
+    if(token){
+        this.authService.getProfile(token).subscribe(
+          (profile) => {
+            const user = profile;
+            this.apiCalificaciones.addComentarioEstablecimiento(user.ID_Usuario, this.rating, this.comment, this.tienda.ID_Establecimiento ).subscribe(
+              response => {
+                console.log("Comentario Añadido con exito");
+                Swal.fire({
+                  icon: 'success',
+                  title: '¡Gracias!',
+                  text: response.message,
+              });
+                this.getComentarios();
+              },
+              error => {
+                console.error('Error al insertar el comentario:', error);
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: error.error.message,
+              });
+              }
+            );
+          },
+          (error) => {
+            console.error('Error al cargar el perfil', error);
+          }
+        );
+    }else{
+      this.router.navigate(['/iniciarsesion'])
+    }
   }
 }

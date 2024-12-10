@@ -9,4 +9,6 @@
 9. El ssitema de comentarios para establecimientos esta hecho AL 50% FALTA TERMINARLO, diseño, hacer un post para guardar nyuevo comentario etc: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 10. cambair diseño pagina producto, añadir ademas una descirpcion de la tienda, es decir un campo en la base de datos de descirpcion.
 11. Hacer que cuando un usuario se registre, se ponga automaticamente la foto de perfil de NO-User para eso hay que cargar en cloudinary esa foto y ponerle la ruta en la bbdd
+12.Cambiar formato del añadir comentario ademas de hacer que aparezca un mensaje cuando el usuario publique un nuevo cometnario
+
 
