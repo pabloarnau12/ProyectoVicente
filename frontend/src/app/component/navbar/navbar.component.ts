@@ -13,6 +13,7 @@ import { CarritoComponent } from "../carrito/carrito.component";
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  isCollapsed = true;
   isLoggedIn: boolean = false;
   constructor(private authService: AuthService, private router: Router, ) { }
 
@@ -21,6 +22,10 @@ export class NavbarComponent {
   }
 
   
+
+  toggleNavbar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
   checkLoginStatus(): void {
     const token = localStorage.getItem('token');
     if(token){

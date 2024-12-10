@@ -2,26 +2,10 @@
   <div class="container">
     <h2 class="m-4"><strong>Carro</strong></h2>
 
-    <!-- Si el carrito está vacío -->
+
     @if(cart.length != 0) {
       
-    <!-- Si el carrito tiene productos, los mostramos -->
     @for(item of cart; track cart) {
-      <!-- <div class="card mb-3">
-              <div class="row g-0">
-                <div class="col-md-6">
-                  <img [src]="item.Foto" class="img-fluid rounded-start img-carrito" alt="{{ item.Nombre }}">
-                </div>
-                <div class="col-md-6">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ item.Nombre }}</h5>
-                    <p class="card-text">Cantidad: {{ item.quantity }}</p>
-                    <p class="card-text">Precio: {{ item.Precio * item.quantity | currency:'EUR' }}</p>
-                    <button class="btn btn-danger" (click)="removeFromCart(item.ID_Producto)">Eliminar</button>
-                  </div>
-                </div>
-              </div>
-            </div> -->
   
       <div class="container">
         <mat-icon class="m-2 deleteproduct text-secondary" (click)="removeFromCart(item.ID_Producto)">clear</mat-icon>
@@ -72,10 +56,8 @@
 
   </div>
 
-  <!-- Botón para cerrar el carrito -->
-  <!-- <button class="btn btn-primary close-btn" (click)="closeCart()">Cerrar</button> -->
+
   <mat-icon class="m-2 close-btn" (click)="closeCart()">clear</mat-icon>
 </div>
 
-<!-- Botón del carrito (por ejemplo, en el navbar o en cualquier lugar) -->
 <mat-icon class="m-2" (click)="openCart()">shopping_cart</mat-icon>
