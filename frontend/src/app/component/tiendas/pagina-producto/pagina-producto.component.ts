@@ -30,7 +30,8 @@ export class PaginaProductoComponent implements OnInit{
   relatedShops: Tiendas[] = [];
   id: string | null = null;
   comentarios: any[] = []
-
+  estrellas: number[] = Array(5).fill(0);
+  
   ngOnInit(): void {
     
     const nombreParam = this.activeRoute.snapshot.paramMap.get('id'); 

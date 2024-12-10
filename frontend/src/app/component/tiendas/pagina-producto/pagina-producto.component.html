@@ -85,12 +85,17 @@
                 <img class="comentario-foto" [src]="comentario.Usuario_Foto" alt="foto usuario">
                 <div class="comentario-usuario-info">
                   <h5 class="comentario-usuario">{{comentario.Usuario_Nombre}}</h5>
-                  <p class="comentario-fecha">{{comentario.Fecha_Calificacion}}</p>
+                  <p class="comentario-fecha">{{comentario.Fecha_Calificacion | date}}</p>
                 </div>
               </div>
               <div class="comentario-body">
-                 <div class="stars">
-                    <span *ngFor="let star of [].constructor(comentario.Calificacion_Establecimiento)">⭐</span>
+                  <div class="estrellas">
+                    <span
+                      *ngFor="let estrella of estrellas; let i = index"
+                      [class.llena]="i < comentario.Calificacion_Establecimiento"
+                    >
+                      &#9733;
+                    </span>
                   </div>
                   
                 <p class="comentario-texto">{{comentario.Comentario}}</p>
