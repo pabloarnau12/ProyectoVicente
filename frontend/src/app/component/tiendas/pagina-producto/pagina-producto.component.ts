@@ -197,7 +197,7 @@ export class PaginaProductoComponent implements OnInit{
               );
             },
             (error) => {
-              this.router.navigate(['/iniciarsesion'])
+              // this.router.navigate(['/iniciarsesion'])
               console.error('Error al cargar el perfil', error);
             }
           );

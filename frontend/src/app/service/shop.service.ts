@@ -26,4 +26,8 @@ export class ApiService {
   public getProductsDetails(id : string, idProducto : string): Observable <any>{
     return this.http.get<any>(this.urlApiTiendas + id + '/productos/' + idProducto)
   }
+
+  public getMostValoratedShops(limite: number): Observable<any>{
+    return this.http.get<any>(this.urlApiTiendas + '/mejorvaloradas/' + limite)
+  }
 }

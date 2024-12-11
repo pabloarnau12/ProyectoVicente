@@ -101,3 +101,16 @@ exports.getProductoByTiendaAndProductoId = (req, res) => {
     }
   );
 };
+
+exports.getTiendasByCalificacion = (req, res) => {
+  const limit = +req.params.limit;
+
+  const query = 'SELECT * FROM establecimientos ORDER BY Calificacion_Promedio DESC LIMIT ? ';
+  connection.query(query, [limit], (err, results) => {
+    if(err) return res.status(500).send(err);
+    if(!limit) return res.status(404).send("Debes introucir cuantas tiendas quieres mostrar");
+    if (results.length === 0) return res.status(404).send('Error al cargar tiendas mejor valoradas');
+    res.json(results)
+
+  })
+}
