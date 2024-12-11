@@ -197,6 +197,7 @@ export class PaginaProductoComponent implements OnInit{
               );
             },
             (error) => {
+              this.router.navigate(['/iniciarsesion'])
               console.error('Error al cargar el perfil', error);
             }
           );
@@ -231,6 +232,7 @@ export class PaginaProductoComponent implements OnInit{
           },
           (error) => {
             console.error('Error al cargar el perfil', error);
+            this.router.navigate(['/iniciarsesion'])
           }
         );
     }else{

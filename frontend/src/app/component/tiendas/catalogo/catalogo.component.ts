@@ -48,8 +48,8 @@ export class CatalogoComponent {
 
   filterDatabyCategory() : void{
     if(this.categoriasSelected){
-      this.filteredData = this.data.filter(item =>
-        item.Categoria.toLowerCase().includes(this.categoriasSelected.toLowerCase())
+      this.filteredData = this.data.filter(item => 
+        item.Categoria && item.Categoria.includes(this.categoriasSelected)
       );
       console.log("metodea")
     }else{

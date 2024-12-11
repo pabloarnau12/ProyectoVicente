@@ -13,8 +13,8 @@ exports.register = (req, res) => {
     if (err) return res.status(500).json({ message: 'Error al crear el hash de la contraseña' });
 
     connection.query(
-      'INSERT INTO usuarios (Nombre, Apellidos, Email, Telefono, Contraseña) VALUES (?, ?, ?, ?, ?)',
-      [nombre, apellidos, email, telefono, hashedPassword],
+      'INSERT INTO usuarios (Nombre, Apellidos, Email, Telefono, Contraseña, ID_ROL) VALUES (?, ?, ?, ?, ?, ?)',
+      [nombre, apellidos, email, telefono, hashedPassword, 3],
       (err, results) => {
         if (err) return res.status(500).json({ message: 'Error al registrar el usuario' });
         res.status(201).json({ message: 'Usuario registrado con éxito' });
