@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-
-
+import { Tiendas } from '../../../common/Tiendas';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ApiService } from '../../../service/shop.service';
 import { calificacion } from '../../../common/Calificaciones';
@@ -14,55 +13,32 @@ import { CalificacionesService } from '../../../service/calificaciones.service';
   styleUrl: './bestsellers.component.css'
 })
 export class BestsellersComponent implements OnInit{
-  private readonly apiCalificaciones : CalificacionesService = inject(CalificacionesService)
+  private readonly shopService : ApiService = inject(ApiService)
   data : any = [];
-  constructor(private router: Router, private apiService : ApiService) { }
+  constructor(private router: Router) {
 
-  califications: calificacion[] = [];
-  promedio: any;
+   }
+
 
   ngOnInit(): void {
 
-    this.llenardata();
-    this.getCalificacionesbyID();
+    this.loadData();
   }
 
 
-
-  llenardata(){
-    this.apiService.getShopsbyID("1").subscribe (data =>{
-      this.data = data;
-      console.log(this.data);
-      
-    })
-  }
-
-  getCalificacionesbyID() {
-
-      this.apiCalificaciones.getCalificacionesEstablecimientos().subscribe(
-        data => {
-          this.califications = data;
-          console.log(this.califications);
-          // this.calcularPromedio();
+  loadData(){
+    this.shopService.getMostValoratedShops(3).subscribe(
+      {
+        next: value => {
+            this.data = value
+        }, 
+        error: err => {
+          console.error("error al cargar las tiendas mejor valoradas")
         },
-        error => {
-          console.error('Error al obtener calificaciones:', error);
+        complete :  () => {
+          console.log("Carga completa de tiendas mejor valoradas")
         }
-      );
-  }
-  
-  calcularPromedio() {
-    if (this.califications && this.califications.length > 0) {
-      const suma = this.califications.reduce((acumulador, califications) => {
-        // Asumiendo que cada calificación tiene una propiedad 'valor'
-        return acumulador + califications.Calificacion_Establecimiento;
-      }, 0);
-      
-      this.promedio = suma / this.califications.length;
-      console.log('Promedio de calificaciones:', this.promedio);
-    } else {
-      console.log('No hay calificaciones para calcular el promedio.');
-      this.promedio = 0;
-    }
+      }
+    )
   }
 }
