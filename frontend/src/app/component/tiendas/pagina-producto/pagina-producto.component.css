@@ -250,7 +250,7 @@ section.py-5.bg-light {
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(90deg, #FF416C, #FF4B2B);
+    background: linear-gradient(90deg, #77a345, #77a345);
 }
 
 .new-comment h3 {
@@ -277,14 +277,14 @@ section.py-5.bg-light {
 }
 
 .new-comment textarea:focus {
-    border-color: #FF416C;
+    border-color: #77a345;
     outline: none;
     box-shadow: 0 5px 15px rgba(255,65,108,0.1);
     background: #ffffff;
 }
 
 .new-comment button {
-    background: linear-gradient(90deg, #FF416C, #FF4B2B);
+    background: linear-gradient(90deg, #77a345, #77a345);
     color: white;
     border: none;
     padding: 18px 35px;
@@ -297,12 +297,12 @@ section.py-5.bg-light {
     display: inline-block;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 5px 15px rgba(255,65,108,0.2);
+    box-shadow: 0 5px 15px rgba(119,163,69,0.2);
 }
 
 .new-comment button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255,65,108,0.3);
+    box-shadow: 0 8px 20px rgba(119,163,69,1);
 }
 
 .star-rating {
@@ -319,9 +319,8 @@ section.py-5.bg-light {
     color: #ddd;
 }
 
-.star:hover {
-    transform: scale(1.2);
-    color: #FF416C;
+.selected {
+  color: gold; /* o cualquier estilo que desees aplicar */
 }
 /* Media Queries para pequeños dispositivos */
 @media (max-width: 768px) {

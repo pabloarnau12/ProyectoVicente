@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Tiendas } from '../../../common/Tiendas';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../../service/shop.service';
 import { calificacion } from '../../../common/Calificaciones';
 import { CalificacionesService } from '../../../service/calificaciones.service';
@@ -8,7 +8,7 @@ import { CalificacionesService } from '../../../service/calificaciones.service';
 @Component({
   selector: 'app-bestsellers',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink],
   templateUrl: './bestsellers.component.html',
   styleUrl: './bestsellers.component.css'
 })

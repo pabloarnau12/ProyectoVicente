@@ -239,4 +239,16 @@ export class PaginaProductoComponent implements OnInit{
       this.router.navigate(['/iniciarsesion'])
     }
   }
+
+
+  cambiarClase(rating: number) {
+    const estrellas = document.querySelectorAll('.star');
+    estrellas.forEach((estrella, index) => {
+      if (index < rating) {
+        estrella.classList.add('selected');
+      } else {
+        estrella.classList.remove('selected');
+      }
+    });
+  }
 }

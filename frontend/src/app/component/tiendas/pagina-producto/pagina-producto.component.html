@@ -87,11 +87,11 @@
             <h3>Share Your Experience</h3>
             <div class="rating-label">How would you rate this product?</div>
             <div class="star-rating" id="star-rating">
-                <span class="star" (click)="rating=1" data-rating="1">★</span>
-                <span class="star" (click)="rating=2"data-rating="2">★</span>
-                <span class="star" (click)="rating=3"data-rating="3">★</span>
-                <span class="star" (click)="rating=4"data-rating="4">★</span>
-                <span class="star" (click)="rating=5"data-rating="5">★</span>
+                <span class="star" (click)="rating=1; cambiarClase(1) " data-rating="1">★</span>
+                <span class="star" (click)="rating=2; cambiarClase(2)" data-rating="2">★</span>
+                <span class="star" (click)="rating=3; cambiarClase(3) "data-rating="3">★</span>
+                <span class="star" (click)="rating=4; cambiarClase(4)" data-rating="4">★</span>
+                <span class="star" (click)="rating=5; cambiarClase(5)" data-rating="5">★</span>
             </div>
             <textarea [(ngModel)]="comment" placeholder="Tell us what you think about this product. What did you like or dislike? Would you recommend it to others?" rows="4" required></textarea>
             <button (click)="addnewComment()">Post Review</button>
