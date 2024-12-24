@@ -4,9 +4,9 @@
   <div class="store-grid">
 @for (tienda of data; track $index) {
 
-            <div class="store-card">
+            <div class="store-card" [routerLink]="'/catalogo/' + tienda.ID_Establecimiento">
                 <div class="store-image">
-                    <!-- <img src="{{tienda.foto}}" alt="{{tienda.Nombre}}"> -->
+                    <img src="{{tienda.foto}}" alt="{{tienda.Nombre}}">
                 </div>
                 <div class="store-info">
                     <h3>{{tienda.Nombre}}</h3>

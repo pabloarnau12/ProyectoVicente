@@ -5,6 +5,7 @@ const connection = require('../config/db');
 // Registro de usuario
 exports.register = (req, res) => {
   const { nombre, apellidos, email, telefono, password } = req.body;
+  const profile_picture = "https://res.cloudinary.com/dvrcoi13p/image/upload/v1733244931/profile_pictures/no-picture";
   if (!nombre || !apellidos || !email || !telefono || !password) {
     return res.status(400).json({ message: 'Todos los campos son obligatorios' });
   }
@@ -13,8 +14,8 @@ exports.register = (req, res) => {
     if (err) return res.status(500).json({ message: 'Error al crear el hash de la contraseña' });
 
     connection.query(
-      'INSERT INTO usuarios (Nombre, Apellidos, Email, Telefono, Contraseña, ID_ROL) VALUES (?, ?, ?, ?, ?, ?)',
-      [nombre, apellidos, email, telefono, hashedPassword, 3],
+      'INSERT INTO usuarios (Nombre, Apellidos, Email, Telefono, Contraseña, profile_picture ,ID_ROL) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [nombre, apellidos, email, telefono, hashedPassword, profile_picture,3],
       (err, results) => {
         if (err) return res.status(500).json({ message: 'Error al registrar el usuario' });
         res.status(201).json({ message: 'Usuario registrado con éxito' });
