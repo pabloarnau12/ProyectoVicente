@@ -84,8 +84,8 @@
 
     <div class="comentarios-container">
         <div class="new-comment">
-            <h3>Share Your Experience</h3>
-            <div class="rating-label">How would you rate this product?</div>
+            <h3>Comparte tu experiencia</h3>
+            <div class="rating-label">¿Cómo puntuarias este servicio?</div>
             <div class="star-rating" id="star-rating">
                 <span class="star" (click)="rating=1; cambiarClase(1) " data-rating="1">★</span>
                 <span class="star" (click)="rating=2; cambiarClase(2)" data-rating="2">★</span>
@@ -93,8 +93,8 @@
                 <span class="star" (click)="rating=4; cambiarClase(4)" data-rating="4">★</span>
                 <span class="star" (click)="rating=5; cambiarClase(5)" data-rating="5">★</span>
             </div>
-            <textarea [(ngModel)]="comment" placeholder="Tell us what you think about this product. What did you like or dislike? Would you recommend it to others?" rows="4" required></textarea>
-            <button (click)="addnewComment()">Post Review</button>
+            <textarea [(ngModel)]="comment" placeholder="Cuéntanos qué piensas sobre este producto. ¿Qué te gustó o no te gustó? ¿Lo recomendarías a otros?" rows="4" required></textarea>
+            <button (click)="addnewComment()">Añadir Review</button>
         </div>
         @if(comentarios.length > 0){
           @for(comentario of comentarios; track comentarios){
