@@ -8,5 +8,5 @@ router.get('/mejorvaloradas/:limit', tiendasController.getTiendasByCalificacion)
 router.get('/:id', tiendasController.getTiendaById); // Obtener tienda por ID
 router.get('/:id/productos', tiendasController.getProductosByTienda); // Obtener productos por tienda
 router.get('/:id/productos/:idProducto', tiendasController.getProductoByTiendaAndProductoId); // Obtener producto específico por tienda
-
+router.get('/admin/:id', tiendasController.getTiendaByAdmin); // Obtener tienda por ID de administrador
 module.exports = router;

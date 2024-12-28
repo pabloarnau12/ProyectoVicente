@@ -30,4 +30,8 @@ export class ApiService {
   public getMostValoratedShops(limite: number): Observable<any>{
     return this.http.get<any>(this.urlApiTiendas + '/mejorvaloradas/' + limite)
   }
+
+  public getShopByAdmin(id: number): Observable<any>{
+    return this.http.get<any>(this.urlApiTiendas + 'admin/' + id)
+  }
 }

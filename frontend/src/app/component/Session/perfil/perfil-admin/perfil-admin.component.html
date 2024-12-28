@@ -1,1 +1,61 @@
-<p>perfil-admin works!</p>
+<div class="container mt-5">
+    <div class="card shadow mb-5">
+        <div class="row m-3 align-items-center">
+
+          <div class="col-md-3 text-center">
+            @if(user.profile_picture) {
+              <img src="{{user.profile_picture}}" class="rounded-circle img-thumbnail mb-3" alt="Foto de perfil">
+              @if(!isloading) {
+                <form (submit)="onSubmit()">
+                  <input type="file" id="file" (change)="onFileChange($event)" accept="image/*" class="form-control">
+                  <button type="submit" class="btn btn-primary mt-2">Subir Imagen</button>
+                </form>
+              } @else {
+                <div class="text-center mt-3">
+                  <h5>Cargando...</h5>
+                  <div class="spinner-border text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              }
+            } @else {
+              @if(!isloading) {
+                <form (submit)="onSubmit()">
+                  <label for="file" class="form-label">Selecciona una imagen</label>
+                  <input type="file" id="file" (change)="onFileChange($event)" accept="image/*" class="form-control">
+                  <button type="submit" class="btn btn-primary mt-2">Subir Imagen</button>
+                </form>
+              } @else {
+                <div class="text-center mt-3">
+                  <h5>Cargando...</h5>
+                  <div class="spinner-border text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              }
+            }
+          </div>
+    
+          
+          <div class="col-md-8">
+            <h4>Información Personal</h4>
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre completo</label>
+              <input type="text" class="form-control" id="nombre" value="{{user.Nombre}} {{user.Apellidos}}">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" id="email" [(ngModel)]="user.Email" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Teléfono</label>
+              <input type="tel" class="form-control" id="telefono" value="{{user.Telefono}}" readonly>
+            </div>
+            <div class="d-flex">
+              <button class="btn btn-primary me-2">Editar Información</button>
+              <button class="btn btn-outline-danger" (click)="secondOportunityLogout()">Cerrar Sesión</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

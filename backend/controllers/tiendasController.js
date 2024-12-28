@@ -17,15 +17,6 @@ exports.getAllTiendas = (req, res) => {
   connection.query(query, (err, results) => {
     if (err) return res.status(500).send(err);
 
-    // URL de la foto base
-    const defaultPhoto = 'https://via.placeholder.com/300x200.png?text=No+Image+Available'; 
-
-    // Recorremos los resultados y asignamos la foto base si está vacía
-    results.forEach(tienda => {
-      if (!tienda.foto || tienda.foto.trim() === '') {
-        tienda.foto = defaultPhoto; // Asignamos la foto base
-      }
-    });
 
     // Enviamos los resultados con la foto adecuada y el nombre de la categoría
     res.json(results);
@@ -59,17 +50,9 @@ exports.getTiendaById = (req, res) => {
     // Si no se encuentra la tienda
     if (results.length === 0) return res.status(404).send('Tienda no encontrada');
     
-    // URL de la foto base
-    const defaultPhoto = 'https://via.placeholder.com/300x200.png?text=No+Image+Available';
 
     // Obtenemos la tienda
     const tienda = results[0];
-
-    // Verificamos si la foto está vacía y asignamos la foto base
-    if (!tienda.foto || tienda.foto.trim() === '') {
-      tienda.foto = defaultPhoto; // Asignamos la foto base
-      console.log("No hay foto");
-    }
 
     // Enviamos el resultado con la foto y el nombre de la categoría
     res.json(tienda);
@@ -114,3 +97,35 @@ exports.getTiendasByCalificacion = (req, res) => {
 
   })
 }
+
+exports.getTiendaByAdmin = (req, res) => {
+  const { id } = req.params;
+  
+
+  const query = `
+    SELECT 
+      establecimientos.*, 
+      categorias_establecimientos.Nombre AS Categoria
+    FROM 
+      establecimientos
+    LEFT JOIN 
+      categorias_establecimientos
+    ON 
+      establecimientos.Categoria = categorias_establecimientos.ID_Categoria
+    WHERE 
+      establecimientos.ID_Usuario = ?
+  `;
+
+  connection.query(query, [id], (err, results) => {
+    if (err) return res.status(500).send(err);
+
+    // Si no se encuentra la tienda
+    if (results.length === 0) return res.status(404).send('Tienda no encontrada');
+    
+    // Obtenemos la tienda
+    const tienda = results[0];
+
+    // Enviamos el resultado con la foto y el nombre de la categoría
+    res.json(tienda);
+  });
+};
