@@ -1,20 +1,22 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../../../service/auth.service';
 import Swal from 'sweetalert2';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ImageUploadService } from '../../../../service/image-upload.service';
 import { FormsModule } from '@angular/forms';
 import { Tiendas } from '../../../../common/Tiendas';
 import { ApiService } from '../../../../service/shop.service';
+import { MatIcon } from '@angular/material/icon';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-perfil-admin',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, MatIcon],
   templateUrl: './perfil-admin.component.html',
   styleUrl: './perfil-admin.component.css'
 })
-export class PerfilAdminComponent{
+export class PerfilAdminComponent implements OnInit {
   protected readonly authService: AuthService = inject(AuthService);
   protected readonly imageUploadService: ImageUploadService = inject(ImageUploadService);
   protected readonly shopService: ApiService = inject(ApiService);
@@ -25,11 +27,29 @@ export class PerfilAdminComponent{
   selectedFile: File | null = null;
   isloading: Boolean = false;
 
-  constructor(private router: Router){
+  constructor(private router: Router, private route: ActivatedRoute,
+    private viewportScroller: ViewportScroller){
     this.loadProfile();
     
   }
+  ngOnInit() {
+    // Suscríbete a los cambios en el fragmento de la URL
+    this.route.fragment.subscribe(fragment => {
+      if (fragment) {
+        // Espera a que el DOM se actualice
+        setTimeout(() => {
+          this.viewportScroller.scrollToAnchor(fragment);
+        }, 100);
+      }
+    });
+  }
 
+
+  //esto es para que al hacer click en el boton de la barra de navegacion se desplace hasta el fragmento
+  scrollTo(fragment: string): void {
+    this.viewportScroller.scrollToAnchor(fragment);
+  }
+  
   loadProfile(): void {
     const token = localStorage.getItem('token');
     if (token) {
