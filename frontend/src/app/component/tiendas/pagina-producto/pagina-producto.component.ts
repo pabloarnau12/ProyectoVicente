@@ -118,7 +118,6 @@ export class PaginaProductoComponent implements OnInit{
 
   addFavorite(): void {
     const token = localStorage.getItem('token'); // Obteniendo el token del localStorage
-  
     if (token) {
       console.log("el perfil esta logeado");
       this.authService.getProfile(token).subscribe(
@@ -139,6 +138,7 @@ export class PaginaProductoComponent implements OnInit{
         },
         (error) => {
           console.error('Error al cargar el perfil', error);
+          this.router.navigate(['/iniciarsesion']);
         }
       );     
     } else {
