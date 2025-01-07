@@ -9,5 +9,5 @@ router.post('/login', authController.login);
 router.get('/perfil', verifyToken,authController.getPerfil);
 router.patch('/perfil/direccion',verifyToken,authController.updateAddress);
 router.patch('/perfil/status', verifyToken, authController.updateStatus);
-
+router.patch('/perfil/horario', verifyToken, authController.updateHorario);
 module.exports = router;

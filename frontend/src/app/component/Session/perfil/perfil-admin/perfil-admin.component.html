@@ -1,7 +1,19 @@
-<div class="container mt-5">
-    <div class="card shadow mb-5">
-        <div class="row m-3 align-items-center">
+<div class="container-fluid mt-5">
+  <div class="row">
+    <!-- Menú Lateral -->
+    <div class="col-md-3">
+      <div class="list-group">
+        <a [routerLink]="[]" fragment="informacion-personal" class="list-group-item list-group-item-action">Información Personal</a>
+        <a [routerLink]="[]" fragment="otra-informacion" class="list-group-item list-group-item-action">Otra Información</a>
+        <!-- Añade más enlaces según tus necesidades -->
+      </div>
+    </div>
 
+    <!-- Contenido Principal -->
+    <div class="col-md-9">
+      <!-- Información Personal -->
+      <div id="informacion-personal" class="card shadow mb-5">
+        <div class="row m-3 align-items-center">
           <div class="col-md-3 text-center">
             @if(user.profile_picture) {
               <img src="{{user.profile_picture}}" class="rounded-circle img-thumbnail mb-3" alt="Foto de perfil">
@@ -35,8 +47,7 @@
               }
             }
           </div>
-    
-          
+
           <div class="col-md-8">
             <h4>Información Personal</h4>
             <div class="mb-3">
@@ -58,4 +69,54 @@
           </div>
         </div>
       </div>
+
+      <!-- Otra Información -->
+      <div id="otra-informacion" class="card shadow mb-5">
+        <div class="card-body">
+          <h4>Otra Información</h4>
+          <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="direccion" [(ngModel)]="user.Direccion" name="direccion">
+          </div>
+          <div class="mb-3">
+            <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="fechaNacimiento" [(ngModel)]="user.FechaNacimiento" name="fechaNacimiento">
+          </div>
+          <div class="d-flex">
+            <button class="btn btn-primary me-2">Guardar Cambios</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card shadow mb-5">
+            <div class="card-body">
+              <h4>Cambiar Horario</h4>
+              <form (submit)="onSubmitHorario()">
+                <div class="mb-3">
+                  <label for="horaApertura" class="form-label">Hora de Apertura</label>
+                  <input type="time" class="form-control" id="horaApertura" [(ngModel)]="Horario_Apertura" name="horaApertura">
+                </div>
+                <div class="mb-3">
+                  <label for="horaCierre" class="form-label">Hora de Cierre</label>
+                  <input type="time" class="form-control" id="horaCierre" [(ngModel)]="Horario_Cierre" name="horaCierre">
+                </div>
+                <div class="d-flex">
+                  <button type="submit" class="btn btn-primary me-2">Guardar Cambios</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow mb-5">
+            informacion
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

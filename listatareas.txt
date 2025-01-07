@@ -12,3 +12,16 @@
 -> en el perfil de administrador falta hacerlo formado dashboard y traer al front la informacion de la tienda sgyun el ID  de usuario
 
 
+
+
+que quiero que haga un adiministrador desde su dashboard:
+
+poder añadir y eliminar productos.
+
+poder cambiar el horario de cierre y de apertura
+
+poder editar sus productos (foto, precio, descripcion categoria...).
+
+poder añadir descuentos.
+
+ver pedidos activos, enviados, y historial de pedidos

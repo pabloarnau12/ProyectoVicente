@@ -42,5 +42,9 @@ export class AuthService {
     // return this.http.patch('/perfil/status', { status }, { headers });
     return this.http.patch<any>(`${this.apiUrl}/perfil/status`, { status }, { headers });
   }
+
+  updateHorario(Horario_Apertura: string, Horario_Cierre: string, ID_Establecimiento: number , token: string): Observable<any>{
+    return this.http.patch<any>(`${this.apiUrl}/perfil/horario`, { Horario_Apertura, Horario_Cierre, ID_Establecimiento }, { headers: { Authorization: `Bearer ${token}` } });
+  }
   
 }

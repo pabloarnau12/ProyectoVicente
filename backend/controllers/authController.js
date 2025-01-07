@@ -132,3 +132,30 @@ exports.updateStatus = (req, res) => {
     res.json({ message: 'estado actualizado correctamente' });
   });
 }
+
+exports.updateHorario = (req, res ) => {
+  const {Horario_Apertura} = req.body;
+  const {Horario_Cierre} = req.body;
+  const {ID_Establecimiento} = req.body;
+  if(!Horario_Apertura || !Horario_Cierre){
+    return res.status(400).json({ message : 'Es necesario que introduzcas un horario'});
+  }
+
+  const query =
+  `
+    UPDATE establecimientos
+    SET Horario_Apertura = ? , Horario_Cierre = ?
+    WHERE ID_Establecimiento = ?
+  `;
+
+  connection.query(query, [Horario_Apertura, Horario_Cierre, ID_Establecimiento], (err, results) => {
+    if(err){
+      return res.status(500).json({ message: 'Error al actualizar el horario' });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: 'Establecimiento no encontrado' });
+    }
+    console.log("apertura", Horario_Apertura, "cierre", Horario_Cierre, "establecimiento", ID_Establecimiento);
+    res.json({ message: 'Horario actualizado correctamente' });
+  });
+}
