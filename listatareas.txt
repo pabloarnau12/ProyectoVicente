@@ -4,12 +4,12 @@
 4. Editar carrito, tanto estilo como logica, hace falta crear boton de restar producto etc... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 5. El carrito está en el local storage, cualqueira puede cambiar los datos--> recomendacion: hacer una tabla en la base de datos y que cada usuario tenga su carrito !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 6. Terminar Perfil de repartidores
-7. Empezar perfil admin de cada tienda(añadir producto, cambiar stock, quitar producto, crear promociones)
 10. cambair diseño pagina producto, añadir ademas una descirpcion de la tienda, es decir un campo en la base de datos de descirpcion.
 13. adaptar en la landing page la seccion de Categorias populares a catergorias que existan en la APP
 14. Cambiar el nombre de la clase "ApiService" a "Shop service" en shop service y actualizar todas las importaciones
 -> Cambiar la forma de conseguir el ID de la ruta (hacerlo como se debe hacer ahora)
 -> en el perfil de administrador falta hacerlo formado dashboard y traer al front la informacion de la tienda sgyun el ID  de usuario
+->añadir descripcion a los establecimientos, larga y corta.
 
 
 
@@ -21,6 +21,8 @@ poder añadir y eliminar productos.
 poder cambiar el horario de cierre y de apertura 👌
 
 poder editar sus productos (foto, precio, descripcion categoria...).
+
+editar descripcion de la tienda(tanto corta como larga) 
 
 poder añadir descuentos.
 

@@ -7,12 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { Tiendas } from '../../../../common/Tiendas';
 import { ApiService } from '../../../../service/shop.service';
 import { MatIcon } from '@angular/material/icon';
-import { ViewportScroller } from '@angular/common';
+import { CurrencyPipe, ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-perfil-admin',
   standalone: true,
-  imports: [FormsModule, RouterLink, MatIcon],
+  imports: [FormsModule, RouterLink, MatIcon, CurrencyPipe],
   templateUrl: './perfil-admin.component.html',
   styleUrl: './perfil-admin.component.css'
 })
@@ -22,6 +22,7 @@ export class PerfilAdminComponent implements OnInit {
   protected readonly shopService: ApiService = inject(ApiService);
   user: any = {};
   tienda: any = {};
+  productos: any = [];
   Horario_Apertura: any;
   Horario_Cierre: any;
   selectedFile: File | null = null;
@@ -43,8 +44,6 @@ export class PerfilAdminComponent implements OnInit {
       }
     });
   }
-
-
   //esto es para que al hacer click en el boton de la barra de navegacion se desplace hasta el fragmento
   scrollTo(fragment: string): void {
     this.viewportScroller.scrollToAnchor(fragment);
@@ -77,11 +76,24 @@ export class PerfilAdminComponent implements OnInit {
           console.log('Tienda cargada:', this.tienda); // Para depuración
           this.Horario_Apertura = this.tienda.Horario_Apertura;
           this.Horario_Cierre = this.tienda.Horario_Cierre;
+          this.loadProductos();
         },
         (error) => {
           console.error('Error al cargar la tienda', error);
         }
       );
+  }
+
+  loadProductos(): void {
+    this.shopService.getProductsByShop(this.tienda.ID_Establecimiento).subscribe(
+      (productos) => {
+        this.productos = productos;
+        console.log('Productos Cargados:', this.productos);
+      },
+      (error)=> {
+        console.error('error al cargar los productos', error)
+      }
+    )
   }
 
   
@@ -137,7 +149,7 @@ export class PerfilAdminComponent implements OnInit {
             Swal.fire({
               icon: 'success',
               title: '¡Horario Actualizado!',
-              text: 'El horario de apertura ha sido actualizado correctamente.',
+              text: 'El horario ha sido actualizado correctamente.',
             });
           },
           (error: any) => {

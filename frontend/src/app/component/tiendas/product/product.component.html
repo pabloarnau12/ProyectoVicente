@@ -14,7 +14,7 @@
 
   
   <div class="card custom-card">
-    <img src="{{product.Foto}}" alt="Heirloom Tomato" class="card-img-top">
+    <img src="{{product.Foto}}" alt="{{product.Nombre}}" class="card-img-top">
     <div class="card-body">
         <h5 class="product-name">{{product.Nombre}}</h5>
         <p class="price">{{ product.Precio| currency : "EUR" }}</p>
@@ -23,4 +23,4 @@
     <div>
       <button class="btn" (click)="addToCart(product, $event)"><mat-icon>add_shopping_cart</mat-icon></button>
     </div>
-</div>
+  </div>
