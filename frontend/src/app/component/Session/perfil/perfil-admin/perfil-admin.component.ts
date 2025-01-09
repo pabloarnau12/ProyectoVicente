@@ -8,6 +8,7 @@ import { Tiendas } from '../../../../common/Tiendas';
 import { ApiService } from '../../../../service/shop.service';
 import { MatIcon } from '@angular/material/icon';
 import { CurrencyPipe, ViewportScroller } from '@angular/common';
+import { ProductosService } from '../../../../service/productos.service';
 
 @Component({
   selector: 'app-perfil-admin',
@@ -20,6 +21,7 @@ export class PerfilAdminComponent implements OnInit {
   protected readonly authService: AuthService = inject(AuthService);
   protected readonly imageUploadService: ImageUploadService = inject(ImageUploadService);
   protected readonly shopService: ApiService = inject(ApiService);
+  protected readonly productosService: ProductosService = inject(ProductosService);
   user: any = {};
   tienda: any = {};
   productos: any = [];
@@ -164,6 +166,26 @@ export class PerfilAdminComponent implements OnInit {
       }else{
         this.onLogout();
       }
+    }
 
+    deleteProduct(ID_Producto: any){
+        this.productosService.deleteProductoById(ID_Producto, this.tienda.ID_Establecimiento).subscribe(
+          (response: any) => {
+            Swal.fire({
+              icon: 'success',
+              title: '¡Producto Eliminado!',
+              text: 'El producto ha sido eliminado correctamente.',
+            });
+            this.loadProductos();
+          },
+          (error: any) => {
+            console.error('Error al eliminar el producto', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Hubo un error al eliminar el producto. Por favor, intenta nuevamente.',
+            });
+          }
+        );
     }
 }

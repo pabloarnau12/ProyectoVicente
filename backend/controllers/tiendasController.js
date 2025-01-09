@@ -66,7 +66,6 @@ exports.getProductosByTienda = (req, res) => {
   const { id } = req.params;
   connection.query('SELECT * FROM productos WHERE ID_Establecimiento = ?', [id], (err, results) => {
     if (err) return res.status(500).send(err);
-    if (results.length === 0) return res.status(404).send('No se encontraron productos para la tienda especificada');
     res.json(results);
   });
 };

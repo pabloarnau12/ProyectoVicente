@@ -26,3 +26,12 @@ exports.getProductosByTienda = (req, res) => {
     res.json(results);
   });
 };
+
+exports.deleteProductoByID = (req, res) => {
+  const { ID_Producto, ID_Establecimiento } = req.params;
+  connection.query('DELETE FROM productos WHERE ID_Producto = ? AND ID_Establecimiento = ?', [ID_Producto, ID_Establecimiento], (err, results) => {
+    console.log(ID_Producto, ID_Establecimiento);
+    if (err) return res.status(500).send(err);
+    res.json(results)
+  });
+}

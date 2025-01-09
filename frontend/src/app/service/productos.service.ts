@@ -19,5 +19,9 @@ constructor() { }
     return this.http.get<any>(this.urlApiproductos + id)
   }
 
+  public deleteProductoById(ID_Producto : string, ID_Establecimiento : string): Observable <any>{
+    return this.http.delete<any>(this.urlApiproductos + ID_Producto + "/" + ID_Establecimiento)
+  }
+
   
 }
