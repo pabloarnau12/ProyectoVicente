@@ -9,11 +9,12 @@ import { ApiService } from '../../../../service/shop.service';
 import { MatIcon } from '@angular/material/icon';
 import { CurrencyPipe, ViewportScroller } from '@angular/common';
 import { ProductosService } from '../../../../service/productos.service';
-
+import { producto } from '../../../../common/productos';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-perfil-admin',
   standalone: true,
-  imports: [FormsModule, RouterLink, MatIcon, CurrencyPipe],
+  imports: [FormsModule, RouterLink, MatIcon, CurrencyPipe, MatProgressSpinnerModule],
   templateUrl: './perfil-admin.component.html',
   styleUrl: './perfil-admin.component.css'
 })
@@ -29,6 +30,17 @@ export class PerfilAdminComponent implements OnInit {
   Horario_Cierre: any;
   selectedFile: File | null = null;
   isloading: Boolean = false;
+
+  newProduct: producto = {
+    ID_Producto: 0,
+    ID_Establecimiento: 0,
+    Nombre: '',
+    Descripcion: '',
+    Precio: 0,
+    Disponibilidad: 0,
+    Tipo: '',
+    Foto: '',
+  };
 
   constructor(private router: Router, private route: ActivatedRoute,
     private viewportScroller: ViewportScroller){
@@ -130,7 +142,7 @@ export class PerfilAdminComponent implements OnInit {
     onSubmit() {
       if (this.selectedFile) {
         this.isloading = true;
-        this.imageUploadService.uploadImage(this.selectedFile).subscribe({
+        this.imageUploadService.uploadProfileImage(this.selectedFile).subscribe({
           next: (response: any) => {
             console.log('Imagen subida:', response.url);
             this.loadProfile();
@@ -188,4 +200,49 @@ export class PerfilAdminComponent implements OnInit {
           }
         );
     }
+
+
+    addProduct() {
+      this.isloading = true;
+      if (!this.selectedFile) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor, selecciona una imagen para el producto.',
+        });
+        return;
+      }
+  
+      const formData = new FormData();
+      formData.append('Nombre', this.newProduct.Nombre);
+      formData.append('Descripcion', this.newProduct.Descripcion);
+      formData.append('Precio', this.newProduct.Precio.toString());
+      formData.append('Disponibilidad', this.newProduct.Disponibilidad.toString());
+      formData.append('Tipo', this.newProduct.Tipo);
+      formData.append('ID_Establecimiento', this.tienda.ID_Establecimiento);
+      formData.append('image', this.selectedFile);
+  
+      this.productosService.addProducto(formData).subscribe(
+        (response: any) => {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Producto Añadido!',
+            text: 'El producto ha sido añadido correctamente.',
+          });
+          this.loadProductos();
+          this.isloading = false;
+        },
+        (error: any) => {
+          console.error('Error al añadir el producto', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Hubo un error al añadir el producto. Por favor, intenta nuevamente.',
+          });
+
+          this.isloading = false;
+        }
+      );
+    }
+    
 }

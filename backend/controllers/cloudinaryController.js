@@ -1,10 +1,10 @@
 const cloudinary = require('cloudinary').v2;
 const connection = require('../config/db'); 
-exports.uploadImage = (req, res) => {
+exports.uploadProfileImage = (req, res) => {
   const file = req.file; // La imagen cargada
   const id = req.user.id; // ID del usuario (opcional, si lo necesitas para la lógica)
-  const customName = req.body.customName || `user_${ id }`; // Nombre personalizado
-
+  const customName = req.body.customName ||  `user_${ id }` ; // Nombre personalizado
+  console.log('user : ' + id);
   if (!file) {
     return res.status(400).json({ message: 'No se proporcionó ninguna imagen' });
   }
@@ -46,9 +46,62 @@ exports.uploadImage = (req, res) => {
 
         res.status(200).json({
           message: 'Imagen subida con éxito',
-          url: imageUrl,
         });
       });
     }
   );
 };
+
+exports.uploadProductImage = (req, res) => {
+  const file = req.file; // La imagen cargada
+  const ID_Producto = req.body.ID_Producto; // ID del producto (opcional, si lo necesitas para la lógica)
+  const id = req.user.id; // ID del usuario (opcional, si lo necesitas para la lógica)
+  const customName = req.body.customName || `product_${ id }`; // Nombre personalizado
+
+  if (!file) {
+    return res.status(400).json({ message: 'No se proporcionó ninguna imagen' });
+  }
+
+  if (id) {
+    cloudinary.uploader.destroy(id, (err) => {
+      if (err) {
+        console.error('Error al eliminar la imagen anterior:', err);
+      } else {
+        console.log('Imagen anterior eliminada correctamente');
+      }
+    });
+  }
+
+
+  cloudinary.uploader.upload(
+    file.path,
+    {
+      folder: 'products',
+      public_id: customName, // Nombre personalizado
+    },
+    (err, result) => {
+      if (err) {
+        console.error('Error al subir la imagen a Cloudinary:', err);
+        return res.status(500).json({ message: 'Error al subir la imagen' });
+      }
+
+      // Aquí puedes actualizar la base de datos con la URL de la imagen
+      const imageUrl = result.secure_url;
+      const query = `
+        UPDATE productos SET Foto = ? WHERE ID_Producto = ?
+      `;
+
+      connection.query(query, [imageUrl, ID_Producto], (dbErr, dbResults) => {
+        if (dbErr) {
+          console.error('Error al actualizar la base de datos:', dbErr);
+          return res.status(500).json({ message: 'Error al actualizar el perfil' });
+        }
+
+        res.status(200).json({
+          message: 'Imagen subida con éxito',
+          url: imageUrl,
+        });
+      });
+    }
+  );
+}

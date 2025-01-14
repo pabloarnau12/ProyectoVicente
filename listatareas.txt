@@ -10,7 +10,7 @@
 -> Cambiar la forma de conseguir el ID de la ruta (hacerlo como se debe hacer ahora)
 -> en el perfil de administrador falta hacerlo formado dashboard y traer al front la informacion de la tienda sgyun el ID  de usuario
 ->añadir descripcion a los establecimientos, larga y corta.
-
+-> operar con el valor disponibilidad, que se sume que se reste, que aparezca agotado etc
 
 
 

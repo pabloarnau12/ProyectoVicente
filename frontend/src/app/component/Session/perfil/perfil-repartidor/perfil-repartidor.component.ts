@@ -95,7 +95,7 @@ constructor(private authService: AuthService, private router: Router, private im
   onSubmit() {
     if (this.selectedFile) {
       this.isloading = true;
-      this.imageUploadService.uploadImage(this.selectedFile).subscribe({
+      this.imageUploadService.uploadProfileImage(this.selectedFile).subscribe({
         next: (response: any) => {
           console.log('Imagen subida:', response.url);
           this.loadProfile();

@@ -4,6 +4,9 @@ const upload = require('../middleware/cloudinaryMiddleware'); // Middleware conf
 const authMiddleware = require('../middleware/authMiddleware')
 const cloudinaryController = require('../controllers/cloudinaryController'); // Controlador
 
-router.post('/', authMiddleware.verifyToken, upload.single('image'), cloudinaryController.uploadImage);
+router.post('/profile_picture', authMiddleware.verifyToken, upload('profile_pictures').single('image'), cloudinaryController.uploadProfileImage);
+router.post('/product_picture', authMiddleware.verifyToken, upload('products').single('image'), cloudinaryController.uploadProductImage);
+
+
 
 module.exports = router;

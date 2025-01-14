@@ -23,5 +23,8 @@ constructor() { }
     return this.http.delete<any>(this.urlApiproductos + ID_Producto + "/" + ID_Establecimiento)
   }
 
+  public addProducto(producto: FormData): Observable<any> {
+    return this.http.post<any>(this.urlApiproductos, producto);
+  }
   
 }
