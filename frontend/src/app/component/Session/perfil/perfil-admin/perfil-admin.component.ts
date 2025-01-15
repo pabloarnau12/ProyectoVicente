@@ -165,6 +165,7 @@ export class PerfilAdminComponent implements OnInit {
               title: '¡Horario Actualizado!',
               text: 'El horario ha sido actualizado correctamente.',
             });
+            this.loadProfile()
           },
           (error: any) => {
             console.error('Error al actualizar el horario', error);
