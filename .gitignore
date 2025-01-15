@@ -31,6 +31,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
+**/.angular/cache/
 /.angular/cache
 frontend/.angular/cache/17.3.11
 frontend/.angular/cache
