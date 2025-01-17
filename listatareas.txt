@@ -11,12 +11,12 @@
 -> en el perfil de administrador falta hacerlo formado dashboard y traer al front la informacion de la tienda sgyun el ID  de usuario
 ->añadir descripcion a los establecimientos, larga y corta.
 -> operar con el valor disponibilidad, que se sume que se reste, que aparezca agotado etc
-
+-> operar con ingredientes
 
 
 que quiero que haga un adiministrador desde su dashboard:
 
-poder añadir y eliminar productos.
+poder añadir y eliminar productos.👌
 
 poder cambiar el horario de cierre y de apertura 👌
 

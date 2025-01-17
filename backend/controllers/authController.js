@@ -159,3 +159,27 @@ exports.updateHorario = (req, res ) => {
     res.json({ message: 'Horario actualizado correctamente' });
   });
 }
+exports.updateDescription = (req, res ) => {
+  const {Descripcion, ID_Establecimiento} = req.body;
+
+  if(!Descripcion){
+    return res.status(400).json({ message : 'Es necesario que introduzcas una Descripcion'});
+  }
+
+  const query =
+  `
+    UPDATE establecimientos
+    SET Descripcion = ?
+    WHERE ID_Establecimiento = ?
+  `;
+
+  connection.query(query, [Descripcion, ID_Establecimiento], (err, results) => {
+    if(err){
+      return res.status(500).json({ message: 'Error al actualizar la descripcion' });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: 'Establecimiento no encontrado' });
+    }
+    res.json({ message: 'Descripcion actualizada correctamente' });
+  });
+}

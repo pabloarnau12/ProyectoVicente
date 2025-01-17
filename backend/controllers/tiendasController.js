@@ -23,6 +23,37 @@ exports.getAllTiendas = (req, res) => {
   });
 };
 
+exports.getTiendasByPage = (req, res) => {
+  const { page, limit } = req.params;
+    // Convertir los valores a números
+  const pageNumber = parseInt(page, 10);
+  const limitNumber = parseInt(limit, 10);
+  
+  if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
+    return res.status(400).json({ error: 'Los parámetros page y limit deben ser números positivos.' });
+  }
+  const offset = (pageNumber - 1) * limitNumber;
+  console.log("page", pageNumber, "limit", limitNumber, "offset", offset);
+
+    const query = `
+    SELECT 
+      establecimientos.*, 
+      categorias_establecimientos.Nombre AS Categoria
+    FROM 
+      establecimientos
+    LEFT JOIN 
+      categorias_establecimientos
+    ON 
+      establecimientos.Categoria = categorias_establecimientos.ID_Categoria
+    LIMIT ? OFFSET ?;
+  `;
+
+
+  connection.query(query, [limitNumber, offset], (err, results) => {
+    if (err) return res.status(500).send(err);
+    res.json(results);
+  });
+}
 
 
 // Obtener una tienda por ID
@@ -128,3 +159,5 @@ exports.getTiendaByAdmin = (req, res) => {
     res.json(tienda);
   });
 };
+
+

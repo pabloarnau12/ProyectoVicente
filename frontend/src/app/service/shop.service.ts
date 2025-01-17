@@ -15,6 +15,10 @@ export class ApiService {
     return this.http.get<any>(this.urlApiTiendas)
   }
 
+  public getShopsbyPage(page : number): Observable <any>{
+    return this.http.get<any>(this.urlApiTiendas + '/paginacion/' + page + '/9')
+  }
+
   public getShopsbyID(id : string): Observable <any>{
     return this.http.get<any>(this.urlApiTiendas + id)
   }

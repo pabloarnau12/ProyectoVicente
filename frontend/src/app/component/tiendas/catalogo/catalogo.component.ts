@@ -31,9 +31,24 @@ export class CatalogoComponent {
 
   ngOnInit(): void {
     this.llenardata();
+    // this.llenarDatabyPage(1);
     this.loadCategorias();
   }
 
+  llenarDatabyPage(page: number): void{
+    this.apiService.getShopsbyPage(page).subscribe (data => {
+      this.data = data;
+      console.log(this.data);
+    })
+  }
+
+  llenardata(): void{
+    this.apiService.getShops().subscribe (data =>{
+      this.data = data;
+      console.log(this.data);  
+      })
+    }
+  
 
   filterDatabyName(): void {
     if (this.searchTerm) {
@@ -51,18 +66,12 @@ export class CatalogoComponent {
       this.filteredData = this.data.filter(item => 
         item.Categoria && item.Categoria.includes(this.categoriasSelected)
       );
-      console.log("metodea")
+      // console.log("metodea")
     }else{
       this.filteredData = this.data;
     }
   }
 
-  llenardata(): void{
-  this.apiService.getShops().subscribe (data =>{
-    this.data = data;
-    console.log(this.data);  
-    })
-  }
 
   loadCategorias(): void{
     this.categoriasService.getCategoriasEstablecimientos().subscribe(

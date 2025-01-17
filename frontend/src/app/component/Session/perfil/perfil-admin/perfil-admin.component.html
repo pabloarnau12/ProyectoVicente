@@ -57,6 +57,13 @@
                         </span>
                     </div>
                 </div>
+
+                <div class="mt-4">
+                  <div class="small mb-1">Descripcion:</div>
+                  <div class="strong">
+                    {{tienda.Descripcion}}
+                  </div>
+              </div>
             </div>
         </div>
         </div>
@@ -87,9 +94,21 @@
         </div>
         <div class="col-md-6">
           <div class="card shadow mb-5">
-            <h4>Cambiar Descripcion</h4>
+            <div class="card-body">
+              <h4 class="card-title">Cambiar Descripcion</h4>
+              <form (submit)="onSubmitDescripcion()">
+                <div class="mb-3">
+                  <label for="Descripcion" class="form-label">Editar Descripcion</label>
+                  <input type="text" class="form-control" id="Descripcion" [(ngModel)]="Descripcion" name="Descripcion">
+                </div>
+                <div class="d-flex">
+                  <button type="submit" class="btn btn-primary me-2">Guardar Cambios</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
+        
       </div>
 
       <!-- <div class="col-md-9"> -->

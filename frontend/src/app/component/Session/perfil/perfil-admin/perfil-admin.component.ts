@@ -28,9 +28,9 @@ export class PerfilAdminComponent implements OnInit {
   productos: any = [];
   Horario_Apertura: any;
   Horario_Cierre: any;
+  Descripcion: any
   selectedFile: File | null = null;
   isloading: Boolean = false;
-
   newProduct: producto = {
     ID_Producto: 0,
     ID_Establecimiento: 0,
@@ -90,6 +90,7 @@ export class PerfilAdminComponent implements OnInit {
           console.log('Tienda cargada:', this.tienda); // Para depuración
           this.Horario_Apertura = this.tienda.Horario_Apertura;
           this.Horario_Cierre = this.tienda.Horario_Cierre;
+          this.Descripcion = this.tienda.Descripcion;
           this.loadProductos();
         },
         (error) => {
@@ -173,6 +174,33 @@ export class PerfilAdminComponent implements OnInit {
               icon: 'error',
               title: 'Oops...',
               text: 'Hubo un error al actualizar el horario. Por favor, intenta nuevamente.',
+            });
+          }
+        );
+      }else{
+        this.onLogout();
+      }
+    }
+
+
+    onSubmitDescripcion() {
+      const token = localStorage.getItem('token');
+      if (token) {
+        this.authService.updateDescription(this.Descripcion, this.tienda.ID_Establecimiento, token).subscribe(
+          (response: any) => {
+            Swal.fire({
+              icon: 'success',
+              title: '¡Descripcion Actualizada!',
+              text: 'La descripcion ha sido actualizada correctamente.',
+            });
+            this.loadProfile()
+          },
+          (error: any) => {
+            console.error('Error al actualizar el horario', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Hubo un error al actualizar la Descripcion. Por favor, intenta nuevamente.',
             });
           }
         );
