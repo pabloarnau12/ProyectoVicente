@@ -7,14 +7,15 @@ import { FormsModule } from '@angular/forms';
 import { Tiendas } from '../../../../common/Tiendas';
 import { ApiService } from '../../../../service/shop.service';
 import { MatIcon } from '@angular/material/icon';
-import { CurrencyPipe, ViewportScroller } from '@angular/common';
+import { CurrencyPipe, DatePipe, JsonPipe, ViewportScroller } from '@angular/common';
 import { ProductosService } from '../../../../service/productos.service';
 import { producto } from '../../../../common/productos';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ordersService } from '../../../../service/orders.service';
 @Component({
   selector: 'app-perfil-admin',
   standalone: true,
-  imports: [FormsModule, RouterLink, MatIcon, CurrencyPipe, MatProgressSpinnerModule],
+  imports: [FormsModule, RouterLink, MatIcon, CurrencyPipe, MatProgressSpinnerModule, DatePipe],
   templateUrl: './perfil-admin.component.html',
   styleUrl: './perfil-admin.component.css'
 })
@@ -23,12 +24,14 @@ export class PerfilAdminComponent implements OnInit {
   protected readonly imageUploadService: ImageUploadService = inject(ImageUploadService);
   protected readonly shopService: ApiService = inject(ApiService);
   protected readonly productosService: ProductosService = inject(ProductosService);
+  protected readonly ordersService: ordersService = inject(ordersService);
   user: any = {};
   tienda: any = {};
   productos: any = [];
   Horario_Apertura: any;
   Horario_Cierre: any;
   Descripcion: any
+  Pedidos: any = [];
   selectedFile: File | null = null;
   isloading: Boolean = false;
   newProduct: producto = {
@@ -70,7 +73,7 @@ export class PerfilAdminComponent implements OnInit {
         (profile) => {
           this.user = profile;
           console.log('Perfil cargado:', this.user); // Para depuración
-          this.loadTienda();
+          this.loadTienda(); 
         },
         (error) => {
           console.error('Error al cargar el perfil', error);
@@ -92,6 +95,7 @@ export class PerfilAdminComponent implements OnInit {
           this.Horario_Cierre = this.tienda.Horario_Cierre;
           this.Descripcion = this.tienda.Descripcion;
           this.loadProductos();
+          this.getOrders();
         },
         (error) => {
           console.error('Error al cargar la tienda', error);
@@ -273,5 +277,23 @@ export class PerfilAdminComponent implements OnInit {
         }
       );
     }
+
+    getOrders(){
+      this.ordersService.getOrdersbyShop(this.tienda.ID_Establecimiento).subscribe(
+        (response: any) => {
+          this.Pedidos = response;
+          this.Pedidos = response.map((pedido: any) => {
+            return {
+              ...pedido,
+              productos: JSON.parse(pedido.productos)
+            };
+          });
+          console.log('Pedidos:', response);
+        },
+        (error: any) => {
+          console.error('Error al cargar los pedidos', error);
+        }
+      );
+    } 
     
 }
