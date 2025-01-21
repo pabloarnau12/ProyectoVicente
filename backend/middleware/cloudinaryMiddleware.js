@@ -8,7 +8,7 @@ const getStorage = (folder) => {
     cloudinary: cloudinary,
     params: {
       folder: folder, // Aquí le pasamos la carpeta dinámica
-      allowed_formats: ['jpg', 'png', 'jpeg'], // Extensiones permitidas
+      allowed_formats: ['jpg', 'png', 'jpeg', 'webp'], // Extensiones permitidas
     },
   });
 };
