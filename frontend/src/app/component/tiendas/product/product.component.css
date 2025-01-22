@@ -1,7 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-}
+
 .custom-card {
     width: 100%;
     height: 350px; /* Altura fija para todas las tarjetas */
@@ -42,3 +39,25 @@ body {
     color: #888;
     margin-top: 5px;
 }
+
+.custom-card {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .custom-card .card-img-top {
+    transition: transform 0.3s ease;
+  }
+  
+  .custom-card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+  
+  .custom-card .badge {
+    font-size: 0.75rem;
+    padding: 0.5em 0.75em;
+  }
+  
+  .text-decoration-line-through {
+    text-decoration: line-through;
+  }

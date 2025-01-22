@@ -6,8 +6,7 @@ const promocionesController = require('../controllers/promocionesController');
 router.post('/', promocionesController.addPromotion);
 router.delete('/:id', promocionesController.deletePromotion);
 router.patch('/estado/:id', promocionesController.updatePromotionState);
-// router.get('/', promocionesController.getAllPromotions);
-router.get('/shop/:id', promocionesController.getPromotionsByShop);
-
+router.get('/active/shop/:id', promocionesController.getPromotionsByShop); //solo las que estén activas
+router.get('/active', promocionesController.getActivePromotions);
 
 module.exports = router;

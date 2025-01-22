@@ -21,8 +21,11 @@ export class PromocionesService {
     return this.http.patch<any>(`${this.apiUrl}/estado/${id}`, "estado: desactivada");
   }
 
+  public getActivePromotions(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/active`);
+  }
   public getPromotionsByShop(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/shop/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/active/shop/${id}`);
   }
   
 }

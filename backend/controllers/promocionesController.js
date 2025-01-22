@@ -24,7 +24,7 @@ exports.deletePromotion = (req, res) => {
   exports.getPromotionsByShop = (req, res) => {
     const { id } = req.params;
   
-    const query = 'SELECT * FROM promociones WHERE ID_Establecimiento = ?';
+    const query = 'SELECT * FROM promociones WHERE ID_Establecimiento = ? AND estado = "activa"';
     connection.query(query, [id], (err, results) => {
       if (err) return res.status(500).send(err);
       res.status(200).json(results);
@@ -39,6 +39,14 @@ exports.deletePromotion = (req, res) => {
       if (err) return res.status(500).send(err);
       if (results.affectedRows === 0) return res.status(404).json({ message: 'Promoción no encontrada' });
       res.status(200).json({ message: 'Promoción desactivada con éxito' });
+    });
+  };
+
+  exports.getActivePromotions = (req, res) => {
+    const query = 'SELECT * FROM promociones WHERE estado = "activa"';
+    connection.query(query, (err, results) => {
+      if (err) return res.status(500).send(err);
+      res.status(200).json(results);
     });
   };
 

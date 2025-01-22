@@ -1,14 +1,14 @@
 import { Component, inject, Input } from '@angular/core';
 import { producto } from '../../../common/productos';
 import { ApiService } from '../../../service/shop.service';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, NgClass } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { CarritoService } from '../../../service/carrito.service';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CurrencyPipe, MatIcon],
+  imports: [CurrencyPipe, MatIcon, NgClass],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
