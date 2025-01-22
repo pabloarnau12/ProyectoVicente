@@ -311,10 +311,11 @@
                   <div>
                     <h5>{{ promocion.titulo }}</h5>
                     <p>{{ promocion.descripcion }}</p>
-                    <p>Se aplica a producto ID: {{promocion.ID_Producto}}</p>
+                    <p>Se aplica a producto ID: {{promocion.ID_Producto}} </p>
+                    <p>Descuento: {{promocion.descuento}}%</p>
                   </div>
                   
-                  <button class="btn btn-danger" (click)="deletePromotion(promocion.ID_Promocion)">Eliminar</button>
+                  <button class="btn btn-secondary" (click)="desactivarPromocion(promocion.ID_Promocion)">Desactivar</button>
                 </div>
               </div>
           }

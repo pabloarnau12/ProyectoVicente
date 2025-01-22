@@ -9,5 +9,6 @@ export interface producto {
     Disponibilidad: number
     Foto:string
     Tipo: string
+    Precio_Promocion: number
   }
   

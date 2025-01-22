@@ -17,6 +17,10 @@ export class PromocionesService {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 
+  public desactivarPromotion(id: number): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/estado/${id}`, "estado: desactivada");
+  }
+
   public getPromotionsByShop(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/shop/${id}`);
   }

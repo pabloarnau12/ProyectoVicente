@@ -12,15 +12,29 @@
   </div> -->
 
 
-  
-  <div class="card custom-card">
-    <img src="{{product.Foto}}" alt="{{product.Nombre}}" class="card-img-top">
-    <div class="card-body">
-        <h5 class="product-name">{{product.Nombre}}</h5>
-        <p class="price">{{ product.Precio| currency : "EUR" }}</p>
-        <p class="location">{{product.Descripcion}}</p>
+  @if(product.Precio_Promocion === null){
+    <div class="card custom-card">
+      <img src="{{product.Foto}}" alt="{{product.Nombre}}" class="card-img-top">
+      <div class="card-body">
+          <h5 class="product-name">{{product.Nombre}}</h5>
+          <p class="price">{{ product.Precio| currency : "EUR" }}</p>
+          <p class="location">{{product.Descripcion}}</p>
+      </div>
+      <div>
+        <button class="btn" (click)="addToCart(product, $event)"><mat-icon>add_shopping_cart</mat-icon></button>
+      </div>
     </div>
-    <div>
-      <button class="btn" (click)="addToCart(product, $event)"><mat-icon>add_shopping_cart</mat-icon></button>
+  }@else{
+    <div class="card custom-card">
+      <img src="{{product.Foto}}" alt="{{product.Nombre}}" class="card-img-top">
+      <div class="card-body">
+          <h5 class="product-name">{{product.Nombre}}</h5>
+          <p class="price">{{ product.Precio| currency : "EUR" }}</p>
+          <p>Precio Con Promoción: {{product.Precio_Promocion| currency : "EUR" }}</p>
+          <p class="location">{{product.Descripcion}}</p>
+      </div>
+      <div>
+        <button class="btn" (click)="addToCart(product, $event)"><mat-icon>add_shopping_cart</mat-icon></button>
+      </div>
     </div>
-  </div>
+  }

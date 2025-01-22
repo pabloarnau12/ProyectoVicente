@@ -40,7 +40,7 @@ export class PerfilAdminComponent implements OnInit {
   promociones: any = [];
 
 
-  newProduct: producto = {
+  newProduct: any = {
     ID_Producto: 0,
     ID_Establecimiento: 0,
     Nombre: '',
@@ -367,7 +367,7 @@ export class PerfilAdminComponent implements OnInit {
       );
     }
 
-    deletePromotion(id: number) {
+    desactivarPromocion(id: number) {
       this.promocionesService.deletePromotion(id).subscribe(
         (response: any) => {
           Swal.fire({

@@ -31,4 +31,15 @@ exports.deletePromotion = (req, res) => {
     });
   };
 
+  exports.updatePromotionState = (req, res) => {
+    const { id } = req.params;
+    const  {estado} = req.body;
+    const query = 'UPDATE promociones SET estado = ? WHERE ID_Promocion = ?';
+    connection.query(query, [estado, id ], (err, results) => {
+      if (err) return res.status(500).send(err);
+      if (results.affectedRows === 0) return res.status(404).json({ message: 'Promoción no encontrada' });
+      res.status(200).json({ message: 'Promoción desactivada con éxito' });
+    });
+  };
+
 // Otros métodos del controlador...
