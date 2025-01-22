@@ -2,7 +2,9 @@ const connection = require('../config/db');
 
 // Añadir una nueva promoción
 exports.addPromotion = (req, res) => {
-  const { ID_Producto, ID_Establecimiento,titulo, descripcion, descuento, fechaInicio, fechaFin, tipoPromocion, codigoPromocion, condiciones } = req.body;
+  const { ID_Producto, ID_Establecimiento,titulo, descripcion, descuento, fechaFin, tipoPromocion, codigoPromocion, condiciones } = req.body;
+  const fechaInicio = new Date();
+
   const query = 'INSERT INTO promociones (ID_Producto, ID_Establecimiento ,titulo, descripcion, descuento, fechaInicio, fechaFin, tipoPromocion, codigoPromocion, condiciones) VALUES (?, ? ,?, ?, ?, ?, ?, ?, ?, ?)';
   connection.query(query, [ID_Producto, ID_Establecimiento ,titulo, descripcion, descuento, fechaInicio, fechaFin, tipoPromocion, codigoPromocion, condiciones], (err, results) => {
     if (err) return res.status(500).send(err);

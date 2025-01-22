@@ -57,7 +57,6 @@ export class PerfilAdminComponent implements OnInit {
     titulo: '',
     descripcion: '',
     descuento: 0,
-    fechaInicio: '',
     fechaFin: '',
     tipoPromocion: 'porcentaje', // Nuevo campo
     codigoPromocion: '', // Nuevo campo
