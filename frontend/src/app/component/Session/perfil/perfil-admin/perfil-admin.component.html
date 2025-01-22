@@ -304,17 +304,20 @@
           <div class="card-body">
             <h4 class="mb-4">Promociones</h4>
             @for(promocion of promociones ; track promocion){
-            <div >
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <div>
-                  <h5>{{ promocion.titulo }}</h5>
-                  <p>{{ promocion.descripcion }}</p>
-                  <p>Se aplica a producto ID: {{promocion.ID_Producto}}</p>
+            @if(promocion.estado === "activa"){
+              
+              <div >
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div>
+                    <h5>{{ promocion.titulo }}</h5>
+                    <p>{{ promocion.descripcion }}</p>
+                    <p>Se aplica a producto ID: {{promocion.ID_Producto}}</p>
+                  </div>
+                  
+                  <button class="btn btn-danger" (click)="deletePromotion(promocion.ID_Promocion)">Eliminar</button>
                 </div>
-                
-                <button class="btn btn-danger" (click)="deletePromotion(promocion.ID_Promocion)">Eliminar</button>
               </div>
-            </div>
+          }
           }
           </div>
         </div>

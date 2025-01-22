@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-01-2025 a las 16:16:13
+-- Tiempo de generación: 22-01-2025 a las 14:26:34
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -159,52 +159,53 @@ CREATE TABLE `establecimientos` (
   `Calificacion_Promedio` decimal(3,2) DEFAULT 0.00,
   `foto` varchar(255) NOT NULL,
   `Categoria` int(11) DEFAULT NULL,
-  `ID_Usuario` int(11) DEFAULT NULL
+  `ID_Usuario` int(11) DEFAULT NULL,
+  `Descripcion` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `establecimientos`
 --
 
-INSERT INTO `establecimientos` (`ID_Establecimiento`, `Nombre`, `Direccion`, `Telefono`, `Horario_Apertura`, `Horario_Cierre`, `Calificacion_Promedio`, `foto`, `Categoria`, `ID_Usuario`) VALUES
-(1, 'La Tasca del Pueblo', 'Calle del Sol 3, Pueblo A', '123987456', '19:05:00', '22:00:00', 2.67, '\\assets\\images\\entrada (1).png', 1, 6),
-(2, 'Farmacia San Juan', 'Avenida Libertad 7, Pueblo B', '456321789', '09:00:00', '20:00:00', 3.67, '\\assets\\images\\img_productos\\laurel.png', 3, NULL),
-(3, 'Supermercado El Ahorro', 'Plaza Mayor 2, Pueblo C', '789654123', '11:00:00', '21:00:00', 0.00, '\\assets\\images\\banner1.png', 1, NULL),
-(4, 'Abordo Maria', 'Avenida Castilla, 7 puerta 3', '654987321', '08:00:00', '22:00:00', 0.00, '\\assets\\images\\banner1.png', 24, NULL),
-(5, 'Joso bujarra', 'Calle mis huevikos, 19 gol', '647539322', '08:00:00', '22:00:00', 5.00, '\\assets\\images\\banner1.png', 13, NULL),
-(6, 'Cafetería El Descanso', 'Calle Olmo 14, Pueblo D', '659871234', '08:00:00', '23:00:00', 3.00, '', 5, NULL),
-(7, 'Panadería La Espiga', 'Calle Mayor 10, Pueblo E', '658741236', '06:00:00', '14:00:00', 0.00, '', 4, NULL),
-(8, 'Restaurante La Brasa', 'Calle Real 7, Pueblo F', '657843921', '12:00:00', '23:00:00', 1.00, '', 2, NULL),
-(9, 'Librería Central', 'Calle de los libros 25, Pueblo G', '652987412', '09:00:00', '19:00:00', 0.00, '', 7, NULL),
-(10, 'Gimnasio Fitness Plus', 'Avenida Deportes 3, Pueblo H', '632987451', '06:00:00', '22:00:00', 0.00, '', 10, NULL),
-(11, 'Centro Médico Salus', 'Calle Salud 11, Pueblo I', '642157894', '08:00:00', '18:00:00', 0.00, '', 19, NULL),
-(12, 'Clínica Dental Sorriso', 'Plaza Sonrisa 5, Pueblo J', '651237894', '09:00:00', '19:00:00', 0.00, '', 19, NULL),
-(13, 'Taller Mecánico Turbo', 'Calle Motor 12, Pueblo K', '652987412', '08:00:00', '18:00:00', 2.00, '', 2, NULL),
-(14, 'Bar Los Amigos', 'Calle Amistad 8, Pueblo L', '653214785', '12:00:00', '00:00:00', 0.00, '', 12, NULL),
-(15, 'Floristería Las Rosas', 'Calle Jardín 2, Pueblo M', '621478965', '09:00:00', '19:00:00', 0.00, '', 6, NULL),
-(16, 'Pizzería Bella Napoli', 'Calle Italia 3, Pueblo N', '654123789', '13:00:00', '23:00:00', 0.00, '', 14, NULL),
-(17, 'Supermercado Central', 'Calle Comercio 9, Pueblo O', '678953214', '08:00:00', '22:00:00', 0.00, '', 1, NULL),
-(18, 'Heladería La Crema', 'Plaza Fría 4, Pueblo P', '657483219', '11:00:00', '23:00:00', 0.00, '', 4, NULL),
-(19, 'Papelería El Escriba', 'Calle Tinta 7, Pueblo Q', '629783412', '09:00:00', '18:00:00', 0.00, '', 19, NULL),
-(20, 'Zapatería Paso Firme', 'Calle Calzado 16, Pueblo R', '651298734', '10:00:00', '20:00:00', 0.00, '', 16, NULL),
-(21, 'Boutique Chic', 'Avenida Moda 10, Pueblo S', '653147892', '10:00:00', '20:00:00', 0.00, '', 18, NULL),
-(22, 'Frutería El Huerto', 'Calle Fruta 14, Pueblo T', '654871235', '07:00:00', '14:00:00', 0.00, '', 14, NULL),
-(23, 'Restaurante El Sabor', 'Calle Sabor 21, Pueblo U', '657894213', '13:00:00', '23:00:00', 0.00, '', 4, NULL),
-(24, 'Librería Letras', 'Avenida Palabras 13, Pueblo V', '621478965', '10:00:00', '18:00:00', 0.00, '', 21, NULL),
-(25, 'Barbería El Corte', 'Calle Afeitado 6, Pueblo W', '629783412', '09:00:00', '20:00:00', 4.00, '', 20, NULL),
-(26, 'Carnicería El Bistec', 'Calle Carne 3, Pueblo X', '623478951', '09:00:00', '14:00:00', 0.00, '', 17, NULL),
-(27, 'Tienda de Electrónica TecnoPlus', 'Avenida Tecnología 18, Pueblo Y', '634789125', '10:00:00', '21:00:00', 0.00, '', 18, NULL),
-(28, 'Lavandería Rápido Limpio', 'Calle Lavado 12, Pueblo Z', '647298531', '07:00:00', '21:00:00', 4.00, '', 2, NULL),
-(29, 'Cafetería La Taza', 'Plaza Central 9, Pueblo A1', '612478952', '08:00:00', '23:00:00', 5.00, '', 2, NULL),
-(30, 'Farmacia Salud Viva', 'Avenida Medicina 2, Pueblo B1', '623147895', '08:00:00', '20:00:00', 0.00, '', 18, NULL),
-(31, 'Ferretería La Llave', 'Calle Herramientas 17, Pueblo C1', '631478962', '09:00:00', '19:00:00', 0.00, '', 1, NULL),
-(32, 'Peluquería Estilo', 'Calle Corte 11, Pueblo D1', '653789124', '09:00:00', '20:00:00', 0.00, '', 1, NULL),
-(33, 'Centro Estético Belleza Total', 'Avenida Belleza 8, Pueblo E1', '624789513', '10:00:00', '21:00:00', 0.00, '', 22, NULL),
-(34, 'Auto Lavado Express', 'Calle Vehículo 15, Pueblo F1', '621478596', '08:00:00', '20:00:00', 0.00, '', 3, NULL),
-(35, 'Mercado Local', 'Calle Comercio 20, Pueblo G1', '623478596', '07:00:00', '15:00:00', 0.00, '', 21, NULL),
-(36, 'Tienda de Mascotas Peludos', 'Calle Animal 22, Pueblo H1', '622478596', '10:00:00', '19:00:00', 0.00, '', 20, NULL),
-(37, 'Joyería Brillo', 'Calle Oro 8, Pueblo I1', '634789521', '10:00:00', '20:00:00', 0.00, '', 23, NULL),
-(38, 'Óptica Visión Clara', 'Avenida Ojos 4, Pueblo J1', '612478596', '09:00:00', '18:00:00', 0.00, '', 5, NULL);
+INSERT INTO `establecimientos` (`ID_Establecimiento`, `Nombre`, `Direccion`, `Telefono`, `Horario_Apertura`, `Horario_Cierre`, `Calificacion_Promedio`, `foto`, `Categoria`, `ID_Usuario`, `Descripcion`) VALUES
+(1, 'La Tasca del Pueblo', 'Calle del Sol 3, Pueblo A', '123987456', '21:05:00', '22:00:00', 2.67, '\\assets\\images\\entrada (1).png', 1, 6, 'Esta es la descripcion para la descripcion de mi descripcion de mi tienda descripcion'),
+(2, 'Farmacia San Juan', 'Avenida Libertad 7, Pueblo B', '456321789', '09:00:00', '20:00:00', 3.67, '\\assets\\images\\img_productos\\laurel.png', 3, NULL, ''),
+(3, 'Supermercado El Ahorro', 'Plaza Mayor 2, Pueblo C', '789654123', '11:00:00', '21:00:00', 0.00, '\\assets\\images\\banner1.png', 1, NULL, ''),
+(4, 'Abordo Maria', 'Avenida Castilla, 7 puerta 3', '654987321', '08:00:00', '22:00:00', 0.00, '\\assets\\images\\banner1.png', 24, NULL, ''),
+(5, 'Joso bujarra', 'Calle mis huevikos, 19 gol', '647539322', '08:00:00', '22:00:00', 5.00, '\\assets\\images\\banner1.png', 13, NULL, ''),
+(6, 'Cafetería El Descanso', 'Calle Olmo 14, Pueblo D', '659871234', '08:00:00', '23:00:00', 3.00, '', 5, NULL, ''),
+(7, 'Panadería La Espiga', 'Calle Mayor 10, Pueblo E', '658741236', '06:00:00', '14:00:00', 0.00, '', 4, NULL, ''),
+(8, 'Restaurante La Brasa', 'Calle Real 7, Pueblo F', '657843921', '12:00:00', '23:00:00', 1.00, '', 2, NULL, ''),
+(9, 'Librería Central', 'Calle de los libros 25, Pueblo G', '652987412', '09:00:00', '19:00:00', 0.00, '', 7, NULL, ''),
+(10, 'Gimnasio Fitness Plus', 'Avenida Deportes 3, Pueblo H', '632987451', '06:00:00', '22:00:00', 0.00, '', 10, NULL, ''),
+(11, 'Centro Médico Salus', 'Calle Salud 11, Pueblo I', '642157894', '08:00:00', '18:00:00', 0.00, '', 19, NULL, ''),
+(12, 'Clínica Dental Sorriso', 'Plaza Sonrisa 5, Pueblo J', '651237894', '09:00:00', '19:00:00', 0.00, '', 19, NULL, ''),
+(13, 'Taller Mecánico Turbo', 'Calle Motor 12, Pueblo K', '652987412', '08:00:00', '18:00:00', 2.00, '', 2, NULL, ''),
+(14, 'Bar Los Amigos', 'Calle Amistad 8, Pueblo L', '653214785', '12:00:00', '00:00:00', 0.00, '', 12, NULL, ''),
+(15, 'Floristería Las Rosas', 'Calle Jardín 2, Pueblo M', '621478965', '09:00:00', '19:00:00', 0.00, '', 6, NULL, ''),
+(16, 'Pizzería Bella Napoli', 'Calle Italia 3, Pueblo N', '654123789', '13:00:00', '23:00:00', 0.00, '', 14, NULL, ''),
+(17, 'Supermercado Central', 'Calle Comercio 9, Pueblo O', '678953214', '08:00:00', '22:00:00', 0.00, '', 1, NULL, ''),
+(18, 'Heladería La Crema', 'Plaza Fría 4, Pueblo P', '657483219', '11:00:00', '23:00:00', 0.00, '', 4, NULL, ''),
+(19, 'Papelería El Escriba', 'Calle Tinta 7, Pueblo Q', '629783412', '09:00:00', '18:00:00', 0.00, '', 19, NULL, ''),
+(20, 'Zapatería Paso Firme', 'Calle Calzado 16, Pueblo R', '651298734', '10:00:00', '20:00:00', 0.00, '', 16, NULL, ''),
+(21, 'Boutique Chic', 'Avenida Moda 10, Pueblo S', '653147892', '10:00:00', '20:00:00', 0.00, '', 18, NULL, ''),
+(22, 'Frutería El Huerto', 'Calle Fruta 14, Pueblo T', '654871235', '07:00:00', '14:00:00', 0.00, '', 14, NULL, ''),
+(23, 'Restaurante El Sabor', 'Calle Sabor 21, Pueblo U', '657894213', '13:00:00', '23:00:00', 0.00, '', 4, NULL, ''),
+(24, 'Librería Letras', 'Avenida Palabras 13, Pueblo V', '621478965', '10:00:00', '18:00:00', 0.00, '', 21, NULL, ''),
+(25, 'Barbería El Corte', 'Calle Afeitado 6, Pueblo W', '629783412', '09:00:00', '20:00:00', 4.00, '', 20, NULL, ''),
+(26, 'Carnicería El Bistec', 'Calle Carne 3, Pueblo X', '623478951', '09:00:00', '14:00:00', 0.00, '', 17, NULL, ''),
+(27, 'Tienda de Electrónica TecnoPlus', 'Avenida Tecnología 18, Pueblo Y', '634789125', '10:00:00', '21:00:00', 0.00, '', 18, NULL, ''),
+(28, 'Lavandería Rápido Limpio', 'Calle Lavado 12, Pueblo Z', '647298531', '07:00:00', '21:00:00', 4.00, '', 2, NULL, ''),
+(29, 'Cafetería La Taza', 'Plaza Central 9, Pueblo A1', '612478952', '08:00:00', '23:00:00', 5.00, '', 2, NULL, ''),
+(30, 'Farmacia Salud Viva', 'Avenida Medicina 2, Pueblo B1', '623147895', '08:00:00', '20:00:00', 0.00, '', 18, NULL, ''),
+(31, 'Ferretería La Llave', 'Calle Herramientas 17, Pueblo C1', '631478962', '09:00:00', '19:00:00', 0.00, '', 1, NULL, ''),
+(32, 'Peluquería Estilo', 'Calle Corte 11, Pueblo D1', '653789124', '09:00:00', '20:00:00', 0.00, '', 1, NULL, ''),
+(33, 'Centro Estético Belleza Total', 'Avenida Belleza 8, Pueblo E1', '624789513', '10:00:00', '21:00:00', 0.00, '', 22, NULL, ''),
+(34, 'Auto Lavado Express', 'Calle Vehículo 15, Pueblo F1', '621478596', '08:00:00', '20:00:00', 0.00, '', 3, NULL, ''),
+(35, 'Mercado Local', 'Calle Comercio 20, Pueblo G1', '623478596', '07:00:00', '15:00:00', 0.00, '', 21, NULL, ''),
+(36, 'Tienda de Mascotas Peludos', 'Calle Animal 22, Pueblo H1', '622478596', '10:00:00', '19:00:00', 0.00, '', 20, NULL, ''),
+(37, 'Joyería Brillo', 'Calle Oro 8, Pueblo I1', '634789521', '10:00:00', '20:00:00', 0.00, '', 23, NULL, ''),
+(38, 'Óptica Visión Clara', 'Avenida Ojos 4, Pueblo J1', '612478596', '09:00:00', '18:00:00', 0.00, '', 5, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -255,10 +256,14 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`ID_Pedido`, `ID_Usuario`, `ID_Establecimiento`, `Fecha_Hora_Pedido`, `Estado_Pedido`, `Total`, `productos`, `payment_id`, `Direccion`) VALUES
-(4, 6, 1, '2024-11-26 12:50:19', 'En proceso', 12.49, '[{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"},{\"name\":\"Paracetamol\",\"sku\":\"3\",\"price\":\"3.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5C4IAY1BV72026Y69435416', ''),
 (5, 18, 1, '2024-11-26 21:27:51', 'En proceso', 20.99, '[{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2,\"image_url\":\"\"},{\"name\":\"Paracetamol\",\"sku\":\"3\",\"price\":\"3.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5DD2RQ1M9752336B916191E', ''),
 (6, 6, 1, '2024-11-28 18:53:45', 'Pendiente', 12.49, '[{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"},{\"name\":\"Paracetamol\",\"sku\":\"3\",\"price\":\"3.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5ELYKQ1J659179LC9388012', 'C/ Enrique Tierno Galvan Cheste, 7'),
-(7, 6, 1, '2024-12-05 09:18:34', 'Pendiente', 10.50, '[{\"name\":\"Paella\",\"sku\":\"1\",\"price\":\"2.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"},{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5IW7XA28J143174N6043916', 'asdf');
+(7, 6, 1, '2024-12-05 09:18:34', 'Pendiente', 10.50, '[{\"name\":\"Paella\",\"sku\":\"1\",\"price\":\"2.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"},{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5IW7XA28J143174N6043916', 'asdf'),
+(8, 6, 1, '2025-01-18 12:13:46', 'Pendiente', 9.00, '[{\"name\":\"asdf\",\"sku\":\"48\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1},{\"name\":\"castañas de mierda\",\"sku\":\"50\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-M6FZVYI5F970552SX9866019', 'C/ Enrique Tierno Galvan Cheste'),
+(9, 6, 1, '2025-01-18 12:38:41', 'Pendiente', 9.00, '[{\"name\":\"asdf\",\"sku\":\"48\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1},{\"name\":\"castañas de mierda\",\"sku\":\"50\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-M6F2BPA8F260261J19318911', 'C/ Enrique Tierno Galvan Cheste'),
+(10, 6, 1, '2025-01-18 12:45:41', 'Pendiente', 12.00, '[{\"name\":\"asdf\",\"sku\":\"48\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1},{\"name\":\"castañas de mierda\",\"sku\":\"50\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-M6F2E2Q3FM25539HR911954L', 'C/ Enrique Tierno Galvan Cheste'),
+(11, 6, 1, '2025-01-18 12:54:13', 'Pendiente', 12.00, '[{\"name\":\"asdf\",\"sku\":\"48\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1},{\"name\":\"castañas de mierda\",\"sku\":\"50\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-M6F2IZY783296249D7048056', 'C/ Enrique Tierno Galvan Cheste'),
+(12, 22, 1, '2025-01-18 13:37:31', 'Pendiente', 12.00, '[{\"name\":\"producto de mierda la verdad\",\"sku\":\"51\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":4}]', 'PAYID-M6F25DI5SY27643YT236560L', 'C/chiva cheste 7');
 
 -- --------------------------------------------------------
 
@@ -279,8 +284,6 @@ CREATE TABLE `pedido_productos` (
 --
 
 INSERT INTO `pedido_productos` (`ID`, `ID_Pedido`, `ID_Producto`, `cantidad`, `precio`) VALUES
-(1, 1, 1, 2, 3),
-(2, 3, 5, 6, 6),
 (3, 3, 25, 5, 5);
 
 -- --------------------------------------------------------
@@ -297,54 +300,127 @@ CREATE TABLE `productos` (
   `Precio` decimal(10,2) NOT NULL,
   `Disponibilidad` tinyint(1) DEFAULT 1,
   `Foto` varchar(255) NOT NULL,
-  `Tipo` varchar(255) NOT NULL
+  `Tipo` varchar(255) NOT NULL,
+  `Precio_Promocion` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`ID_Producto`, `ID_Establecimiento`, `Nombre`, `Descripcion`, `Precio`, `Disponibilidad`, `Foto`, `Tipo`) VALUES
-(1, 1, 'Paella', 'Paella valenciana tradicional', 15.99, 5, '\\assets\\images\\paella.png', 'guay'),
-(2, 1, 'Tortilla española', 'Tortilla de patatas casera', 8.50, 12, '\\assets\\images\\tortillapatata.png', 'cbhuli'),
-(3, 1, 'Paracetamol', 'Analgésico y antipirético', 3.99, 10, '\\assets\\images\\multivitaminico.jpg', 'asdf'),
-(4, 3, 'Chorizos ', 'Chorizos de la granjaescula Mediterranea ficticia sistematica de estilo neutral in the night.', 6.99, 16, '\\assets\\images\\chorizos.png', 'hgfgh'),
-(5, 1, 'Queso Manchego', 'Queso curado de oveja', 12.50, 8, '\\assets\\images\\queso_manchego.png', 'Lácteos'),
-(6, 2, 'Ibuprofeno 600mg', 'Anti-inflamatorio de venta libre', 5.99, 20, '\\assets\\images\\ibuprofeno.png', 'Medicamento'),
-(7, 2, 'Vitaminas C', 'Suplemento de Vitamina C 500mg', 9.50, 15, '\\assets\\images\\vitamina_c.png', 'Suplemento'),
-(8, 3, 'Pan de Pueblo', 'Pan artesanal hecho a mano', 2.00, 25, '\\assets\\images\\pan_pueblo.png', 'Panadería'),
-(9, 3, 'Aceite de Oliva Virgen Extra', 'Aceite de oliva de la mejor calidad', 7.99, 30, '\\assets\\images\\aceite_oliva.png', 'Aceites'),
-(10, 4, 'Zumo de Naranja Natural', 'Zumo recién exprimido', 3.50, 18, '\\assets\\images\\zumo_naranja.png', 'Bebidas'),
-(11, 5, 'Cerveza Artesanal', 'Cerveza local de malta', 2.99, 40, '\\assets\\images\\cerveza_artesanal.png', 'Bebidas'),
-(12, 6, 'Café Americano', 'Café negro sin azúcar', 1.50, 60, '\\assets\\images\\cafe_americano.png', 'Bebidas'),
-(13, 7, 'Baguette Integral', 'Pan integral crujiente', 1.25, 50, '\\assets\\images\\baguette_integral.png', 'Panadería'),
-(14, 8, 'Pizza Margarita', 'Pizza clásica con tomate y queso', 9.99, 10, '\\assets\\images\\pizza_margarita.png', 'Comida rápida'),
-(15, 9, 'Libro: El Quijote', 'Edición clásica de Don Quijote', 12.00, 15, '\\assets\\images\\el_quijote.png', 'Libros'),
-(16, 9, 'Libro: 1984', 'Obra de George Orwell', 8.50, 20, '\\assets\\images\\1984.png', 'Libros'),
-(17, 10, 'Protein Shake', 'Batido de proteínas para después del gimnasio', 4.99, 25, '\\assets\\images\\protein_shake.png', 'Suplementos'),
-(18, 10, 'Barra Energética', 'Barra energética de chocolate y avena', 2.50, 35, '\\assets\\images\\barra_energetica.png', 'Snacks'),
-(19, 11, 'Consulta General', 'Consulta médica general', 25.00, 0, '\\assets\\images\\consulta_general.png', 'Servicios Médicos'),
-(20, 12, 'Limpieza Dental', 'Servicio de limpieza bucal profesional', 35.00, 0, '\\assets\\images\\limpieza_dental.png', 'Servicios'),
-(21, 13, 'Cambio de Aceite', 'Servicio completo de cambio de aceite para coches', 45.00, 0, '\\assets\\images\\cambio_aceite.png', 'Servicios de Taller'),
-(22, 14, 'Cerveza IPA', 'Cerveza artesanal IPA', 3.50, 50, '\\assets\\images\\ipa.png', 'Bebidas'),
-(23, 15, 'Ramo de Rosas', 'Ramo de 12 rosas frescas', 15.00, 10, '\\assets\\images\\ramo_rosas.png', 'Flores'),
-(24, 16, 'Pizza Hawaiana', 'Pizza con piña y jamón', 10.50, 8, '\\assets\\images\\pizza_hawaiana.png', 'Comida rápida'),
-(25, 17, 'Leche Entera', 'Leche entera de vaca', 1.20, 100, '\\assets\\images\\leche.png', 'Lácteos'),
-(26, 17, 'Arroz Integral', 'Arroz integral ecológico', 2.00, 45, '\\assets\\images\\arroz_integral.png', 'Cereales'),
-(27, 18, 'Helado de Vainilla', 'Helado artesanal de vainilla', 3.75, 12, '\\assets\\images\\helado_vainilla.png', 'Postres'),
-(28, 19, 'Bolígrafos Azules', 'Pack de 10 bolígrafos azules', 1.50, 30, '\\assets\\images\\boligrafos_azules.png', 'Papelería'),
-(29, 19, 'Cuaderno A4', 'Cuaderno de 100 hojas tamaño A4', 3.00, 20, '\\assets\\images\\cuaderno.png', 'Papelería'),
-(30, 20, 'Zapatos de Cuero', 'Zapatos de cuero marrón para hombre', 75.00, 5, '\\assets\\images\\zapatos_cuero.png', 'Calzado'),
-(31, 21, 'Vestido de Verano', 'Vestido de verano floral', 40.00, 12, '\\assets\\images\\vestido_verano.png', 'Ropa'),
-(32, 22, 'Manzanas Fuji', 'Manzanas frescas Fuji', 2.99, 60, '\\assets\\images\\manzanas_fuji.png', 'Frutas'),
-(33, 23, 'Paella Mixta', 'Paella de mariscos y carne', 18.99, 8, '\\assets\\images\\paella_mixta.png', 'Comida'),
-(34, 24, 'El Principito', 'Libro El Principito', 9.99, 25, '\\assets\\images\\principito.png', 'Libros'),
-(35, 25, 'Corte de Cabello', 'Servicio de corte de cabello masculino', 15.00, 0, '\\assets\\images\\corte_cabello.png', 'Servicios'),
-(36, 26, 'Costillas de Cerdo', 'Costillas de cerdo frescas', 8.99, 20, '\\assets\\images\\costillas.png', 'Carnes'),
-(37, 27, 'Smartphone Android', 'Teléfono inteligente con Android', 299.00, 10, '\\assets\\images\\smartphone.png', 'Electrónica'),
-(38, 28, 'Lavado Rápido', 'Lavado rápido para coches', 10.00, 0, '\\assets\\images\\lavado_rapido.png', 'Servicios'),
-(39, 29, 'Café con Leche', 'Café con leche espumoso', 2.00, 50, '\\assets\\images\\cafe_leche.png', 'Bebidas'),
-(40, 30, 'Termómetro Digital', 'Termómetro digital de precisión', 12.99, 15, '\\assets\\images\\termometro_digital.png', 'Equipos médicos');
+INSERT INTO `productos` (`ID_Producto`, `ID_Establecimiento`, `Nombre`, `Descripcion`, `Precio`, `Disponibilidad`, `Foto`, `Tipo`, `Precio_Promocion`) VALUES
+(4, 3, 'Chorizos ', 'Chorizos de la granjaescula Mediterranea ficticia sistematica de estilo neutral in the night.', 6.99, 16, '\\assets\\images\\chorizos.png', 'hgfgh', NULL),
+(6, 2, 'Ibuprofeno 600mg', 'Anti-inflamatorio de venta libre', 5.99, 20, '\\assets\\images\\ibuprofeno.png', 'Medicamento', NULL),
+(7, 2, 'Vitaminas C', 'Suplemento de Vitamina C 500mg', 9.50, 15, '\\assets\\images\\vitamina_c.png', 'Suplemento', NULL),
+(8, 3, 'Pan de Pueblo', 'Pan artesanal hecho a mano', 2.00, 25, '\\assets\\images\\pan_pueblo.png', 'Panadería', NULL),
+(9, 3, 'Aceite de Oliva Virgen Extra', 'Aceite de oliva de la mejor calidad', 7.99, 30, '\\assets\\images\\aceite_oliva.png', 'Aceites', NULL),
+(10, 4, 'Zumo de Naranja Natural', 'Zumo recién exprimido', 3.50, 18, '\\assets\\images\\zumo_naranja.png', 'Bebidas', NULL),
+(11, 5, 'Cerveza Artesanal', 'Cerveza local de malta', 2.99, 40, '\\assets\\images\\cerveza_artesanal.png', 'Bebidas', NULL),
+(12, 6, 'Café Americano', 'Café negro sin azúcar', 1.50, 60, '\\assets\\images\\cafe_americano.png', 'Bebidas', NULL),
+(13, 7, 'Baguette Integral', 'Pan integral crujiente', 1.25, 50, '\\assets\\images\\baguette_integral.png', 'Panadería', NULL),
+(14, 8, 'Pizza Margarita', 'Pizza clásica con tomate y queso', 9.99, 10, '\\assets\\images\\pizza_margarita.png', 'Comida rápida', NULL),
+(15, 9, 'Libro: El Quijote', 'Edición clásica de Don Quijote', 12.00, 15, '\\assets\\images\\el_quijote.png', 'Libros', NULL),
+(16, 9, 'Libro: 1984', 'Obra de George Orwell', 8.50, 20, '\\assets\\images\\1984.png', 'Libros', NULL),
+(17, 10, 'Protein Shake', 'Batido de proteínas para después del gimnasio', 4.99, 25, '\\assets\\images\\protein_shake.png', 'Suplementos', NULL),
+(18, 10, 'Barra Energética', 'Barra energética de chocolate y avena', 2.50, 35, '\\assets\\images\\barra_energetica.png', 'Snacks', NULL),
+(19, 11, 'Consulta General', 'Consulta médica general', 25.00, 0, '\\assets\\images\\consulta_general.png', 'Servicios Médicos', NULL),
+(20, 12, 'Limpieza Dental', 'Servicio de limpieza bucal profesional', 35.00, 0, '\\assets\\images\\limpieza_dental.png', 'Servicios', NULL),
+(21, 13, 'Cambio de Aceite', 'Servicio completo de cambio de aceite para coches', 45.00, 0, '\\assets\\images\\cambio_aceite.png', 'Servicios de Taller', NULL),
+(22, 14, 'Cerveza IPA', 'Cerveza artesanal IPA', 3.50, 50, '\\assets\\images\\ipa.png', 'Bebidas', NULL),
+(23, 15, 'Ramo de Rosas', 'Ramo de 12 rosas frescas', 15.00, 10, '\\assets\\images\\ramo_rosas.png', 'Flores', NULL),
+(24, 16, 'Pizza Hawaiana', 'Pizza con piña y jamón', 10.50, 8, '\\assets\\images\\pizza_hawaiana.png', 'Comida rápida', NULL),
+(25, 17, 'Leche Entera', 'Leche entera de vaca', 1.20, 100, '\\assets\\images\\leche.png', 'Lácteos', NULL),
+(26, 17, 'Arroz Integral', 'Arroz integral ecológico', 2.00, 45, '\\assets\\images\\arroz_integral.png', 'Cereales', NULL),
+(27, 18, 'Helado de Vainilla', 'Helado artesanal de vainilla', 3.75, 12, '\\assets\\images\\helado_vainilla.png', 'Postres', NULL),
+(28, 19, 'Bolígrafos Azules', 'Pack de 10 bolígrafos azules', 1.50, 30, '\\assets\\images\\boligrafos_azules.png', 'Papelería', NULL),
+(29, 19, 'Cuaderno A4', 'Cuaderno de 100 hojas tamaño A4', 3.00, 20, '\\assets\\images\\cuaderno.png', 'Papelería', NULL),
+(30, 20, 'Zapatos de Cuero', 'Zapatos de cuero marrón para hombre', 75.00, 5, '\\assets\\images\\zapatos_cuero.png', 'Calzado', NULL),
+(31, 21, 'Vestido de Verano', 'Vestido de verano floral', 40.00, 12, '\\assets\\images\\vestido_verano.png', 'Ropa', NULL),
+(32, 22, 'Manzanas Fuji', 'Manzanas frescas Fuji', 2.99, 60, '\\assets\\images\\manzanas_fuji.png', 'Frutas', NULL),
+(33, 23, 'Paella Mixta', 'Paella de mariscos y carne', 18.99, 8, '\\assets\\images\\paella_mixta.png', 'Comida', NULL),
+(34, 24, 'El Principito', 'Libro El Principito', 9.99, 25, '\\assets\\images\\principito.png', 'Libros', NULL),
+(35, 25, 'Corte de Cabello', 'Servicio de corte de cabello masculino', 15.00, 0, '\\assets\\images\\corte_cabello.png', 'Servicios', NULL),
+(36, 26, 'Costillas de Cerdo', 'Costillas de cerdo frescas', 8.99, 20, '\\assets\\images\\costillas.png', 'Carnes', NULL),
+(37, 27, 'Smartphone Android', 'Teléfono inteligente con Android', 299.00, 10, '\\assets\\images\\smartphone.png', 'Electrónica', NULL),
+(38, 28, 'Lavado Rápido', 'Lavado rápido para coches', 10.00, 0, '\\assets\\images\\lavado_rapido.png', 'Servicios', NULL),
+(39, 29, 'Café con Leche', 'Café con leche espumoso', 2.00, 50, '\\assets\\images\\cafe_leche.png', 'Bebidas', NULL),
+(40, 30, 'Termómetro Digital', 'Termómetro digital de precisión', 12.99, 15, '\\assets\\images\\termometro_digital.png', 'Equipos médicos', NULL),
+(41, 15, '1', 'castañas', 0.00, 1, '10', '', NULL),
+(42, 15, '1', 'castañas', 0.00, 1, '10', '', NULL),
+(43, 15, '1', 'castañas', 0.00, 1, '10', '', NULL),
+(48, 1, 'asdf', 'asdf', 3.00, 3, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1736874079/products/asdf_1.jpg', '3', NULL),
+(49, 1, 'aa', 'aa', 0.00, 0, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1736874122/products/aa_1.png', 'aa', 0.00),
+(50, 1, 'castañas de mierda', 'estas castañas son como las de antes pero ademas llevan mierda por un tuvo', 3.00, 5, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1736874464/products/casta%C3%B1as%20de%20mierda_1.png', 'mierdeles', NULL),
+(51, 1, 'producto de mierda la verdad', 'esto es un producto de mierda seca', 3.00, 17, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1736874679/products/producto%20de%20mierda%20la%20verdad_1.jpg', 'mierdaseka', 2.70);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `promociones`
+--
+
+CREATE TABLE `promociones` (
+  `ID_Promocion` int(11) NOT NULL,
+  `ID_Producto` int(11) NOT NULL,
+  `ID_Establecimiento` int(11) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `descuento` decimal(10,2) NOT NULL,
+  `tipoPromocion` enum('porcentaje','cantidad') DEFAULT 'porcentaje',
+  `fechaInicio` datetime NOT NULL,
+  `fechaFin` datetime NOT NULL,
+  `estado` enum('activa','desactivada') DEFAULT 'activa',
+  `codigoPromocion` varchar(50) DEFAULT NULL,
+  `condiciones` text DEFAULT NULL,
+  `creadoEn` timestamp NOT NULL DEFAULT current_timestamp(),
+  `actualizadoEn` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `promociones`
+--
+
+INSERT INTO `promociones` (`ID_Promocion`, `ID_Producto`, `ID_Establecimiento`, `titulo`, `descripcion`, `descuento`, `tipoPromocion`, `fechaInicio`, `fechaFin`, `estado`, `codigoPromocion`, `condiciones`, `creadoEn`, `actualizadoEn`) VALUES
+(9, 49, 1, 'PROMO DESACTIVADA', 'ESTA PROMOCION MAÑANA DEBE APARECER DESACTIVADA', 10.00, 'porcentaje', '2025-01-20 00:00:00', '2025-01-21 00:00:00', 'desactivada', 'PROMODESACTIVADA', 'ESTA PROMOCION DEBE APARECER COMO DESACTIVADA', '2025-01-22 13:06:02', '2025-01-22 13:13:41'),
+(11, 50, 1, 'debe aparecer como inactiva', 'debe aparecer como inactiva', 50.00, 'porcentaje', '2025-01-20 00:00:00', '2025-01-21 00:00:00', 'desactivada', 'debe aparecer como inactiva', 'debe aparecer como inactiva', '2025-01-22 13:17:00', '2025-01-22 13:17:41'),
+(12, 50, 1, 'DELIMITER $$  CREATE TRIGGER reset_precio_promocion AFTER UPDATE ON promociones FOR EACH ROW BEGIN     -- Verifica si el estado de la promoción fue cambiado a \"desactivada\"     IF NEW.estado = \'desactivada\' THEN         -- Actualiza el Precio_Promocion de', 'DELIMITER $$  CREATE TRIGGER reset_precio_promocion AFTER UPDATE ON promociones FOR EACH ROW BEGIN     -- Verifica si el estado de la promoción fue cambiado a \"desactivada\"     IF NEW.estado = \'desactivada\' THEN         -- Actualiza el Precio_Promocion de la tabla productos a NULL cuando la promoción está desactivada         UPDATE productos         SET Precio_Promocion = NULL         WHERE ID_Producto = NEW.ID_Producto;     END IF; END $$  DELIMITER ;', 50.00, 'porcentaje', '2025-01-20 00:00:00', '2025-01-21 00:00:00', 'desactivada', 'DELIMITER $$  CREATE TRIGGER reset_precio_promocio', 'DELIMITER $$\n\nCREATE TRIGGER reset_precio_promocion\nAFTER UPDATE ON promociones\nFOR EACH ROW\nBEGIN\n    -- Verifica si el estado de la promoción fue cambiado a \"desactivada\"\n    IF NEW.estado = \'desactivada\' THEN\n        -- Actualiza el Precio_Promocion de la tabla productos a NULL cuando la promoción está desactivada\n        UPDATE productos\n        SET Precio_Promocion = NULL\n        WHERE ID_Producto = NEW.ID_Producto;\n    END IF;\nEND $$\n\nDELIMITER ;\n', '2025-01-22 13:24:19', '2025-01-22 13:24:41');
+
+--
+-- Disparadores `promociones`
+--
+DELIMITER $$
+CREATE TRIGGER `actualizar_precio_producto_porcentaje` AFTER INSERT ON `promociones` FOR EACH ROW BEGIN
+    -- Calcula el nuevo precio con el descuento por porcentaje
+    DECLARE nuevo_precio DECIMAL(10, 2);
+
+    -- Solo se maneja el tipo de promoción 'Porcentaje'
+    IF NEW.tipoPromocion = 'porcentaje' THEN
+        SET nuevo_precio = (
+            SELECT Precio
+            FROM productos
+            WHERE ID_Producto = NEW.ID_Producto
+        ) * (1 - (NEW.descuento / 100));
+
+        -- Actualiza el campo Precio_Promocion en la tabla productos con el nuevo precio calculado
+        UPDATE productos
+        SET Precio_Promocion = nuevo_precio
+        WHERE ID_Producto = NEW.ID_Producto;
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `reset_precio_promocion` AFTER UPDATE ON `promociones` FOR EACH ROW BEGIN
+    -- Verifica si el estado de la promoción fue cambiado a "desactivada"
+    IF NEW.estado = 'desactivada' THEN
+        -- Actualiza el Precio_Promocion de la tabla productos a NULL cuando la promoción está desactivada
+        UPDATE productos
+        SET Precio_Promocion = NULL
+        WHERE ID_Producto = NEW.ID_Producto;
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -398,7 +474,7 @@ INSERT INTO `usuarios` (`ID_Usuario`, `Nombre`, `Apellidos`, `Email`, `Telefono`
 (2, 'Juan', 'Martínez', 'juan@email.com', '987654321', 'Plaza Central 5, Pueblo B', 'contraseña_hash_2', '2024-10-03 09:20:06', '', 'moto', 'ocupado', NULL, 1),
 (3, 'Ana', 'López', 'ana@email.com', '456789123', 'Avenida Principal 10, Pueblo C', '$2b$10$SPfCyfzTAbgl7ux./DaaXuhSS3gSmi3io1flMmv3SZBlxZ9tFktQe', '2024-10-03 09:20:06', '0', NULL, NULL, NULL, NULL),
 (5, 'Julen', 'alonso', '654', 'julenmj@gmail.c', '', '$2b$10$bWBnvotI5DHtieCfzQiEGui0/Kxp7h4pclhc69E1uwRchR31AQ9aK', '2024-10-08 11:27:09', '', NULL, NULL, NULL, NULL),
-(6, 'admin', 'admin', 'admin@gmail.com', '83838', 'parse', '$2b$10$I5zJS09SxgY.l/AaHRyMdO2z6XjD9T8//an8RHz5uwFTZqeIWYuf.', '2024-10-08 11:40:57', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1733244931/profile_pictures/user_6.jpg', NULL, NULL, NULL, 2),
+(6, 'admin', 'admin', 'admin@gmail.com', '83838', 'C/ Enrique Tierno Galvan Cheste', '$2b$10$I5zJS09SxgY.l/AaHRyMdO2z6XjD9T8//an8RHz5uwFTZqeIWYuf.', '2024-10-08 11:40:57', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1736870660/profile_pictures/user_6.png', NULL, NULL, NULL, 2),
 (11, 'Pablo', 'Arnau Lopez', 'pabloarlo00@gmail.com', '646836481', 'asdf', '$2b$10$xIeHT0pe.nHnKl6.0lm6UuempoL4PXThrob6o7tywpHa3CNg5Yp6q', '2024-10-29 13:15:13', '', NULL, NULL, NULL, NULL),
 (12, 'prueba', 'foto perfil', 'pruebafoto@gmail.com', '6468348', '', '$2b$10$uotjzUkWWuR4qSiF8d5qOuB.Amlzub9rgVh5onP2ASll5RA1XqPhe', '2024-11-15 16:59:51', '', NULL, NULL, NULL, NULL),
 (13, 'joso', 'loepz', 'joso@gmail.com', '645', '', '$2b$10$hoinzwVtn2mL90WpAgSpxuK./Dco5EjXPM3R82eJqri.sA/G3UVZq', '2024-11-15 18:31:46', '', NULL, NULL, NULL, NULL),
@@ -407,7 +483,8 @@ INSERT INTO `usuarios` (`ID_Usuario`, `Nombre`, `Apellidos`, `Email`, `Telefono`
 (16, 'pruebaloading', 'pruebaloading', 'loading@gmail.com', '1272', '', '$2b$10$xDojRbsjYIrdmcqpb9SfpOri1QQkVb6HSosId0d/Nnn9mEaH9iSYi', '2024-11-16 13:15:46', '', NULL, NULL, NULL, NULL),
 (17, 'pruieba2', 'prueba2', 'prueba2@gmail.com', '1231', '', '$2b$10$806Gf5O.CbMVggDY567EGenGV7rucYMGXyz/VSx0gVPvA199THzUW', '2024-11-16 13:18:04', '', NULL, NULL, NULL, NULL),
 (18, 'repartidor', 'repartidor', 'repartidor@gmail.com', '6', 'ocupado', '$2b$10$RTbZ2o0b0pdulftrYuUJEu5U25nZN4ra.8RZM/ZcHKDjbx4kUnNJq', '2024-11-20 14:45:24', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1732115433/profile_pictures/user_18.jpg', 'moto', 'en camino', NULL, 1),
-(19, 'Pablo', 'Fortea Garcia', 'pfortea01@gmail.com', '654981234', '', '$2b$10$AROTtmnV.Wwgh86IBDK6Q..57PM98prp6fRkmXqM8QTjmXFGeM6Cy', '2024-12-24 10:55:06', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1733244931/profile_pictures/no-picture', NULL, NULL, NULL, 3);
+(19, 'Pablo', 'Fortea Garcia', 'pfortea01@gmail.com', '654981234', '', '$2b$10$AROTtmnV.Wwgh86IBDK6Q..57PM98prp6fRkmXqM8QTjmXFGeM6Cy', '2024-12-24 10:55:06', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1733244931/profile_pictures/no-picture', NULL, NULL, NULL, 3),
+(22, 'pablo', 'arnau', 'pabloarlo@gmail.com', '646836481', 'C/chiva cheste 7', '$2b$10$oe.lHJvMEMZfzGJ.qQOsO.gO9pfTv.vV9g8RwkPCV/qxiV.ojj49S', '2025-01-18 13:36:31', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1733244931/profile_pictures/no-picture', NULL, NULL, NULL, 3);
 
 --
 -- Índices para tablas volcadas
@@ -474,6 +551,15 @@ ALTER TABLE `productos`
   ADD KEY `ID_Establecimiento` (`ID_Establecimiento`);
 
 --
+-- Indices de la tabla `promociones`
+--
+ALTER TABLE `promociones`
+  ADD PRIMARY KEY (`ID_Promocion`),
+  ADD UNIQUE KEY `codigoPromocion` (`codigoPromocion`),
+  ADD KEY `ID_Producto` (`ID_Producto`),
+  ADD KEY `fk_promociones_establecimientos` (`ID_Establecimiento`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -525,7 +611,7 @@ ALTER TABLE `favoritas_tiendas`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `ID_Pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_Pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido_productos`
@@ -537,7 +623,13 @@ ALTER TABLE `pedido_productos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `ID_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ID_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT de la tabla `promociones`
+--
+ALTER TABLE `promociones`
+  MODIFY `ID_Promocion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -549,7 +641,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas
@@ -603,10 +695,29 @@ ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`ID_Establecimiento`) REFERENCES `establecimientos` (`ID_Establecimiento`);
 
 --
+-- Filtros para la tabla `promociones`
+--
+ALTER TABLE `promociones`
+  ADD CONSTRAINT `fk_promociones_establecimientos` FOREIGN KEY (`ID_Establecimiento`) REFERENCES `establecimientos` (`ID_Establecimiento`) ON DELETE CASCADE,
+  ADD CONSTRAINT `promociones_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`) ON DELETE CASCADE;
+
+--
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `fk_roles` FOREIGN KEY (`ID_ROL`) REFERENCES `roles` (`ID_rol`);
+
+DELIMITER $$
+--
+-- Eventos
+--
+CREATE DEFINER=`root`@`localhost` EVENT `desactivar_promociones_expiradas` ON SCHEDULE EVERY 1 MINUTE STARTS '2025-01-22 14:04:41' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+    UPDATE promociones
+    SET estado = 'desactivada'
+    WHERE fechaFin < CURRENT_DATE AND estado = 'activa';
+END$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
