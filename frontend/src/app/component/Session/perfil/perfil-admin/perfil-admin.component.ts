@@ -12,6 +12,7 @@ import { ProductosService } from '../../../../service/productos.service';
 import { producto } from '../../../../common/productos';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ordersService } from '../../../../service/orders.service';
+import { PromocionesService } from '../../../../service/promociones.service';
 @Component({
   selector: 'app-perfil-admin',
   standalone: true,
@@ -25,6 +26,8 @@ export class PerfilAdminComponent implements OnInit {
   protected readonly shopService: ApiService = inject(ApiService);
   protected readonly productosService: ProductosService = inject(ProductosService);
   protected readonly ordersService: ordersService = inject(ordersService);
+  protected readonly promocionesService: PromocionesService = inject(PromocionesService); // Inyecta el servicio de promociones
+  
   user: any = {};
   tienda: any = {};
   productos: any = [];
@@ -34,6 +37,9 @@ export class PerfilAdminComponent implements OnInit {
   Pedidos: any = [];
   selectedFile: File | null = null;
   isloading: Boolean = false;
+  promociones: any = [];
+
+
   newProduct: producto = {
     ID_Producto: 0,
     ID_Establecimiento: 0,
@@ -45,10 +51,24 @@ export class PerfilAdminComponent implements OnInit {
     Foto: '',
   };
 
+  newPromotion: any = {
+    ID_Producto: 0,
+    ID_Establecimiento: 0,
+    titulo: '',
+    descripcion: '',
+    descuento: 0,
+    fechaInicio: '',
+    fechaFin: '',
+    tipoPromocion: 'porcentaje', // Nuevo campo
+    codigoPromocion: '', // Nuevo campo
+    condiciones: '' // Nuevo campo
+  };
+
+
+
   constructor(private router: Router, private route: ActivatedRoute,
     private viewportScroller: ViewportScroller){
     this.loadProfile();
-    
   }
   ngOnInit() {
     // Suscríbete a los cambios en el fragmento de la URL
@@ -96,6 +116,7 @@ export class PerfilAdminComponent implements OnInit {
           this.Descripcion = this.tienda.Descripcion;
           this.loadProductos();
           this.getOrders();
+          this.loadPromotions();
         },
         (error) => {
           console.error('Error al cargar la tienda', error);
@@ -295,5 +316,76 @@ export class PerfilAdminComponent implements OnInit {
         }
       );
     } 
+
+    loadPromotions() {
+      this.promocionesService.getPromotionsByShop(this.tienda.ID_Establecimiento).subscribe(
+        (response: any) => {
+          this.promociones = response;
+        },
+        (error: any) => {
+          console.error('Error al cargar las promociones', error);
+        }
+      );
+    }
+
+    addPromotion() {
+
+      // const formPromotion = new FormData();
+      // formPromotion.append('ID_Producto', this.newPromotion.ID_Producto);
+      // formPromotion.append('ID_Establecimiento', this.tienda.ID_Establecimiento);
+      // formPromotion.append('titulo', this.newPromotion.titulo);
+      // formPromotion.append('descripcion', this.newPromotion.descripcion);
+      // formPromotion.append('descuento', this.newPromotion.descuento.toString());
+      // formPromotion.append('fechaInicio', this.newPromotion.fechaInicio);
+      // formPromotion.append('fechaFin', this.newPromotion.fechaFin);
+      // formPromotion.append('tipoPromocion', this.newPromotion.tipoPromocion); // Nuevo campo
+      // formPromotion.append('codigoPromocion', this.newPromotion.codigoPromocion); // Nuevo campo
+      // formPromotion.append('condiciones', this.newPromotion.condiciones); // Nuevo campo
+
+      // console.log(this.newPromotion)
+      // console.log(this.tienda.ID_Establecimiento);
+      // console.log(formPromotion);
+
+      this.newPromotion.ID_Establecimiento = this.tienda.ID_Establecimiento;
+      this.promocionesService.addPromotion(this.newPromotion).subscribe(
+        (response: any) => {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Promoción Añadida!',
+            text: 'La promoción ha sido añadida correctamente.',
+          });
+          this.loadPromotions(); // Cargar las promociones después de añadir una nueva
+        },
+        (error: any) => {
+          console.error('Error al añadir la promoción', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Hubo un error al añadir la promoción. Por favor, intenta nuevamente.',
+          });
+        }
+      );
+    }
+
+    deletePromotion(id: number) {
+      this.promocionesService.deletePromotion(id).subscribe(
+        (response: any) => {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Promoción Eliminada!',
+            text: 'La promoción ha sido eliminada correctamente.',
+          });
+          this.loadPromotions(); // Cargar las promociones después de eliminar una
+        },
+        (error: any) => {
+          console.error('Error al eliminar la promoción', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Hubo un error al eliminar la promoción. Por favor, intenta nuevamente.',
+          });
+        }
+      );
+    }
     
 }

@@ -1,3 +1,10 @@
-.list-group-item{
+.list-group {
+    position: sticky;
+    top: 0; /* Define el offset desde la parte superior */
+    z-index: 100; /* Asegúrate de que esté por encima de otros elementos */
+  }
+  
+  .list-group-item {
     cursor: pointer;
-}
+  }
+  

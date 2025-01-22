@@ -2,14 +2,17 @@
   <div class="row">
     <!-- Menú Lateral -->
     <div class="col-md-3">
-      <mat-icon (click)="secondOportunityLogout()">logout</mat-icon>
+      
       <div class="list-group">
-        
+        <mat-icon (click)="secondOportunityLogout()">logout</mat-icon>
         <!-- scrollTo sirve para que se pueda desplazar hasta las secciones -->
+        
         <a (click)="scrollTo('vista-previa')" class="list-group-item list-group-item-action">Vista Previa</a>
         <a (click)="scrollTo('cambiar-horario')" class="list-group-item list-group-item-action">Cambiar horario y Descripcion</a>
         <a (click)="scrollTo('productos')" class="list-group-item list-group-item-action">Gestión De productos</a>
-        <!-- Añade más enlaces según tus necesidades -->
+        <a (click)="scrollTo('pedidos')" class="list-group-item list-group-item-action">Pedidos</a>
+        <a (click)="scrollTo('promociones')" class="list-group-item list-group-item-action">Promociones</a>
+
       </div>
       
     </div>
@@ -181,8 +184,8 @@
         }
         
 
-        <div class="card shadow mb-4">
-          <div class="card-body">
+        <div class="card shadow mb-4" id="pedidos">
+          <div class="card-body"> 
             <h4 class="mb-4">Pedidos</h4>
         
             <!-- Recorre los pedidos usando @for -->
@@ -238,8 +241,82 @@
         </div>
         
         
+        <div class="card shadow mb-4" id="promociones">
+          <div class="card-body">
+            <h4 class="mb-4">Añadir Nueva Promoción</h4>
+            <form (ngSubmit)="addPromotion()" #promotionForm="ngForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="productoPromocion" class="form-label">Producto</label>
+                  <select class="form-control" id="productoPromocion" [(ngModel)]="newPromotion.ID_Producto" name="producto" required>
+                    @for(producto of productos; track productos) {
+                      <option value="{{ producto.ID_Producto }}">{{ producto.Nombre }}</option>
+                    }
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="tituloPromocion" class="form-label">Título de la Promoción</label>
+                  <input type="text" class="form-control" id="tituloPromocion" [(ngModel)]="newPromotion.titulo" name="titulo" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="descripcionPromocion" class="form-label">Descripción</label>
+                  <input type="text" class="form-control" id="descripcionPromocion" [(ngModel)]="newPromotion.descripcion" name="descripcion" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="descuentoPromocion" class="form-label">Descuento (%)</label>
+                  <input type="number" class="form-control" id="descuentoPromocion" [(ngModel)]="newPromotion.descuento" name="descuento" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="fechaInicioPromocion" class="form-label">Fecha de Inicio</label>
+                  <input type="date" class="form-control" id="fechaInicioPromocion" [(ngModel)]="newPromotion.fechaInicio" name="fechaInicio" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="fechaFinPromocion" class="form-label">Fecha de Fin</label>
+                  <input type="date" class="form-control" id="fechaFinPromocion" [(ngModel)]="newPromotion.fechaFin" name="fechaFin" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="tipoPromocion" class="form-label">Tipo de Promoción</label>
+                  <select class="form-control" id="tipoPromocion" [(ngModel)]="newPromotion.tipoPromocion" name="tipoPromocion" required>
+                    <option value="porcentaje">porcentaje</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="codigoPromocion" class="form-label">Código de Promoción</label>
+                  <input type="text" class="form-control" id="codigoPromocion" [(ngModel)]="newPromotion.codigoPromocion" name="codigoPromocion" required>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="condicionesPromocion" class="form-label">Condiciones de la Promoción</label>
+                <textarea class="form-control" id="condicionesPromocion" [(ngModel)]="newPromotion.condiciones" name="condiciones" rows="3" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Añadir Promoción</button>
+            </form>
+          </div>
+        </div>
         
-        
-        
+        <div class="card shadow mb-4">
+          <div class="card-body">
+            <h4 class="mb-4">Promociones</h4>
+            @for(promocion of promociones ; track promocion){
+            <div >
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h5>{{ promocion.titulo }}</h5>
+                  <p>{{ promocion.descripcion }}</p>
+                  <p>Se aplica a producto ID: {{promocion.ID_Producto}}</p>
+                </div>
+                
+                <button class="btn btn-danger" (click)="deletePromotion(promocion.ID_Promocion)">Eliminar</button>
+              </div>
+            </div>
+          }
+          </div>
+        </div>
   </div>
 </div>
