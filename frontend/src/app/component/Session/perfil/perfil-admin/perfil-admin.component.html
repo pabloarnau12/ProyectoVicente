@@ -187,7 +187,19 @@
         <div class="card shadow mb-4" id="pedidos">
           <div class="card-body"> 
             <h4 class="mb-4">Pedidos</h4>
-        
+
+            <div class="mb-4">
+              <label for="estadoFiltro" class="form-label">Filtrar por estado:</label>
+              <select id="estadoFiltro" class="form-select" [(ngModel)]="Estado" (change)="getOrders()">
+                <option value="Pendiente">Pendiente</option>
+                <option value="En proceso">En proceso</option>
+                <option value="En camino">En camino</option>
+                <option value="Entregado">Entregado</option>
+                <option value="Cancelado">Cancelado</option>
+              </select>
+            </div>
+
+            @if(Pedidos.length > 0){
             <!-- Recorre los pedidos usando @for -->
             @for (pedido of Pedidos; track $index) {
               <div class="border rounded p-3 mb-4">
@@ -236,6 +248,11 @@
                   }
                 </div>
               </div>
+            }
+          } @else {
+            <div class="text-center py-5">
+              <h3 class="text-muted">No hay pedidos {{Estado}}</h3>
+            </div>
             }
           </div>
         </div>

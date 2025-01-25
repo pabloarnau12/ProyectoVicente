@@ -22,4 +22,8 @@ export class ordersService {
     return this.http.get<any>(`${this.apiUrl}/pedidos/establecimiento/`+id);
   }
 
+  getOrdersByShopAndState(id: string, estado: string): Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/pedidos/establecimiento/${id}/estado?estado=${encodeURIComponent(estado)}`);
+  }
+
 }

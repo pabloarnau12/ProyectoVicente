@@ -24,6 +24,6 @@ poder editar sus productos (foto, precio, descripcion categoria...).
 
 editar descripcion de la tienda(tanto corta como larga) 👌
 
-poder añadir descuentos.
+poder añadir descuentos. 👌
 
-ver pedidos activos, enviados, y historial de pedidos
+filtrar por: pedidos activos, enviados, y historial de pedidos 👌

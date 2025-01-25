@@ -30,14 +30,21 @@ export class PerfilAdminComponent implements OnInit {
   
   user: any = {};
   tienda: any = {};
-  productos: any = [];
   Horario_Apertura: any;
   Horario_Cierre: any;
   Descripcion: any
+
+
+  productos: any = [];
   Pedidos: any = [];
+  Estado: string = 'Pendiente';
+
+  promociones: any = [];
+
   selectedFile: File | null = null;
   isloading: Boolean = false;
-  promociones: any = [];
+
+
 
 
   newProduct: any = {
@@ -299,8 +306,9 @@ export class PerfilAdminComponent implements OnInit {
     }
 
     getOrders(){
-      this.ordersService.getOrdersbyShop(this.tienda.ID_Establecimiento).subscribe(
+      this.ordersService.getOrdersByShopAndState(this.tienda.ID_Establecimiento, this.Estado).subscribe(
         (response: any) => {
+          console.log(this.tienda.ID_Establecimiento, this.Estado);
           this.Pedidos = response;
           this.Pedidos = response.map((pedido: any) => {
             return {

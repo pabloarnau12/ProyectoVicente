@@ -128,4 +128,90 @@ exports.getPedidosbyShop = (req, res) => {
     });
   });
 };
+
+// Obtener pedidos por tienda y estado
+exports.getPedidosByStateShop = (req, res) => {
+  const { id } = req.params;
+  const Estado_Pedido = req.query.estado;
+
+  // Consulta para obtener los pedidos de la tienda
+  const queryPedidos = `
+    SELECT 
+      pedidos.*, 
+      usuarios.Nombre, 
+      usuarios.Apellidos, 
+      usuarios.Telefono, 
+      establecimientos.foto AS FotoEstablecimiento
+    FROM pedidos 
+    INNER JOIN usuarios 
+      ON pedidos.ID_Usuario = usuarios.ID_Usuario
+    INNER JOIN establecimientos 
+      ON pedidos.ID_Establecimiento = establecimientos.ID_Establecimiento
+    WHERE pedidos.ID_Establecimiento = ? AND pedidos.Estado_Pedido = ?
+  `;
+
+  if(Estado_Pedido === undefined || Estado_Pedido === null) {
+    return res.status(400).json({ error: 'El parámetro estado es requerido.' });
+  }
+
+  if(Estado_Pedido !== 'Pendiente' && Estado_Pedido !== 'En proceso' && Estado_Pedido !== 'En camino' && Estado_Pedido !== 'Entregado' && Estado_Pedido !== 'Cancelado') {
+    return res.status(400).json({ error: 'El estado no es válido.' });
+
+  }
+  connection.query(queryPedidos, [id, Estado_Pedido], (err, pedidos) => {
+    console.log(Estado_Pedido)
+    if (err) return res.status(500).send(err);
+    if (pedidos.length === 0) {
+      return res.status(200).json([]); // Devuelve un arreglo vacío
+    }
+    
+
+    // Obtener los IDs de los productos en los pedidos
+    const productIds = pedidos.flatMap(pedido => JSON.parse(pedido.productos).map(producto => producto.sku));
+
+    // console.log('Product IDs:', productIds);
+
+    if (productIds.length === 0) {
+      return res.json(pedidos);
+    }
+
+    // Consulta para obtener las imágenes de los productos
+    const queryProductos = `
+      SELECT ID_Producto, Foto 
+      FROM productos 
+      WHERE ID_Producto IN (?)
+    `;
+
+    connection.query(queryProductos, [productIds], (err, productos) => {
+      if (err) return res.status(500).send(err);
+
+      // console.log('Productos:', productos);
+
+      // Crear un mapa de productos con sus imágenes
+      const productosMap = productos.reduce((map, producto) => {
+        map[producto.ID_Producto] = producto.Foto;
+        return map;
+      }, {});
+
+      // console.log('Productos Map:', productosMap);
+
+      // Añadir las imágenes de los productos a los pedidos
+      const pedidosConImagenes = pedidos.map(pedido => {
+        const productos = JSON.parse(pedido.productos).map(producto => {
+          return {
+            ...producto,
+            image_url: productosMap[producto.sku] || null
+          };
+        });
+
+        return {
+          ...pedido,
+          productos: JSON.stringify(productos)
+        };
+      });
+
+      res.json(pedidosConImagenes);
+    });
+  });
+};
   
