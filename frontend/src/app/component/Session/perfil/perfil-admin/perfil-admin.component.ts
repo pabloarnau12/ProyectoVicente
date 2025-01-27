@@ -5,7 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ImageUploadService } from '../../../../service/image-upload.service';
 import { FormsModule } from '@angular/forms';
 import { Tiendas } from '../../../../common/Tiendas';
-import { ApiService } from '../../../../service/shop.service';
+import { ShopService } from '../../../../service/shop.service';
 import { MatIcon } from '@angular/material/icon';
 import { CurrencyPipe, DatePipe, JsonPipe, ViewportScroller } from '@angular/common';
 import { ProductosService } from '../../../../service/productos.service';
@@ -23,7 +23,7 @@ import { PromocionesService } from '../../../../service/promociones.service';
 export class PerfilAdminComponent implements OnInit {
   protected readonly authService: AuthService = inject(AuthService);
   protected readonly imageUploadService: ImageUploadService = inject(ImageUploadService);
-  protected readonly shopService: ApiService = inject(ApiService);
+  protected readonly shopService: ShopService = inject(ShopService);
   protected readonly productosService: ProductosService = inject(ProductosService);
   protected readonly ordersService: ordersService = inject(ordersService);
   protected readonly promocionesService: PromocionesService = inject(PromocionesService); // Inyecta el servicio de promociones

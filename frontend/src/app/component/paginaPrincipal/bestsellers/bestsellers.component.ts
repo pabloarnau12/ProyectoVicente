@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Tiendas } from '../../../common/Tiendas';
 import { Router, RouterLink } from '@angular/router';
-import { ApiService } from '../../../service/shop.service';
+import { ShopService } from '../../../service/shop.service';
 import { calificacion } from '../../../common/Calificaciones';
 import { CalificacionesService } from '../../../service/calificaciones.service';
 
@@ -13,7 +13,7 @@ import { CalificacionesService } from '../../../service/calificaciones.service';
   styleUrl: './bestsellers.component.css'
 })
 export class BestsellersComponent implements OnInit{
-  private readonly shopService : ApiService = inject(ApiService)
+  private readonly shopService : ShopService = inject(ShopService)
   data : any = [];
   constructor(private router: Router) {
 

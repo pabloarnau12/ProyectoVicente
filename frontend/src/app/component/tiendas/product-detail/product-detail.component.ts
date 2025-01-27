@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { ApiService } from '../../../service/shop.service';
+import { ShopService } from '../../../service/shop.service';
 import { producto } from '../../../common/productos';
 import { ProductosService } from '../../../service/productos.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -16,7 +16,7 @@ export class ProductDetailComponent {
   @Input('id') id!: string;
   @Input('idProducto') idProducto!: string;
   constructor(private activeRoute: ActivatedRoute) {}
-  private readonly apiService: ApiService = inject(ApiService);
+  private readonly ShopService: ShopService = inject(ShopService);
   private readonly ProductosService: ProductosService = inject(ProductosService);
   
   product !: producto;
@@ -35,7 +35,7 @@ export class ProductDetailComponent {
   
 
   private loadProducts() : void {
-    this.apiService.getProductsDetails(this.id, this.idProducto ).subscribe(
+    this.ShopService.getProductsDetails(this.id, this.idProducto ).subscribe(
       {
       next: value => {this.product = value;
       console.log(this.product);

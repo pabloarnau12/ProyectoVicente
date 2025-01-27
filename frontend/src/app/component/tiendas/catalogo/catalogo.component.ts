@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ApiService } from '../../../service/shop.service';
+import { ShopService } from '../../../service/shop.service';
 import { Tiendas } from '../../../common/Tiendas';
 import { ShopComponent } from "../shop/shop.component";
 import { FormsModule } from '@angular/forms';
@@ -16,7 +16,7 @@ import { CategoriasService } from '../../../service/categorias.service';
   styleUrl: './catalogo.component.css'
 })
 export class CatalogoComponent {
-  private readonly apiService: ApiService = inject(ApiService);
+  private readonly ShopService: ShopService = inject(ShopService);
   private readonly categoriasService: CategoriasService = inject(CategoriasService);
 
   constructor() { }
@@ -36,14 +36,14 @@ export class CatalogoComponent {
   }
 
   llenarDatabyPage(page: number): void{
-    this.apiService.getShopsbyPage(page).subscribe (data => {
+    this.ShopService.getShopsbyPage(page).subscribe (data => {
       this.data = data;
       console.log(this.data);
     })
   }
 
   llenardata(): void{
-    this.apiService.getShops().subscribe (data =>{
+    this.ShopService.getShops().subscribe (data =>{
       this.data = data;
       console.log(this.data);  
       })

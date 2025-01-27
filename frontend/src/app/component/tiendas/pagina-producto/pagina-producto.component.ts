@@ -1,6 +1,6 @@
 import { Component, inject, NgModule, OnInit } from '@angular/core';
 import { ActivatedRoute,Router,RouterLink } from '@angular/router';
-import { ApiService } from '../../../service/shop.service';
+import { ShopService } from '../../../service/shop.service';
 import { CommonModule, NgClass } from '@angular/common';
 import { Tiendas } from '../../../common/Tiendas';
 import { CalificacionesService } from '../../../service/calificaciones.service';
@@ -20,7 +20,7 @@ import Swal from 'sweetalert2';
   styleUrl: './pagina-producto.component.css'
 })
 export class PaginaProductoComponent implements OnInit{
-  private readonly apiService: ApiService = inject(ApiService);
+  private readonly ShopService: ShopService = inject(ShopService);
   private readonly apiCalificaciones : CalificacionesService = inject(CalificacionesService)
   private readonly apiFavoriteShops : FavoriteShopService = inject(FavoriteShopService)
   private readonly authService : AuthService = inject(AuthService)
@@ -50,7 +50,7 @@ export class PaginaProductoComponent implements OnInit{
 
   llenardatabyID() {
     if (this.id !== null) {
-      this.apiService.getShopsbyID(this.id).subscribe(data => {
+      this.ShopService.getShopsbyID(this.id).subscribe(data => {
         this.tienda = data;
         
       });
@@ -73,7 +73,7 @@ export class PaginaProductoComponent implements OnInit{
   
   
   getRelatedShops() {
-    this.apiService.getShops().subscribe(
+    this.ShopService.getShops().subscribe(
       (data: Tiendas[]) => {
 
         this.relatedShops = data.filter(shop => shop.Categoria === this.tienda.Categoria && shop.Nombre != this.tienda.Nombre).slice(0,4);

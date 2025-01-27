@@ -3,7 +3,7 @@ import { Component, inject, Input } from '@angular/core';
 
 import { NgFor, NgIf } from '@angular/common'; // Importa NgFor y NgIf
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { ApiService } from '../../../service/shop.service';
+import { ShopService } from '../../../service/shop.service';
 import { producto } from '../../../common/productos';
 import { ProductComponent } from "../product/product.component";
 import { FormsModule } from '@angular/forms';
@@ -11,14 +11,14 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-productostienda',
   standalone: true,
-  imports: [NgFor, NgIf, RouterLink, RouterLinkActive, ProductComponent, FormsModule], // Añade NgFor y NgIf a los imports
+  imports: [ RouterLink, ProductComponent, FormsModule], // Añade NgFor y NgIf a los imports
   templateUrl: './productostienda.component.html',
   styleUrls: ['./productostienda.component.css']
 })
 export class ProductostiendaComponent {
 
   
-  private readonly apiService: ApiService = inject(ApiService);
+  private readonly ShopService: ShopService = inject(ShopService);
   data : producto[] = [];
   private id!: string;
   constructor(private activeRoute: ActivatedRoute) {}
@@ -50,7 +50,7 @@ export class ProductostiendaComponent {
   }
 
 llenardatabyID(): void {
-  this.apiService.getProductsByShop(this.id).subscribe(
+  this.ShopService.getProductsByShop(this.id).subscribe(
     {
     next: value => {this.data = value;
     console.log(this.data);

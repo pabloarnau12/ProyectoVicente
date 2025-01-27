@@ -5,13 +5,11 @@
 6. Terminar Perfil de repartidores
 10. cambair diseño pagina producto, añadir ademas una descirpcion de la tienda, es decir un campo en la base de datos de descirpcion.
 13. adaptar en la landing page la seccion de Categorias populares a catergorias que existan en la APP
-14. Cambiar el nombre de la clase "ApiService" a "Shop service" en shop service y actualizar todas las importaciones
 -> Cambiar la forma de conseguir el ID de la ruta (hacerlo como se debe hacer ahora)
 -> en el perfil de administrador falta hacerlo formado dashboard y traer al front la informacion de la tienda sgyun el ID  de usuario
-->añadir descripcion a los establecimientos, larga y corta.
 -> operar con el valor disponibilidad, que se sume que se reste, que aparezca agotado etc
 -> operar con ingredientes
-
+-> hacer que si un producto tiene promocion se opere con el campo precio_promocion
 
 que quiero que haga un adiministrador desde su dashboard:
 
