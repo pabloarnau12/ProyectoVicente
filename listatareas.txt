@@ -4,9 +4,7 @@
 5. El carrito está en el local storage, cualqueira puede cambiar los datos--> recomendacion: hacer una tabla en la base de datos y que cada usuario tenga su carrito !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 6. Terminar Perfil de repartidores
 10. cambair diseño pagina producto, añadir ademas una descirpcion de la tienda, es decir un campo en la base de datos de descirpcion.
-13. adaptar en la landing page la seccion de Categorias populares a catergorias que existan en la APP
 -> Cambiar la forma de conseguir el ID de la ruta (hacerlo como se debe hacer ahora)
--> en el perfil de administrador falta hacerlo formado dashboard y traer al front la informacion de la tienda sgyun el ID  de usuario
 -> operar con el valor disponibilidad, que se sume que se reste, que aparezca agotado etc
 -> operar con ingredientes
 -> hacer que si un producto tiene promocion se opere con el campo precio_promocion
