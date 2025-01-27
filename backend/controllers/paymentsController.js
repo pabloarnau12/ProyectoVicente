@@ -70,7 +70,8 @@ paypal.configure({
     paypal.payment.execute(paymentId, executePaymentJson, async (error, payment) => {
       if (error) {
         console.error('Error al completar el pago:', error);
-        return res.status(500).send('Error al completar el pago');
+        // return res.status(500).send('Error al completar el pago');
+        return res.redirect(`${process.env.BASE_URL_FRONTEND}/home`)
       }
       
       try {
@@ -94,7 +95,7 @@ paypal.configure({
           res.status(500).send('Error al guardar el pedido en la base de datos');
         }
 
-        res.json({ message: 'Pago completado con éxito', payment });
+        res.redirect(`${process.env.BASE_URL_FRONTEND}/perfil`);
     } catch (err) {
         console.error('Error al guardar el pedido:', err);
         res.status(500).send('Error al guardar el pedido en la base de datos');
@@ -104,6 +105,6 @@ paypal.configure({
   
   // Manejar cancelación del pago
   exports.paymentCancel = (req, res) => {
-    res.json({ message: 'El pago fue cancelado' });
+    res.redirect(`${process.env.BASE_URL_FRONTEND}/home`);
   };
   
