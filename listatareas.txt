@@ -3,7 +3,6 @@
 4. Editar carrito, tanto estilo como logica, hace falta crear boton de restar producto etc... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 5. El carrito está en el local storage, cualqueira puede cambiar los datos--> recomendacion: hacer una tabla en la base de datos y que cada usuario tenga su carrito !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 6. Terminar Perfil de repartidores
-10. cambair diseño pagina producto, añadir ademas una descirpcion de la tienda, es decir un campo en la base de datos de descirpcion.
 -> Cambiar la forma de conseguir el ID de la ruta (hacerlo como se debe hacer ahora)
 -> operar con el valor disponibilidad, que se sume que se reste, que aparezca agotado etc
 -> operar con ingredientes
