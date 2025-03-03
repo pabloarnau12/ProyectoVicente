@@ -41,22 +41,30 @@
         <!-- Información Personal -->
         <div class="col-md-8">
           <h4>Información Personal</h4>
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre completo</label>
-            <input type="text" class="form-control" id="nombre" value="{{user.Nombre}} {{user.Apellidos}}">
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control" id="email" [(ngModel)]="user.Email" readonly>
-          </div>
-          <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono</label>
-            <input type="tel" class="form-control" id="telefono" value="{{user.Telefono}}" readonly>
-          </div>
-          <div class="d-flex">
-            <button class="btn btn-primary me-2">Editar Información</button>
-            <button class="btn btn-outline-danger" (click)="secondOportunityLogout()">Cerrar Sesión</button>
-          </div>
+          <form [formGroup]="FormUser" (ngSubmit)="onUpdateUser()">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" value="{{user.Nombre}}" formControlName="Nombre">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="apellidos" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="apellidos" value="{{user.Apellidos}}" formControlName="Apellidos">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" id="email"  value="{{user.Email}}"formControlName="Email">
+            </div>
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Teléfono</label>
+              <input type="tel" class="form-control" id="telefono"  value="{{user.Telefono}}" formControlName="Telefono">
+            </div>
+            <div class="d-flex">
+              <button type="submit" class="btn btn-primary me-2">Editar Información</button>
+              <button type="button" class="btn btn-outline-danger" (click)="secondOportunityLogout()">Cerrar Sesión</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

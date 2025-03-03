@@ -27,6 +27,13 @@ export class AuthService {
     console.log('Sesión cerrada correctamente');
     
   }
+  updateUserProfile(user: any, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+    return this.http.patch<any>(`${this.apiUrl}/perfil`, user, { headers });
+  }
 
   updateAddress(direccion: string, token: string): Observable<any> {
     const headers = new HttpHeaders({

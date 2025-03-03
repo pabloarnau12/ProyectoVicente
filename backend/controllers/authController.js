@@ -69,6 +69,32 @@ exports.getPerfil = (req, res) => {
   });
 };
 
+exports.updateProfile = (req, res) => {
+  const { id } = req.user;
+  const { Nombre, Apellidos } = req.body;
+
+  if (!Nombre || !Apellidos) {
+    return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+  }
+
+  const query = `
+    UPDATE usuarios
+    SET Nombre = ?, Apellidos = ?
+    WHERE ID_Usuario = ?
+  `;
+
+  connection.query(query, [Nombre, Apellidos, id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ message: 'Error al actualizar el perfil' });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    res.json({ message: 'Perfil actualizado correctamente' });
+  });
+};
+
 exports.updateAddress = (req, res) =>{
   console.log("entra en el metodo address");
   const { id } = req.user

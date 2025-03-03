@@ -1,18 +1,19 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { AuthService } from '../../../../service/auth.service';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatIcon } from '@angular/material/icon';
 import { ordersService } from '../../../../service/orders.service';
 import { FavoriteShopService } from '../../../../service/favorite-shop.service';
 import { ImageUploadService } from '../../../../service/image-upload.service';
+import { Console } from 'console';
 
 
 @Component({
   selector: 'app-perfil-client',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, ReactiveFormsModule],
   templateUrl: './perfil-client.component.html',
   styleUrl: './perfil-client.component.css'
 })
@@ -26,6 +27,17 @@ export class PerfilClientComponent implements OnInit{
 
   constructor(private authService: AuthService, private router: Router, private pedidosService: ordersService, private imageUploadService: ImageUploadService ) { }
   private readonly apiFavoriteShops : FavoriteShopService = inject(FavoriteShopService)
+  private readonly FormBuilder : FormBuilder = inject(FormBuilder);
+
+  FormUser: FormGroup = this.FormBuilder.group({
+    // ID_Usuario: [this.user.ID_Usuario, Validators.required], 
+    Nombre: ['', Validators.required],
+    Apellidos: ['', Validators.required],
+    Email: [{ value: this.user.Email, disabled: true }, Validators.required],
+    Telefono: [{ value: this.user.Telefono, disabled: true }, Validators.required]
+  });
+
+
   ngOnInit(): void {
     this.loadProfile();
   }
@@ -37,6 +49,7 @@ export class PerfilClientComponent implements OnInit{
         (profile) => {
           this.user = profile;
           console.log('Perfil cargado:', this.user); // Para depuración
+          this.FormUser.patchValue(this.user);
           this.pedidosActivos();
           this.getFavoriteShops();
         },
@@ -50,6 +63,22 @@ export class PerfilClientComponent implements OnInit{
     }
   }
 
+  get nombre() {
+    return this.FormUser.get('Nombre');
+  }
+
+  get apellidos() {
+    return this.FormUser.get('Apellidos');
+  }
+
+  get email() {
+    return this.FormUser.get('Email');
+  }
+
+  get telefono() {
+    return this.FormUser.get('Telefono');
+  }
+  
   secondOportunityLogout(){
     Swal.fire({
       title: "¿Seguro que quieres marcharte?",
@@ -168,6 +197,29 @@ onSubmit() {
         console.error('Error al subir la imagen:', error);
       },
     });
+  }
+}
+
+onUpdateUser() {
+  console.log(this.FormUser.value)
+  if (this.FormUser.valid) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.authService.updateUserProfile(this.FormUser.value, token).subscribe(
+        (response) => {
+          Swal.fire('Información actualizada', response.message, 'success');
+          this.loadProfile();
+        },
+        (error) => {
+          console.error('Error al actualizar la información del usuario', error);
+          Swal.fire('Error', 'No se pudo actualizar la información del usuario', 'error');
+        }
+      );
+    } else {
+      console.error('No se encontró el token');
+    }
+  } else {
+    Swal.fire('Error', 'Por favor, completa todos los campos requeridos', 'error');
   }
 }
 }
