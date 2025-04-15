@@ -28,10 +28,17 @@ export class TramitarPagosComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.checkAuthentication();
     this.loadCart();
     this.loadProfile();
   }
 
+  checkAuthentication(): void {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/login']);
+    }
+  }
   loadProfile(): void {
     const token = localStorage.getItem('token');
     if (token) {

@@ -1,30 +1,49 @@
 @if (product) {
-
     <section class="py-5">
-        <div class="container px-4 px-lg-5 my-5" >
-            <button class="btn" [routerLink]="['/catalogo/' + product.ID_Establecimiento + '/productos']">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
-    
-                </svg>  
-            </button>
-    
-            <div class="row gx-4 gx-lg-5 align-items-center">
-    
-                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{product.Foto}}" alt="..." /></div>
-                <div class="col-md-6">
-                    <div class=" mb-1">{{product.Descripcion}}</div>
-                    <h1 class="display-5 fw-bolder">{{product.Nombre}}</h1>
-    
-
-                    <div class="d-flex">
-                        <button class="btn btn-outline-dark flex-shrink-0" type="button">Comprar</button>
-                    </div>
-    
-                    <div class="mb-1 mt-5">{{ product.Precio | currency : "EUR" }}</div>
-                </div>
+      <div class="container px-4 px-lg-5 my-5">
+        <!-- Botón de regreso -->
+        <button class="btn" [routerLink]="['/catalogo/' + product.ID_Establecimiento + '/productos']">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+          </svg>
+        </button>
+  
+        <!-- Detalles del producto -->
+        <div class="row gx-4 gx-lg-5 align-items-center">
+          <!-- Imagen del producto -->
+          <div class="col-md-6">
+            <img class="card-img-top mb-5 mb-md-0" src="{{product.Foto}}" alt="{{product.Nombre}}" />
+          </div>
+  
+          <!-- Información del producto -->
+          <div class="col-md-6">
+            <h1 class="display-5 fw-bolder">{{product.Nombre}}</h1>
+            <div class="mb-3">
+              <span class="text-warning">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+                <i class="bi bi-star"></i>
+              </span>
             </div>
+            <p class="lead">{{product.Descripcion}}</p>
+            <div class="mb-3">
+              <span class="fs-5 text-primary">{{ product.Precio | currency : "EUR" }}</span>
+            </div>
+  
+            <!-- Botones de acción -->
+            <div class="d-flex">
+              <button class="btn btn-outline-dark flex-shrink-0 me-2" type="button">
+                <i class="bi bi-cart-plus"></i> Añadir al carrito
+              </button>
+              <button class="btn btn-primary flex-shrink-0" type="button">
+                <i class="bi bi-bag-check"></i> Comprar ahora
+              </button>
+            </div>
+          </div>
         </div>
-    </section>
 
-    }
+      </div>
+    </section>
+  }
