@@ -26,4 +26,16 @@ export class ordersService {
     return this.http.get<any>(`${this.apiUrl}/pedidos/establecimiento/${id}/estado?estado=${encodeURIComponent(estado)}`);
   }
 
+  acceptOrder(idPedido: number, idRepartidor: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/pedidos/${idPedido}/aceptar`, {idRepartidor});
+  }
+
+  finishOrder(idPedido: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/pedidos/${idPedido}/finalizar`, {});
+  }
+
+  getPedidoAsignado(idRepartidor : number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/pedidos/asignado/${idRepartidor}`);
+  }
+
 }

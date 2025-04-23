@@ -1,39 +1,49 @@
-const connection = require('../config/db');
+const connection = require("../config/db");
 
 exports.getAllPedidos = (req, res) => {
-    connection.query('SELECT * FROM pedidos', (err, results) => {
-      if (err) return res.status(500).send(err);
-      res.json(results);
-    });
-  };
+  connection.query("SELECT * FROM pedidos", (err, results) => {
+    if (err) return res.status(500).send(err);
+    res.json(results);
+  });
+};
 
 exports.getPedidosById = (req, res) => {
-    const { id } = req.params;
-    connection.query('SELECT * FROM pedidos WHERE ID_Pedido = ?', [id], (err, results) => {
+  const { id } = req.params;
+  connection.query(
+    "SELECT * FROM pedidos WHERE ID_Pedido = ?",
+    [id],
+    (err, results) => {
       if (err) return res.status(500).send(err);
-      if (results.length === 0) return res.status(404).send('Pedido no encontrado');
+      if (results.length === 0)
+        return res.status(404).send("Pedido no encontrado");
       res.json(results[0]);
-    });
-  };
-
+    }
+  );
+};
 
 exports.getPedidosByUser = (req, res) => {
-    const { id } = req.params;
-    connection.query('SELECT * FROM pedidos WHERE ID_Usuario = ?', [id], (err, results) => {
+  const { id } = req.params;
+  connection.query(
+    "SELECT * FROM pedidos WHERE ID_Usuario = ?",
+    [id],
+    (err, results) => {
       if (err) return res.status(500).send(err);
-      if (results.length === 0) return res.status(404).send('No se encontraron pedidos para el usuario especificado');
+      if (results.length === 0)
+        return res
+          .status(404)
+          .send("No se encontraron pedidos para el usuario especificado");
       res.json(results);
-    });
-  };
-
-  exports.getPedidosByState = (req, res) => {
-
-    const Estado_Pedido = req.query.estado;
-    if (!Estado_Pedido) {
-      return res.status(400).json({ error: 'El parámetro estado es requerido.' });
     }
-  
-    const query = `
+  );
+};
+
+exports.getPedidosByState = (req, res) => {
+  const Estado_Pedido = req.query.estado;
+  if (!Estado_Pedido) {
+    return res.status(400).json({ error: "El parámetro estado es requerido." });
+  }
+
+  const query = `
       SELECT 
         pedidos.*, 
         usuarios.Nombre, 
@@ -47,16 +57,16 @@ exports.getPedidosByUser = (req, res) => {
         ON pedidos.ID_Establecimiento = establecimientos.ID_Establecimiento
       WHERE pedidos.Estado_Pedido = ?
     `;
-  
-    connection.query(query, [Estado_Pedido], (err, results) => {
-      if (err) return res.status(500).send(err);
-      if (results.length === 0) return res.status(404).send('No se encontraron pedidos con este estado');
-      res.json(results);
-    });
-  
-  };
 
-  // Obtener pedidos por tienda y añadir imágenes de productos
+  connection.query(query, [Estado_Pedido], (err, results) => {
+    if (err) return res.status(500).send(err);
+    if (results.length === 0)
+      return res.status(404).send("No se encontraron pedidos con este estado");
+    res.json(results);
+  });
+};
+
+// Obtener pedidos por tienda y añadir imágenes de productos
 exports.getPedidosbyShop = (req, res) => {
   const { id } = req.params;
 
@@ -78,12 +88,17 @@ exports.getPedidosbyShop = (req, res) => {
 
   connection.query(queryPedidos, [id], (err, pedidos) => {
     if (err) return res.status(500).send(err);
-    if (pedidos.length === 0) return res.status(404).send('No se encontraron pedidos para el establecimiento especificado');
+    if (pedidos.length === 0)
+      return res
+        .status(404)
+        .send("No se encontraron pedidos para el establecimiento especificado");
 
     // Obtener los IDs de los productos en los pedidos
-    const productIds = pedidos.flatMap(pedido => JSON.parse(pedido.productos).map(producto => producto.sku));
+    const productIds = pedidos.flatMap((pedido) =>
+      JSON.parse(pedido.productos).map((producto) => producto.sku)
+    );
 
-    console.log('Product IDs:', productIds);
+    console.log("Product IDs:", productIds);
 
     if (productIds.length === 0) {
       return res.json(pedidos);
@@ -99,7 +114,7 @@ exports.getPedidosbyShop = (req, res) => {
     connection.query(queryProductos, [productIds], (err, productos) => {
       if (err) return res.status(500).send(err);
 
-      console.log('Productos:', productos);
+      console.log("Productos:", productos);
 
       // Crear un mapa de productos con sus imágenes
       const productosMap = productos.reduce((map, producto) => {
@@ -107,20 +122,20 @@ exports.getPedidosbyShop = (req, res) => {
         return map;
       }, {});
 
-      console.log('Productos Map:', productosMap);
+      console.log("Productos Map:", productosMap);
 
       // Añadir las imágenes de los productos a los pedidos
-      const pedidosConImagenes = pedidos.map(pedido => {
-        const productos = JSON.parse(pedido.productos).map(producto => {
+      const pedidosConImagenes = pedidos.map((pedido) => {
+        const productos = JSON.parse(pedido.productos).map((producto) => {
           return {
             ...producto,
-            image_url: productosMap[producto.sku] || null
+            image_url: productosMap[producto.sku] || null,
           };
         });
 
         return {
           ...pedido,
-          productos: JSON.stringify(productos)
+          productos: JSON.stringify(productos),
         };
       });
 
@@ -150,24 +165,30 @@ exports.getPedidosByStateShop = (req, res) => {
     WHERE pedidos.ID_Establecimiento = ? AND pedidos.Estado_Pedido = ?
   `;
 
-  if(Estado_Pedido === undefined || Estado_Pedido === null) {
-    return res.status(400).json({ error: 'El parámetro estado es requerido.' });
+  if (Estado_Pedido === undefined || Estado_Pedido === null) {
+    return res.status(400).json({ error: "El parámetro estado es requerido." });
   }
 
-  if(Estado_Pedido !== 'Pendiente' && Estado_Pedido !== 'En proceso' && Estado_Pedido !== 'En camino' && Estado_Pedido !== 'Entregado' && Estado_Pedido !== 'Cancelado') {
-    return res.status(400).json({ error: 'El estado no es válido.' });
-
+  if (
+    Estado_Pedido !== "Pendiente" &&
+    Estado_Pedido !== "En proceso" &&
+    Estado_Pedido !== "En camino" &&
+    Estado_Pedido !== "Entregado" &&
+    Estado_Pedido !== "Cancelado"
+  ) {
+    return res.status(400).json({ error: "El estado no es válido." });
   }
   connection.query(queryPedidos, [id, Estado_Pedido], (err, pedidos) => {
-    console.log(Estado_Pedido)
+    console.log(Estado_Pedido);
     if (err) return res.status(500).send(err);
     if (pedidos.length === 0) {
       return res.status(200).json([]); // Devuelve un arreglo vacío
     }
-    
 
     // Obtener los IDs de los productos en los pedidos
-    const productIds = pedidos.flatMap(pedido => JSON.parse(pedido.productos).map(producto => producto.sku));
+    const productIds = pedidos.flatMap((pedido) =>
+      JSON.parse(pedido.productos).map((producto) => producto.sku)
+    );
 
     // console.log('Product IDs:', productIds);
 
@@ -196,17 +217,17 @@ exports.getPedidosByStateShop = (req, res) => {
       // console.log('Productos Map:', productosMap);
 
       // Añadir las imágenes de los productos a los pedidos
-      const pedidosConImagenes = pedidos.map(pedido => {
-        const productos = JSON.parse(pedido.productos).map(producto => {
+      const pedidosConImagenes = pedidos.map((pedido) => {
+        const productos = JSON.parse(pedido.productos).map((producto) => {
           return {
             ...producto,
-            image_url: productosMap[producto.sku] || null
+            image_url: productosMap[producto.sku] || null,
           };
         });
 
         return {
           ...pedido,
-          productos: JSON.stringify(productos)
+          productos: JSON.stringify(productos),
         };
       });
 
@@ -214,4 +235,84 @@ exports.getPedidosByStateShop = (req, res) => {
     });
   });
 };
-  
+
+exports.acceptOrder = (req, res) => {
+  const { id } = req.params; // ID del pedido
+  const { idRepartidor } = req.body; // ID del repartidor enviado en el cuerpo de la solicitud
+
+  if (!idRepartidor) {
+    return res
+      .status(400)
+      .json({ message: "El ID del repartidor es obligatorio." });
+  }
+
+  // Verificar si el pedido está disponible
+  const queryCheck = `
+    SELECT Estado_Pedido 
+    FROM pedidos 
+    WHERE ID_Pedido = ? AND Estado_Pedido = "Pendiente"
+  `;
+  connection.query(queryCheck, [id], (err, results) => {
+    if (err) return res.status(500).send(err);
+    if (results.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "El pedido no está disponible o ya fue aceptado." });
+    }
+
+    // Actualizar el estado del pedido y asignarlo al repartidor
+    const queryUpdate = `
+      UPDATE pedidos
+      SET Estado_Pedido = "En Proceso", ID_Repartidor = ?
+      WHERE ID_Pedido = ?
+    `;
+    connection.query(queryUpdate, [idRepartidor, id], (err, updateResults) => {
+      if (err) return res.status(500).send(err);
+      if (updateResults.affectedRows === 0) {
+        return res
+          .status(404)
+          .json({ message: "No se pudo asignar el pedido." });
+      }
+
+      res.status(200).json({ message: "Pedido aceptado con éxito." });
+    });
+  });
+};
+
+exports.finishOrder = (req, res) => {
+  const { id } = req.params; // ID del pedido
+
+  const query = `
+    UPDATE pedidos
+    SET Estado_Pedido = "Entregado"
+    WHERE ID_Pedido = ? AND Estado_Pedido IN ("En Proceso", "En Camino")
+  `;
+
+  connection.query(query, [id], (err, results) => {
+    if (err) return res.status(500).send(err);
+    if (results.affectedRows === 0) {
+      return res
+        .status(404)
+        .json({ message: "No se pudo finalizar el pedido" });
+    }
+
+    res.status(200).json({ message: "Pedido entregado con éxito." });
+  });
+};
+
+exports.getPedidoAsignado = (req, res) => {
+  const { id } = req.params; // ID del repartidor autenticado
+
+  const query = `
+    SELECT * 
+    FROM pedidos 
+    WHERE ID_Repartidor = ? AND Estado_Pedido IN ("En Proceso", "En Camino")
+  `;
+  connection.query(query, [id], (err, results) => {
+    if (err) return res.status(500).send(err);
+    if (results.length === 0) {
+      return res.status(404).json({ message: "No tienes un pedido asignado." });
+    }
+    res.status(200).json(results[0]); // Devuelve el pedido asignado
+  });
+};

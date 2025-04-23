@@ -79,6 +79,7 @@
         </div>
     </div> -->
 
+    @if(!pedidoSeleccionado){
     <div class="container mt-4">
         <!-- Tarjeta de estado -->
         <mat-card class="estado-card">
@@ -102,34 +103,49 @@
             </div>
         </mat-card>
     </div>
-
-    <div class="container mt-4">
-        <mat-card>
-            <h2>Pedidos</h2>
-            
-            @if(pedidos.length > 0){
-                <div class="horizontal-scroll">
-                    <div class="product-list">
-                      @for(pedido of pedidos; track pedido) {
-                        <div class="product-card m-2">
-                          <div class="product-image">
-                            <img src="{{pedido.FotoEstablecimiento}}" alt="Foto del establecimiento">
-                          </div>
-                          <div class="product-details">
-                            <h3>Establecimiento #{{pedido.ID_Establecimiento}}</h3>
-                            <p><strong>Hora:</strong> {{ pedido.Fecha_Hora_Pedido | date:'d/M/y H:mm:ss' }}</p>
-                            <p><strong>Usuario:</strong> {{pedido.Nombre}} {{pedido.Apellidos}}</p>
-                            <p><strong>Dirección:</strong> {{pedido.Direccion}}</p>
-                          </div>
-                        </div>
-                      }
-                    </div>
+}
+    <div class="container mt-5">
+        @if(!pedidoSeleccionado){
+        <h2>Pedidos disponibles</h2>
+        <div class="row">
+          @if(pedidos.length > 0) {
+            @for(pedido of pedidos; track pedido) {
+              <div class="col-md-4 mb-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Pedido #{{pedido.ID_Pedido}}</h5>
+                    <p><strong>Cliente:</strong> {{pedido.Nombre}} {{pedido.Apellidos}}</p>
+                    <p><strong>Dirección:</strong> {{pedido.Direccion}}</p>
+                    <p><strong>Hora:</strong> {{pedido.Fecha_Hora_Pedido | date:'d/M/y H:mm:ss'}}</p>
+                    <p><strong>Distancia:</strong> {{pedido.Distancia}} km</p>
+                    <button class="btn btn-primary" (click)="aceptarPedido(pedido)">Aceptar pedido</button>
                   </div>
-            }@else{
-                <h2>no hay pedidos</h2>
+                </div>
+              </div>
             }
-        </mat-card>
-    </div>
+          } @else {
+            <p>No hay pedidos disponibles en este momento.</p>
+          }
+        </div>
+        }
+
+        @if(pedidoSeleccionado){
+            <h2>Pedido seleccionado</h2>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Pedido #{{pedidoSeleccionado.ID_Pedido}}</h5>
+                <p><strong>Cliente:</strong> {{pedidoSeleccionado.Nombre}} {{pedidoSeleccionado.Apellidos}}</p>
+                <p><strong>Dirección:</strong> {{pedidoSeleccionado.Direccion}}</p>
+                <p><strong>Hora:</strong> {{pedidoSeleccionado.Fecha_Hora_Pedido | date:'d/M/y H:mm:ss'}}</p>
+                <p><strong>total:</strong> {{pedidoSeleccionado.Total}} €</p>
+                <button class="btn btn-success" (click)="pedidoEntregado()">Pedido Entregado</button>
+                @for(productos of pedidoSeleccionado.productos; track productos){
+                    <p>{{productos.name}}</p>
+                }
+              </div>
+            </div>
+        }
+      </div>
 
     
       

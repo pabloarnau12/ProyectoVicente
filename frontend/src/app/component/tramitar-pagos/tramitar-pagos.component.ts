@@ -28,17 +28,10 @@ export class TramitarPagosComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.checkAuthentication();
     this.loadCart();
     this.loadProfile();
   }
 
-  checkAuthentication(): void {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      this.router.navigate(['/login']);
-    }
-  }
   loadProfile(): void {
     const token = localStorage.getItem('token');
     if (token) {
@@ -48,11 +41,11 @@ export class TramitarPagosComponent implements OnInit{
           console.log('Perfil cargado:', this.user); // Para depuración
         },
         (error) => {
-          console.error('Error al cargar el perfil', error);
+          this.router.navigate(['/login']);
         }
       );
     } else {
-      console.error('No se encontró el token');
+      this.router.navigate(['/login']);
     }
   }
   loadCart(): void {

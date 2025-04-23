@@ -30,16 +30,33 @@ export class PerfilRepartidorComponent implements OnInit {
   selectedFile: File | null = null;
   isloading: Boolean = false;
   pedidos: any[] = []
-
+  pedidoSeleccionado: any = null; // Variable para almacenar el pedido seleccionado
 
   ngOnInit(): void {
     this.loadProfile();
+
   }
 
 constructor(private authService: AuthService, private router: Router, private imageUploadService: ImageUploadService , private pedidosService: ordersService ){
   
 }
-
+verificarPedidoAsignado(): void {
+  this.pedidosService.getPedidoAsignado(this.user.ID_Usuario).subscribe(
+    (pedido) => {
+      this.pedidoSeleccionado = pedido; // Si hay un pedido asignado, lo guardamos
+      console.log("pedidoseleccionado", this.pedidoSeleccionado)
+    },
+    (error) => {
+      if (error.status === 404) {
+        // Si no hay pedido asignado, cargamos los pedidos disponibles
+        console.log("pedidoseleccionado", this.pedidoSeleccionado)
+        this.loadOrders();
+      } else {
+        console.error('Error al verificar el pedido asignado', error);
+      }
+    }
+  );
+}
   loadProfile(): void {
     const token = localStorage.getItem('token');
     if (token) {
@@ -47,7 +64,8 @@ constructor(private authService: AuthService, private router: Router, private im
         (profile) => {
           this.user = profile;
           console.log('Perfil cargado:', this.user); // Para depuración
-          this.loadOrders();
+          this.verificarPedidoAsignado(); // Verificar si hay un pedido asignado
+          // this.loadOrders();
         },
         (error) => {
           console.error('Error al cargar el perfil', error);
@@ -147,5 +165,58 @@ constructor(private authService: AuthService, private router: Router, private im
     )
   }
   
+  aceptarPedido(pedido: any): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres aceptar este pedido?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("Pedido a aceptar: ", pedido.ID_Pedido)
+        this.pedidosService.acceptOrder(pedido.ID_Pedido, this.user.ID_Usuario).subscribe(
+          
+          (response) => {
+            Swal.fire('Pedido aceptado', 'Has aceptado el pedido con éxito.', 'success');
+            this.pedidoSeleccionado = pedido;
+            this.updateStatus('ocupado'); // Cambiar el estado a 'Ocupado'
+            // this.loadOrders(); // Actualizar la lista de pedidos
 
+          },
+          (error) => {
+            console.error('Error al aceptar el pedido', error);
+            Swal.fire('Error', 'No se pudo aceptar el pedido.', 'error');
+          }
+        );
+      }
+    });
+  }
+
+  pedidoEntregado(): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres finalizar este pedido?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, finalizar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.pedidosService.finishOrder(this.pedidoSeleccionado.ID_Pedido).subscribe(
+          (response) => {
+            Swal.fire('Pedido finalizado', 'Has finalizado el pedido con éxito.', 'success');
+            this.pedidoSeleccionado = null; // Eliminar el pedido seleccionado
+            this.updateStatus('activo'); // Cambiar el estado a 'Ocupado'
+            this.loadOrders(); // Recargar la lista de pedidos disponibles
+          },
+          (error) => {
+            console.error('Error al finalizar el pedido', error);
+            Swal.fire('Error', 'No se pudo finalizar el pedido.', 'error');
+          }
+        );
+      }
+    });
+  }
 }
