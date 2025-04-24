@@ -31,7 +31,12 @@ export class PerfilRepartidorComponent implements OnInit {
   isloading: Boolean = false;
   pedidos: any[] = []
   pedidoSeleccionado: any = null; // Variable para almacenar el pedido seleccionado
+  mostrarProductos: boolean = false; // Controla la visibilidad de los productos
 
+  // Método para alternar la visibilidad de los productos
+  toggleProductos(): void {
+    this.mostrarProductos = !this.mostrarProductos;
+  }
   ngOnInit(): void {
     this.loadProfile();
 
@@ -65,6 +70,7 @@ verificarPedidoAsignado(): void {
           this.user = profile;
           console.log('Perfil cargado:', this.user); // Para depuración
           this.verificarPedidoAsignado(); // Verificar si hay un pedido asignado
+          console.log('Contenido de pedidoSeleccionado:', this.pedidoSeleccionado);
           // this.loadOrders();
         },
         (error) => {
@@ -214,6 +220,30 @@ verificarPedidoAsignado(): void {
           (error) => {
             console.error('Error al finalizar el pedido', error);
             Swal.fire('Error', 'No se pudo finalizar el pedido.', 'error');
+          }
+        );
+      }
+    });
+  }
+
+  pedidoEnCamino(): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres marcar este pedido como "En Camino"?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, marcar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.pedidosService.updateOrderStatus(this.pedidoSeleccionado.ID_Pedido, 'En Camino').subscribe(
+          (response) => {
+            Swal.fire('Estado actualizado', 'El pedido ahora está "En Camino".', 'success');
+            this.pedidoSeleccionado.Estado_Pedido = 'En Camino'; // Actualizar el estado localmente
+          },
+          (error) => {
+            console.error('Error al actualizar el estado del pedido', error);
+            Swal.fire('Error', 'No se pudo actualizar el estado del pedido.', 'error');
           }
         );
       }

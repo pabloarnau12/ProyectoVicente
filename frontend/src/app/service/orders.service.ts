@@ -10,8 +10,8 @@ export class ordersService {
 
   constructor(private http: HttpClient) { }
 
-  activeOrders(id: string): Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/pedidos/usuario/`+id);
+  OrdersByUserAndState(id: string, estado: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/pedidos/usuario/${id}?estado=${encodeURIComponent(estado)}`);
   }
   
   OrdersByState(estado : string): Observable<any>{
@@ -36,6 +36,10 @@ export class ordersService {
 
   getPedidoAsignado(idRepartidor : number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/pedidos/asignado/${idRepartidor}`);
+  }
+
+  updateOrderStatus(idPedido: number, nuevoEstado: string): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/pedidos/${idPedido}/estado`, { estado: nuevoEstado });
   }
 
 }

@@ -8,12 +8,13 @@ import { ordersService } from '../../../../service/orders.service';
 import { FavoriteShopService } from '../../../../service/favorite-shop.service';
 import { ImageUploadService } from '../../../../service/image-upload.service';
 import { Console } from 'console';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-perfil-client',
   standalone: true,
-  imports: [FormsModule, RouterLink, ReactiveFormsModule],
+  imports: [FormsModule, RouterLink, ReactiveFormsModule, DatePipe],
   templateUrl: './perfil-client.component.html',
   styleUrl: './perfil-client.component.css'
 })
@@ -21,9 +22,15 @@ export class PerfilClientComponent implements OnInit{
   user: any = {};
   ActiveOrders = signal<any[]>([]);
   FavoriteShops = signal<any[]>([]);
+  mostrarPedidosRealizados: boolean = false;
+  CompletedOrders: any = [];
   tienda: any;  
   selectedFile: File | null = null;
   isloading: Boolean = false;
+// Nueva variable para almacenar los pedidos realizados
+
+
+// Método para cargar los pedidos realizados
 
   constructor(private authService: AuthService, private router: Router, private pedidosService: ordersService, private imageUploadService: ImageUploadService ) { }
   private readonly apiFavoriteShops : FavoriteShopService = inject(FavoriteShopService)
@@ -50,7 +57,8 @@ export class PerfilClientComponent implements OnInit{
           this.user = profile;
           console.log('Perfil cargado:', this.user); // Para depuración
           this.FormUser.patchValue(this.user);
-          this.pedidosActivos();
+          this.pedidosActivos('En Proceso');
+          this.pedidosRealizados('Cancelado'); // Cargar pedidos realizados
           this.getFavoriteShops();
         },
         (error) => {
@@ -138,20 +146,29 @@ export class PerfilClientComponent implements OnInit{
   }
 
 
-  pedidosActivos(): void {
-    // const token = localStorage.getItem('token');
-
-      this.pedidosService.activeOrders(this.user.ID_Usuario).subscribe(
-        (orders) => {
-          this.ActiveOrders.set(orders);
-          console.log('PEDIDOS cargados:', this.ActiveOrders); // Para depuración
-        },
-        (error) => {
-          console.error('error al cargar perfiles', error);
-        }
-      );
+  pedidosActivos(estado: string): void {
+    this.pedidosService.OrdersByUserAndState(this.user.ID_Usuario, estado).subscribe(
+      (orders) => {
+        this.ActiveOrders.set(orders);
+        console.log('PEDIDOS cargados:', this.ActiveOrders); // Para depuración
+      },
+      (error) => {
+        console.error('Error al cargar pedidos:', error);
+      }
+    );
   }
 
+  pedidosRealizados(estado: string): void {
+    this.pedidosService.OrdersByUserAndState(this.user.ID_Usuario, estado).subscribe(
+      (orders) => {
+        this.CompletedOrders = orders;
+        console.log('PEDIDOS REALIZADOS cargados:', this.CompletedOrders); // Para depuración
+      },
+      (error) => {
+        console.error('Error al cargar pedidos realizados:', error);
+      }
+    );
+  }
   getFavoriteShops(): void {
     this.apiFavoriteShops.getFavoriteShopsByUser(this.user.ID_Usuario).subscribe(
       (shops) => {
@@ -222,4 +239,9 @@ onUpdateUser() {
     Swal.fire('Error', 'Por favor, completa todos los campos requeridos', 'error');
   }
 }
+togglePedidosRealizados(): void {
+  this.mostrarPedidosRealizados = !this.mostrarPedidosRealizados;
 }
+}
+
+

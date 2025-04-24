@@ -21,22 +21,58 @@ exports.getPedidosById = (req, res) => {
   );
 };
 
-exports.getPedidosByUser = (req, res) => {
-  const { id } = req.params;
-  connection.query(
-    "SELECT * FROM pedidos WHERE ID_Usuario = ?",
-    [id],
-    (err, results) => {
-      if (err) return res.status(500).send(err);
-      if (results.length === 0)
-        return res
-          .status(404)
-          .send("No se encontraron pedidos para el usuario especificado");
-      res.json(results);
-    }
-  );
-};
+exports.getPedidosByUserAndState = (req, res) => {
+  const { id } = req.params; // ID del usuario
+  const { estado } = req.query; // Estado del pedido pasado como query param
 
+  // Validar que el estado sea válido
+  const estadosValidos = [
+    "Entregado",
+    "Cancelado",
+    "En Proceso",
+    "Pendiente",
+    "En Camino",
+  ];
+  if (!estado || !estadosValidos.includes(estado)) {
+    return res
+      .status(400)
+      .json({ error: "El estado proporcionado no es válido." });
+  }
+
+  // Determinar los estados a incluir en la consulta
+  let estadosConsulta = [];
+  if (estado === "Entregado" || estado === "Cancelado") {
+    estadosConsulta = ["Entregado", "Cancelado"];
+  } else if (["En Proceso", "Pendiente", "En Camino"].includes(estado)) {
+    estadosConsulta = ["En Proceso", "Pendiente", "En Camino"];
+  }
+
+  // Construir la consulta
+  const query = `
+    SELECT 
+      pedidos.*, 
+      usuarios.Nombre, 
+      usuarios.Apellidos, 
+      usuarios.Telefono, 
+      establecimientos.foto AS FotoEstablecimiento
+    FROM pedidos 
+    INNER JOIN usuarios 
+      ON pedidos.ID_Usuario = usuarios.ID_Usuario
+    INNER JOIN establecimientos 
+      ON pedidos.ID_Establecimiento = establecimientos.ID_Establecimiento
+    WHERE pedidos.ID_Usuario = ? AND pedidos.Estado_Pedido IN (?)
+  `;
+
+  connection.query(query, [id, estadosConsulta], (err, results) => {
+    if (err) return res.status(500).send(err);
+    if (results.length === 0) {
+      return res.status(404).json({
+        message: "No se encontraron pedidos con los estados especificados.",
+      });
+    }
+    res.json(results);
+  });
+};
 exports.getPedidosByState = (req, res) => {
   const Estado_Pedido = req.query.estado;
   if (!Estado_Pedido) {
@@ -304,15 +340,79 @@ exports.getPedidoAsignado = (req, res) => {
   const { id } = req.params; // ID del repartidor autenticado
 
   const query = `
-    SELECT * 
+    SELECT 
+      pedidos.*, 
+      usuarios.Nombre AS NombreUsuario, 
+      usuarios.Apellidos AS ApellidosUsuario, 
+      usuarios.Telefono AS TelefonoUsuario, 
+      establecimientos.Nombre AS NombreEstablecimiento, 
+      establecimientos.Direccion AS DireccionEstablecimiento, 
+      establecimientos.foto AS FotoEstablecimiento
     FROM pedidos 
-    WHERE ID_Repartidor = ? AND Estado_Pedido IN ("En Proceso", "En Camino")
+    INNER JOIN usuarios 
+      ON pedidos.ID_Usuario = usuarios.ID_Usuario
+    INNER JOIN establecimientos 
+      ON pedidos.ID_Establecimiento = establecimientos.ID_Establecimiento
+    WHERE pedidos.ID_Repartidor = ? AND pedidos.Estado_Pedido IN ("En Proceso", "En Camino")
   `;
+
   connection.query(query, [id], (err, results) => {
     if (err) return res.status(500).send(err);
     if (results.length === 0) {
       return res.status(404).json({ message: "No tienes un pedido asignado." });
     }
-    res.status(200).json(results[0]); // Devuelve el pedido asignado
+
+    // Procesar los productos como JSON
+    try {
+      const pedido = results[0];
+      if (pedido.productos) {
+        pedido.productos = JSON.parse(pedido.productos); // Convertir productos a JSON
+      } else {
+        console.log("El pedido no tiene productos.");
+      }
+
+      res.status(200).json(pedido); // Devolver el pedido con los productos procesados
+    } catch (error) {
+      console.error("Error al procesar los productos del pedido:", error);
+      return res
+        .status(500)
+        .json({ message: "Error al procesar los productos del pedido." });
+    }
+  });
+};
+
+exports.updateOrderStatus = (req, res) => {
+  const { id } = req.params;
+  const { estado } = req.body;
+
+  const estadosValidos = [
+    "Pendiente",
+    "En Proceso",
+    "En Camino",
+    "Entregado",
+    "Cancelado",
+  ];
+  if (!estadosValidos.includes(estado)) {
+    return res
+      .status(400)
+      .json({ error: "El estado proporcionado no es válido." });
+  }
+
+  const query = `
+    UPDATE pedidos
+    SET Estado_Pedido = ?
+    WHERE ID_Pedido = ?
+  `;
+
+  connection.query(query, [estado, id], (err, results) => {
+    if (err) return res.status(500).send(err);
+    if (results.affectedRows === 0) {
+      return res
+        .status(404)
+        .json({ message: "No se pudo actualizar el estado del pedido." });
+    }
+    res
+      .status(200)
+      .json({ message: "Estado del pedido actualizado con éxito." });
   });
 };

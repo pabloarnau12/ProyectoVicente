@@ -67,7 +67,7 @@ export class CarritoComponent {
 
   decreaseQuantity(productID: number){
     console.log("restado");
-    this.CarritoService.increaseQuantity(productID);
+    this.CarritoService.decreaseQuantity(productID);
     console.log(this.cart);
 
   }
