@@ -81,11 +81,13 @@ exports.getPedidosByState = (req, res) => {
 
   const query = `
       SELECT 
-        pedidos.*, 
-        usuarios.Nombre, 
-        usuarios.Apellidos, 
-        usuarios.Telefono, 
-        establecimientos.foto AS FotoEstablecimiento
+      pedidos.*, 
+      usuarios.Nombre AS NombreUsuario, 
+      usuarios.Apellidos AS ApellidosUsuario, 
+      usuarios.Telefono AS TelefonoUsuario, 
+      establecimientos.Nombre AS NombreEstablecimiento, 
+      establecimientos.Direccion AS DireccionEstablecimiento, 
+      establecimientos.foto AS FotoEstablecimiento
       FROM pedidos 
       INNER JOIN usuarios 
         ON pedidos.ID_Usuario = usuarios.ID_Usuario

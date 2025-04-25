@@ -164,6 +164,7 @@ verificarPedidoAsignado(): void {
     this.pedidosService.OrdersByState('Pendiente').subscribe(
       (response) => {
         this.pedidos = response;
+        console.log("Pedidos disponibles: ", this.pedidos)
       },
       (error)=>{
         console.error("Error: ", error)

@@ -6,7 +6,3 @@ quitar programa de fidelidad
 -> Cambiar la forma de conseguir el ID de la ruta (hacerlo como se debe hacer ahora)
 -> operar con el valor disponibilidad, que se sume que se reste, que aparezca agotado etc--->SE SUMA Y SE RESTA, FALTA PONER QUE APAREZCA AGOTADO
 -> hacer que si un producto tiene promocion se opere con el campo precio_promocion
-
-que quiero que haga un adiministrador desde su dashboard:
-
-poder editar sus productos (foto, precio, descripcion categoria...).
