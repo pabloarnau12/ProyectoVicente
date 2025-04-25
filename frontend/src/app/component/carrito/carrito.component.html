@@ -2,54 +2,73 @@
   <div class="container">
     <h2 class="m-4"><strong>Carro</strong></h2>
 
-    @if(cart.length != 0) {
-      @for(item of cart; track cart) {
-        <div class="container cart-item-container">
-          <mat-icon class="m-2 deleteproduct text-danger" (click)="removeFromCart(item.ID_Producto)">delete</mat-icon>
-          <div class="cart-item">
-            <img alt="Imagen del producto" [src]="item.Foto" class="item-image" />
-            <div class="item-details">
-              <h6 class="item-name">{{item.Nombre}}</h6>
-              <div class="item-price">
-                <span class="price">{{item.Precio}} €</span>
-                /ud.
-              </div>
-              <div class="quantity-control d-flex align-items-center">
-                <!-- Botón para restar cantidad -->
-                <button class="btn btn-outline-danger btn-sm me-2" (click)="decreaseQuantity(item.ID_Producto)">
-                  <mat-icon>remove</mat-icon>
-                </button>
-                <strong class="quantity-text">{{item.quantity}} ud.</strong>
-                <!-- Botón para aumentar cantidad -->
-                <button class="btn btn-outline-success btn-sm ms-2" (click)="increaseQuantity(item.ID_Producto)">
-                  <mat-icon>add</mat-icon>
-                </button>
-              </div>
-            </div>
+    @if(cart.length != 0) { @for(item of cart; track cart) {
+    <div class="container cart-item-container">
+      <mat-icon
+        class="m-2 deleteproduct text-danger"
+        (click)="removeFromCart(item.ID_Producto)"
+        >delete</mat-icon
+      >
+      <div class="cart-item">
+        <img alt="Imagen del producto" [src]="item.Foto" class="item-image" />
+        <div class="item-details">
+          <h6 class="item-name">{{ item.Nombre }}</h6>
+          <div class="item-price">
+            <span class="price">
+              {{
+                item.Precio_Promocion !== null
+                  ? item.Precio_Promocion
+                  : item.Precio
+              }}
+              €
+            </span>
+            /ud.
+          </div>
+          <div class="quantity-control d-flex align-items-center">
+            <!-- Botón para restar cantidad -->
+            <button
+              class="btn btn-outline-danger btn-sm me-2"
+              (click)="decreaseQuantity(item.ID_Producto)"
+            >
+              <mat-icon>remove</mat-icon>
+            </button>
+            <strong class="quantity-text">{{ item.quantity }} ud.</strong>
+            <!-- Botón para aumentar cantidad -->
+            <button
+              class="btn btn-outline-success btn-sm ms-2"
+              (click)="increaseQuantity(item.ID_Producto)"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
           </div>
         </div>
-      }
-      <div class="cart-footer">
-        <div>
-          <div class="total-info">
-            <i class="fas fa-info-circle"></i>
-            Total aproximado
-          </div>
-          <div class="total mb-3">
-            {{getTotal()}}€
-          </div>
-        </div>
-        <!-- Botón de tramitar pedido debajo del total -->
-        <button class="btn btn-primary w-100 checkout-btn" [routerLink]="'/payment'">
-          Tramitar pedido
-        </button>
       </div>
+    </div>
+    }
+    <div class="cart-footer">
+      <div>
+        <div class="total-info">
+          <i class="fas fa-info-circle"></i>
+          Total aproximado
+        </div>
+        <div class="total mb-3">{{ getTotal() }}€</div>
+      </div>
+      <!-- Botón de tramitar pedido debajo del total -->
+      <button
+        class="btn btn-primary w-100 checkout-btn"
+        [routerLink]="'/payment'"
+      >
+        Tramitar pedido
+      </button>
+    </div>
     } @else {
-      <div class="alert alert-danger text-center">
-        Tu carrito está vacío.
-      </div>
+    <div class="alert alert-danger text-center">Tu carrito está vacío.</div>
     }
   </div>
-  <mat-icon class="m-2 close-btn text-danger" (click)="closeCart()">close</mat-icon>
+  <mat-icon class="m-2 close-btn text-danger" (click)="closeCart()"
+    >close</mat-icon
+  >
 </div>
-<mat-icon class="m-2 open-cart-btn text-primary" (click)="openCart()">shopping_cart</mat-icon>
+<mat-icon class="m-2 open-cart-btn text-primary" (click)="openCart()"
+  >shopping_cart</mat-icon
+>

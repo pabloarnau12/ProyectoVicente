@@ -1,8 +1,6 @@
 
-quitar programa de fidelidad
 2. Hacer tabla categorias_productos y operar con eso
 5. El carrito está en el local storage, cualqueira puede cambiar los datos--> recomendacion: hacer una tabla en la base de datos y que cada usuario tenga su carrito !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 6. Terminar Perfil de repartidores
 -> Cambiar la forma de conseguir el ID de la ruta (hacerlo como se debe hacer ahora)
--> operar con el valor disponibilidad, que se sume que se reste, que aparezca agotado etc--->SE SUMA Y SE RESTA, FALTA PONER QUE APAREZCA AGOTADO
--> hacer que si un producto tiene promocion se opere con el campo precio_promocion
+

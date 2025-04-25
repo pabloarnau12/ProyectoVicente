@@ -61,3 +61,14 @@
   .text-decoration-line-through {
     text-decoration: line-through;
   }
+
+  .disabled-card {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  .disabled-link {
+    pointer-events: none;
+    text-decoration: none;
+    cursor: not-allowed;
+  }

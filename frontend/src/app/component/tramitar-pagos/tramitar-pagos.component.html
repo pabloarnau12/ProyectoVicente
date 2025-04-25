@@ -1,77 +1,107 @@
 <div class="payment-container">
-    <header>
-      <h1>Revisión de Pedido</h1>
-      <p>Completa la información para proceder con tu pedido.</p>
-    </header>
-  
-    <!-- Resumen del pedido -->
-    <section class="order-summary">
-      <h2>Productos a Comprar</h2>
-      <table class="order-table">
-        <thead>
-          <tr>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Precio</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-         @for(item of cart; track cart){
-          <tr>
-            <td>{{ item.Nombre }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>€{{ item.Precio}}</td>
-            <td>€{{ (item.Precio * item.quantity).toFixed(2) }}</td>
-          </tr>
+  <header>
+    <h1>Revisión de Pedido</h1>
+    <p>Completa la información para proceder con tu pedido.</p>
+  </header>
+
+  <!-- Resumen del pedido -->
+  <section class="order-summary">
+    <h2>Productos a Comprar</h2>
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(item of cart; track cart) {
+        <tr>
+          <td>{{ item.Nombre }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>
+            @if(item.Precio_Promocion !== null) { €{{
+              item.Precio_Promocion
+            }}
+            (Promoción) } @else { €{{ item.Precio }}
+            }
+          </td>
+          <td>
+            €{{
+              (item.Precio_Promocion !== null
+                ? item.Precio_Promocion
+                : item.Precio) * item.quantity
+            }}
+          </td>
+        </tr>
         }
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="3" class="total-label">Total:</td>
-            <td>€{{ getTotal() }}</td>
-          </tr>
-        </tfoot>
-      </table>
-    </section>
-  
-    <!-- Información de envío -->
-    <section class="shipping-info">
-      <h2>Información de Envío</h2>
-      <ul class="list-group">
-        <p>Tú Direccion: </p>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          {{user.Direccion}}
-          <div>
-            <button class="btn btn-sm btn-outline-primary me-2" (click)="tryfuncion()">Editar</button>
-            <!-- <button class="btn btn-sm btn-outline-danger">Eliminar</button> -->
-          </div>
-        </li>
-      </ul>
-    </section>
-  
-    <!-- Selección de método de pago -->
-    <section class="payment-method">
-      <h2>Método de Pago</h2>
-      <form>
-        <label>
-          <input type="radio" name="paymentMethod" value="paypal" [(ngModel)]="paymentMethod">
-          PayPal
-        </label>
-        <label>
-          <input type="radio" name="paymentMethod" value="creditCard" [(ngModel)]="paymentMethod">
-          Tarjeta de Crédito/Débito
-        </label>
-      </form>
-    </section>
-  
-    <!-- Botón para proceder al pago -->
-    <button class=" btn btn-primary" (click)="proceedToPayment()">Proceder al Pago</button>
-    <button class=" btn btn-danger" [routerLink]="'/catalogo'">Cancelar pago</button>
-    @if(errorMessage){
-        <p class="error-message">{{errorMessage}}</p>
-    }
-  </div>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="total-label">Total:</td>
+          <td>€{{ getTotal() }}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
 
+  <!-- Información de envío -->
+  <section class="shipping-info">
+    <h2>Información de Envío</h2>
+    <ul class="list-group">
+      <p>Tú Direccion:</p>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        {{ user.Direccion }}
+        <div>
+          <button
+            class="btn btn-sm btn-outline-primary me-2"
+            (click)="tryfuncion()"
+          >
+            Editar
+          </button>
+          <!-- <button class="btn btn-sm btn-outline-danger">Eliminar</button> -->
+        </div>
+      </li>
+    </ul>
+  </section>
 
-  
+  <!-- Selección de método de pago -->
+  <section class="payment-method">
+    <h2>Método de Pago</h2>
+    <form>
+      <label>
+        <input
+          type="radio"
+          name="paymentMethod"
+          value="paypal"
+          [(ngModel)]="paymentMethod"
+        />
+        PayPal
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="paymentMethod"
+          value="creditCard"
+          [(ngModel)]="paymentMethod"
+        />
+        Tarjeta de Crédito/Débito
+      </label>
+    </form>
+  </section>
+
+  <!-- Botón para proceder al pago -->
+  <button class="btn btn-primary" (click)="proceedToPayment()">
+    Proceder al Pago
+  </button>
+  <button class="btn btn-danger" [routerLink]="'/catalogo'">
+    Cancelar pago
+  </button>
+  @if(errorMessage){
+  <p class="error-message">{{ errorMessage }}</p>
+  }
+</div>

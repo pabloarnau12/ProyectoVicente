@@ -1,4 +1,4 @@
- <!-- <div class="col align-items-center mb-5 h-100">
+<!-- <div class="col align-items-center mb-5 h-100">
     <div class="card caja h-100 shadow-sm ">
       <img src="{{product.Foto}}" alt="imagen card" class="card-img-top">
       <div class="card-body d-flex flex-column">
@@ -11,31 +11,49 @@
     </div>
   </div> -->
 
-
-  <div class="card custom-card shadow-sm mb-4">
-    <img src="{{product.Foto}}" alt="{{product.Nombre}}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
-    <div class="card-body">
-      <h5 class="product-name card-title text-truncate">{{product.Nombre}}</h5>
-      <p class="location text-muted small">{{product.Descripcion}}</p>
-      <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <p class="price mb-0" [ngClass]="{'text-decoration-line-through': product.Precio_Promocion !== null}">
-            {{ product.Precio | currency : "EUR" }}
-          </p>
-          @if(product.Precio_Promocion !== null ){
-            <p class="price text-danger fw-bold mb-0">
-              {{ product.Precio_Promocion | currency : "EUR" }}
-            </p>
-          }
-        </div>
-        <button class="btn" (click)="addToCart(product, $event)">
-          <mat-icon>add_shopping_cart</mat-icon>
-        </button>
+<div
+  class="card custom-card shadow-sm mb-4"
+  [ngClass]="{ 'disabled-card': product.Disponibilidad === 0 }"
+>
+  <img
+    src="{{ product.Foto }}"
+    alt="{{ product.Nombre }}"
+    class="card-img-top img-fluid"
+    style="height: 200px; object-fit: cover"
+  />
+  <div class="card-body">
+    <h5 class="product-name card-title text-truncate">{{ product.Nombre }}</h5>
+    <p class="location text-muted small">{{ product.Descripcion }}</p>
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <p
+          class="price mb-0"
+          [ngClass]="{
+            'text-decoration-line-through': product.Precio_Promocion !== null
+          }"
+        >
+          {{ product.Precio | currency : "EUR" }}
+        </p>
+        @if(product.Precio_Promocion !== null ){
+        <p class="price text-danger fw-bold mb-0">
+          {{ product.Precio_Promocion | currency : "EUR" }}
+        </p>
+        }
       </div>
+      <button
+        class="btn"
+        [disabled]="product.Disponibilidad === 0"
+        (click)="addToCart(product, $event)"
+      >
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button>
     </div>
-    @if(product.Precio_Promocion !== null) {
-      <div class="badge bg-danger text-white position-absolute top-0 end-0 m-2">
-        Descuento
-      </div>
-    }
   </div>
+  @if(product.Disponibilidad === 0) {
+  <div
+    class="badge bg-secondary text-white position-absolute top-50 start-50 translate-middle"
+  >
+    Agotado
+  </div>
+  }
+</div>

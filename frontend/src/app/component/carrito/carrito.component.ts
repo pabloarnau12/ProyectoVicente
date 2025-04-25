@@ -5,21 +5,18 @@ import { MatIcon } from '@angular/material/icon';
 import { PaymentsService } from '../../service/payments.service';
 import { Router, RouterLink } from '@angular/router';
 
-
 @Component({
   selector: 'app-carrito',
   standalone: true,
   imports: [MatIcon, RouterLink],
   templateUrl: './carrito.component.html',
-  styleUrl: './carrito.component.css'
+  styleUrl: './carrito.component.css',
 })
 export class CarritoComponent {
   private readonly CarritoService = inject(CarritoService);
   private readonly paymentService = inject(PaymentsService);
 
-  constructor(private router : Router){
-
-  }
+  constructor(private router: Router) {}
   cart: any[] = [];
 
   ngOnInit(): void {
@@ -59,22 +56,38 @@ export class CarritoComponent {
     }
   }
 
-  increaseQuantity(productID: number){
-    console.log("sumado");
-    this.CarritoService.increaseQuantity(productID);
-    console.log(this.cart);
+  increaseQuantity(productId: number): void {
+    const product = this.cart.find((item) => item.ID_Producto === productId);
+    if (product) {
+      product.quantity += 1;
+    }
+    this.updateCart();
   }
 
-  decreaseQuantity(productID: number){
-    console.log("restado");
-    this.CarritoService.decreaseQuantity(productID);
-    console.log(this.cart);
-
+  decreaseQuantity(productId: number): void {
+    const product = this.cart.find((item) => item.ID_Producto === productId);
+    if (product && product.quantity > 1) {
+      product.quantity -= 1;
+    }
+    this.updateCart();
   }
 
+  updateCart(): void {
+    this.cart = this.cart.map((item) => ({
+      ...item,
+      subtotal:
+        (item.Precio_Promocion !== null ? item.Precio_Promocion : item.Precio) *
+        item.quantity,
+    }));
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
   getTotal(): string {
     return this.cart
-      .reduce((total, item) => total + item.Precio * item.quantity, 0).toFixed(2);
+      .reduce((total, item) => {
+        const price =
+          item.Precio_Promocion !== null ? item.Precio_Promocion : item.Precio;
+        return total + price * item.quantity;
+      }, 0)
+      .toFixed(2);
   }
-
 }
