@@ -27,4 +27,7 @@ constructor() { }
     return this.http.post<any>(this.urlApiproductos, producto);
   }
   
+  updateProducto(producto: any): Observable<any> {
+    return this.http.put(`${this.urlApiproductos}${producto.ID_Producto}`, producto);
+  }
 }

@@ -34,7 +34,7 @@ export class PerfilAdminComponent implements OnInit {
   Horario_Cierre: any;
   Descripcion: any
 
-
+  selectedProduct: any = null;
   productos: any = [];
   Pedidos: any = [];
   Estado: string = 'Pendiente';
@@ -43,7 +43,7 @@ export class PerfilAdminComponent implements OnInit {
 
   selectedFile: File | null = null;
   isloading: Boolean = false;
-
+  editingProduct: any = null;
 
 
 
@@ -180,6 +180,7 @@ export class PerfilAdminComponent implements OnInit {
           console.log('Imagen actualizada con éxito:', response);
           this.tienda.foto = response.url; // Actualizar la imagen en la vista
           alert('Imagen actualizada correctamente.');
+          this.selectedFile = null; // Reiniciar el archivo seleccionado
         },
         (error) => {
           console.error('Error al actualizar la imagen:', error);
@@ -323,7 +324,7 @@ export class PerfilAdminComponent implements OnInit {
         }
       );
     }
-
+    
     getOrders(){
       this.ordersService.getOrdersByShopAndState(this.tienda.ID_Establecimiento, this.Estado).subscribe(
         (response: any) => {
@@ -414,4 +415,60 @@ export class PerfilAdminComponent implements OnInit {
       );
     }
     
+    startEditing(producto: any): void {
+      this.editingProduct = { ...producto }; // Clonar el producto para evitar modificar directamente
+    }
+
+    cancelEditing(): void {
+      this.editingProduct = null; // Cancelar la edición
+    }
+    
+    updateProduct(): void {
+      if (!this.editingProduct) {
+        return;
+      }
+    
+      this.isloading = true; // Inicia la carga
+    
+      if (this.selectedFile) {
+        this.imageUploadService.uploadProductImage(this.selectedFile, this.editingProduct.ID_Producto).subscribe(
+          (response) => {
+            this.editingProduct.Foto = response.url; // Actualizar la URL de la imagen
+            this.selectedFile = null; // Reiniciar el archivo seleccionado
+            this.saveProductChanges();
+          },
+          (error) => {
+            console.error('Error al subir la imagen:', error);
+            alert('Error al subir la imagen.');
+            this.isloading = false; // Finaliza la carga en caso de error
+          }
+        );
+      } else {
+        this.saveProductChanges();
+      }
+    }
+
+    saveProductChanges(): void {
+      this.productosService.updateProducto(this.editingProduct).subscribe(
+        (response: any) => {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Producto Actualizado!',
+            text: 'El producto ha sido actualizado correctamente.',
+          });
+          this.loadProductos(); // Recargar la lista de productos
+          this.editingProduct = null; // Finalizar la edición
+          this.isloading = false; // Finaliza la carga
+        },
+        (error: any) => {
+          console.error('Error al actualizar el producto:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Hubo un error al actualizar el producto. Por favor, intenta nuevamente.',
+          });
+          this.isloading = false; // Finaliza la carga en caso de error
+        }
+      );
+    }
 }

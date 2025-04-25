@@ -115,7 +115,7 @@
         
       </div>
 
-      <!-- <div class="col-md-9"> -->
+
         <div class="card shadow productos mb-5" id="productos">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center">
             <!-- Mostrar mensaje si no hay productos -->
@@ -134,7 +134,7 @@
                       <p class="price text-success fw-bold">{{ producto.Precio | currency : "EUR" }}</p>
                       <p class="location text-muted small">{{producto.Descripcion}}</p>
                       <div class="mt-auto d-flex justify-content-between">
-                        <button class="btn btn-primary btn-sm">Editar</button>
+                        <button class="btn btn-primary btn-sm" (click)="startEditing(producto)">Editar</button>
                         <button class="btn btn-danger btn-sm" (click)="deleteProduct(producto.ID_Producto)">Eliminar</button>
                       </div>
                     </div>
@@ -144,6 +144,49 @@
             }
           </div>
         </div>
+
+        @if(isloading) {
+          <div class="text-center py-5">
+            <mat-spinner></mat-spinner>
+          </div>
+        }
+              <!-- Formulario de edición -->
+      @if(editingProduct) {
+        <div class="card shadow mb-4">
+          <div class="card-body">
+            <h4 class="mb-4">Editar Producto</h4>
+            <form (ngSubmit)="updateProduct()" #editProductForm="ngForm">
+              <div class="mb-3">
+                <label for="editNombre" class="form-label">Nombre del Producto</label>
+                <input type="text" class="form-control" id="editNombre" [(ngModel)]="editingProduct.Nombre" name="nombre" required>
+              </div>
+              <div class="mb-3">
+                <label for="editDescripcion" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="editDescripcion" [(ngModel)]="editingProduct.Descripcion" name="descripcion" required>
+              </div>
+              <div class="mb-3">
+                <label for="editPrecio" class="form-label">Precio</label>
+                <input type="number" class="form-control" id="editPrecio" [(ngModel)]="editingProduct.Precio" name="precio" required>
+              </div>
+              <div class="mb-3">
+                <label for="editDisponibilidad" class="form-label">Disponibilidad</label>
+                <input type="number" class="form-control" id="editDisponibilidad" [(ngModel)]="editingProduct.Disponibilidad" name="disponibilidad" required>
+              </div>
+              <div class="mb-3">
+                <label for="editTipo" class="form-label">Tipo</label>
+                <input type="text" class="form-control" id="editTipo" [(ngModel)]="editingProduct.Tipo" name="tipo" required>
+              </div>
+              <div class="mb-3">
+                <label for="editImagen" class="form-label">Imagen</label>
+                <input type="file" class="form-control" id="editImagen" (change)="onFileChange($event)">
+              </div>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+              <button type="button" class="btn btn-secondary" (click)="cancelEditing()">Cancelar</button>
+            </form>
+          </div>
+        </div>
+      }
+
 
         @if(isloading) {
           <div class="text-center py-5">
