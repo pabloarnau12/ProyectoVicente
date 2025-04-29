@@ -1,4 +1,4 @@
-
+cambiar boton de cerrar sesion en el perfil del admin
 2. Hacer tabla categorias_productos y operar con eso
 5. El carrito está en el local storage, cualqueira puede cambiar los datos--> recomendacion: hacer una tabla en la base de datos y que cada usuario tenga su carrito !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 6. Terminar Perfil de repartidores

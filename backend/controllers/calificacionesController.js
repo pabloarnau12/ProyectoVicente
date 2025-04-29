@@ -1,11 +1,14 @@
-const connection = require('../config/db');
+const connection = require("../config/db");
 
 // Obtener todas las calificaciones
 exports.getAllCalificacionesEstablecimientos = (req, res) => {
-  connection.query('SELECT * FROM calificaciones_establecimientos', (err, results) => {
-    if (err) return res.status(500).send(err);
-    res.json(results);
-  });
+  connection.query(
+    "SELECT * FROM calificaciones_establecimientos",
+    (err, results) => {
+      if (err) return res.status(500).send(err);
+      res.json(results);
+    }
+  );
 };
 
 exports.getAllCalificacionesEstablecimientosbyID = (req, res) => {
@@ -34,12 +37,11 @@ exports.getAllCalificacionesEstablecimientosbyID = (req, res) => {
   });
 };
 
-
 // Obtener la calificación promedio de una tienda
 exports.getCalificacionPromedioEstablecimientos = (req, res) => {
   const { id } = req.params;
   connection.query(
-    'SELECT AVG(Calificacion_Establecimiento) AS media_calificacion FROM calificaciones_establecimientos WHERE ID_Establecimiento = ?',
+    "SELECT AVG(Calificacion_Establecimiento) AS media_calificacion FROM calificaciones_establecimientos WHERE ID_Establecimiento = ?",
     [id],
     (err, results) => {
       if (err) return res.status(500).send(err);
@@ -55,30 +57,54 @@ exports.getCalificacionPromedioEstablecimientos = (req, res) => {
 };
 
 exports.addComentarioEstablecimiento = (req, res) => {
-  const {body} = req.body;
-  console.log('body: ' + body)
-  if (!body.ID_Usuario || !body.Calificacion_Establecimiento || !body.Comentario || !body.ID_Establecimiento) {
-    return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+  const {
+    ID_Usuario,
+    Calificacion_Establecimiento,
+    Comentario,
+    ID_Establecimiento,
+  } = req.body;
+
+  // Validar que todos los campos estén presentes
+  if (
+    !ID_Usuario ||
+    !Calificacion_Establecimiento ||
+    !Comentario ||
+    !ID_Establecimiento
+  ) {
+    return res
+      .status(400)
+      .json({ message: "Todos los campos son obligatorios" });
   }
 
-  if (isNaN(body.Calificacion_Establecimiento) || body.Calificacion_Establecimiento < 1 || body.Calificacion_Establecimiento > 5) {
-    return res.status(400).json({ message: 'La calificación debe estar entre 1 y 5' });
+  // Validar que la calificación esté entre 1 y 5
+  if (
+    isNaN(Calificacion_Establecimiento) ||
+    Calificacion_Establecimiento < 1 ||
+    Calificacion_Establecimiento > 5
+  ) {
+    return res
+      .status(400)
+      .json({ message: "La calificación debe estar entre 1 y 5" });
   }
 
   const query = `
     INSERT INTO calificaciones_establecimientos (ID_Usuario, Calificacion_Establecimiento, Comentario, ID_Establecimiento) VALUES (?, ?, ?, ?)`;
 
   connection.query(
-    query, [body.ID_Usuario, body.Calificacion_Establecimiento, body.Comentario, body.ID_Establecimiento], 
+    query,
+    [ID_Usuario, Calificacion_Establecimiento, Comentario, ID_Establecimiento],
     (err, results) => {
       if (err) {
-        console.error('Error al insertar en la base de datos:', err);
-        return res.status(500).json({ message: 'Error al insertar en la base de datos' });
+        console.error("Error al insertar en la base de datos:", err);
+        return res
+          .status(500)
+          .json({ message: "Error al insertar en la base de datos" });
       }
 
       // Responder con éxito al cliente
-      return res.status(201).json({ message: 'Comentario agregado correctamente' });
+      return res
+        .status(201)
+        .json({ message: "Comentario agregado correctamente" });
     }
   );
 };
-
