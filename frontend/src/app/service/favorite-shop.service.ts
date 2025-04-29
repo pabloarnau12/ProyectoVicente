@@ -1,39 +1,70 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import {
+  AddFavoriteShopRequest,
+  AddFavoriteShopResponse,
+  CheckFavoriteShopRequest,
+  CheckFavoriteShopResponse,
+  FavoriteShop,
+  RemoveFavoriteShopRequest,
+  RemoveFavoriteShopResponse,
+} from '../common/FavoriteShops';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FavoriteShopService {
   private http: HttpClient = inject(HttpClient);
-  private urlApiCalificaciones = "http://localhost:3300/api/favorite_shops/"
-  constructor() { }
+  private urlApiCalificaciones = 'http://localhost:3300/api/favorite_shops/';
+  constructor() {}
 
-
-  public getFavoriteShops(): Observable <any>{
-    return this.http.get<any>(this.urlApiCalificaciones)
+  public getFavoriteShops(): Observable<FavoriteShop[]> {
+    return this.http.get<FavoriteShop[]>(this.urlApiCalificaciones);
   }
 
-  public getFavoriteShopsByUser(id: string): Observable <any>{
-    return this.http.get<any>(this.urlApiCalificaciones + id);
+  public getFavoriteShopsByUser(id: string): Observable<FavoriteShop[]> {
+    return this.http.get<FavoriteShop[]>(this.urlApiCalificaciones + id);
   }
 
   // Método para agregar una tienda a favoritos
-  public addFavoriteShop(ID_Usuario: string, ID_Establecimiento: string): Observable<any> {
-    return this.http.post<any>(this.urlApiCalificaciones, { ID_Usuario, ID_Establecimiento });
+  public addFavoriteShop(
+    data: AddFavoriteShopRequest
+  ): Observable<AddFavoriteShopResponse> {
+    return this.http.post<AddFavoriteShopResponse>(
+      this.urlApiCalificaciones,
+      data
+    );
   }
 
   // Método para eliminar una tienda de favoritos
-  public removeFavoriteShop(ID_Usuario: string, ID_Establecimiento: string): Observable<any> {
-    return this.http.delete<any>(this.urlApiCalificaciones, { body: { ID_Usuario, ID_Establecimiento } });
+  public removeFavoriteShop(
+    ID_Usuario: string,
+    ID_Establecimiento: string
+  ): Observable<RemoveFavoriteShopResponse> {
+    const requestData: RemoveFavoriteShopRequest = {
+      ID_Usuario,
+      ID_Establecimiento,
+    };
+    return this.http.delete<RemoveFavoriteShopResponse>(
+      this.urlApiCalificaciones,
+      {
+        body: requestData,
+      }
+    );
   }
 
-  checkFavoriteShop(ID_Usuario: string, ID_Establecimiento: string): Observable<any> {
-    return this.http.get<any>(`${this.urlApiCalificaciones}check`, { // Asegúrate de usar comillas invertidas
-        params: { ID_Usuario, ID_Establecimiento }
-    });
-}
-
-  
+  public checkFavoriteShop(
+    ID_Usuario: string,
+    ID_Establecimiento: string
+  ): Observable<CheckFavoriteShopResponse> {
+    const params = { ID_Usuario, ID_Establecimiento }; // Parámetros de la solicitud
+    return this.http.get<CheckFavoriteShopResponse>(
+      `${this.urlApiCalificaciones}check`,
+      {
+        params,
+        responseType: 'json', // Asegurar que la respuesta sea JSON
+      }
+    );
+  }
 }

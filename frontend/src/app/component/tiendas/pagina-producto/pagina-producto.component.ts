@@ -135,32 +135,31 @@ export class PaginaProductoComponent implements OnInit {
   addFavorite(): void {
     const token = localStorage.getItem('token'); // Obteniendo el token del localStorage
     if (token) {
-      console.log('el perfil esta logeado');
+      console.log('El perfil está logeado');
       this.authService.getProfile(token).subscribe(
         (profile) => {
           const user = profile; // Perfil del usuario
 
-          // Aquí se suscribe a la llamada para guardar la tienda favorita
-          this.apiFavoriteShops
-            .addFavoriteShop(
-              user.ID_Usuario.toString(),
-              this.tienda.ID_Establecimiento.toString()
-            )
-            .subscribe(
-              (response) => {
-                console.log(
-                  user.ID_Usuario,
-                  this.tienda.ID_Establecimiento + ' tienda añadida'
-                );
-                this.isFavorite = true; // Marcar como favorito
-              },
-              (error) => {
-                console.error('Error al añadir la tienda a favoritos:', error);
-                alert(
-                  'Error al añadir la tienda a favoritos: ' + error.message
-                );
-              }
-            );
+          // Crear un objeto que cumpla con la interfaz AddFavoriteShopRequest
+          const favoriteData = {
+            ID_Usuario: user.ID_Usuario.toString(),
+            ID_Establecimiento: this.tienda.ID_Establecimiento.toString(),
+          };
+
+          // Llamar al servicio con el objeto
+          this.apiFavoriteShops.addFavoriteShop(favoriteData).subscribe(
+            (response) => {
+              console.log(
+                user.ID_Usuario,
+                this.tienda.ID_Establecimiento + ' tienda añadida'
+              );
+              this.isFavorite = true; // Marcar como favorito
+            },
+            (error) => {
+              console.error('Error al añadir la tienda a favoritos:', error);
+              alert('Error al añadir la tienda a favoritos: ' + error.message);
+            }
+          );
         },
         (error) => {
           console.error('Error al cargar el perfil', error);
