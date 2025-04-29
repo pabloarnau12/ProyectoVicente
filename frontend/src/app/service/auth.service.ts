@@ -1,61 +1,120 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {
+  LoginRequest,
+  LoginResponse,
+  RegisterRequest,
+  RegisterResponse,
+  UpdateAddressRequest,
+  UpdateDescripcionRequest,
+  UpdateHorarioRequest,
+  UpdateStatusRequest,
+  UpdateUserProfileRequest,
+  UserProfile,
+} from '../common/Auth';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3300/api/auth';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, { email, password });
+  login(email: string, password: string): Observable<LoginResponse> {
+    const body: LoginRequest = { email, password };
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, body);
   }
 
-  register(nombre: string, apellidos: string, email: string,telefono: string,  password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/registro`, { nombre, apellidos, email, telefono, password });
+  register(data: RegisterRequest): Observable<RegisterResponse> {
+    return this.http.post<RegisterResponse>(`${this.apiUrl}/registro`, data);
   }
 
-  getProfile(token: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/perfil`, { headers: { Authorization: `Bearer ${token}` } });
+  getProfile(token: string): Observable<UserProfile> {
+    return this.http.get<UserProfile>(`${this.apiUrl}/perfil`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
   logout(): void {
     localStorage.removeItem('token');
     console.log('Sesión cerrada correctamente');
-    
   }
-  updateUserProfile(user: any, token: string): Observable<any> {
+  updateUserProfile(
+    user: UpdateUserProfileRequest,
+    token: string
+  ): Observable<{ message: string }> {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
     });
-    return this.http.patch<any>(`${this.apiUrl}/perfil`, user, { headers });
+    return this.http.patch<{ message: string }>(`${this.apiUrl}/perfil`, user, {
+      headers,
+    });
   }
 
-  updateAddress(direccion: string, token: string): Observable<any> {
+  updateAddress(
+    data: UpdateAddressRequest,
+    token: string
+  ): Observable<{ message: string }> {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
     });
-  
-    return this.http.patch<any>(`${this.apiUrl}/perfil/direccion`, { direccion }, { headers });
+
+    return this.http.patch<{ message: string }>(
+      `${this.apiUrl}/perfil/direccion`,
+      data,
+      { headers }
+    );
   }
 
-  updateStatus(status: string, token: string): Observable<any>{
-    const headers = { Authorization: `Bearer ${token}` };
-    // return this.http.patch('/perfil/status', { status }, { headers });
-    return this.http.patch<any>(`${this.apiUrl}/perfil/status`, { status }, { headers });
+  updateStatus(
+    data: UpdateStatusRequest,
+    token: string
+  ): Observable<{ message: string }> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.patch<{ message: string }>(
+      `${this.apiUrl}/perfil/status`,
+      data,
+      { headers }
+    );
   }
 
-  updateHorario(Horario_Apertura: string, Horario_Cierre: string, ID_Establecimiento: number , token: string): Observable<any>{
-    return this.http.patch<any>(`${this.apiUrl}/perfil/horario`, { Horario_Apertura, Horario_Cierre, ID_Establecimiento }, { headers: { Authorization: `Bearer ${token}` } });
+  updateHorario(
+    data: UpdateHorarioRequest,
+    token: string
+  ): Observable<{ message: string }> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.patch<{ message: string }>(
+      `${this.apiUrl}/perfil/horario`,
+      data,
+      { headers }
+    );
   }
 
-  updateDescription(Descripcion: string, ID_Establecimiento: number, token: string): Observable<any>{
-    return this.http.patch<any>(`${this.apiUrl}/perfil/descripcion`, { Descripcion, ID_Establecimiento }, { headers: { Authorization: `Bearer ${token}` } });
+  updateDescription(
+    data: UpdateDescripcionRequest,
+    token: string
+  ): Observable<{ message: string }> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.patch<{ message: string }>(
+      `${this.apiUrl}/perfil/descripcion`,
+      data,
+      { headers }
+    );
   }
-  
 }

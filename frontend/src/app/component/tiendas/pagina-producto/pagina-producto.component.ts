@@ -142,7 +142,10 @@ export class PaginaProductoComponent implements OnInit {
 
           // Aquí se suscribe a la llamada para guardar la tienda favorita
           this.apiFavoriteShops
-            .addFavoriteShop(user.ID_Usuario, this.tienda.ID_Establecimiento)
+            .addFavoriteShop(
+              user.ID_Usuario.toString(),
+              this.tienda.ID_Establecimiento.toString()
+            )
             .subscribe(
               (response) => {
                 console.log(
@@ -179,7 +182,10 @@ export class PaginaProductoComponent implements OnInit {
         (profile) => {
           const user = profile;
           this.apiFavoriteShops
-            .removeFavoriteShop(user.ID_Usuario, this.tienda.ID_Establecimiento)
+            .removeFavoriteShop(
+              user.ID_Usuario.toString(),
+              this.tienda.ID_Establecimiento
+            )
             .subscribe(
               (response) => {
                 console.log(
@@ -217,7 +223,10 @@ export class PaginaProductoComponent implements OnInit {
         (profile) => {
           const user = profile;
           this.apiFavoriteShops
-            .checkFavoriteShop(user.ID_Usuario, this.tienda.ID_Establecimiento)
+            .checkFavoriteShop(
+              user.ID_Usuario.toString(),
+              this.tienda.ID_Establecimiento
+            )
             .subscribe(
               (response) => {
                 this.isFavorite = response.isFavorite;

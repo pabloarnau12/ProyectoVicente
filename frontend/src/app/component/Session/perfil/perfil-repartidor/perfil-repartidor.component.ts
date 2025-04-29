@@ -18,18 +18,18 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     MatMenuModule,
     MatButtonModule,
-    MatCardModule,  
+    MatCardModule,
     MatIconModule,
-    DatePipe  
+    DatePipe,
   ],
   templateUrl: './perfil-repartidor.component.html',
-  styleUrl: './perfil-repartidor.component.css'
+  styleUrl: './perfil-repartidor.component.css',
 })
 export class PerfilRepartidorComponent implements OnInit {
   user: any = {};
   selectedFile: File | null = null;
   isloading: Boolean = false;
-  pedidos: any[] = []
+  pedidos: any[] = [];
   pedidoSeleccionado: any = null; // Variable para almacenar el pedido seleccionado
   mostrarProductos: boolean = false; // Controla la visibilidad de los productos
 
@@ -39,29 +39,31 @@ export class PerfilRepartidorComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loadProfile();
-
   }
 
-constructor(private authService: AuthService, private router: Router, private imageUploadService: ImageUploadService , private pedidosService: ordersService ){
-  
-}
-verificarPedidoAsignado(): void {
-  this.pedidosService.getPedidoAsignado(this.user.ID_Usuario).subscribe(
-    (pedido) => {
-      this.pedidoSeleccionado = pedido; // Si hay un pedido asignado, lo guardamos
-      console.log("pedidoseleccionado", this.pedidoSeleccionado)
-    },
-    (error) => {
-      if (error.status === 404) {
-        // Si no hay pedido asignado, cargamos los pedidos disponibles
-        console.log("pedidoseleccionado", this.pedidoSeleccionado)
-        this.loadOrders();
-      } else {
-        console.error('Error al verificar el pedido asignado', error);
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private imageUploadService: ImageUploadService,
+    private pedidosService: ordersService
+  ) {}
+  verificarPedidoAsignado(): void {
+    this.pedidosService.getPedidoAsignado(this.user.ID_Usuario).subscribe(
+      (pedido) => {
+        this.pedidoSeleccionado = pedido; // Si hay un pedido asignado, lo guardamos
+        console.log('pedidoseleccionado', this.pedidoSeleccionado);
+      },
+      (error) => {
+        if (error.status === 404) {
+          // Si no hay pedido asignado, cargamos los pedidos disponibles
+          console.log('pedidoseleccionado', this.pedidoSeleccionado);
+          this.loadOrders();
+        } else {
+          console.error('Error al verificar el pedido asignado', error);
+        }
       }
-    }
-  );
-}
+    );
+  }
   loadProfile(): void {
     const token = localStorage.getItem('token');
     if (token) {
@@ -70,12 +72,15 @@ verificarPedidoAsignado(): void {
           this.user = profile;
           console.log('Perfil cargado:', this.user); // Para depuración
           this.verificarPedidoAsignado(); // Verificar si hay un pedido asignado
-          console.log('Contenido de pedidoSeleccionado:', this.pedidoSeleccionado);
+          console.log(
+            'Contenido de pedidoSeleccionado:',
+            this.pedidoSeleccionado
+          );
           // this.loadOrders();
         },
         (error) => {
           console.error('Error al cargar el perfil', error);
-          this.onLogout()
+          this.onLogout();
         }
       );
     } else {
@@ -92,26 +97,20 @@ verificarPedidoAsignado(): void {
     });
   }
 
-
-  secondOportunityLogout(){
+  secondOportunityLogout() {
     Swal.fire({
-      title: "¿Seguro que quieres marcharte?",
-      showDenyButton: true, 
-      showCancelButton: true, 
+      title: '¿Seguro que quieres marcharte?',
+      showDenyButton: true,
+      showCancelButton: true,
       showConfirmButton: false,
-      denyButtonText: `Cerrar Sesión`, 
-      cancelButtonText: 'Cancelar', 
-
+      denyButtonText: `Cerrar Sesión`,
+      cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isDenied) {
         this.onLogout(); // Llama a la función para cerrar sesión
       }
     });
-    
   }
-
-
-
 
   onFileChange(event: any) {
     this.selectedFile = event.target.files[0];
@@ -136,42 +135,47 @@ verificarPedidoAsignado(): void {
     this.isloading = true;
     const token = localStorage.getItem('token');
 
-    if(token){
-      this.authService.updateStatus(newStatus, token).subscribe(
+    if (token) {
+      this.authService.updateStatus({ status: newStatus }, token).subscribe(
         (response) => {
           console.log('Estado actualizado:', response);
           this.user.estado = newStatus; // Actualiza el estado en el front
-          Swal.fire('Estado actualizado', `Tu estado ahora es: ${newStatus}`, 'success');
+          Swal.fire(
+            'Estado actualizado',
+            `Tu estado ahora es: ${newStatus}`,
+            'success'
+          );
           this.isloading = false;
           this.loadProfile();
         },
         (error) => {
           console.error('Error al actualizar el estado', error);
-          Swal.fire('Error', 'No se pudo actualizar tu estado. Intenta de nuevo.', 'error');
+          Swal.fire(
+            'Error',
+            'No se pudo actualizar tu estado. Intenta de nuevo.',
+            'error'
+          );
           this.isloading = false;
         }
       );
-    }
-    else{
+    } else {
       console.error('No se encontró el token');
       this.onLogout();
     }
-  
-
   }
 
-  loadOrders(){
+  loadOrders() {
     this.pedidosService.OrdersByState('Pendiente').subscribe(
       (response) => {
         this.pedidos = response;
-        console.log("Pedidos disponibles: ", this.pedidos)
+        console.log('Pedidos disponibles: ', this.pedidos);
       },
-      (error)=>{
-        console.error("Error: ", error)
+      (error) => {
+        console.error('Error: ', error);
       }
-    )
+    );
   }
-  
+
   aceptarPedido(pedido: any): void {
     Swal.fire({
       title: '¿Estás seguro?',
@@ -179,24 +183,28 @@ verificarPedidoAsignado(): void {
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Sí, aceptar',
-      cancelButtonText: 'Cancelar'
+      cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log("Pedido a aceptar: ", pedido.ID_Pedido)
-        this.pedidosService.acceptOrder(pedido.ID_Pedido, this.user.ID_Usuario).subscribe(
-          
-          (response) => {
-            Swal.fire('Pedido aceptado', 'Has aceptado el pedido con éxito.', 'success');
-            this.pedidoSeleccionado = pedido;
-            this.updateStatus('ocupado'); // Cambiar el estado a 'Ocupado'
-            // this.loadOrders(); // Actualizar la lista de pedidos
-
-          },
-          (error) => {
-            console.error('Error al aceptar el pedido', error);
-            Swal.fire('Error', 'No se pudo aceptar el pedido.', 'error');
-          }
-        );
+        console.log('Pedido a aceptar: ', pedido.ID_Pedido);
+        this.pedidosService
+          .acceptOrder(pedido.ID_Pedido, this.user.ID_Usuario)
+          .subscribe(
+            (response) => {
+              Swal.fire(
+                'Pedido aceptado',
+                'Has aceptado el pedido con éxito.',
+                'success'
+              );
+              this.pedidoSeleccionado = pedido;
+              this.updateStatus('ocupado'); // Cambiar el estado a 'Ocupado'
+              // this.loadOrders(); // Actualizar la lista de pedidos
+            },
+            (error) => {
+              console.error('Error al aceptar el pedido', error);
+              Swal.fire('Error', 'No se pudo aceptar el pedido.', 'error');
+            }
+          );
       }
     });
   }
@@ -208,21 +216,27 @@ verificarPedidoAsignado(): void {
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Sí, finalizar',
-      cancelButtonText: 'Cancelar'
+      cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.pedidosService.finishOrder(this.pedidoSeleccionado.ID_Pedido).subscribe(
-          (response) => {
-            Swal.fire('Pedido finalizado', 'Has finalizado el pedido con éxito.', 'success');
-            this.pedidoSeleccionado = null; // Eliminar el pedido seleccionado
-            this.updateStatus('activo'); // Cambiar el estado a 'Ocupado'
-            this.loadOrders(); // Recargar la lista de pedidos disponibles
-          },
-          (error) => {
-            console.error('Error al finalizar el pedido', error);
-            Swal.fire('Error', 'No se pudo finalizar el pedido.', 'error');
-          }
-        );
+        this.pedidosService
+          .finishOrder(this.pedidoSeleccionado.ID_Pedido)
+          .subscribe(
+            (response) => {
+              Swal.fire(
+                'Pedido finalizado',
+                'Has finalizado el pedido con éxito.',
+                'success'
+              );
+              this.pedidoSeleccionado = null; // Eliminar el pedido seleccionado
+              this.updateStatus('activo'); // Cambiar el estado a 'Ocupado'
+              this.loadOrders(); // Recargar la lista de pedidos disponibles
+            },
+            (error) => {
+              console.error('Error al finalizar el pedido', error);
+              Swal.fire('Error', 'No se pudo finalizar el pedido.', 'error');
+            }
+          );
       }
     });
   }
@@ -234,19 +248,29 @@ verificarPedidoAsignado(): void {
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Sí, marcar',
-      cancelButtonText: 'Cancelar'
+      cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.pedidosService.updateOrderStatus(this.pedidoSeleccionado.ID_Pedido, 'En Camino').subscribe(
-          (response) => {
-            Swal.fire('Estado actualizado', 'El pedido ahora está "En Camino".', 'success');
-            this.pedidoSeleccionado.Estado_Pedido = 'En Camino'; // Actualizar el estado localmente
-          },
-          (error) => {
-            console.error('Error al actualizar el estado del pedido', error);
-            Swal.fire('Error', 'No se pudo actualizar el estado del pedido.', 'error');
-          }
-        );
+        this.pedidosService
+          .updateOrderStatus(this.pedidoSeleccionado.ID_Pedido, 'En Camino')
+          .subscribe(
+            (response) => {
+              Swal.fire(
+                'Estado actualizado',
+                'El pedido ahora está "En Camino".',
+                'success'
+              );
+              this.pedidoSeleccionado.Estado_Pedido = 'En Camino'; // Actualizar el estado localmente
+            },
+            (error) => {
+              console.error('Error al actualizar el estado del pedido', error);
+              Swal.fire(
+                'Error',
+                'No se pudo actualizar el estado del pedido.',
+                'error'
+              );
+            }
+          );
       }
     });
   }

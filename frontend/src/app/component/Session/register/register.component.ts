@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule aquí
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegisterRequest } from '../../../common/Auth'; // Importar la interfaz
+
 @Component({
   selector: 'app-registrarse',
   templateUrl: './register.component.html',
@@ -10,8 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
   imports: [FormsModule],
 })
-
-
 export class RegisterComponent {
   nombre: string = '';
   apellidos: string = '';
@@ -19,19 +19,27 @@ export class RegisterComponent {
   telefono: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService, private router: Router ) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   register() {
-    this.authService.register(this.nombre, this.apellidos, this.email, this.telefono , this.password).subscribe(
-      response => {
+    // Crear un objeto que cumpla con la interfaz RegisterRequest
+    const registerData: RegisterRequest = {
+      nombre: this.nombre,
+      apellidos: this.apellidos,
+      email: this.email,
+      telefono: this.telefono,
+      password: this.password,
+    };
+
+    this.authService.register(registerData).subscribe(
+      (response) => {
         console.log('Registro exitoso', response);
-        alert('Usuario registrado con exito');
+        alert('Usuario registrado con éxito');
         this.router.navigate(['/home']).then(() => {
-          // Forzar la recarga de la página
           window.location.reload();
         });
       },
-      error => {
+      (error) => {
         console.error('Error en el registro', error);
       }
     );

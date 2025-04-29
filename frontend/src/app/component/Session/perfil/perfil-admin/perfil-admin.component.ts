@@ -7,7 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { Tiendas } from '../../../../common/Tiendas';
 import { ShopService } from '../../../../service/shop.service';
 import { MatIcon } from '@angular/material/icon';
-import { CurrencyPipe, DatePipe, JsonPipe, ViewportScroller } from '@angular/common';
+import {
+  CurrencyPipe,
+  DatePipe,
+  JsonPipe,
+  ViewportScroller,
+} from '@angular/common';
 import { ProductosService } from '../../../../service/productos.service';
 import { producto } from '../../../../common/productos';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -16,23 +21,33 @@ import { PromocionesService } from '../../../../service/promociones.service';
 @Component({
   selector: 'app-perfil-admin',
   standalone: true,
-  imports: [FormsModule, RouterLink, MatIcon, CurrencyPipe, MatProgressSpinnerModule, DatePipe],
+  imports: [
+    FormsModule,
+    RouterLink,
+    MatIcon,
+    CurrencyPipe,
+    MatProgressSpinnerModule,
+    DatePipe,
+  ],
   templateUrl: './perfil-admin.component.html',
-  styleUrl: './perfil-admin.component.css'
+  styleUrl: './perfil-admin.component.css',
 })
 export class PerfilAdminComponent implements OnInit {
   protected readonly authService: AuthService = inject(AuthService);
-  protected readonly imageUploadService: ImageUploadService = inject(ImageUploadService);
+  protected readonly imageUploadService: ImageUploadService =
+    inject(ImageUploadService);
   protected readonly shopService: ShopService = inject(ShopService);
-  protected readonly productosService: ProductosService = inject(ProductosService);
+  protected readonly productosService: ProductosService =
+    inject(ProductosService);
   protected readonly ordersService: ordersService = inject(ordersService);
-  protected readonly promocionesService: PromocionesService = inject(PromocionesService); // Inyecta el servicio de promociones
-  
+  protected readonly promocionesService: PromocionesService =
+    inject(PromocionesService); // Inyecta el servicio de promociones
+
   user: any = {};
   tienda: any = {};
   Horario_Apertura: any;
   Horario_Cierre: any;
-  Descripcion: any
+  Descripcion: any;
 
   selectedProduct: any = null;
   productos: any = [];
@@ -44,8 +59,6 @@ export class PerfilAdminComponent implements OnInit {
   selectedFile: File | null = null;
   isloading: Boolean = false;
   editingProduct: any = null;
-
-
 
   newProduct: any = {
     ID_Producto: 0,
@@ -67,18 +80,19 @@ export class PerfilAdminComponent implements OnInit {
     fechaFin: '',
     tipoPromocion: 'porcentaje', // Nuevo campo
     codigoPromocion: '', // Nuevo campo
-    condiciones: '' // Nuevo campo
+    condiciones: '', // Nuevo campo
   };
 
-
-
-  constructor(private router: Router, private route: ActivatedRoute,
-    private viewportScroller: ViewportScroller){
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private viewportScroller: ViewportScroller
+  ) {
     this.loadProfile();
   }
   ngOnInit() {
     // Suscríbete a los cambios en el fragmento de la URL
-    this.route.fragment.subscribe(fragment => {
+    this.route.fragment.subscribe((fragment) => {
       if (fragment) {
         // Espera a que el DOM se actualice
         setTimeout(() => {
@@ -91,7 +105,7 @@ export class PerfilAdminComponent implements OnInit {
   scrollTo(fragment: string): void {
     this.viewportScroller.scrollToAnchor(fragment);
   }
-  
+
   loadProfile(): void {
     const token = localStorage.getItem('token');
     if (token) {
@@ -99,11 +113,11 @@ export class PerfilAdminComponent implements OnInit {
         (profile) => {
           this.user = profile;
           console.log('Perfil cargado:', this.user); // Para depuración
-          this.loadTienda(); 
+          this.loadTienda();
         },
         (error) => {
           console.error('Error al cargar el perfil', error);
-          this.onLogout()
+          this.onLogout();
         }
       );
     } else {
@@ -113,69 +127,69 @@ export class PerfilAdminComponent implements OnInit {
   }
 
   loadTienda(): void {
-      this.shopService.getShopByAdmin(this.user.ID_Usuario).subscribe(
-        (tienda) => {
-          this.tienda = tienda;
-          console.log('Tienda cargada:', this.tienda); // Para depuración
-          this.Horario_Apertura = this.tienda.Horario_Apertura;
-          this.Horario_Cierre = this.tienda.Horario_Cierre;
-          this.Descripcion = this.tienda.Descripcion;
-          this.loadProductos();
-          this.getOrders();
-          this.loadPromotions();
+    this.shopService.getShopByAdmin(this.user.ID_Usuario).subscribe(
+      (tienda) => {
+        this.tienda = tienda;
+        console.log('Tienda cargada:', this.tienda); // Para depuración
+        this.Horario_Apertura = this.tienda.Horario_Apertura;
+        this.Horario_Cierre = this.tienda.Horario_Cierre;
+        this.Descripcion = this.tienda.Descripcion;
+        this.loadProductos();
+        this.getOrders();
+        this.loadPromotions();
+      },
+      (error) => {
+        console.error('Error al cargar la tienda', error);
+      }
+    );
+  }
+
+  loadProductos(): void {
+    this.shopService
+      .getProductsByShop(this.tienda.ID_Establecimiento)
+      .subscribe(
+        (productos) => {
+          this.productos = productos;
+          console.log('Productos Cargados:', this.productos);
         },
         (error) => {
-          console.error('Error al cargar la tienda', error);
+          console.error('error al cargar los productos', error);
         }
       );
   }
 
-  loadProductos(): void {
-    this.shopService.getProductsByShop(this.tienda.ID_Establecimiento).subscribe(
-      (productos) => {
-        this.productos = productos;
-        console.log('Productos Cargados:', this.productos);
-      },
-      (error)=> {
-        console.error('error al cargar los productos', error)
+  secondOportunityLogout() {
+    Swal.fire({
+      title: '¿Seguro que quieres marcharte?',
+      showDenyButton: true,
+      showCancelButton: true,
+      showConfirmButton: false,
+      denyButtonText: `Cerrar Sesión`,
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isDenied) {
+        this.onLogout(); // Llama a la función para cerrar sesión
       }
-    )
+    });
   }
 
-  
-    secondOportunityLogout(){
-      Swal.fire({
-        title: "¿Seguro que quieres marcharte?",
-        showDenyButton: true, 
-        showCancelButton: true, 
-        showConfirmButton: false,
-        denyButtonText: `Cerrar Sesión`, 
-        cancelButtonText: 'Cancelar', 
-  
-      }).then((result) => {
-        if (result.isDenied) {
-          this.onLogout(); // Llama a la función para cerrar sesión
-        }
-      });
-      
-    }
-  
-    onLogout(): void {
-      this.authService.logout();
-      this.router.navigate(['/home']).then(() => {
-        // Forzar la recarga de la página
-        window.location.reload();
-      });
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/home']).then(() => {
+      // Forzar la recarga de la página
+      window.location.reload();
+    });
+  }
+
+  updateShopImage(): void {
+    if (!this.selectedFile) {
+      alert('Por favor, selecciona una imagen.');
+      return;
     }
 
-
-    updateShopImage(): void {
-      if (!this.selectedFile) {
-        alert('Por favor, selecciona una imagen.');
-        return;
-      }
-    
-      this.imageUploadService.uploadShopImage(this.selectedFile, this.tienda.ID_Establecimiento).subscribe(
+    this.imageUploadService
+      .uploadShopImage(this.selectedFile, this.tienda.ID_Establecimiento)
+      .subscribe(
         (response) => {
           console.log('Imagen actualizada con éxito:', response);
           this.tienda.foto = response.url; // Actualizar la imagen en la vista
@@ -187,153 +201,171 @@ export class PerfilAdminComponent implements OnInit {
           alert('Error al actualizar la imagen.');
         }
       );
-    }
-    onFileChange(event: any) {
-      this.selectedFile = event.target.files[0];
-    }
-    onSubmit() {
-      if (this.selectedFile) {
-        this.isloading = true;
-        this.imageUploadService.uploadProfileImage(this.selectedFile).subscribe({
-          next: (response: any) => {
-            console.log('Imagen subida:', response.url);
-            this.loadProfile();
-            this.isloading = false;
-          },
-          error: (error) => {
-            console.error('Error al subir la imagen:', error);
-          },
-        });
-      }
-    }
-
-    onSubmitHorario() {
-      const token = localStorage.getItem('token');
-      if (token) {
-        this.authService.updateHorario(this.Horario_Apertura, this.Horario_Cierre, this.tienda.ID_Establecimiento, token).subscribe(
-          (response: any) => {
-            Swal.fire({
-              icon: 'success',
-              title: '¡Horario Actualizado!',
-              text: 'El horario ha sido actualizado correctamente.',
-            });
-            this.loadProfile()
-          },
-          (error: any) => {
-            console.error('Error al actualizar el horario', error);
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Hubo un error al actualizar el horario. Por favor, intenta nuevamente.',
-            });
-          }
-        );
-      }else{
-        this.onLogout();
-      }
-    }
-
-
-    onSubmitDescripcion() {
-      const token = localStorage.getItem('token');
-      if (token) {
-        this.authService.updateDescription(this.Descripcion, this.tienda.ID_Establecimiento, token).subscribe(
-          (response: any) => {
-            Swal.fire({
-              icon: 'success',
-              title: '¡Descripcion Actualizada!',
-              text: 'La descripcion ha sido actualizada correctamente.',
-            });
-            this.loadProfile()
-          },
-          (error: any) => {
-            console.error('Error al actualizar el horario', error);
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Hubo un error al actualizar la Descripcion. Por favor, intenta nuevamente.',
-            });
-          }
-        );
-      }else{
-        this.onLogout();
-      }
-    }
-
-    deleteProduct(ID_Producto: any){
-        this.productosService.deleteProductoById(ID_Producto, this.tienda.ID_Establecimiento).subscribe(
-          (response: any) => {
-            Swal.fire({
-              icon: 'success',
-              title: '¡Producto Eliminado!',
-              text: 'El producto ha sido eliminado correctamente.',
-            });
-            this.loadProductos();
-          },
-          (error: any) => {
-            console.error('Error al eliminar el producto', error);
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Hubo un error al eliminar el producto. Por favor, intenta nuevamente.',
-            });
-          }
-        );
-    }
-
-
-    addProduct() {
+  }
+  onFileChange(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+  onSubmit() {
+    if (this.selectedFile) {
       this.isloading = true;
-      if (!this.selectedFile) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Por favor, selecciona una imagen para el producto.',
-        });
-        return;
-      }
-  
-      const formData = new FormData();
-      formData.append('Nombre', this.newProduct.Nombre);
-      formData.append('Descripcion', this.newProduct.Descripcion);
-      formData.append('Precio', this.newProduct.Precio.toString());
-      formData.append('Disponibilidad', this.newProduct.Disponibilidad.toString());
-      formData.append('Tipo', this.newProduct.Tipo);
-      formData.append('ID_Establecimiento', this.tienda.ID_Establecimiento);
-      formData.append('image', this.selectedFile);
-  
-      this.productosService.addProducto(formData).subscribe(
+      this.imageUploadService.uploadProfileImage(this.selectedFile).subscribe({
+        next: (response: any) => {
+          console.log('Imagen subida:', response.url);
+          this.loadProfile();
+          this.isloading = false;
+        },
+        error: (error) => {
+          console.error('Error al subir la imagen:', error);
+        },
+      });
+    }
+  }
+
+  onSubmitHorario() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Crear un objeto que cumpla con la interfaz UpdateHorarioRequest
+      const horarioData = {
+        Horario_Apertura: this.Horario_Apertura,
+        Horario_Cierre: this.Horario_Cierre,
+        ID_Establecimiento: this.tienda.ID_Establecimiento,
+      };
+
+      this.authService.updateHorario(horarioData, token).subscribe(
         (response: any) => {
           Swal.fire({
             icon: 'success',
-            title: '¡Producto Añadido!',
-            text: 'El producto ha sido añadido correctamente.',
+            title: '¡Horario Actualizado!',
+            text: 'El horario ha sido actualizado correctamente.',
           });
-          this.loadProductos();
-          this.isloading = false;
+          this.loadProfile();
         },
         (error: any) => {
-          console.error('Error al añadir el producto', error);
+          console.error('Error al actualizar el horario', error);
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Hubo un error al añadir el producto. Por favor, intenta nuevamente.',
+            text: 'Hubo un error al actualizar el horario. Por favor, intenta nuevamente.',
           });
-
-          this.isloading = false;
         }
       );
+    } else {
+      this.onLogout();
     }
-    
-    getOrders(){
-      this.ordersService.getOrdersByShopAndState(this.tienda.ID_Establecimiento, this.Estado).subscribe(
+  }
+
+  onSubmitDescripcion() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Crear un objeto que cumpla con la interfaz UpdateDescripcionRequest
+      const descripcionData = {
+        Descripcion: this.Descripcion,
+        ID_Establecimiento: this.tienda.ID_Establecimiento,
+      };
+
+      this.authService.updateDescription(descripcionData, token).subscribe(
+        (response: any) => {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Descripción Actualizada!',
+            text: 'La descripción ha sido actualizada correctamente.',
+          });
+          this.loadProfile();
+        },
+        (error: any) => {
+          console.error('Error al actualizar la descripción', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Hubo un error al actualizar la descripción. Por favor, intenta nuevamente.',
+          });
+        }
+      );
+    } else {
+      this.onLogout();
+    }
+  }
+
+  deleteProduct(ID_Producto: any) {
+    this.productosService
+      .deleteProductoById(ID_Producto, this.tienda.ID_Establecimiento)
+      .subscribe(
+        (response: any) => {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Producto Eliminado!',
+            text: 'El producto ha sido eliminado correctamente.',
+          });
+          this.loadProductos();
+        },
+        (error: any) => {
+          console.error('Error al eliminar el producto', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Hubo un error al eliminar el producto. Por favor, intenta nuevamente.',
+          });
+        }
+      );
+  }
+
+  addProduct() {
+    this.isloading = true;
+    if (!this.selectedFile) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor, selecciona una imagen para el producto.',
+      });
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('Nombre', this.newProduct.Nombre);
+    formData.append('Descripcion', this.newProduct.Descripcion);
+    formData.append('Precio', this.newProduct.Precio.toString());
+    formData.append(
+      'Disponibilidad',
+      this.newProduct.Disponibilidad.toString()
+    );
+    formData.append('Tipo', this.newProduct.Tipo);
+    formData.append('ID_Establecimiento', this.tienda.ID_Establecimiento);
+    formData.append('image', this.selectedFile);
+
+    this.productosService.addProducto(formData).subscribe(
+      (response: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Producto Añadido!',
+          text: 'El producto ha sido añadido correctamente.',
+        });
+        this.loadProductos();
+        this.isloading = false;
+      },
+      (error: any) => {
+        console.error('Error al añadir el producto', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Hubo un error al añadir el producto. Por favor, intenta nuevamente.',
+        });
+
+        this.isloading = false;
+      }
+    );
+  }
+
+  getOrders() {
+    this.ordersService
+      .getOrdersByShopAndState(this.tienda.ID_Establecimiento, this.Estado)
+      .subscribe(
         (response: any) => {
           console.log(this.tienda.ID_Establecimiento, this.Estado);
           this.Pedidos = response;
           this.Pedidos = response.map((pedido: any) => {
             return {
               ...pedido,
-              productos: JSON.parse(pedido.productos)
+              productos: JSON.parse(pedido.productos),
             };
           });
           console.log('Pedidos:', response);
@@ -342,10 +374,12 @@ export class PerfilAdminComponent implements OnInit {
           console.error('Error al cargar los pedidos', error);
         }
       );
-    } 
+  }
 
-    loadPromotions() {
-      this.promocionesService.getPromotionsByShop(this.tienda.ID_Establecimiento).subscribe(
+  loadPromotions() {
+    this.promocionesService
+      .getPromotionsByShop(this.tienda.ID_Establecimiento)
+      .subscribe(
         (response: any) => {
           this.promociones = response;
         },
@@ -353,85 +387,86 @@ export class PerfilAdminComponent implements OnInit {
           console.error('Error al cargar las promociones', error);
         }
       );
-    }
+  }
 
-    addPromotion() {
+  addPromotion() {
+    // const formPromotion = new FormData();
+    // formPromotion.append('ID_Producto', this.newPromotion.ID_Producto);
+    // formPromotion.append('ID_Establecimiento', this.tienda.ID_Establecimiento);
+    // formPromotion.append('titulo', this.newPromotion.titulo);
+    // formPromotion.append('descripcion', this.newPromotion.descripcion);
+    // formPromotion.append('descuento', this.newPromotion.descuento.toString());
+    // formPromotion.append('fechaInicio', this.newPromotion.fechaInicio);
+    // formPromotion.append('fechaFin', this.newPromotion.fechaFin);
+    // formPromotion.append('tipoPromocion', this.newPromotion.tipoPromocion); // Nuevo campo
+    // formPromotion.append('codigoPromocion', this.newPromotion.codigoPromocion); // Nuevo campo
+    // formPromotion.append('condiciones', this.newPromotion.condiciones); // Nuevo campo
 
-      // const formPromotion = new FormData();
-      // formPromotion.append('ID_Producto', this.newPromotion.ID_Producto);
-      // formPromotion.append('ID_Establecimiento', this.tienda.ID_Establecimiento);
-      // formPromotion.append('titulo', this.newPromotion.titulo);
-      // formPromotion.append('descripcion', this.newPromotion.descripcion);
-      // formPromotion.append('descuento', this.newPromotion.descuento.toString());
-      // formPromotion.append('fechaInicio', this.newPromotion.fechaInicio);
-      // formPromotion.append('fechaFin', this.newPromotion.fechaFin);
-      // formPromotion.append('tipoPromocion', this.newPromotion.tipoPromocion); // Nuevo campo
-      // formPromotion.append('codigoPromocion', this.newPromotion.codigoPromocion); // Nuevo campo
-      // formPromotion.append('condiciones', this.newPromotion.condiciones); // Nuevo campo
+    // console.log(this.newPromotion)
+    // console.log(this.tienda.ID_Establecimiento);
+    // console.log(formPromotion);
 
-      // console.log(this.newPromotion)
-      // console.log(this.tienda.ID_Establecimiento);
-      // console.log(formPromotion);
-
-      this.newPromotion.ID_Establecimiento = this.tienda.ID_Establecimiento;
-      this.promocionesService.addPromotion(this.newPromotion).subscribe(
-        (response: any) => {
-          Swal.fire({
-            icon: 'success',
-            title: '¡Promoción Añadida!',
-            text: 'La promoción ha sido añadida correctamente.',
-          });
-          this.loadPromotions(); // Cargar las promociones después de añadir una nueva
-        },
-        (error: any) => {
-          console.error('Error al añadir la promoción', error);
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Hubo un error al añadir la promoción. Por favor, intenta nuevamente.',
-          });
-        }
-      );
-    }
-
-    desactivarPromocion(id: number) {
-      this.promocionesService.deletePromotion(id).subscribe(
-        (response: any) => {
-          Swal.fire({
-            icon: 'success',
-            title: '¡Promoción Eliminada!',
-            text: 'La promoción ha sido eliminada correctamente.',
-          });
-          this.loadPromotions(); // Cargar las promociones después de eliminar una
-        },
-        (error: any) => {
-          console.error('Error al eliminar la promoción', error);
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Hubo un error al eliminar la promoción. Por favor, intenta nuevamente.',
-          });
-        }
-      );
-    }
-    
-    startEditing(producto: any): void {
-      this.editingProduct = { ...producto }; // Clonar el producto para evitar modificar directamente
-    }
-
-    cancelEditing(): void {
-      this.editingProduct = null; // Cancelar la edición
-    }
-    
-    updateProduct(): void {
-      if (!this.editingProduct) {
-        return;
+    this.newPromotion.ID_Establecimiento = this.tienda.ID_Establecimiento;
+    this.promocionesService.addPromotion(this.newPromotion).subscribe(
+      (response: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Promoción Añadida!',
+          text: 'La promoción ha sido añadida correctamente.',
+        });
+        this.loadPromotions(); // Cargar las promociones después de añadir una nueva
+      },
+      (error: any) => {
+        console.error('Error al añadir la promoción', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Hubo un error al añadir la promoción. Por favor, intenta nuevamente.',
+        });
       }
-    
-      this.isloading = true; // Inicia la carga
-    
-      if (this.selectedFile) {
-        this.imageUploadService.uploadProductImage(this.selectedFile, this.editingProduct.ID_Producto).subscribe(
+    );
+  }
+
+  desactivarPromocion(id: number) {
+    this.promocionesService.deletePromotion(id).subscribe(
+      (response: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Promoción Eliminada!',
+          text: 'La promoción ha sido eliminada correctamente.',
+        });
+        this.loadPromotions(); // Cargar las promociones después de eliminar una
+      },
+      (error: any) => {
+        console.error('Error al eliminar la promoción', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Hubo un error al eliminar la promoción. Por favor, intenta nuevamente.',
+        });
+      }
+    );
+  }
+
+  startEditing(producto: any): void {
+    this.editingProduct = { ...producto }; // Clonar el producto para evitar modificar directamente
+  }
+
+  cancelEditing(): void {
+    this.editingProduct = null; // Cancelar la edición
+  }
+
+  updateProduct(): void {
+    if (!this.editingProduct) {
+      return;
+    }
+
+    this.isloading = true; // Inicia la carga
+
+    if (this.selectedFile) {
+      this.imageUploadService
+        .uploadProductImage(this.selectedFile, this.editingProduct.ID_Producto)
+        .subscribe(
           (response) => {
             this.editingProduct.Foto = response.url; // Actualizar la URL de la imagen
             this.selectedFile = null; // Reiniciar el archivo seleccionado
@@ -443,32 +478,32 @@ export class PerfilAdminComponent implements OnInit {
             this.isloading = false; // Finaliza la carga en caso de error
           }
         );
-      } else {
-        this.saveProductChanges();
-      }
+    } else {
+      this.saveProductChanges();
     }
+  }
 
-    saveProductChanges(): void {
-      this.productosService.updateProducto(this.editingProduct).subscribe(
-        (response: any) => {
-          Swal.fire({
-            icon: 'success',
-            title: '¡Producto Actualizado!',
-            text: 'El producto ha sido actualizado correctamente.',
-          });
-          this.loadProductos(); // Recargar la lista de productos
-          this.editingProduct = null; // Finalizar la edición
-          this.isloading = false; // Finaliza la carga
-        },
-        (error: any) => {
-          console.error('Error al actualizar el producto:', error);
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Hubo un error al actualizar el producto. Por favor, intenta nuevamente.',
-          });
-          this.isloading = false; // Finaliza la carga en caso de error
-        }
-      );
-    }
+  saveProductChanges(): void {
+    this.productosService.updateProducto(this.editingProduct).subscribe(
+      (response: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Producto Actualizado!',
+          text: 'El producto ha sido actualizado correctamente.',
+        });
+        this.loadProductos(); // Recargar la lista de productos
+        this.editingProduct = null; // Finalizar la edición
+        this.isloading = false; // Finaliza la carga
+      },
+      (error: any) => {
+        console.error('Error al actualizar el producto:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Hubo un error al actualizar el producto. Por favor, intenta nuevamente.',
+        });
+        this.isloading = false; // Finaliza la carga en caso de error
+      }
+    );
+  }
 }
