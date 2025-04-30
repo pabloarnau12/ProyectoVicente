@@ -5,3 +5,4 @@ cambiar boton de cerrar sesion en el perfil del admin
 -> Cambiar la forma de conseguir el ID de la ruta (hacerlo como se debe hacer ahora)
 
 mensjae de register
+mensaje de cambair foto tienda + spinner
