@@ -1,184 +1,259 @@
-
 <div class="container mt-5">
-
-    <div class="card shadow mb-5">
-        <div class="row m-3 align-items-center">
-        <!-- Foto de perfil -->
-        <div class="col-md-3 text-center">
-            @if(user.profile_picture) {
-            <img src="{{user.profile_picture}}" class="rounded-circle img-thumbnail mb-3" alt="Foto de perfil">
-            @if(!isloading) {
-                <form (submit)="onSubmit()">
-                <input type="file" id="file" (change)="onFileChange($event)" accept="image/*" class="form-control">
-                <button type="submit" class="btn btn-primary mt-2">Subir Imagen</button>
-                </form>
-            } @else {
-                <div class="text-center mt-3">
-                <h5>Cargando...</h5>
-                <div class="spinner-border text-success" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                </div>
-            }
-            } @else {
-            @if(!isloading) {
-                <form (submit)="onSubmit()">
-                <label for="file" class="form-label">Selecciona una imagen</label>
-                <input type="file" id="file" (change)="onFileChange($event)" accept="image/*" class="form-control">
-                <button type="submit" class="btn btn-primary mt-2">Subir Imagen</button>
-                </form>
-            } @else {
-                <div class="text-center mt-3">
-                <h5>Cargando...</h5>
-                <div class="spinner-border text-success" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                </div>
-            }
-            }
+  <div class="card shadow mb-5">
+    <div class="row m-3 align-items-center">
+      <!-- Foto de perfil -->
+      <div class="col-md-3 text-center">
+        @if(user.profile_picture) {
+        <img
+          src="{{ user.profile_picture }}"
+          class="rounded-circle img-thumbnail mb-3"
+          alt="Foto de perfil"
+        />
+        @if(!isloading) {
+        <form (submit)="onSubmit()">
+          <input
+            type="file"
+            id="file"
+            (change)="onFileChange($event)"
+            accept="image/*"
+            class="form-control"
+          />
+          <button type="submit" class="btn btn-primary mt-2">
+            Subir Imagen
+          </button>
+        </form>
+        } @else {
+        <div class="text-center mt-3">
+          <h5>Cargando...</h5>
+          <div class="spinner-border text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         </div>
-
-        <!-- Información Personal -->
-        <div class="col-md-8">
-            <h4>Información Personal</h4>
-            <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre completo</label>
-            <input type="text" class="form-control" id="nombre" value="{{user.Nombre}} {{user.Apellidos}}">
-            </div>
-            <div class="mb-3">
-            <label for="email" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control" id="email" [(ngModel)]="user.Email" readonly>
-            </div>
-            <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono</label>
-            <input type="tel" class="form-control" id="telefono" value="{{user.Telefono}}" readonly>
-            </div>
-            <div class="d-flex">
-            <button class="btn btn-primary me-2">Editar Información</button>
-            <button class="btn btn-outline-danger" (click)="secondOportunityLogout()">Cerrar Sesión</button>
-            </div>
-            
-
+        } } @else { @if(!isloading) {
+        <form (submit)="onSubmit()">
+          <label for="file" class="form-label">Selecciona una imagen</label>
+          <input
+            type="file"
+            id="file"
+            (change)="onFileChange($event)"
+            accept="image/*"
+            class="form-control"
+          />
+          <button type="submit" class="btn btn-primary mt-2">
+            Subir Imagen
+          </button>
+        </form>
+        } @else {
+        <div class="text-center mt-3">
+          <h5>Cargando...</h5>
+          <div class="spinner-border text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         </div>
+        } }
+      </div>
+
+      <!-- Información Personal -->
+      <div class="col-md-8">
+        <h4>Información Personal</h4>
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre completo</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            value="{{ user.Nombre }} {{ user.Apellidos }}"
+          />
         </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo electrónico</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            [(ngModel)]="user.Email"
+            readonly
+          />
+        </div>
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Teléfono</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="telefono"
+            value="{{ user.Telefono }}"
+            readonly
+          />
+        </div>
+        <div class="d-flex">
+          <button class="btn btn-primary me-2">Editar Información</button>
+          <button
+            class="btn btn-outline-danger"
+            (click)="secondOportunityLogout()"
+          >
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 
-    @if(!pedidoSeleccionado){
-    <div class="container mt-4">
-        <!-- Tarjeta de estado -->
-        <mat-card class="estado-card">
-            <div class="estado-header">
-                <h2>Estado actual: <span>{{ user.estado }}</span></h2>
-            </div>
-    
-            <div class="estado-actions">
-                <!-- Botón para cambiar estado -->
-                <button mat-button [matMenuTriggerFor]="menu" class="change-status-btn">
-                    <mat-icon>edit</mat-icon> Cambiar estado
-                </button>
-    
-                <!-- Menú de selección de estado -->
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="updateStatus('activo')">Activo</button>
-                    <button mat-menu-item (click)="updateStatus('ocupado')">Ocupado</button>
-                    <button mat-menu-item (click)="updateStatus('recogiendo pedido')">Recogiendo pedido</button>
-                    <button mat-menu-item (click)="updateStatus('en camino')">En camino</button>
-                </mat-menu>
-            </div>
-        </mat-card>
-    </div>
+  @if(!pedidoSeleccionado){
+  <div class="container mt-4">
+    <!-- Tarjeta de estado -->
+    <mat-card class="estado-card">
+      <div class="estado-header">
+        <h2>
+          Estado actual: <span>{{ user.estado }}</span>
+        </h2>
+      </div>
 
-    <div class="container mt-5">
-      <h2 class="text-center mb-4">Pedidos Disponibles</h2>
-    
-      <!-- Mostrar lista de pedidos -->
-      @if(pedidos.length > 0) {
-        <div class="row">
-          @for(pedido of pedidos; track pedido) {
-            <div class="col-md-4 mb-4">
-              <div class="card shadow-sm h-100">
-                <div class="card-header bg-primary text-white">
-                  <h5 class="mb-0">Pedido #{{pedido.ID_Pedido}}</h5>
-                </div>
-                <div class="card-body">
-                  <!-- Información del cliente -->
-                  <h6 class="text-secondary">Información del Cliente</h6>
-                  <p><strong>Nombre:</strong> {{pedido.NombreUsuario}}</p>
-                  <p><strong>Teléfono:</strong> {{pedido.TelefonoUsuario}}</p>
-                  <hr>
-    
-                  <!-- Información del pedido -->
-                  <h6 class="text-secondary">Detalles del Pedido</h6>
-                  <p><strong>Dirección:</strong> {{pedido.Direccion}}</p>
-                  <p><strong>Hora:</strong> {{pedido.Fecha_Hora_Pedido | date:'d/M/y H:mm:ss'}}</p>
-                  <p><strong>Total:</strong> {{pedido.Total}} €</p>
-                  <hr>
-    
-                  <!-- Información del establecimiento -->
-                  <h6 class="text-secondary">Establecimiento</h6>
-                  <p><strong>Nombre:</strong> {{pedido.NombreEstablecimiento}}</p>
-                  <p><strong>Dirección:</strong> {{pedido.DireccionEstablecimiento}}</p>
-                  <hr>
-    
-                  <!-- Botón para aceptar el pedido -->
-                  <button class="btn btn-success w-100" (click)="aceptarPedido(pedido)">
-                    Aceptar Pedido
-                  </button>
-                  
-                </div>
-              </div>
-            </div>
-          }
+      <div class="estado-actions">
+        <!-- Botón para cambiar estado -->
+        <button mat-button [matMenuTriggerFor]="menu" class="change-status-btn">
+          <mat-icon>edit</mat-icon> Cambiar estado
+        </button>
+
+        <!-- Menú de selección de estado -->
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="updateStatus('activo')">Activo</button>
+          <button mat-menu-item (click)="updateStatus('ocupado')">
+            Ocupado
+          </button>
+          <button mat-menu-item (click)="updateStatus('recogiendo pedido')">
+            Recogiendo pedido
+          </button>
+          <button mat-menu-item (click)="updateStatus('en camino')">
+            En camino
+          </button>
+        </mat-menu>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Pedidos Disponibles</h2>
+
+    <!-- Mostrar lista de pedidos -->
+    @if(pedidos.length > 0) {
+    <div class="row">
+      @for(pedido of pedidos; track pedido) {
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Pedido #{{ pedido.ID_Pedido }}</h5>
+          </div>
+          <div class="card-body">
+            <!-- Información del cliente -->
+            <h6 class="text-secondary">Información del Cliente</h6>
+            <p><strong>Nombre:</strong> {{ pedido.NombreUsuario }}</p>
+            <p><strong>Teléfono:</strong> {{ pedido.TelefonoUsuario }}</p>
+            <hr />
+
+            <!-- Información del pedido -->
+            <h6 class="text-secondary">Detalles del Pedido</h6>
+            <p><strong>Dirección:</strong> {{ pedido.Direccion }}</p>
+            <p>
+              <strong>Hora:</strong>
+              {{ pedido.Fecha_Hora_Pedido | date : "d/M/y H:mm:ss" }}
+            </p>
+            <p><strong>Total:</strong> {{ pedido.Total }} €</p>
+            <hr />
+
+            <!-- Información del establecimiento -->
+            <h6 class="text-secondary">Establecimiento</h6>
+            <p><strong>Nombre:</strong> {{ pedido.NombreEstablecimiento }}</p>
+            <p>
+              <strong>Dirección:</strong> {{ pedido.DireccionEstablecimiento }}
+            </p>
+            <hr />
+
+            <!-- Botón para aceptar el pedido -->
+            <button
+              class="btn btn-success w-100"
+              (click)="aceptarPedido(pedido)"
+            >
+              Aceptar Pedido
+            </button>
+          </div>
         </div>
-      } @else {
-        <!-- Mensaje cuando no hay pedidos disponibles -->
-        <p class="text-center text-muted">No hay pedidos disponibles en este momento.</p>
+      </div>
       }
     </div>
+    } @else {
+    <!-- Mensaje cuando no hay pedidos disponibles -->
+    <p class="text-center text-muted">
+      No hay pedidos disponibles en este momento.
+    </p>
+    }
+  </div>
 
-}
-<div class="container mt-5">
-  @if(pedidoSeleccionado) {
+  }
+  <div class="container mt-5">
+    @if(pedidoSeleccionado) {
     <div class="container mt-5">
       <h2 class="text-center mb-4">Detalles del Pedido Seleccionado</h2>
 
       <!-- Tarjeta principal del pedido -->
       <div class="card shadow-lg">
         <div class="card-header bg-primary text-white">
-          <h4 class="mb-0">Pedido #{{pedidoSeleccionado.ID_Pedido}}</h4>
+          <h4 class="mb-0">Pedido #{{ pedidoSeleccionado.ID_Pedido }}</h4>
         </div>
         <div class="card-body">
           <!-- Información del cliente -->
           <h5 class="text-secondary">Información del Cliente</h5>
-          <p><strong>Nombre:</strong> {{pedidoSeleccionado.Nombre}} {{pedidoSeleccionado.Apellidos}}</p>
-          <p><strong>Teléfono:</strong> {{pedidoSeleccionado.Telefono}}</p>
-          <hr>
+          <p>
+            <strong>Nombre:</strong> {{ pedidoSeleccionado.NombreUsuario }}
+            {{ pedidoSeleccionado.ApellidosUsuario }}
+          </p>
+          <p>
+            <strong>Teléfono:</strong> {{ pedidoSeleccionado.TelefonoUsuario }}
+          </p>
+          <hr />
 
           <!-- Información del pedido -->
           <h5 class="text-secondary">Detalles del Pedido</h5>
-          <p><strong>Dirección:</strong> {{pedidoSeleccionado.Direccion}}</p>
-          <p><strong>Hora del Pedido:</strong> {{pedidoSeleccionado.Fecha_Hora_Pedido | date:'d/M/y H:mm:ss'}}</p>
-          <p><strong>Total:</strong> {{pedidoSeleccionado.Total}} €</p>
-          <p><strong>Estado:</strong> {{pedidoSeleccionado.Estado_Pedido}}</p>
-          <hr>
+          <p><strong>Dirección:</strong> {{ pedidoSeleccionado.Direccion }}</p>
+          <p>
+            <strong>Hora del Pedido:</strong>
+            {{ pedidoSeleccionado.Fecha_Hora_Pedido | date : "d/M/y H:mm:ss" }}
+          </p>
+          <p><strong>Total:</strong> {{ pedidoSeleccionado.Total }} €</p>
+          <p><strong>Estado:</strong> {{ pedidoSeleccionado.Estado_Pedido }}</p>
+          <hr />
 
           <!-- Información del establecimiento -->
           <h5 class="text-secondary">Establecimiento</h5>
           <div class="d-flex align-items-center">
-            <img src="{{pedidoSeleccionado.FotoEstablecimiento}}" alt="Foto del Establecimiento" class="rounded-circle me-3" style="width: 80px; height: 80px;">
+            <img
+              src="{{ pedidoSeleccionado.FotoEstablecimiento }}"
+              alt="Foto del Establecimiento"
+              class="rounded-circle me-3"
+              style="width: 80px; height: 80px"
+            />
             <div>
-              <p><strong>Nombre:</strong> {{pedidoSeleccionado.NombreEstablecimiento}}</p>
-              <p><strong>Dirección:</strong> {{pedidoSeleccionado.DireccionEstablecimiento}}</p>
+              <p>
+                <strong>Nombre:</strong>
+                {{ pedidoSeleccionado.NombreEstablecimiento }}
+              </p>
+              <p>
+                <strong>Dirección:</strong>
+                {{ pedidoSeleccionado.DireccionEstablecimiento }}
+              </p>
             </div>
           </div>
-          <hr>
+          <hr />
 
           <!-- Botones de acción -->
           <div class="d-flex justify-content-between">
-            <button class="btn btn-success" (click)="pedidoEntregado()">Pedido Entregado</button>
-            <button class="btn btn-warning" (click)="pedidoEnCamino()">Marcar como En Camino</button>
+            <button class="btn btn-success" (click)="pedidoEntregado()">
+              Pedido Entregado
+            </button>
+            <button class="btn btn-warning" (click)="pedidoEnCamino()">
+              Marcar como En Camino
+            </button>
             <button class="btn btn-info" (click)="toggleProductos()">
-              {{ mostrarProductos ? 'Ocultar Productos' : 'Ver Productos' }}
+              {{ mostrarProductos ? "Ocultar Productos" : "Ver Productos" }}
             </button>
           </div>
         </div>
@@ -186,32 +261,29 @@
 
       <!-- Sección de productos -->
       @if(mostrarProductos) {
-        <div class="mt-4">
-          <h3 class="text-center">Productos del Pedido</h3>
-          @if(pedidoSeleccionado.productos?.length > 0) {
-            <div class="row">
-              @for(producto of pedidoSeleccionado.productos; track $index) {
-                <div class="col-md-4 mb-4">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <h5 class="card-title">{{producto.name}}</h5>
-                      <p><strong>SKU:</strong> {{producto.sku}}</p>
-                      <p><strong>Precio:</strong> {{producto.price}} €</p>
-                      <p><strong>Cantidad:</strong> {{producto.quantity}}</p>
-                    </div>
-                  </div>
-                </div>
-              }
+      <div class="mt-4">
+        <h3 class="text-center">Productos del Pedido</h3>
+        @if(pedidoSeleccionado.productos?.length > 0) {
+        <div class="row">
+          @for(producto of pedidoSeleccionado.productos; track $index) {
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">{{ producto.name }}</h5>
+                <p><strong>SKU:</strong> {{ producto.sku }}</p>
+                <p><strong>Precio:</strong> {{ producto.price }} €</p>
+                <p><strong>Cantidad:</strong> {{ producto.quantity }}</p>
+              </div>
             </div>
-          } @else {
-            <p class="text-center">No hay productos en este pedido.</p>
+          </div>
           }
         </div>
+        } @else {
+        <p class="text-center">No hay productos en este pedido.</p>
+        }
+      </div>
       }
     </div>
-  }
-</div>
-    
-      
-      
+    }
+  </div>
 </div>
