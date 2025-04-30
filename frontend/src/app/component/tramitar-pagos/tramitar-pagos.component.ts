@@ -94,7 +94,6 @@ export class TramitarPagosComponent implements OnInit {
       this.router.navigate(['/iniciarsesion']); // Redirige al login si no hay token
     }
   }
-
   async tryfuncion() {
     const { value: address } = await Swal.fire({
       title: 'Introduce tu nueva dirección',
@@ -110,7 +109,8 @@ export class TramitarPagosComponent implements OnInit {
       console.log('Token obtenido:', token); // Agrega esto para verificar el token
 
       if (token) {
-        this.authService.updateAddress(address, token).subscribe(
+        const addressData = { direccion: address };
+        this.authService.updateAddress(addressData, token).subscribe(
           (response) => {
             console.log('Respuesta del servidor:', response);
             Swal.fire(response.message); // Mostrar mensaje de éxito
