@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { ShopService } from '../../../service/shop.service';
-import { producto } from '../../../common/productos';
+import { Producto } from '../../../common/productos';
 import { ProductosService } from '../../../service/productos.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
@@ -10,39 +10,36 @@ import { CurrencyPipe } from '@angular/common';
   standalone: true,
   imports: [RouterLink, CurrencyPipe],
   templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.css'
+  styleUrl: './product-detail.component.css',
 })
 export class ProductDetailComponent {
   @Input('id') id!: string;
   @Input('idProducto') idProducto!: string;
   constructor(private activeRoute: ActivatedRoute) {}
   private readonly ShopService: ShopService = inject(ShopService);
-  private readonly ProductosService: ProductosService = inject(ProductosService);
-  
-  product !: producto;
+  private readonly ProductosService: ProductosService =
+    inject(ProductosService);
 
+  product!: Producto;
 
   ngOnInit(): void {
-    this.activeRoute.params.subscribe(params => {
+    this.activeRoute.params.subscribe((params) => {
       this.id = params['id'];
     });
-    this.activeRoute.params.subscribe(params => {
+    this.activeRoute.params.subscribe((params) => {
       this.idProducto = params['idProducto'];
     });
     this.loadProducts();
-    
   }
-  
 
-  private loadProducts() : void {
-    this.ShopService.getProductsDetails(this.id, this.idProducto ).subscribe(
-      {
-      next: value => {this.product = value;
-      console.log(this.product);
+  private loadProducts(): void {
+    this.ShopService.getProductsDetails(this.id, this.idProducto).subscribe({
+      next: (value) => {
+        this.product = value;
+        console.log(this.product);
       },
-      error: err => console.error,
-      complete : () => console.log("carga de productos completa") 
-    }
-    )
-}
+      error: (err) => console.error,
+      complete: () => console.log('carga de productos completa'),
+    });
+  }
 }

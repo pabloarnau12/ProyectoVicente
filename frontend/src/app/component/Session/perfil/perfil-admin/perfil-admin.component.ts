@@ -14,7 +14,7 @@ import {
   ViewportScroller,
 } from '@angular/common';
 import { ProductosService } from '../../../../service/productos.service';
-import { producto } from '../../../../common/productos';
+import { Producto } from '../../../../common/productos';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ordersService } from '../../../../service/orders.service';
 import { PromocionesService } from '../../../../service/promociones.service';
