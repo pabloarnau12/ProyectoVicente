@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterRequest } from '../../../common/Auth'; // Importar la interfaz
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registrarse',
@@ -20,9 +21,7 @@ export class RegisterComponent {
   password: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
-
   register() {
-    // Crear un objeto que cumpla con la interfaz RegisterRequest
     const registerData: RegisterRequest = {
       nombre: this.nombre,
       apellidos: this.apellidos,
@@ -34,13 +33,25 @@ export class RegisterComponent {
     this.authService.register(registerData).subscribe(
       (response) => {
         console.log('Registro exitoso', response);
-        alert('Usuario registrado con éxito');
-        this.router.navigate(['/home']).then(() => {
-          window.location.reload();
+        Swal.fire({
+          icon: 'success',
+          title: 'Registro exitoso',
+          text: 'Usuario registrado con éxito',
+          confirmButtonText: 'Aceptar',
+        }).then(() => {
+          this.router.navigate(['/home']).then(() => {
+            window.location.reload();
+          });
         });
       },
       (error) => {
         console.error('Error en el registro', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error en el registro',
+          text: 'Hubo un problema al registrar el usuario. Intenta nuevamente.',
+          confirmButtonText: 'Aceptar',
+        });
       }
     );
   }

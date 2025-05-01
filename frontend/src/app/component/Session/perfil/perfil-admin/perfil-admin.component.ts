@@ -183,9 +183,15 @@ export class PerfilAdminComponent implements OnInit {
 
   updateShopImage(): void {
     if (!this.selectedFile) {
-      alert('Por favor, selecciona una imagen.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor, selecciona una imagen.',
+      });
       return;
     }
+
+    this.isloading = true; // Mostrar el spinner
 
     this.imageUploadService
       .uploadShopImage(this.selectedFile, this.tienda.ID_Establecimiento)
@@ -193,12 +199,22 @@ export class PerfilAdminComponent implements OnInit {
         (response) => {
           console.log('Imagen actualizada con éxito:', response);
           this.tienda.foto = response.url; // Actualizar la imagen en la vista
-          alert('Imagen actualizada correctamente.');
+          Swal.fire({
+            icon: 'success',
+            title: '¡Imagen Actualizada!',
+            text: 'La imagen de la tienda ha sido actualizada correctamente.',
+          });
           this.selectedFile = null; // Reiniciar el archivo seleccionado
+          this.isloading = false; // Ocultar el spinner
         },
         (error) => {
           console.error('Error al actualizar la imagen:', error);
-          alert('Error al actualizar la imagen.');
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Hubo un error al actualizar la imagen. Por favor, intenta nuevamente.',
+          });
+          this.isloading = false; // Ocultar el spinner en caso de error
         }
       );
   }

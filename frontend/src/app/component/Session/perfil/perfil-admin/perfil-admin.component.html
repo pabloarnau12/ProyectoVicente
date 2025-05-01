@@ -77,6 +77,15 @@
                   Guardar Imagen
                 </button>
               </form>
+              @if(isloading){
+              <div class="spinner-container">
+                <mat-progress-spinner
+                  mode="indeterminate"
+                  diameter="40"
+                  color="primary"
+                ></mat-progress-spinner>
+              </div>
+              }
             </div>
             <div class="col-md-6">
               <div class="small mb-1 text-muted">{{ tienda.Tipo }}</div>
