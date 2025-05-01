@@ -1,41 +1,45 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Tienda } from '../common/Tiendas';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShopService {
   private http: HttpClient = inject(HttpClient);
-  private urlApiTiendas = "http://localhost:3300/api/tiendas/"
-  constructor() { }
+  private urlApiTiendas = 'http://localhost:3300/api/tiendas/';
+  constructor() {}
 
-
-  public getShops(): Observable <any>{
-    return this.http.get<any>(this.urlApiTiendas)
+  public getShops(): Observable<Tienda[]> {
+    return this.http.get<Tienda[]>(this.urlApiTiendas);
   }
 
-  public getShopsbyPage(page : number): Observable <any>{
-    return this.http.get<any>(this.urlApiTiendas + '/paginacion/' + page + '/9')
+  public getShopsbyPage(page: number): Observable<Tienda[]> {
+    return this.http.get<Tienda[]>(
+      `${this.urlApiTiendas}/paginacion/${page}/9`
+    );
   }
 
-  public getShopsbyID(id : string): Observable <any>{
-    return this.http.get<any>(this.urlApiTiendas + id)
+  public getShopsbyID(id: string): Observable<any> {
+    return this.http.get<any>(this.urlApiTiendas + id);
   }
 
-  public getProductsByShop(id : string): Observable <any>{
-    return this.http.get<any>(this.urlApiTiendas + id + '/productos')
-  }
-  
-  public getProductsDetails(id : string, idProducto : string): Observable <any>{
-    return this.http.get<any>(this.urlApiTiendas + id + '/productos/' + idProducto)
+  public getProductsByShop(id: string): Observable<any> {
+    return this.http.get<any>(this.urlApiTiendas + id + '/productos');
   }
 
-  public getMostValoratedShops(limite: number): Observable<any>{
-    return this.http.get<any>(this.urlApiTiendas + '/mejorvaloradas/' + limite)
+  public getProductsDetails(id: string, idProducto: string): Observable<any> {
+    return this.http.get<any>(
+      this.urlApiTiendas + id + '/productos/' + idProducto
+    );
   }
 
-  public getShopByAdmin(id: number): Observable<any>{
-    return this.http.get<any>(this.urlApiTiendas + 'admin/' + id)
+  public getMostValoratedShops(limite: number): Observable<any> {
+    return this.http.get<any>(this.urlApiTiendas + '/mejorvaloradas/' + limite);
+  }
+
+  public getShopByAdmin(id: number): Observable<any> {
+    return this.http.get<any>(this.urlApiTiendas + 'admin/' + id);
   }
 }

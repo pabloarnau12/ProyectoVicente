@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ImageUploadService } from '../../../../service/image-upload.service';
 import { FormsModule } from '@angular/forms';
-import { Tiendas } from '../../../../common/Tiendas';
+import { Tienda } from '../../../../common/Tiendas';
 import { ShopService } from '../../../../service/shop.service';
 import { MatIcon } from '@angular/material/icon';
 import {

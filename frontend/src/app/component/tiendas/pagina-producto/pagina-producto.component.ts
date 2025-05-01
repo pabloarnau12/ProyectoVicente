@@ -2,7 +2,7 @@ import { Component, inject, NgModule, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ShopService } from '../../../service/shop.service';
 import { CommonModule, NgClass } from '@angular/common';
-import { Tiendas } from '../../../common/Tiendas';
+import { Tienda } from '../../../common/Tiendas';
 import { CalificacionesService } from '../../../service/calificaciones.service';
 import { MatIcon } from '@angular/material/icon';
 import { FavoriteShopService } from '../../../service/favorite-shop.service';
@@ -37,7 +37,7 @@ export class PaginaProductoComponent implements OnInit {
   media: any;
   isFavorite: boolean = false;
   tienda: any;
-  relatedShops: Tiendas[] = [];
+  relatedShops: Tienda[] = [];
   id: string | null = null;
   comentarios: CalificacionEstablecimiento[] = [];
   estrellas: number[] = Array(5).fill(0);
@@ -79,12 +79,12 @@ export class PaginaProductoComponent implements OnInit {
 
   getRelatedShops() {
     this.ShopService.getShops().subscribe(
-      (data: Tiendas[]) => {
+      (data) => {
         this.relatedShops = data
           .filter(
             (shop) =>
               shop.Categoria === this.tienda.Categoria &&
-              shop.Nombre != this.tienda.Nombre
+              shop.Nombre !== this.tienda.Nombre
           )
           .slice(0, 4);
         console.log(this.tienda.Categoria + 'hola');
