@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-01-2025 a las 14:26:34
+-- Tiempo de generación: 06-05-2025 a las 12:59:44
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -43,8 +43,7 @@ CREATE TABLE `calificaciones` (
 INSERT INTO `calificaciones` (`ID_Calificacion`, `ID_Pedido`, `Calificacion_Establecimiento`, `Calificacion_Repartidor`, `Comentario`, `ID_Establecimiento`) VALUES
 (1, 1, 10, 4, 'Excelente comida y buen servicio', 1),
 (2, 2, 8, 5, 'Entrega rápida y producto en buen estado', 1),
-(3, 3, 6, 6, 'mu guapo mucha gracias', 2),
-(9, 5, 1, 1, 'un 1 sabes manin', 1);
+(3, 3, 6, 6, 'mu guapo mucha gracias', 2);
 
 -- --------------------------------------------------------
 
@@ -82,7 +81,12 @@ INSERT INTO `calificaciones_establecimientos` (`ID_Calificacion`, `ID_Usuario`, 
 (27, 6, 2, 'medio medio', 13, '2024-12-26'),
 (28, 6, 4, 'este restaurante está bastante bien', 28, '2024-12-26'),
 (29, 6, 5, 'El mejor restaurante al que he asistido', 29, '2024-12-26'),
-(30, 6, 4, 'muy bien', 25, '2024-12-26');
+(30, 6, 4, 'muy bien', 25, '2024-12-26'),
+(31, 23, 4, 'MUY BUENO', 1, '2025-01-22'),
+(32, 6, 3, 'i dont like this restaurant\n', 1, '2025-01-28'),
+(35, 24, 4, 'Que experiencia más buena!', 1, '2025-04-23'),
+(37, 6, 4, 'todo bien', 1, '2025-04-29'),
+(39, 24, 4, 'todo bien', 5, '2025-05-01');
 
 --
 -- Disparadores `calificaciones_establecimientos`
@@ -168,33 +172,33 @@ CREATE TABLE `establecimientos` (
 --
 
 INSERT INTO `establecimientos` (`ID_Establecimiento`, `Nombre`, `Direccion`, `Telefono`, `Horario_Apertura`, `Horario_Cierre`, `Calificacion_Promedio`, `foto`, `Categoria`, `ID_Usuario`, `Descripcion`) VALUES
-(1, 'La Tasca del Pueblo', 'Calle del Sol 3, Pueblo A', '123987456', '21:05:00', '22:00:00', 2.67, '\\assets\\images\\entrada (1).png', 1, 6, 'Esta es la descripcion para la descripcion de mi descripcion de mi tienda descripcion'),
-(2, 'Farmacia San Juan', 'Avenida Libertad 7, Pueblo B', '456321789', '09:00:00', '20:00:00', 3.67, '\\assets\\images\\img_productos\\laurel.png', 3, NULL, ''),
-(3, 'Supermercado El Ahorro', 'Plaza Mayor 2, Pueblo C', '789654123', '11:00:00', '21:00:00', 0.00, '\\assets\\images\\banner1.png', 1, NULL, ''),
-(4, 'Abordo Maria', 'Avenida Castilla, 7 puerta 3', '654987321', '08:00:00', '22:00:00', 0.00, '\\assets\\images\\banner1.png', 24, NULL, ''),
-(5, 'Joso bujarra', 'Calle mis huevikos, 19 gol', '647539322', '08:00:00', '22:00:00', 5.00, '\\assets\\images\\banner1.png', 13, NULL, ''),
-(6, 'Cafetería El Descanso', 'Calle Olmo 14, Pueblo D', '659871234', '08:00:00', '23:00:00', 3.00, '', 5, NULL, ''),
-(7, 'Panadería La Espiga', 'Calle Mayor 10, Pueblo E', '658741236', '06:00:00', '14:00:00', 0.00, '', 4, NULL, ''),
-(8, 'Restaurante La Brasa', 'Calle Real 7, Pueblo F', '657843921', '12:00:00', '23:00:00', 1.00, '', 2, NULL, ''),
-(9, 'Librería Central', 'Calle de los libros 25, Pueblo G', '652987412', '09:00:00', '19:00:00', 0.00, '', 7, NULL, ''),
-(10, 'Gimnasio Fitness Plus', 'Avenida Deportes 3, Pueblo H', '632987451', '06:00:00', '22:00:00', 0.00, '', 10, NULL, ''),
+(1, 'La Tasca del Pueblo', 'Calle del Sol 3, Pueblo A', '123987456', '12:10:00', '21:09:00', 3.25, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746097576/shops/shop_1.jpg', 1, 6, 'Esta es una descripcion de prueba para este tienda, estoy haciendolo para comprobar si el metodo de editar descripcion dentro de el perfil de admin sirve, si no sirve es una liada la verdad, espero que no me de error'),
+(2, 'Farmacia San Juan', 'Avenida Libertad 7, Pueblo B', '456321789', '09:00:00', '20:00:00', 4.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526155/62be7acf-ddab-4f6f-9b7c-8ffec43ab87e.png', 3, NULL, ''),
+(3, 'Supermercado El Ahorro', 'Plaza Mayor 2, Pueblo C', '789654123', '11:00:00', '21:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526227/02b38614-ae44-4f06-b75d-8c40706a7d2f.png', 1, NULL, ''),
+(4, 'Abordo Maria', 'Avenida Castilla, 7 puerta 3', '654987321', '08:00:00', '22:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526574/5a2e6c49-9745-4311-b2a2-b1a5a4e2c40a.png', 24, 23, 'esta tienda no tenia descripcion asi que yo creo que es hora de añadirle una no crees?'),
+(5, 'Tienda de prubea', 'Calle de prueba, 6', '647539322', '08:00:00', '22:00:00', 4.67, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526619/efbba9cd-77dd-4aaa-8173-dc7bd18069bc.png', 13, NULL, ''),
+(6, 'Cafetería El Descanso', 'Calle Olmo 14, Pueblo D', '659871234', '08:00:00', '23:00:00', 3.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526668/76a80b0f-b2fe-4247-8400-ded582d6f579.png', 5, NULL, ''),
+(7, 'Panadería La Espiga', 'Calle Mayor 10, Pueblo E', '658741236', '06:00:00', '14:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526710/c58c8849-e908-4924-821b-9ff2be3595dd.png', 4, NULL, ''),
+(8, 'Restaurante La Brasa', 'Calle Real 7, Pueblo F', '657843921', '12:00:00', '23:00:00', 1.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526733/91501391-09c6-4b8b-835a-329c92992967.png', 2, NULL, ''),
+(9, 'Librería Central', 'Calle de los libros 25, Pueblo G', '652987412', '09:00:00', '19:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526761/93a494d4-fdcd-484d-80e5-6fc0c535abef.png', 7, NULL, ''),
+(10, 'Gimnasio Fitness Plus', 'Avenida Deportes 3, Pueblo H', '632987451', '06:00:00', '22:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526800/26f0b7fe-9611-47cc-b4dd-f45f2d03102a.png', 10, NULL, ''),
 (11, 'Centro Médico Salus', 'Calle Salud 11, Pueblo I', '642157894', '08:00:00', '18:00:00', 0.00, '', 19, NULL, ''),
-(12, 'Clínica Dental Sorriso', 'Plaza Sonrisa 5, Pueblo J', '651237894', '09:00:00', '19:00:00', 0.00, '', 19, NULL, ''),
-(13, 'Taller Mecánico Turbo', 'Calle Motor 12, Pueblo K', '652987412', '08:00:00', '18:00:00', 2.00, '', 2, NULL, ''),
-(14, 'Bar Los Amigos', 'Calle Amistad 8, Pueblo L', '653214785', '12:00:00', '00:00:00', 0.00, '', 12, NULL, ''),
-(15, 'Floristería Las Rosas', 'Calle Jardín 2, Pueblo M', '621478965', '09:00:00', '19:00:00', 0.00, '', 6, NULL, ''),
-(16, 'Pizzería Bella Napoli', 'Calle Italia 3, Pueblo N', '654123789', '13:00:00', '23:00:00', 0.00, '', 14, NULL, ''),
-(17, 'Supermercado Central', 'Calle Comercio 9, Pueblo O', '678953214', '08:00:00', '22:00:00', 0.00, '', 1, NULL, ''),
-(18, 'Heladería La Crema', 'Plaza Fría 4, Pueblo P', '657483219', '11:00:00', '23:00:00', 0.00, '', 4, NULL, ''),
-(19, 'Papelería El Escriba', 'Calle Tinta 7, Pueblo Q', '629783412', '09:00:00', '18:00:00', 0.00, '', 19, NULL, ''),
-(20, 'Zapatería Paso Firme', 'Calle Calzado 16, Pueblo R', '651298734', '10:00:00', '20:00:00', 0.00, '', 16, NULL, ''),
-(21, 'Boutique Chic', 'Avenida Moda 10, Pueblo S', '653147892', '10:00:00', '20:00:00', 0.00, '', 18, NULL, ''),
-(22, 'Frutería El Huerto', 'Calle Fruta 14, Pueblo T', '654871235', '07:00:00', '14:00:00', 0.00, '', 14, NULL, ''),
-(23, 'Restaurante El Sabor', 'Calle Sabor 21, Pueblo U', '657894213', '13:00:00', '23:00:00', 0.00, '', 4, NULL, ''),
-(24, 'Librería Letras', 'Avenida Palabras 13, Pueblo V', '621478965', '10:00:00', '18:00:00', 0.00, '', 21, NULL, ''),
-(25, 'Barbería El Corte', 'Calle Afeitado 6, Pueblo W', '629783412', '09:00:00', '20:00:00', 4.00, '', 20, NULL, ''),
-(26, 'Carnicería El Bistec', 'Calle Carne 3, Pueblo X', '623478951', '09:00:00', '14:00:00', 0.00, '', 17, NULL, ''),
-(27, 'Tienda de Electrónica TecnoPlus', 'Avenida Tecnología 18, Pueblo Y', '634789125', '10:00:00', '21:00:00', 0.00, '', 18, NULL, ''),
+(12, 'Clínica Dental Sorriso', 'Plaza Sonrisa 5, Pueblo J', '651237894', '09:00:00', '19:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526855/19102a3e-d7ab-4598-a38b-7a695b0f8bca.png', 19, NULL, ''),
+(13, 'Taller Mecánico Turbo', 'Calle Motor 12, Pueblo K', '652987412', '08:00:00', '18:00:00', 2.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526994/f41445e6-edf3-4a43-b8b0-11856f4027f3.png', 2, NULL, ''),
+(14, 'Bar Los Amigos', 'Calle Amistad 8, Pueblo L', '653214785', '12:00:00', '00:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527024/a1199eaa-c0a3-465e-8bb7-bd29a0a31c22.png', 12, NULL, ''),
+(15, 'Floristería Las Rosas', 'Calle Jardín 2, Pueblo M', '621478965', '09:00:00', '19:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527063/a72e874d-23d2-49fb-ba25-db7975518244.png', 6, NULL, ''),
+(16, 'Pizzería Bella Napoli', 'Calle Italia 3, Pueblo N', '654123789', '13:00:00', '23:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527125/c5a70a6e-f96f-43b3-8bea-938e5a4d79bf.png', 14, NULL, ''),
+(17, 'Supermercado Central', 'Calle Comercio 9, Pueblo O', '678953214', '08:00:00', '22:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527143/fb81518e-ae37-4ea9-a386-3b13956233ed.png', 1, NULL, ''),
+(18, 'Heladería La Crema', 'Plaza Fría 4, Pueblo P', '657483219', '11:00:00', '23:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527166/66fd7741-94c6-48c0-88b3-6a15b8059aae.png', 4, NULL, ''),
+(19, 'Papelería El Escriba', 'Calle Tinta 7, Pueblo Q', '629783412', '09:00:00', '18:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527187/4a690878-915d-4bec-8c09-7bce9119ef85.png', 19, NULL, ''),
+(20, 'Zapatería Paso Firme', 'Calle Calzado 16, Pueblo R', '651298734', '10:00:00', '20:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527207/a3e4fe91-ea57-4777-a3e9-1775e80713b6.png', 16, NULL, ''),
+(21, 'Boutique Chic', 'Avenida Moda 10, Pueblo S', '653147892', '10:00:00', '20:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527230/b20e9413-3d11-4ce6-a2ca-bb7df687bdc8.png', 18, NULL, ''),
+(22, 'Frutería El Huerto', 'Calle Fruta 14, Pueblo T', '654871235', '07:00:00', '14:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527256/9bab0f76-9eac-4ee0-996c-b162d8f87b32.png', 14, NULL, ''),
+(23, 'Restaurante El Sabor', 'Calle Sabor 21, Pueblo U', '657894213', '13:00:00', '23:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527282/2fee5337-ef3d-4824-8f0d-c80e1754af9f.png', 4, NULL, ''),
+(24, 'Librería Letras', 'Avenida Palabras 13, Pueblo V', '621478965', '10:00:00', '18:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527307/61f3a6f6-3c6a-42d3-a4ee-ba310df6ae73.png', 21, NULL, ''),
+(25, 'Barbería El Corte', 'Calle Afeitado 6, Pueblo W', '629783412', '09:00:00', '20:00:00', 4.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527332/b6a04a5f-172e-4dd0-9a34-6399d9e347a7.png', 20, NULL, ''),
+(26, 'Carnicería El Bistec', 'Calle Carne 3, Pueblo X', '623478951', '09:00:00', '14:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527361/c986f4e4-0622-4b49-8b80-298850e702bc.png', 17, NULL, ''),
+(27, 'Tienda de Electrónica TecnoPlus', 'Avenida Tecnología 18, Pueblo Y', '634789125', '10:00:00', '21:00:00', 0.00, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527388/91d66954-a21f-4f96-83fd-e4af91cf332b.png', 18, NULL, ''),
 (28, 'Lavandería Rápido Limpio', 'Calle Lavado 12, Pueblo Z', '647298531', '07:00:00', '21:00:00', 4.00, '', 2, NULL, ''),
 (29, 'Cafetería La Taza', 'Plaza Central 9, Pueblo A1', '612478952', '08:00:00', '23:00:00', 5.00, '', 2, NULL, ''),
 (30, 'Farmacia Salud Viva', 'Avenida Medicina 2, Pueblo B1', '623147895', '08:00:00', '20:00:00', 0.00, '', 18, NULL, ''),
@@ -205,7 +209,7 @@ INSERT INTO `establecimientos` (`ID_Establecimiento`, `Nombre`, `Direccion`, `Te
 (35, 'Mercado Local', 'Calle Comercio 20, Pueblo G1', '623478596', '07:00:00', '15:00:00', 0.00, '', 21, NULL, ''),
 (36, 'Tienda de Mascotas Peludos', 'Calle Animal 22, Pueblo H1', '622478596', '10:00:00', '19:00:00', 0.00, '', 20, NULL, ''),
 (37, 'Joyería Brillo', 'Calle Oro 8, Pueblo I1', '634789521', '10:00:00', '20:00:00', 0.00, '', 23, NULL, ''),
-(38, 'Óptica Visión Clara', 'Avenida Ojos 4, Pueblo J1', '612478596', '09:00:00', '18:00:00', 0.00, '', 5, NULL, '');
+(38, 'Óptica Visión Clara', 'Avenida Ojos 4, Pueblo J1', '612478596', '09:00:00', '18:00:00', 2.00, '', 5, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -227,11 +231,16 @@ CREATE TABLE `favoritas_tiendas` (
 INSERT INTO `favoritas_tiendas` (`ID_FavoritasTiendas`, `ID_Usuario`, `ID_Establecimiento`, `fecha_agregado`) VALUES
 (72, 11, 10, '2024-11-15 18:07:13'),
 (73, 11, 4, '2024-11-15 18:07:15'),
-(79, 6, 4, '2024-11-19 23:51:09'),
 (82, 18, 9, '2024-11-20 17:22:35'),
 (84, 18, 1, '2024-11-21 12:30:44'),
-(93, 6, 2, '2024-12-24 11:44:31'),
-(95, 6, 1, '2025-01-07 13:09:22');
+(96, 23, 1, '2025-01-22 15:43:47'),
+(100, 25, 1, '2025-01-28 14:11:52'),
+(101, 26, 1, '2025-02-18 13:16:19'),
+(104, 28, 1, '2025-04-29 18:03:31'),
+(106, 24, 1, '2025-04-29 18:35:02'),
+(107, 24, 3, '2025-04-29 18:35:06'),
+(109, 24, 4, '2025-04-29 18:39:58'),
+(110, 6, 2, '2025-05-01 13:19:25');
 
 -- --------------------------------------------------------
 
@@ -248,22 +257,48 @@ CREATE TABLE `pedidos` (
   `Total` decimal(10,2) NOT NULL,
   `productos` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`productos`)),
   `payment_id` varchar(255) NOT NULL,
-  `Direccion` varchar(255) NOT NULL
+  `Direccion` varchar(255) NOT NULL,
+  `ID_Repartidor` int(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `pedidos`
 --
 
-INSERT INTO `pedidos` (`ID_Pedido`, `ID_Usuario`, `ID_Establecimiento`, `Fecha_Hora_Pedido`, `Estado_Pedido`, `Total`, `productos`, `payment_id`, `Direccion`) VALUES
-(5, 18, 1, '2024-11-26 21:27:51', 'En proceso', 20.99, '[{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2,\"image_url\":\"\"},{\"name\":\"Paracetamol\",\"sku\":\"3\",\"price\":\"3.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5DD2RQ1M9752336B916191E', ''),
-(6, 6, 1, '2024-11-28 18:53:45', 'Pendiente', 12.49, '[{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"},{\"name\":\"Paracetamol\",\"sku\":\"3\",\"price\":\"3.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5ELYKQ1J659179LC9388012', 'C/ Enrique Tierno Galvan Cheste, 7'),
-(7, 6, 1, '2024-12-05 09:18:34', 'Pendiente', 10.50, '[{\"name\":\"Paella\",\"sku\":\"1\",\"price\":\"2.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"},{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5IW7XA28J143174N6043916', 'asdf'),
-(8, 6, 1, '2025-01-18 12:13:46', 'Pendiente', 9.00, '[{\"name\":\"asdf\",\"sku\":\"48\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1},{\"name\":\"castañas de mierda\",\"sku\":\"50\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-M6FZVYI5F970552SX9866019', 'C/ Enrique Tierno Galvan Cheste'),
-(9, 6, 1, '2025-01-18 12:38:41', 'Pendiente', 9.00, '[{\"name\":\"asdf\",\"sku\":\"48\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1},{\"name\":\"castañas de mierda\",\"sku\":\"50\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-M6F2BPA8F260261J19318911', 'C/ Enrique Tierno Galvan Cheste'),
-(10, 6, 1, '2025-01-18 12:45:41', 'Pendiente', 12.00, '[{\"name\":\"asdf\",\"sku\":\"48\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1},{\"name\":\"castañas de mierda\",\"sku\":\"50\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-M6F2E2Q3FM25539HR911954L', 'C/ Enrique Tierno Galvan Cheste'),
-(11, 6, 1, '2025-01-18 12:54:13', 'Pendiente', 12.00, '[{\"name\":\"asdf\",\"sku\":\"48\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1},{\"name\":\"castañas de mierda\",\"sku\":\"50\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-M6F2IZY783296249D7048056', 'C/ Enrique Tierno Galvan Cheste'),
-(12, 22, 1, '2025-01-18 13:37:31', 'Pendiente', 12.00, '[{\"name\":\"producto de mierda la verdad\",\"sku\":\"51\",\"price\":\"3.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":4}]', 'PAYID-M6F25DI5SY27643YT236560L', 'C/chiva cheste 7');
+INSERT INTO `pedidos` (`ID_Pedido`, `ID_Usuario`, `ID_Establecimiento`, `Fecha_Hora_Pedido`, `Estado_Pedido`, `Total`, `productos`, `payment_id`, `Direccion`, `ID_Repartidor`) VALUES
+(5, 18, 1, '2024-11-26 21:27:51', 'En proceso', 20.99, '[{\"name\":\"Tortilla española\",\"sku\":\"2\",\"price\":\"8.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2,\"image_url\":\"\"},{\"name\":\"Paracetamol\",\"sku\":\"3\",\"price\":\"3.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1,\"image_url\":\"\"}]', 'PAYID-M5DD2RQ1M9752336B916191E', '', NULL),
+(15, 25, 1, '2025-01-28 14:10:43', 'Entregado', 45.50, '[{\"name\":\"agua\",\"sku\":\"54\",\"price\":\"3.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":13}]', 'PAYID-M6MOKTY89B9467086752111L', 'Cheste', 18),
+(16, 26, 1, '2025-02-18 12:17:59', 'Entregado', 31.50, '[{\"name\":\"agua\",\"sku\":\"54\",\"price\":\"3.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":9}]', 'PAYID-M62HUPY1F830241104627634', 'calle la loma', 18),
+(17, 27, 4, '2025-02-19 11:35:21', 'Entregado', 9.90, '[{\"name\":\"Zumo de Naranja Natural\",\"sku\":\"10\",\"price\":\"3.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2},{\"name\":\"agua\",\"sku\":\"55\",\"price\":\"2.90\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1}]', 'PAYID-M624DUI0BP29242MX821923M', 'carrer de xiva', 18),
+(18, 18, 1, '2025-04-15 09:32:20', 'Entregado', 24.00, '[{\"name\":\"persona\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-M77COPA0GM16393UR800684D', 'casablanca', 18),
+(19, 18, 1, '2025-04-15 09:32:40', 'Entregado', 24.00, '[{\"name\":\"persona\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-M77CPMA97C03528L8248304T', 'casablanca', 18),
+(20, 18, 1, '2025-04-15 09:32:55', 'Entregado', 48.00, '[{\"name\":\"persona\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":4}]', 'PAYID-M77CPQA3W9649189T5076027', 'casablanca', 18),
+(21, 18, 1, '2025-04-15 09:38:22', 'Entregado', 48.00, '[{\"name\":\"persona\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":4}]', 'PAYID-M77CSBY7JU55608M96651714', 'casablanca', 18),
+(22, 18, 1, '2025-04-15 09:43:45', 'Entregado', 48.00, '[{\"name\":\"persona\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":4}]', 'PAYID-M77CUSY3XU48193UD722835C', 'casablanca', 18),
+(23, 24, 3, '2025-04-23 12:57:13', 'Entregado', 69.90, '[{\"name\":\"Chorizos \",\"sku\":\"4\",\"price\":\"6.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":10}]', 'PAYID-NAEOHAI2TD99573WN321321K', 'hola', 18),
+(24, 24, 3, '2025-04-23 13:05:20', 'Entregado', 27.97, '[{\"name\":\"Pan de Pueblo\",\"sku\":\"8\",\"price\":\"2.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2},{\"name\":\"Aceite de Oliva Virgen Extra\",\"sku\":\"9\",\"price\":\"7.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-NAEOLBQ9MX84308JM5415330', 'hola', 18),
+(25, 24, 3, '2025-04-23 13:06:35', 'Entregado', 27.97, '[{\"name\":\"Pan de Pueblo\",\"sku\":\"8\",\"price\":\"2.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2},{\"name\":\"Aceite de Oliva Virgen Extra\",\"sku\":\"9\",\"price\":\"7.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-NAEOLUY0N059848P9525172E', 'hola', 18),
+(26, 24, 3, '2025-04-23 13:07:55', 'Entregado', 27.97, '[{\"name\":\"Pan de Pueblo\",\"sku\":\"8\",\"price\":\"2.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2},{\"name\":\"Aceite de Oliva Virgen Extra\",\"sku\":\"9\",\"price\":\"7.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-NAEOMJA99J716152X1809723', 'hola', 18),
+(27, 24, 3, '2025-04-23 13:09:07', 'Entregado', 27.97, '[{\"name\":\"Pan de Pueblo\",\"sku\":\"8\",\"price\":\"2.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2},{\"name\":\"Aceite de Oliva Virgen Extra\",\"sku\":\"9\",\"price\":\"7.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-NAEOM3A48K12822H90923034', 'hola', 18),
+(28, 24, 3, '2025-04-23 13:11:06', 'Entregado', 27.97, '[{\"name\":\"Pan de Pueblo\",\"sku\":\"8\",\"price\":\"2.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2},{\"name\":\"Aceite de Oliva Virgen Extra\",\"sku\":\"9\",\"price\":\"7.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-NAEONYY6AV14208KN7945427', 'hola', 18),
+(29, 24, 3, '2025-04-23 13:18:28', 'Entregado', 27.97, '[{\"name\":\"Pan de Pueblo\",\"sku\":\"8\",\"price\":\"2.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2},{\"name\":\"Aceite de Oliva Virgen Extra\",\"sku\":\"9\",\"price\":\"7.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-NAEORHQ14325079L2470210T', 'hola', 18),
+(30, 24, 3, '2025-04-23 13:20:23', 'Entregado', 27.97, '[{\"name\":\"Pan de Pueblo\",\"sku\":\"8\",\"price\":\"2.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2},{\"name\":\"Aceite de Oliva Virgen Extra\",\"sku\":\"9\",\"price\":\"7.99\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-NAEOSEA19762034EP8868155', 'hola', 18),
+(31, 18, 1, '2025-04-23 13:56:20', 'Entregado', 12.00, '[{\"name\":\"persona\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1}]', 'PAYID-NAEPC4A1GD551962M125033M', 'casablanca', 18),
+(32, 24, 4, '2025-04-23 14:00:11', 'Entregado', 12.80, '[{\"name\":\"Zumo de Naranja Natural\",\"sku\":\"10\",\"price\":\"3.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2},{\"name\":\"agua\",\"sku\":\"55\",\"price\":\"2.90\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-NAEPEYQ9UG295188D247835L', 'hola', 18),
+(33, 18, 4, '2025-04-23 15:07:31', 'Entregado', 7.00, '[{\"name\":\"Zumo de Naranja Natural\",\"sku\":\"10\",\"price\":\"3.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-NAEQEGI0FD31551P4483881T', 'casablanca', 18),
+(34, 24, 4, '2025-04-24 14:59:34', 'Entregado', 7.00, '[{\"name\":\"Zumo de Naranja Natural\",\"sku\":\"10\",\"price\":\"3.50\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-NAFFDOY3G793149YP956970D', 'hola', 18),
+(35, 24, 1, '2025-04-24 15:05:49', 'Entregado', 36.00, '[{\"name\":\"persona\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-NAFFGPA7WS51907UH473342P', 'hola', 18),
+(36, 6, 1, '2025-04-25 09:13:30', 'Entregado', 12.00, '[{\"name\":\"personaacaa\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1}]', 'PAYID-NAFVEHI2DP00268P5262605H', 'C/ Enrique Tierno Galvan Cheste', 18),
+(37, 6, 1, '2025-04-25 09:13:58', 'Entregado', 12.00, '[{\"name\":\"personaacaa\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1}]', 'PAYID-NAFVETQ5KT51090MP113243R', 'C/ Enrique Tierno Galvan Cheste', 18),
+(38, 6, 1, '2025-04-25 11:18:26', 'Entregado', 80.00, '[{\"name\":\"PruebaAvioneta\",\"sku\":\"59\",\"price\":\"40.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-NAFW66I84R11657BP243305E', 'C/ Enrique Tierno Galvan Cheste', 18),
+(39, 6, 1, '2025-04-25 11:24:02', 'Entregado', 40.00, '[{\"name\":\"PruebaAvioneta\",\"sku\":\"59\",\"price\":\"40.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1}]', 'PAYID-NAFXBSA4HX298879V741045T', 'C/ Enrique Tierno Galvan Cheste', 18),
+(40, 24, 1, '2025-04-25 11:26:21', 'Entregado', 132.00, '[{\"name\":\"PruebaAvioneta\",\"sku\":\"59\",\"price\":\"40.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3},{\"name\":\"personaacaa\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":1}]', 'PAYID-NAFXCVA4XY95330X0276774U', 'hola', 18),
+(41, 28, 1, '2025-04-29 16:04:20', 'Entregado', 24.00, '[{\"name\":\"personaacaa\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-NAIPQZI6EC476409W520470K', 'cheste', 18),
+(42, 18, 1, '2025-04-30 14:02:36', 'En proceso', 104.00, '[{\"name\":\"personaacaa\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2},{\"name\":\"PruebaAvioneta\",\"sku\":\"59\",\"price\":\"40.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-NAJC2YA3X4381240S5508206', 'casablanca', 18),
+(43, 24, 1, '2025-04-30 14:03:26', 'Pendiente', 144.00, '[{\"name\":\"personaacaa\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2},{\"name\":\"PruebaAvioneta\",\"sku\":\"59\",\"price\":\"40.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-NAJC3GQ96S32174TU152482A', 'hola', NULL),
+(44, 24, 1, '2025-04-30 14:37:27', 'Entregado', 104.00, '[{\"name\":\"personaacaa\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2},{\"name\":\"PruebaAvioneta\",\"sku\":\"59\",\"price\":\"40.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-NAJDLDI3T403399N9385074V', 'aa', 18),
+(45, 6, 1, '2025-05-01 11:21:15', 'Pendiente', 24.00, '[{\"name\":\"personaacaa\",\"sku\":\"58\",\"price\":\"12.00\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":2}]', 'PAYID-NAJVSBA9XF95674MR2952117', 'C/ Enrique Tierno Galvan Cheste', NULL),
+(46, 24, 4, '2025-05-06 10:40:00', 'Pendiente', 7.41, '[{\"name\":\"agua\",\"sku\":\"55\",\"price\":\"2.47\",\"currency\":\"EUR\",\"tax\":\"0.00\",\"quantity\":3}]', 'PAYID-NAM6NMQ2NG907072A153684F', 'aa', NULL);
 
 -- --------------------------------------------------------
 
@@ -309,12 +344,12 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`ID_Producto`, `ID_Establecimiento`, `Nombre`, `Descripcion`, `Precio`, `Disponibilidad`, `Foto`, `Tipo`, `Precio_Promocion`) VALUES
-(4, 3, 'Chorizos ', 'Chorizos de la granjaescula Mediterranea ficticia sistematica de estilo neutral in the night.', 6.99, 16, '\\assets\\images\\chorizos.png', 'hgfgh', NULL),
-(6, 2, 'Ibuprofeno 600mg', 'Anti-inflamatorio de venta libre', 5.99, 20, '\\assets\\images\\ibuprofeno.png', 'Medicamento', NULL),
-(7, 2, 'Vitaminas C', 'Suplemento de Vitamina C 500mg', 9.50, 15, '\\assets\\images\\vitamina_c.png', 'Suplemento', NULL),
-(8, 3, 'Pan de Pueblo', 'Pan artesanal hecho a mano', 2.00, 25, '\\assets\\images\\pan_pueblo.png', 'Panadería', NULL),
-(9, 3, 'Aceite de Oliva Virgen Extra', 'Aceite de oliva de la mejor calidad', 7.99, 30, '\\assets\\images\\aceite_oliva.png', 'Aceites', NULL),
-(10, 4, 'Zumo de Naranja Natural', 'Zumo recién exprimido', 3.50, 18, '\\assets\\images\\zumo_naranja.png', 'Bebidas', NULL),
+(4, 3, 'Chorizos ', 'Chorizos de la granjaescula Mediterranea ficticia sistematica de estilo neutral in the night.', 6.99, 16, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527828/16f3f873-b024-4b75-9525-912fad636105.png', 'hgfgh', NULL),
+(6, 2, 'Ibuprofeno 600mg', 'Anti-inflamatorio de venta libre', 5.99, 20, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526320/e7b9a3da-e00c-4323-9f29-da0eee820c42.png', 'Medicamento', NULL),
+(7, 2, 'Vitaminas C', 'Suplemento de Vitamina C 500mg', 9.50, 15, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746526346/cc9b5ff3-1f73-412f-b19d-4691d07059eb.png', 'Suplemento', NULL),
+(8, 3, 'Pan de Pueblo', 'Pan artesanal hecho a mano', 2.00, 23, '\\assets\\images\\pan_pueblo.png', 'Panadería', NULL),
+(9, 3, 'Aceite de Oliva Virgen Extra', 'Aceite de oliva de la mejor calidad', 7.99, 27, '\\assets\\images\\aceite_oliva.png', 'Aceites', NULL),
+(10, 4, 'Zumo de Naranja Natural', 'Zumo recién exprimido', 3.50, 12, '\\assets\\images\\zumo_naranja.png', 'Bebidas', 1.75),
 (11, 5, 'Cerveza Artesanal', 'Cerveza local de malta', 2.99, 40, '\\assets\\images\\cerveza_artesanal.png', 'Bebidas', NULL),
 (12, 6, 'Café Americano', 'Café negro sin azúcar', 1.50, 60, '\\assets\\images\\cafe_americano.png', 'Bebidas', NULL),
 (13, 7, 'Baguette Integral', 'Pan integral crujiente', 1.25, 50, '\\assets\\images\\baguette_integral.png', 'Panadería', NULL),
@@ -348,10 +383,9 @@ INSERT INTO `productos` (`ID_Producto`, `ID_Establecimiento`, `Nombre`, `Descrip
 (41, 15, '1', 'castañas', 0.00, 1, '10', '', NULL),
 (42, 15, '1', 'castañas', 0.00, 1, '10', '', NULL),
 (43, 15, '1', 'castañas', 0.00, 1, '10', '', NULL),
-(48, 1, 'asdf', 'asdf', 3.00, 3, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1736874079/products/asdf_1.jpg', '3', NULL),
-(49, 1, 'aa', 'aa', 0.00, 0, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1736874122/products/aa_1.png', 'aa', 0.00),
-(50, 1, 'castañas de mierda', 'estas castañas son como las de antes pero ademas llevan mierda por un tuvo', 3.00, 5, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1736874464/products/casta%C3%B1as%20de%20mierda_1.png', 'mierdeles', NULL),
-(51, 1, 'producto de mierda la verdad', 'esto es un producto de mierda seca', 3.00, 17, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1736874679/products/producto%20de%20mierda%20la%20verdad_1.jpg', 'mierdaseka', 2.70);
+(55, 4, 'agua', 'agua mineral templada', 2.90, 15, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1737556745/products/agua_4.jpg', 'agua', 2.47),
+(58, 1, 'persona', 'persona', 12.00, 20, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746024908/products/product_6.jpg', 'personaaa', NULL),
+(59, 1, 'Prueba Producto', 'Prueba3', 50.00, 43, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1745570578/products/product_6.png', 'broma', 40.00);
 
 -- --------------------------------------------------------
 
@@ -381,9 +415,9 @@ CREATE TABLE `promociones` (
 --
 
 INSERT INTO `promociones` (`ID_Promocion`, `ID_Producto`, `ID_Establecimiento`, `titulo`, `descripcion`, `descuento`, `tipoPromocion`, `fechaInicio`, `fechaFin`, `estado`, `codigoPromocion`, `condiciones`, `creadoEn`, `actualizadoEn`) VALUES
-(9, 49, 1, 'PROMO DESACTIVADA', 'ESTA PROMOCION MAÑANA DEBE APARECER DESACTIVADA', 10.00, 'porcentaje', '2025-01-20 00:00:00', '2025-01-21 00:00:00', 'desactivada', 'PROMODESACTIVADA', 'ESTA PROMOCION DEBE APARECER COMO DESACTIVADA', '2025-01-22 13:06:02', '2025-01-22 13:13:41'),
-(11, 50, 1, 'debe aparecer como inactiva', 'debe aparecer como inactiva', 50.00, 'porcentaje', '2025-01-20 00:00:00', '2025-01-21 00:00:00', 'desactivada', 'debe aparecer como inactiva', 'debe aparecer como inactiva', '2025-01-22 13:17:00', '2025-01-22 13:17:41'),
-(12, 50, 1, 'DELIMITER $$  CREATE TRIGGER reset_precio_promocion AFTER UPDATE ON promociones FOR EACH ROW BEGIN     -- Verifica si el estado de la promoción fue cambiado a \"desactivada\"     IF NEW.estado = \'desactivada\' THEN         -- Actualiza el Precio_Promocion de', 'DELIMITER $$  CREATE TRIGGER reset_precio_promocion AFTER UPDATE ON promociones FOR EACH ROW BEGIN     -- Verifica si el estado de la promoción fue cambiado a \"desactivada\"     IF NEW.estado = \'desactivada\' THEN         -- Actualiza el Precio_Promocion de la tabla productos a NULL cuando la promoción está desactivada         UPDATE productos         SET Precio_Promocion = NULL         WHERE ID_Producto = NEW.ID_Producto;     END IF; END $$  DELIMITER ;', 50.00, 'porcentaje', '2025-01-20 00:00:00', '2025-01-21 00:00:00', 'desactivada', 'DELIMITER $$  CREATE TRIGGER reset_precio_promocio', 'DELIMITER $$\n\nCREATE TRIGGER reset_precio_promocion\nAFTER UPDATE ON promociones\nFOR EACH ROW\nBEGIN\n    -- Verifica si el estado de la promoción fue cambiado a \"desactivada\"\n    IF NEW.estado = \'desactivada\' THEN\n        -- Actualiza el Precio_Promocion de la tabla productos a NULL cuando la promoción está desactivada\n        UPDATE productos\n        SET Precio_Promocion = NULL\n        WHERE ID_Producto = NEW.ID_Producto;\n    END IF;\nEND $$\n\nDELIMITER ;\n', '2025-01-22 13:24:19', '2025-01-22 13:24:41');
+(17, 55, 4, 'AGUA', 'DESCUENTO PARA AGUA POR LA EPOCA', 15.00, 'porcentaje', '2025-01-23 00:00:00', '2025-01-25 00:00:00', 'activa', 'HOLA', '', '2025-01-22 14:40:17', '2025-01-22 14:40:17'),
+(20, 10, 4, 'promocion zumo de naranja', 'esta promocion es para el zumo de naranja', 50.00, 'porcentaje', '2025-01-22 15:53:20', '2025-01-26 00:00:00', 'activa', 'ZumoDeNaranja', 'esta prmocion es solo para pedir en local', '2025-01-22 14:53:20', '2025-01-22 14:53:20'),
+(24, 59, 1, 'Promocion de Avioneta', 'Promocion por Prueba', 20.00, 'porcentaje', '2025-04-25 12:55:16', '2025-04-27 00:00:00', 'activa', '', 'ninguna', '2025-04-25 10:55:16', '2025-04-25 10:55:16');
 
 --
 -- Disparadores `promociones`
@@ -482,9 +516,16 @@ INSERT INTO `usuarios` (`ID_Usuario`, `Nombre`, `Apellidos`, `Email`, `Telefono`
 (15, '{{2*2 }}', '{{ 2 * 2 }}', '{{ 2*2 }}@gmail.com', '{{2 * 2}', 'asdfasdf', '$2b$10$VE3mjVixqe.dIOp1vwkXPuUhaL2UtI5.DqJkvR63nJdwSK7hNBvNC', '2024-11-16 13:02:53', '', NULL, NULL, NULL, NULL),
 (16, 'pruebaloading', 'pruebaloading', 'loading@gmail.com', '1272', '', '$2b$10$xDojRbsjYIrdmcqpb9SfpOri1QQkVb6HSosId0d/Nnn9mEaH9iSYi', '2024-11-16 13:15:46', '', NULL, NULL, NULL, NULL),
 (17, 'pruieba2', 'prueba2', 'prueba2@gmail.com', '1231', '', '$2b$10$806Gf5O.CbMVggDY567EGenGV7rucYMGXyz/VSx0gVPvA199THzUW', '2024-11-16 13:18:04', '', NULL, NULL, NULL, NULL),
-(18, 'repartidor', 'repartidor', 'repartidor@gmail.com', '6', 'ocupado', '$2b$10$RTbZ2o0b0pdulftrYuUJEu5U25nZN4ra.8RZM/ZcHKDjbx4kUnNJq', '2024-11-20 14:45:24', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1732115433/profile_pictures/user_18.jpg', 'moto', 'en camino', NULL, 1),
+(18, 'repartidor', 'repartidor', 'repartidor@gmail.com', '6', 'casablanca', '$2b$10$RTbZ2o0b0pdulftrYuUJEu5U25nZN4ra.8RZM/ZcHKDjbx4kUnNJq', '2024-11-20 14:45:24', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1732115433/profile_pictures/user_18.jpg', 'moto', 'ocupado', NULL, 1),
 (19, 'Pablo', 'Fortea Garcia', 'pfortea01@gmail.com', '654981234', '', '$2b$10$AROTtmnV.Wwgh86IBDK6Q..57PM98prp6fRkmXqM8QTjmXFGeM6Cy', '2024-12-24 10:55:06', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1733244931/profile_pictures/no-picture', NULL, NULL, NULL, 3),
-(22, 'pablo', 'arnau', 'pabloarlo@gmail.com', '646836481', 'C/chiva cheste 7', '$2b$10$oe.lHJvMEMZfzGJ.qQOsO.gO9pfTv.vV9g8RwkPCV/qxiV.ojj49S', '2025-01-18 13:36:31', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1733244931/profile_pictures/no-picture', NULL, NULL, NULL, 3);
+(22, 'pablo', 'arnau', 'pabloarlo@gmail.com', '646836481', 'C/chiva cheste 7', '$2b$10$oe.lHJvMEMZfzGJ.qQOsO.gO9pfTv.vV9g8RwkPCV/qxiV.ojj49S', '2025-01-18 13:36:31', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1733244931/profile_pictures/no-picture', NULL, NULL, NULL, 3),
+(23, 'Abordo Maria', 'Abordo Maria', 'abordomaria@gmail.com', '65489721', 'calle nse que cheste', '$2b$10$I5zJS09SxgY.l/AaHRyMdO2z6XjD9T8//an8RHz5uwFTZqeIWYuf.', '2025-01-22 14:36:22', '', NULL, NULL, NULL, 2),
+(24, 'username', 'username', 'user@gmail.com', 'user', 'aa', '$2b$10$4hPyshQQ.hI4pp4KB9PKRuNcVBfj5obrbRCeyWvld2Bt5UZQBNlFq', '2025-01-27 09:27:02', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746527722/profile_pictures/user_24.webp', NULL, NULL, NULL, 3),
+(25, 'usuario', 'usuario', 'usuario@gmail.com', '654987321', 'Cheste', '$2b$10$efKmzCGjA0GZwv6ZGUR/mu.9RzbcUkQGrjrLdGnxPB9QDJ3hUp7jy', '2025-01-28 13:07:30', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1738069891/profile_pictures/user_25.png', NULL, NULL, NULL, 3),
+(26, 'brian', 'Torre', 'brian@gmail.com', '23423423', 'calle la loma', '$2b$10$G.NW2GBpxUur3t5daw6r0eaZP6iLhOzlBZFpKYl3rK70wxATN8Vby', '2025-02-18 12:15:55', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1739880990/profile_pictures/user_26.webp', NULL, NULL, NULL, 3),
+(27, 'Santi', 'Pereza Manza', 'santiceman7@gmail.com', '654987321', 'carrer de xiva', '$2b$10$ZcdolHoY.084dJPjDQOOgOHrUIvdKzig8Tqnv5fOB5s7n1taBiyAm', '2025-02-19 11:29:15', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1739964609/profile_pictures/user_27.webp', NULL, NULL, NULL, 3),
+(28, 'Pepe', 'Prueba', 'pepejuan@gmail.com', '654987321', 'buñol', '$2b$10$0Etq9IByZEChQoilBvjwAOvntoFO7ho/DvVZslBFdtv9g9noit1Mm', '2025-04-29 15:52:48', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1733244931/profile_pictures/no-picture', NULL, NULL, NULL, 3),
+(29, 'pep', 'botella', 'pepe@pepe.com', '654987312', '', '$2b$10$QbHG6/JyUWcCNoWyVcY7/Ol.SZtX475YM0QOlHXr/.Yp98RcL3I4a', '2025-05-01 10:49:00', 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1733244931/profile_pictures/no-picture', NULL, NULL, NULL, 3);
 
 --
 -- Índices para tablas volcadas
@@ -587,7 +628,7 @@ ALTER TABLE `calificaciones`
 -- AUTO_INCREMENT de la tabla `calificaciones_establecimientos`
 --
 ALTER TABLE `calificaciones_establecimientos`
-  MODIFY `ID_Calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `ID_Calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias_establecimientos`
@@ -605,13 +646,13 @@ ALTER TABLE `establecimientos`
 -- AUTO_INCREMENT de la tabla `favoritas_tiendas`
 --
 ALTER TABLE `favoritas_tiendas`
-  MODIFY `ID_FavoritasTiendas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `ID_FavoritasTiendas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `ID_Pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID_Pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido_productos`
@@ -623,13 +664,13 @@ ALTER TABLE `pedido_productos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `ID_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `ID_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `promociones`
 --
 ALTER TABLE `promociones`
-  MODIFY `ID_Promocion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID_Promocion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -641,7 +682,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Restricciones para tablas volcadas
