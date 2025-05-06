@@ -4,6 +4,7 @@ import { Producto } from '../../../common/productos';
 import { ProductosService } from '../../../service/productos.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
+import { CarritoService } from '../../../service/carrito.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,14 +20,12 @@ export class ProductDetailComponent {
   private readonly ShopService: ShopService = inject(ShopService);
   private readonly ProductosService: ProductosService =
     inject(ProductosService);
-
+  private readonly carritoService: CarritoService = inject(CarritoService);
   product!: Producto;
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe((params) => {
       this.id = params['id'];
-    });
-    this.activeRoute.params.subscribe((params) => {
       this.idProducto = params['idProducto'];
     });
     this.loadProducts();
@@ -38,8 +37,13 @@ export class ProductDetailComponent {
         this.product = value;
         console.log(this.product);
       },
-      error: (err) => console.error,
-      complete: () => console.log('carga de productos completa'),
+      error: (err) => console.error('Error al cargar el producto:', err),
+      complete: () => console.log('Carga de producto completa'),
     });
+  }
+
+  addToCart(): void {
+    this.carritoService.addToCart(this.product);
+    console.log('Producto añadido al carrito:', this.product);
   }
 }

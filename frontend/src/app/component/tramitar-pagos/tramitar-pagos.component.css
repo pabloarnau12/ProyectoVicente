@@ -103,3 +103,72 @@ body {
     margin-top: 10px;
   }
   
+
+  .payment-method {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .payment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .payment-option input[type='radio'] {
+    transform: scale(1.2);
+    margin-right: 10px;
+  }
+  
+  .payment-option label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  .payment-logo {
+    width: 50px;
+    height: auto;
+  }
+  
+  .payment-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .payment-actions .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .payment-actions .btn-primary {
+    background-color: #0070ba;
+    color: white;
+    border: none;
+  }
+  
+  .payment-actions .btn-primary:hover {
+    background-color: #005ea6;
+  }
+  
+  .payment-actions .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+  }
+  
+  .payment-actions .btn-danger:hover {
+    background-color: #c82333;
+  }

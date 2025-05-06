@@ -1,1 +1,5 @@
 hacer la página de producto
+boton ordenar ahora del banner funcionamiento 
+cambiar texto de restaurantes favoritos perfil user
+quitar imágenes de los assets
+borrar console logs innecesarios

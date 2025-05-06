@@ -70,37 +70,40 @@
   </section>
 
   <!-- Selección de método de pago -->
+  <!-- Selección de método de pago -->
   <section class="payment-method">
     <h2>Método de Pago</h2>
-    <form>
-      <label>
+    <div class="payment-options">
+      <div class="payment-option">
         <input
           type="radio"
+          id="paypal"
           name="paymentMethod"
           value="paypal"
           [(ngModel)]="paymentMethod"
+          checked
         />
-        PayPal
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="paymentMethod"
-          value="creditCard"
-          [(ngModel)]="paymentMethod"
-        />
-        Tarjeta de Crédito/Débito
-      </label>
-    </form>
+        <label for="paypal">
+          <img
+            src="../../../assets/images/paypal-logo.png"
+            alt="PayPal"
+            class="payment-logo"
+          />
+          <span>Pagar con PayPal</span>
+        </label>
+      </div>
+    </div>
   </section>
 
   <!-- Botón para proceder al pago -->
-  <button class="btn btn-primary" (click)="proceedToPayment()">
-    Proceder al Pago
-  </button>
-  <button class="btn btn-danger" [routerLink]="'/catalogo'">
-    Cancelar pago
-  </button>
+  <div class="payment-actions">
+    <button class="btn btn-primary" (click)="proceedToPayment()">
+      Proceder al Pago
+    </button>
+    <button class="btn btn-danger" [routerLink]="'/catalogo'">
+      Cancelar pago
+    </button>
+  </div>
   @if(errorMessage){
   <p class="error-message">{{ errorMessage }}</p>
   }
