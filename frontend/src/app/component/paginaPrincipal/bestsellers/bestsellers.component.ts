@@ -26,9 +26,7 @@ export class BestsellersComponent implements OnInit {
       error: (err) => {
         console.error('error al cargar las tiendas mejor valoradas');
       },
-      complete: () => {
-        console.log('Carga completa de tiendas mejor valoradas');
-      },
+      complete: () => {},
     });
   }
 }

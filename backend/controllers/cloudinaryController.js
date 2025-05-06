@@ -4,7 +4,7 @@ exports.uploadProfileImage = (req, res) => {
   const file = req.file; // La imagen cargada
   const id = req.user.id; // ID del usuario (opcional, si lo necesitas para la lógica)
   const customName = req.body.customName || `user_${id}`; // Nombre personalizado
-  console.log("user : " + id);
+
   if (!file) {
     return res
       .status(400)
@@ -16,7 +16,6 @@ exports.uploadProfileImage = (req, res) => {
       if (err) {
         console.error("Error al eliminar la imagen anterior:", err);
       } else {
-        console.log("Imagen anterior eliminada correctamente");
       }
     });
   }
@@ -70,9 +69,7 @@ exports.uploadProductImage = (req, res) => {
   if (id) {
     cloudinary.uploader.destroy(id, (err) => {
       if (err) {
-        console.error("Error al eliminar la imagen anterior:", err);
       } else {
-        console.log("Imagen anterior eliminada correctamente");
       }
     });
   }
@@ -150,11 +147,9 @@ exports.uploadShopImage = (req, res) => {
         (dbErr, dbResults) => {
           if (dbErr) {
             console.error("Error al actualizar la base de datos:", dbErr);
-            return res
-              .status(500)
-              .json({
-                message: "Error al actualizar la imagen del establecimiento",
-              });
+            return res.status(500).json({
+              message: "Error al actualizar la imagen del establecimiento",
+            });
           }
 
           res.status(200).json({

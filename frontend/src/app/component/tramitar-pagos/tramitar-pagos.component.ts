@@ -34,7 +34,6 @@ export class TramitarPagosComponent implements OnInit {
       this.authService.getProfile(token).subscribe(
         (profile) => {
           this.user = profile;
-          console.log('Perfil cargado:', this.user); // Para depuración
         },
         (error) => {
           this.router.navigate(['/login']);
@@ -106,13 +105,11 @@ export class TramitarPagosComponent implements OnInit {
     if (address) {
       Swal.fire(`Tu nueva dirección es ${address}`);
       const token = localStorage.getItem('token');
-      console.log('Token obtenido:', token); // Agrega esto para verificar el token
 
       if (token) {
         const addressData = { direccion: address };
         this.authService.updateAddress(addressData, token).subscribe(
           (response) => {
-            console.log('Respuesta del servidor:', response);
             Swal.fire(response.message); // Mostrar mensaje de éxito
             this.loadProfile();
           },
@@ -121,9 +118,6 @@ export class TramitarPagosComponent implements OnInit {
             Swal.fire('Error al actualizar la dirección'); // Mostrar mensaje de error
           }
         );
-        console.log('Dirección enviada al backend:', address);
-      } else {
-        console.error('No se ha proporcionado el Token');
       }
     }
   }

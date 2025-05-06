@@ -67,7 +67,7 @@ export class PerfilClientComponent implements OnInit {
       this.authService.getProfile(token).subscribe(
         (profile) => {
           this.user = profile;
-          console.log('Perfil cargado:', this.user); // Para depuración
+
           this.FormUser.patchValue(this.user);
           this.pedidosActivos('En Proceso');
           this.pedidosRealizados('Cancelado'); // Cargar pedidos realizados
@@ -134,13 +134,11 @@ export class PerfilClientComponent implements OnInit {
     if (address) {
       Swal.fire(`Tu nueva dirección es ${address}`);
       const token = localStorage.getItem('token');
-      console.log('Token obtenido:', token); // Agrega esto para verificar el token
 
       if (token) {
         const addressData = { direccion: address };
         this.authService.updateAddress(addressData, token).subscribe(
           (response) => {
-            console.log('Respuesta del servidor:', response);
             Swal.fire(response.message); // Mostrar mensaje de éxito
             this.loadProfile();
           },
@@ -149,7 +147,6 @@ export class PerfilClientComponent implements OnInit {
             Swal.fire('Error al actualizar la dirección'); // Mostrar mensaje de error
           }
         );
-        console.log('Dirección enviada al backend:', address);
       } else {
         console.error('No se ha proporcionado el Token');
       }
@@ -162,7 +159,6 @@ export class PerfilClientComponent implements OnInit {
       .subscribe(
         (orders) => {
           this.ActiveOrders.set(orders);
-          console.log('PEDIDOS cargados:', this.ActiveOrders); // Para depuración
         },
         (error) => {
           console.error('Error al cargar pedidos:', error);
@@ -176,7 +172,6 @@ export class PerfilClientComponent implements OnInit {
       .subscribe(
         (orders) => {
           this.CompletedOrders = orders;
-          console.log('PEDIDOS REALIZADOS cargados:', this.CompletedOrders); // Para depuración
         },
         (error) => {
           console.error('Error al cargar pedidos realizados:', error);
@@ -189,7 +184,6 @@ export class PerfilClientComponent implements OnInit {
       .subscribe(
         (shops) => {
           this.FavoriteShops.set(shops);
-          console.log('Datos cargados en el signal:', shops);
         },
         (error) => {
           console.error('Error al cargar las tiendas favoritas', error);
@@ -223,7 +217,6 @@ export class PerfilClientComponent implements OnInit {
       this.isloading = true;
       this.imageUploadService.uploadProfileImage(this.selectedFile).subscribe({
         next: (response: any) => {
-          console.log('Imagen subida:', response.url);
           this.loadProfile();
           this.isloading = false;
         },
@@ -235,7 +228,6 @@ export class PerfilClientComponent implements OnInit {
   }
 
   onUpdateUser() {
-    console.log(this.FormUser.value);
     if (this.FormUser.valid) {
       const token = localStorage.getItem('token');
       if (token) {

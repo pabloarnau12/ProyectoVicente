@@ -39,7 +39,6 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
-    console.log('Sesión cerrada correctamente');
   }
   updateUserProfile(
     user: UpdateUserProfileRequest,

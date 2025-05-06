@@ -30,7 +30,7 @@ export class CatalogoComponent {
 
   ngOnInit(): void {
     this.llenardata();
-    // this.llenarDatabyPage(1);
+
     this.loadCategorias();
   }
 
@@ -39,7 +39,6 @@ export class CatalogoComponent {
       next: (response) => {
         this.data = response;
         this.filteredData = this.data;
-        console.log('hola', this.data);
       },
       error: (err) => {
         console.error('Error al cargar las tiendas:', err);
@@ -63,7 +62,6 @@ export class CatalogoComponent {
         (item) =>
           item.Categoria && item.Categoria.includes(this.categoriasSelected)
       );
-      // console.log("metodea")
     } else {
       this.filteredData = this.data;
     }
@@ -74,7 +72,6 @@ export class CatalogoComponent {
       .getCategoriasEstablecimientos()
       .subscribe((categorias) => {
         this.categorias = categorias;
-        // console.log('hola categorias', this.categorias);
       });
   }
 }

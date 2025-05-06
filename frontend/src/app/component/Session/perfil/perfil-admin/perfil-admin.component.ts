@@ -112,7 +112,6 @@ export class PerfilAdminComponent implements OnInit {
       this.authService.getProfile(token).subscribe(
         (profile) => {
           this.user = profile;
-          console.log('Perfil cargado:', this.user); // Para depuración
           this.loadTienda();
         },
         (error) => {
@@ -130,7 +129,7 @@ export class PerfilAdminComponent implements OnInit {
     this.shopService.getShopByAdmin(this.user.ID_Usuario).subscribe(
       (tienda) => {
         this.tienda = tienda;
-        console.log('Tienda cargada:', this.tienda); // Para depuración
+
         this.Horario_Apertura = this.tienda.Horario_Apertura;
         this.Horario_Cierre = this.tienda.Horario_Cierre;
         this.Descripcion = this.tienda.Descripcion;
@@ -150,7 +149,6 @@ export class PerfilAdminComponent implements OnInit {
       .subscribe(
         (productos) => {
           this.productos = productos;
-          console.log('Productos Cargados:', this.productos);
         },
         (error) => {
           console.error('error al cargar los productos', error);
@@ -197,7 +195,6 @@ export class PerfilAdminComponent implements OnInit {
       .uploadShopImage(this.selectedFile, this.tienda.ID_Establecimiento)
       .subscribe(
         (response) => {
-          console.log('Imagen actualizada con éxito:', response);
           this.tienda.foto = response.url; // Actualizar la imagen en la vista
           Swal.fire({
             icon: 'success',
@@ -226,7 +223,6 @@ export class PerfilAdminComponent implements OnInit {
       this.isloading = true;
       this.imageUploadService.uploadProfileImage(this.selectedFile).subscribe({
         next: (response: any) => {
-          console.log('Imagen subida:', response.url);
           this.loadProfile();
           this.isloading = false;
         },
@@ -376,7 +372,6 @@ export class PerfilAdminComponent implements OnInit {
       .getOrdersByShopAndState(this.tienda.ID_Establecimiento, this.Estado)
       .subscribe(
         (response: any) => {
-          console.log(this.tienda.ID_Establecimiento, this.Estado);
           this.Pedidos = response;
           this.Pedidos = response.map((pedido: any) => {
             return {
@@ -384,7 +379,6 @@ export class PerfilAdminComponent implements OnInit {
               productos: JSON.parse(pedido.productos),
             };
           });
-          console.log('Pedidos:', response);
         },
         (error: any) => {
           console.error('Error al cargar los pedidos', error);
@@ -406,22 +400,6 @@ export class PerfilAdminComponent implements OnInit {
   }
 
   addPromotion() {
-    // const formPromotion = new FormData();
-    // formPromotion.append('ID_Producto', this.newPromotion.ID_Producto);
-    // formPromotion.append('ID_Establecimiento', this.tienda.ID_Establecimiento);
-    // formPromotion.append('titulo', this.newPromotion.titulo);
-    // formPromotion.append('descripcion', this.newPromotion.descripcion);
-    // formPromotion.append('descuento', this.newPromotion.descuento.toString());
-    // formPromotion.append('fechaInicio', this.newPromotion.fechaInicio);
-    // formPromotion.append('fechaFin', this.newPromotion.fechaFin);
-    // formPromotion.append('tipoPromocion', this.newPromotion.tipoPromocion); // Nuevo campo
-    // formPromotion.append('codigoPromocion', this.newPromotion.codigoPromocion); // Nuevo campo
-    // formPromotion.append('condiciones', this.newPromotion.condiciones); // Nuevo campo
-
-    // console.log(this.newPromotion)
-    // console.log(this.tienda.ID_Establecimiento);
-    // console.log(formPromotion);
-
     this.newPromotion.ID_Establecimiento = this.tienda.ID_Establecimiento;
     this.promocionesService.addPromotion(this.newPromotion).subscribe(
       (response: any) => {

@@ -51,12 +51,9 @@ export class PerfilRepartidorComponent implements OnInit {
     this.pedidosService.getPedidoAsignado(this.user.ID_Usuario).subscribe(
       (pedido) => {
         this.pedidoSeleccionado = pedido; // Si hay un pedido asignado, lo guardamos
-        console.log('pedidoseleccionado', this.pedidoSeleccionado);
       },
       (error) => {
         if (error.status === 404) {
-          // Si no hay pedido asignado, cargamos los pedidos disponibles
-          console.log('pedidoseleccionado', this.pedidoSeleccionado);
           this.loadOrders();
         } else {
           console.error('Error al verificar el pedido asignado', error);
@@ -70,12 +67,9 @@ export class PerfilRepartidorComponent implements OnInit {
       this.authService.getProfile(token).subscribe(
         (profile) => {
           this.user = profile;
-          console.log('Perfil cargado:', this.user); // Para depuración
+
           this.verificarPedidoAsignado(); // Verificar si hay un pedido asignado
-          console.log(
-            'Contenido de pedidoSeleccionado:',
-            this.pedidoSeleccionado
-          );
+
           // this.loadOrders();
         },
         (error) => {
@@ -120,7 +114,6 @@ export class PerfilRepartidorComponent implements OnInit {
       this.isloading = true;
       this.imageUploadService.uploadProfileImage(this.selectedFile).subscribe({
         next: (response: any) => {
-          console.log('Imagen subida:', response.url);
           this.loadProfile();
           this.isloading = false;
         },
@@ -138,7 +131,6 @@ export class PerfilRepartidorComponent implements OnInit {
     if (token) {
       this.authService.updateStatus({ status: newStatus }, token).subscribe(
         (response) => {
-          console.log('Estado actualizado:', response);
           this.user.estado = newStatus; // Actualiza el estado en el front
           Swal.fire(
             'Estado actualizado',
@@ -168,7 +160,6 @@ export class PerfilRepartidorComponent implements OnInit {
     this.pedidosService.OrdersByState('Pendiente').subscribe(
       (response) => {
         this.pedidos = response;
-        console.log('Pedidos disponibles: ', this.pedidos);
       },
       (error) => {
         console.error('Error: ', error);
@@ -186,7 +177,6 @@ export class PerfilRepartidorComponent implements OnInit {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log('Pedido a aceptar: ', pedido.ID_Pedido);
         this.pedidosService
           .acceptOrder(pedido.ID_Pedido, this.user.ID_Usuario)
           .subscribe(
@@ -197,8 +187,7 @@ export class PerfilRepartidorComponent implements OnInit {
                 'success'
               );
               this.pedidoSeleccionado = pedido;
-              this.updateStatus('ocupado'); // Cambiar el estado a 'Ocupado'
-              // this.loadOrders(); // Actualizar la lista de pedidos
+              this.updateStatus('ocupado');
             },
             (error) => {
               console.error('Error al aceptar el pedido', error);

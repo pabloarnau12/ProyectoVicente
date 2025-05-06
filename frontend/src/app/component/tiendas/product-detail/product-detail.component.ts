@@ -35,7 +35,6 @@ export class ProductDetailComponent {
     this.ShopService.getProductsDetails(this.id, this.idProducto).subscribe({
       next: (value) => {
         this.product = value;
-        console.log(this.product);
       },
       error: (err) => console.error('Error al cargar el producto:', err),
       complete: () => console.log('Carga de producto completa'),
@@ -44,6 +43,5 @@ export class ProductDetailComponent {
 
   addToCart(): void {
     this.carritoService.addToCart(this.product);
-    console.log('Producto añadido al carrito:', this.product);
   }
 }

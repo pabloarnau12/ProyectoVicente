@@ -1,3 +1,1 @@
-
-
-borrar console logs innecesarios
+borrar comentarios

@@ -87,8 +87,6 @@ export class PaginaProductoComponent implements OnInit {
               shop.Nombre !== this.tienda.Nombre
           )
           .slice(0, 4);
-        console.log(this.tienda.Categoria + 'hola');
-        console.log(this.relatedShops);
       },
       (error) => {
         console.error('Error al obtener las tiendas:', error);
@@ -104,7 +102,6 @@ export class PaginaProductoComponent implements OnInit {
           (data: CalificacionEstablecimiento[]) => {
             // Cambiar `any[]` a `calificacion[]`
             this.comentarios = data;
-            console.log(this.comentarios);
           },
           (error) => {
             console.error('Error al obtener comentarios:', error);
@@ -121,7 +118,6 @@ export class PaginaProductoComponent implements OnInit {
           (data: CalificacionPromedio) => {
             // Cambiar `any` a `CalificacionPromedio`
             this.media = data.media_calificacion;
-            console.log(this.media);
           },
           (error) => {
             console.error('Error al obtener calificaciones:', error);
@@ -135,7 +131,6 @@ export class PaginaProductoComponent implements OnInit {
   addFavorite(): void {
     const token = localStorage.getItem('token'); // Obteniendo el token del localStorage
     if (token) {
-      console.log('El perfil está logeado');
       this.authService.getProfile(token).subscribe(
         (profile) => {
           const user = profile; // Perfil del usuario
@@ -149,10 +144,6 @@ export class PaginaProductoComponent implements OnInit {
           // Llamar al servicio con el objeto
           this.apiFavoriteShops.addFavoriteShop(favoriteData).subscribe(
             (response) => {
-              console.log(
-                user.ID_Usuario,
-                this.tienda.ID_Establecimiento + ' tienda añadida'
-              );
               this.isFavorite = true; // Marcar como favorito
             },
             (error) => {
@@ -175,8 +166,6 @@ export class PaginaProductoComponent implements OnInit {
     const token = localStorage.getItem('token');
 
     if (token) {
-      console.log('el perfil esta logeado');
-
       this.authService.getProfile(token).subscribe(
         (profile) => {
           const user = profile;
@@ -187,10 +176,6 @@ export class PaginaProductoComponent implements OnInit {
             )
             .subscribe(
               (response) => {
-                console.log(
-                  user.ID_Usuario,
-                  this.tienda.ID_Establecimiento + ' tienda eliminada'
-                );
                 this.isFavorite = false; // Marcar como favorito
               },
               (error) => {
@@ -216,8 +201,6 @@ export class PaginaProductoComponent implements OnInit {
   checkIfFavorite() {
     const token = localStorage.getItem('token');
     if (token) {
-      console.log('el perfil esta logeado');
-
       this.authService.getProfile(token).subscribe(
         (profile) => {
           const user = profile;
@@ -229,7 +212,6 @@ export class PaginaProductoComponent implements OnInit {
             .subscribe(
               (response) => {
                 this.isFavorite = response.isFavorite;
-                console.log('Estado de favorito:', this.isFavorite);
               },
               (error) => {
                 console.error(
@@ -266,7 +248,6 @@ export class PaginaProductoComponent implements OnInit {
             )
             .subscribe(
               (response) => {
-                console.log('Comentario Añadido con exito');
                 Swal.fire({
                   icon: 'success',
                   title: '¡Gracias!',

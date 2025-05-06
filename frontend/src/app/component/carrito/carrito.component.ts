@@ -20,39 +20,33 @@ export class CarritoComponent {
   cart: any[] = [];
 
   ngOnInit(): void {
-    this.loadCart(); // Cargar el carrito al iniciar
+    this.loadCart();
   }
 
-  // Método para cargar el carrito desde el servicio
   loadCart(): void {
-    this.cart = this.CarritoService.getCart(); // Obtener el carrito
+    this.cart = this.CarritoService.getCart();
   }
 
-  // Método para eliminar un producto del carrito
   removeFromCart(productId: number): void {
-    this.CarritoService.removeFromCart(productId); // Llamar al método del servicio
-    this.loadCart(); // Recargar el carrito después de eliminar
-    console.log(this.cart);
+    this.CarritoService.removeFromCart(productId);
+    this.loadCart();
   }
 
-  // Método para limpiar el carrito
   clearCart(): void {
     this.CarritoService.clearCart();
-    this.loadCart(); // Recargar el carrito después de limpiar
-    console.log(this.cart);
+    this.loadCart();
   }
   openCart(): void {
     const sidebar = document.getElementById('cartSidebar');
     if (sidebar) {
-      sidebar.classList.add('open'); // Añade la clase 'open' para abrir el carrito
+      sidebar.classList.add('open');
     }
   }
 
-  // Cerrar el carrito (sidebar)
   closeCart(): void {
     const sidebar = document.getElementById('cartSidebar');
     if (sidebar) {
-      sidebar.classList.remove('open'); // Elimina la clase 'open' para cerrar el carrito
+      sidebar.classList.remove('open');
     }
   }
 

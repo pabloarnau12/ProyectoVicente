@@ -24,6 +24,5 @@ export class ProductComponent {
   addToCart(product: any, event: Event) {
     event.stopPropagation();
     this.carritoService.addToCart(product); // Llama al servicio para agregar el producto
-    console.log(product);
   }
 }

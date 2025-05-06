@@ -49,7 +49,6 @@ exports.createPayment = (req, res) => {
     ],
   };
 
-  // Crear el pago en PayPal
   paypal.payment.create(createPaymentJson, (error, payment) => {
     if (error) {
       console.error("Error al crear el pago:", error.response.details);
@@ -59,9 +58,7 @@ exports.createPayment = (req, res) => {
     const approvalUrl = payment.links.find(
       (link) => link.rel === "approval_url"
     ).href;
-    res.json({ approvalUrl }); // Enviar URL de aprobación al frontend
-    // console.log(cart[0].ID_Establecimiento, user.ID_Usuario)
-    // console.log(createPaymentJson)
+    res.json({ approvalUrl });
   });
 };
 
@@ -92,7 +89,6 @@ exports.paymentSuccess = (req, res) => {
         const ID_Usuario = customData.ID_Usuario;
         const Estado_Pedido = "Pendiente";
         const Direccion = customData.Direccion;
-        console.log(Direccion);
         try {
           await connection.execute(
             `INSERT INTO pedidos (ID_Usuario, ID_Establecimiento, Estado_Pedido, total, productos, payment_id, Direccion) VALUES (?, ?, ?, ?, ?, ?, ?)`,
@@ -106,9 +102,6 @@ exports.paymentSuccess = (req, res) => {
               Direccion,
             ]
           );
-
-          // console.log(carritoData);
-          // Reducir la disponibilidad de los productos
           for (const producto of carritoData) {
             const { sku, quantity } = producto; // `sku` es el ID del producto, `quantity` es la cantidad comprada
             if (!sku || !quantity) {

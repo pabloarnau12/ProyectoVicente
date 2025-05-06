@@ -7,11 +7,9 @@ export const authGuard = (): boolean => {
   const token = localStorage.getItem('token');
 
   if (token) {
-    console.log("Token encontrado:", token);
-    return true;  // Permitir acceso si hay token
+    return true; // Permitir acceso si hay token
   } else {
-    console.log("Token no encontrado. Redirigiendo a la página de inicio de sesión...");
-    router.navigate(['/iniciarsesion']);  // Redirigir a login si no hay token
-    return false;  // Bloquear acceso
+    router.navigate(['/iniciarsesion']); // Redirigir a login si no hay token
+    return false; // Bloquear acceso
   }
 };

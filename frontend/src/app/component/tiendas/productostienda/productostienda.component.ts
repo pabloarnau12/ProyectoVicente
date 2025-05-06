@@ -33,7 +33,7 @@ export class ProductostiendaComponent {
     this.activeRoute.params.subscribe((params) => {
       this.id = params['id'];
     });
-    console.log(this.id);
+
     this.llenardatabyID();
   }
 
@@ -51,7 +51,6 @@ export class ProductostiendaComponent {
     this.ShopService.getProductsByShop(this.id).subscribe({
       next: (value) => {
         this.data = value;
-        console.log(this.data);
       },
       error: (err) => console.error,
       complete: () => console.log('carga de productos completa'),

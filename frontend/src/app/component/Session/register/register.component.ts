@@ -32,7 +32,6 @@ export class RegisterComponent {
 
     this.authService.register(registerData).subscribe(
       (response) => {
-        console.log('Registro exitoso', response);
         Swal.fire({
           icon: 'success',
           title: 'Registro exitoso',

@@ -87,12 +87,10 @@ exports.addProducto = (req, res) => {
           ],
           (err, results) => {
             if (err) return res.status(500).send(err);
-            res
-              .status(201)
-              .json({
-                message: "Producto añadido con éxito",
-                productoID: results.insertId,
-              });
+            res.status(201).json({
+              message: "Producto añadido con éxito",
+              productoID: results.insertId,
+            });
           }
         );
       }
@@ -106,7 +104,6 @@ exports.deleteProductoByID = (req, res) => {
     "DELETE FROM productos WHERE ID_Producto = ? AND ID_Establecimiento = ?",
     [ID_Producto, ID_Establecimiento],
     (err, results) => {
-      console.log(ID_Producto, ID_Establecimiento);
       if (err) return res.status(500).send(err);
       res.json(results);
     }
