@@ -81,6 +81,7 @@ export class TramitarPagosComponent implements OnInit {
       this.paymentService.processPayment(cartForPayment, this.user).subscribe({
         next: (response: any) => {
           window.location.href = response.approvalUrl;
+          this.CarritoService.clearCart();
         },
         error: (err) => {
           this.errorMessage =
