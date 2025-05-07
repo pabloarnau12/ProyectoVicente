@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule aquí
+import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -24,13 +24,12 @@ export class LoginComponent {
         localStorage.setItem('token', response.token);
 
         this.router.navigate(['/home']).then(() => {
-          // Forzar la recarga de la página
           window.location.reload();
         });
       },
       (error) => {
         console.error('Error en el login papasito', error);
-        // Mostrar el mensaje de error usando SweetAlert2 o Toastr
+
         Swal.fire({
           icon: 'error',
           title: 'Oops...',

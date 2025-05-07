@@ -41,7 +41,7 @@ export class PerfilAdminComponent implements OnInit {
     inject(ProductosService);
   protected readonly ordersService: ordersService = inject(ordersService);
   protected readonly promocionesService: PromocionesService =
-    inject(PromocionesService); // Inyecta el servicio de promociones
+    inject(PromocionesService);
 
   user: any = {};
   tienda: any = {};
@@ -78,9 +78,9 @@ export class PerfilAdminComponent implements OnInit {
     descripcion: '',
     descuento: 0,
     fechaFin: '',
-    tipoPromocion: 'porcentaje', // Nuevo campo
-    codigoPromocion: '', // Nuevo campo
-    condiciones: '', // Nuevo campo
+    tipoPromocion: 'porcentaje',
+    codigoPromocion: '',
+    condiciones: '',
   };
 
   constructor(
@@ -91,17 +91,14 @@ export class PerfilAdminComponent implements OnInit {
     this.loadProfile();
   }
   ngOnInit() {
-    // Suscríbete a los cambios en el fragmento de la URL
     this.route.fragment.subscribe((fragment) => {
       if (fragment) {
-        // Espera a que el DOM se actualice
         setTimeout(() => {
           this.viewportScroller.scrollToAnchor(fragment);
         }, 100);
       }
     });
   }
-  //esto es para que al hacer click en el boton de la barra de navegacion se desplace hasta el fragmento
   scrollTo(fragment: string): void {
     this.viewportScroller.scrollToAnchor(fragment);
   }
@@ -166,7 +163,7 @@ export class PerfilAdminComponent implements OnInit {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isDenied) {
-        this.onLogout(); // Llama a la función para cerrar sesión
+        this.onLogout();
       }
     });
   }
@@ -174,7 +171,6 @@ export class PerfilAdminComponent implements OnInit {
   onLogout(): void {
     this.authService.logout();
     this.router.navigate(['/home']).then(() => {
-      // Forzar la recarga de la página
       window.location.reload();
     });
   }
@@ -189,20 +185,20 @@ export class PerfilAdminComponent implements OnInit {
       return;
     }
 
-    this.isloading = true; // Mostrar el spinner
+    this.isloading = true;
 
     this.imageUploadService
       .uploadShopImage(this.selectedFile, this.tienda.ID_Establecimiento)
       .subscribe(
         (response) => {
-          this.tienda.foto = response.url; // Actualizar la imagen en la vista
+          this.tienda.foto = response.url;
           Swal.fire({
             icon: 'success',
             title: '¡Imagen Actualizada!',
             text: 'La imagen de la tienda ha sido actualizada correctamente.',
           });
-          this.selectedFile = null; // Reiniciar el archivo seleccionado
-          this.isloading = false; // Ocultar el spinner
+          this.selectedFile = null;
+          this.isloading = false;
         },
         (error) => {
           console.error('Error al actualizar la imagen:', error);
@@ -211,7 +207,7 @@ export class PerfilAdminComponent implements OnInit {
             title: 'Oops...',
             text: 'Hubo un error al actualizar la imagen. Por favor, intenta nuevamente.',
           });
-          this.isloading = false; // Ocultar el spinner en caso de error
+          this.isloading = false;
         }
       );
   }
@@ -236,7 +232,6 @@ export class PerfilAdminComponent implements OnInit {
   onSubmitHorario() {
     const token = localStorage.getItem('token');
     if (token) {
-      // Crear un objeto que cumpla con la interfaz UpdateHorarioRequest
       const horarioData = {
         Horario_Apertura: this.Horario_Apertura,
         Horario_Cierre: this.Horario_Cierre,
@@ -269,7 +264,6 @@ export class PerfilAdminComponent implements OnInit {
   onSubmitDescripcion() {
     const token = localStorage.getItem('token');
     if (token) {
-      // Crear un objeto que cumpla con la interfaz UpdateDescripcionRequest
       const descripcionData = {
         Descripcion: this.Descripcion,
         ID_Establecimiento: this.tienda.ID_Establecimiento,
@@ -408,7 +402,7 @@ export class PerfilAdminComponent implements OnInit {
           title: '¡Promoción Añadida!',
           text: 'La promoción ha sido añadida correctamente.',
         });
-        this.loadPromotions(); // Cargar las promociones después de añadir una nueva
+        this.loadPromotions();
       },
       (error: any) => {
         console.error('Error al añadir la promoción', error);
@@ -429,7 +423,7 @@ export class PerfilAdminComponent implements OnInit {
           title: '¡Promoción Eliminada!',
           text: 'La promoción ha sido eliminada correctamente.',
         });
-        this.loadPromotions(); // Cargar las promociones después de eliminar una
+        this.loadPromotions();
       },
       (error: any) => {
         console.error('Error al eliminar la promoción', error);
@@ -443,11 +437,11 @@ export class PerfilAdminComponent implements OnInit {
   }
 
   startEditing(producto: any): void {
-    this.editingProduct = { ...producto }; // Clonar el producto para evitar modificar directamente
+    this.editingProduct = { ...producto };
   }
 
   cancelEditing(): void {
-    this.editingProduct = null; // Cancelar la edición
+    this.editingProduct = null;
   }
 
   updateProduct(): void {
@@ -455,21 +449,21 @@ export class PerfilAdminComponent implements OnInit {
       return;
     }
 
-    this.isloading = true; // Inicia la carga
+    this.isloading = true;
 
     if (this.selectedFile) {
       this.imageUploadService
         .uploadProductImage(this.selectedFile, this.editingProduct.ID_Producto)
         .subscribe(
           (response) => {
-            this.editingProduct.Foto = response.url; // Actualizar la URL de la imagen
-            this.selectedFile = null; // Reiniciar el archivo seleccionado
+            this.editingProduct.Foto = response.url;
+            this.selectedFile = null;
             this.saveProductChanges();
           },
           (error) => {
             console.error('Error al subir la imagen:', error);
             alert('Error al subir la imagen.');
-            this.isloading = false; // Finaliza la carga en caso de error
+            this.isloading = false;
           }
         );
     } else {
@@ -485,9 +479,9 @@ export class PerfilAdminComponent implements OnInit {
           title: '¡Producto Actualizado!',
           text: 'El producto ha sido actualizado correctamente.',
         });
-        this.loadProductos(); // Recargar la lista de productos
-        this.editingProduct = null; // Finalizar la edición
-        this.isloading = false; // Finaliza la carga
+        this.loadProductos();
+        this.editingProduct = null;
+        this.isloading = false;
       },
       (error: any) => {
         console.error('Error al actualizar el producto:', error);
@@ -496,7 +490,7 @@ export class PerfilAdminComponent implements OnInit {
           title: 'Oops...',
           text: 'Hubo un error al actualizar el producto. Por favor, intenta nuevamente.',
         });
-        this.isloading = false; // Finaliza la carga en caso de error
+        this.isloading = false;
       }
     );
   }

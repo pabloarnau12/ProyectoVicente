@@ -32,9 +32,6 @@ export class PerfilClientComponent implements OnInit {
   tienda: any;
   selectedFile: File | null = null;
   isloading: Boolean = false;
-  // Nueva variable para almacenar los pedidos realizados
-
-  // Método para cargar los pedidos realizados
 
   constructor(
     private authService: AuthService,
@@ -47,7 +44,6 @@ export class PerfilClientComponent implements OnInit {
   private readonly FormBuilder: FormBuilder = inject(FormBuilder);
 
   FormUser: FormGroup = this.FormBuilder.group({
-    // ID_Usuario: [this.user.ID_Usuario, Validators.required],
     Nombre: ['', Validators.required],
     Apellidos: ['', Validators.required],
     Email: [{ value: this.user.Email, disabled: true }, Validators.required],
@@ -70,7 +66,7 @@ export class PerfilClientComponent implements OnInit {
 
           this.FormUser.patchValue(this.user);
           this.pedidosActivos('En Proceso');
-          this.pedidosRealizados('Cancelado'); // Cargar pedidos realizados
+          this.pedidosRealizados('Cancelado');
           this.getFavoriteShops();
         },
         (error) => {
@@ -109,7 +105,7 @@ export class PerfilClientComponent implements OnInit {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isDenied) {
-        this.onLogout(); // Llama a la función para cerrar sesión
+        this.onLogout();
       }
     });
   }
@@ -117,7 +113,6 @@ export class PerfilClientComponent implements OnInit {
   onLogout(): void {
     this.authService.logout();
     this.router.navigate(['/home']).then(() => {
-      // Forzar la recarga de la página
       window.location.reload();
     });
   }
@@ -139,12 +134,12 @@ export class PerfilClientComponent implements OnInit {
         const addressData = { direccion: address };
         this.authService.updateAddress(addressData, token).subscribe(
           (response) => {
-            Swal.fire(response.message); // Mostrar mensaje de éxito
+            Swal.fire(response.message);
             this.loadProfile();
           },
           (error) => {
             console.error('Error al actualizar la dirección:', error);
-            Swal.fire('Error al actualizar la dirección'); // Mostrar mensaje de error
+            Swal.fire('Error al actualizar la dirección');
           }
         );
       } else {
@@ -208,7 +203,6 @@ export class PerfilClientComponent implements OnInit {
       );
   }
 
-  //  subida de imagen de perfil
   onFileChange(event: any) {
     this.selectedFile = event.target.files[0];
   }

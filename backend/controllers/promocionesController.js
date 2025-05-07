@@ -1,6 +1,5 @@
 const connection = require("../config/db");
 
-// Añadir una nueva promoción
 exports.addPromotion = (req, res) => {
   const {
     ID_Producto,

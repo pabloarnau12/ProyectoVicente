@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
-import { CommonModule } from '@angular/common'; // Importa CommonModule aquí
+import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { CarritoComponent } from '../carrito/carrito.component';
 
@@ -42,7 +42,5 @@ export class NavbarComponent {
         },
       });
     }
-
-    // this.isLoggedIn = !!token;
   }
 }

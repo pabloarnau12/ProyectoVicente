@@ -1,22 +1,19 @@
 const paypal = require("paypal-rest-sdk");
 const connection = require("../config/db");
 
-// Configurar PayPal SDK
 paypal.configure({
-  mode: "sandbox", // Cambiar a 'live' en producción
+  mode: "sandbox",
   client_id: process.env.PAYPAL_CLIENT_ID,
   client_secret: process.env.PAYPAL_CLIENT_SECRET,
 });
 
-// Crear el pago
 exports.createPayment = (req, res) => {
   const { cart, user } = req.body;
 
-  // Convertir carrito al formato de PayPal
   const items = cart.map((product) => ({
     name: product.Nombre,
     sku: product.ID_Producto.toString(),
-    price: parseFloat(product.Precio).toFixed(2), // Asegúrate de que el precio esté en formato de cadena con 2 decimales
+    price: parseFloat(product.Precio).toFixed(2),
     currency: "EUR",
     quantity: product.quantity,
   }));
@@ -76,7 +73,6 @@ exports.paymentSuccess = (req, res) => {
     async (error, payment) => {
       if (error) {
         console.error("Error al completar el pago:", error);
-        // return res.status(500).send('Error al completar el pago');
         return res.redirect(`${process.env.BASE_URL_FRONTEND}/home`);
       }
 
@@ -103,10 +99,10 @@ exports.paymentSuccess = (req, res) => {
             ]
           );
           for (const producto of carritoData) {
-            const { sku, quantity } = producto; // `sku` es el ID del producto, `quantity` es la cantidad comprada
+            const { sku, quantity } = producto;
             if (!sku || !quantity) {
               console.error("Producto inválido:", producto);
-              continue; // Saltar productos inválidos
+              continue;
             }
             await connection.execute(
               `UPDATE productos SET Disponibilidad = Disponibilidad - ? WHERE ID_Producto = ?`,
@@ -129,7 +125,6 @@ exports.paymentSuccess = (req, res) => {
   );
 };
 
-// Manejar cancelación del pago
 exports.paymentCancel = (req, res) => {
   res.redirect(`${process.env.BASE_URL_FRONTEND}/home`);
 };

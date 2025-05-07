@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const upload = require("../middleware/cloudinaryMiddleware"); // Middleware configurado
+const upload = require("../middleware/cloudinaryMiddleware");
 const productosController = require("../controllers/productosController");
 
 router.get("/", productosController.getAllProductos);

@@ -5,12 +5,11 @@ exports.getFavoriteShops = (req, res) => {
     if (err) return res.status(500).send(err);
 
     const defaultPhoto =
-      "https://via.placeholder.com/300x200.png?text=No+Image+Available"; // Aquí puedes poner la URL de la foto base
+      "https://via.placeholder.com/300x200.png?text=No+Image+Available";
 
-    // Recorremos los resultados y asignamos la foto base si está vacía
     results.forEach((tienda) => {
       if (!tienda.foto || tienda.foto.trim() === "") {
-        tienda.foto = defaultPhoto; // Asignamos la foto base
+        tienda.foto = defaultPhoto;
       }
     });
 
@@ -31,12 +30,11 @@ exports.getFavoriteShopsbyUser = (req, res) => {
     if (err) return res.status(500).send(err);
 
     const defaultPhoto =
-      "https://via.placeholder.com/300x200.png?text=No+Image+Available"; // Aquí puedes poner la URL de la foto base
+      "https://via.placeholder.com/300x200.png?text=No+Image+Available";
 
-    // Recorremos los resultados y asignamos la foto base si está vacía
     results.forEach((tienda) => {
       if (!tienda.foto || tienda.foto.trim() === "") {
-        tienda.foto = defaultPhoto; // Asignamos la foto base
+        tienda.foto = defaultPhoto;
       }
     });
 
@@ -50,27 +48,23 @@ exports.getFavoriteShopsbyUser = (req, res) => {
   });
 };
 
-// controllers/favoriteshopsController.js
 exports.addFavoriteShop = (req, res) => {
   const { ID_Usuario, ID_Establecimiento } = req.body;
 
-  // Verifica si la tienda ya existe en favoritos
   const checkQuery = `SELECT * FROM favoritas_tiendas WHERE ID_Usuario = ? AND ID_Establecimiento = ?`;
   connection.query(
     checkQuery,
     [ID_Usuario, ID_Establecimiento],
     (err, results) => {
       if (err)
-        return res.status(500).json({ message: "Error interno del servidor" }); // Manejo de error
+        return res.status(500).json({ message: "Error interno del servidor" });
 
-      // Si ya existe, devolver un código de conflicto (409)
       if (results.length > 0) {
         return res
           .status(409)
           .json({ message: "La tienda ya está en favoritos" });
       }
 
-      // Si no existe, insertar la nueva tienda favorita
       const insertQuery = `INSERT INTO favoritas_tiendas (ID_Usuario, ID_Establecimiento) VALUES (?, ?)`;
       connection.query(
         insertQuery,
@@ -79,12 +73,11 @@ exports.addFavoriteShop = (req, res) => {
           if (err)
             return res
               .status(500)
-              .json({ message: "Error al insertar en la base de datos" }); // Manejo de error
+              .json({ message: "Error al insertar en la base de datos" });
 
-          // Responder con éxito al cliente
           return res
             .status(201)
-            .json({ message: "Tienda añadida a favoritos" }); // Asegúrate de devolver un JSON
+            .json({ message: "Tienda añadida a favoritos" });
         }
       );
     }
@@ -94,7 +87,6 @@ exports.addFavoriteShop = (req, res) => {
 exports.removeFavoriteShop = (req, res) => {
   const { ID_Usuario, ID_Establecimiento } = req.body;
 
-  // Consulta para verificar si existe la tienda favorita para el usuario
   const checkQuery = `
     SELECT * FROM favoritas_tiendas 
     WHERE ID_Usuario = ? AND ID_Establecimiento = ?
@@ -110,14 +102,12 @@ exports.removeFavoriteShop = (req, res) => {
           .json({ message: "Error en la base de datos", error: err });
       }
 
-      // Si no existe, devolver un mensaje
       if (results.length === 0) {
         return res.status(404).json({
           message: "La tienda no está en favoritos para este usuario.",
         });
       }
 
-      // Si existe, proceder a la eliminación
       const deleteQuery = `
       DELETE FROM favoritas_tiendas 
       WHERE ID_Usuario = ? AND ID_Establecimiento = ?
@@ -155,7 +145,6 @@ exports.checkFavoriteShop = (req, res) => {
     (err, results) => {
       if (err) return res.status(500).send(err);
 
-      // Si existe, devolver true; si no, false
       if (results.length > 0) {
         return res.json({ isFavorite: true });
       } else {

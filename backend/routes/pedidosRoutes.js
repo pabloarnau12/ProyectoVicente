@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const pedidosController = require("../controllers/pedidosController");
-// Rutas para pedidos
+
 router.get("/", pedidosController.getAllPedidos);
 router.get("/estado", pedidosController.getPedidosByState);
 router.get("/usuario/:id", pedidosController.getPedidosByUserAndState);
@@ -12,7 +12,6 @@ router.get(
   pedidosController.getPedidosByStateShop
 );
 
-// Rutas para acciones específicas
 router.patch("/:id/aceptar", pedidosController.acceptOrder);
 router.get("/asignado/:id", pedidosController.getPedidoAsignado);
 router.patch("/:id/finalizar", pedidosController.finishOrder);

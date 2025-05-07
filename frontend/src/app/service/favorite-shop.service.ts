@@ -27,7 +27,6 @@ export class FavoriteShopService {
     return this.http.get<FavoriteShop[]>(this.urlApiCalificaciones + id);
   }
 
-  // Método para agregar una tienda a favoritos
   public addFavoriteShop(
     data: AddFavoriteShopRequest
   ): Observable<AddFavoriteShopResponse> {
@@ -37,7 +36,6 @@ export class FavoriteShopService {
     );
   }
 
-  // Método para eliminar una tienda de favoritos
   public removeFavoriteShop(
     ID_Usuario: string,
     ID_Establecimiento: string
@@ -58,12 +56,12 @@ export class FavoriteShopService {
     ID_Usuario: string,
     ID_Establecimiento: string
   ): Observable<CheckFavoriteShopResponse> {
-    const params = { ID_Usuario, ID_Establecimiento }; // Parámetros de la solicitud
+    const params = { ID_Usuario, ID_Establecimiento };
     return this.http.get<CheckFavoriteShopResponse>(
       `${this.urlApiCalificaciones}check`,
       {
         params,
-        responseType: 'json', // Asegurar que la respuesta sea JSON
+        responseType: 'json',
       }
     );
   }

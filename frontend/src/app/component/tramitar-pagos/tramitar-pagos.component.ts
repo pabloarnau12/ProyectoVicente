@@ -44,7 +44,7 @@ export class TramitarPagosComponent implements OnInit {
     }
   }
   loadCart(): void {
-    this.cart = this.CarritoService.getCart(); // Obtener el carrito
+    this.cart = this.CarritoService.getCart();
   }
 
   getTotal(): string {
@@ -57,7 +57,6 @@ export class TramitarPagosComponent implements OnInit {
       .toFixed(2);
   }
   proceedToPayment() {
-    // Verificar si algún producto tiene una cantidad mayor a su disponibilidad
     const unavailableProduct = this.cart.find(
       (item) => item.quantity > item.Disponibilidad
     );
@@ -68,10 +67,9 @@ export class TramitarPagosComponent implements OnInit {
         title: 'Cantidad no disponible',
         text: `El producto "${unavailableProduct.Nombre}" tiene una disponibilidad de ${unavailableProduct.Disponibilidad}, pero has añadido ${unavailableProduct.quantity} al carrito.`,
       });
-      return; // Detener el proceso de pago
+      return;
     }
 
-    // Ajustar los precios para usar siempre el precio de promoción si existe
     const cartForPayment = this.cart.map((item) => ({
       ...item,
       Precio:
@@ -82,15 +80,15 @@ export class TramitarPagosComponent implements OnInit {
     if (token) {
       this.paymentService.processPayment(cartForPayment, this.user).subscribe({
         next: (response: any) => {
-          window.location.href = response.approvalUrl; // Redirige al usuario al URL de PayPal
+          window.location.href = response.approvalUrl;
         },
         error: (err) => {
           this.errorMessage =
-            err.error?.message || 'Error desconocido. Intenta nuevamente.'; // Maneja el error
+            err.error?.message || 'Error desconocido. Intenta nuevamente.';
         },
       });
     } else {
-      this.router.navigate(['/iniciarsesion']); // Redirige al login si no hay token
+      this.router.navigate(['/iniciarsesion']);
     }
   }
   async tryfuncion() {
@@ -110,12 +108,12 @@ export class TramitarPagosComponent implements OnInit {
         const addressData = { direccion: address };
         this.authService.updateAddress(addressData, token).subscribe(
           (response) => {
-            Swal.fire(response.message); // Mostrar mensaje de éxito
+            Swal.fire(response.message);
             this.loadProfile();
           },
           (error) => {
             console.error('Error al actualizar la dirección:', error);
-            Swal.fire('Error al actualizar la dirección'); // Mostrar mensaje de error
+            Swal.fire('Error al actualizar la dirección');
           }
         );
       }

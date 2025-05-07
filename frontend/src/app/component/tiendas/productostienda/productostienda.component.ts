@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 
-import { NgFor, NgIf } from '@angular/common'; // Importa NgFor y NgIf
+import { NgFor, NgIf } from '@angular/common';
 import {
   ActivatedRoute,
   Router,
@@ -15,7 +15,7 @@ import { Producto } from '../../../common/productos';
 @Component({
   selector: 'app-productostienda',
   standalone: true,
-  imports: [RouterLink, ProductComponent, FormsModule], // Añade NgFor y NgIf a los imports
+  imports: [RouterLink, ProductComponent, FormsModule],
   templateUrl: './productostienda.component.html',
   styleUrls: ['./productostienda.component.css'],
 })

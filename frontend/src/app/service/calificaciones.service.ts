@@ -18,7 +18,6 @@ export class CalificacionesService {
   constructor() {}
 
   public getCalificacionesEstablecimientos(): Observable<calificacion[]> {
-    //devuelve todos los mensajes de calificacion
     return this.http.get<calificacion[]>(
       this.urlApiCalificaciones + '/establecimientos'
     );
@@ -27,7 +26,6 @@ export class CalificacionesService {
   public getCalificacionesEstablecimientosbyID(
     id: string
   ): Observable<CalificacionEstablecimiento[]> {
-    // Devuelve los mensajes de calificación de un establecimiento en concreto
     return this.http.get<CalificacionEstablecimiento[]>(
       this.urlApiCalificaciones + '/establecimientos/' + id
     );
@@ -46,7 +44,6 @@ export class CalificacionesService {
     Comentario: string,
     ID_Establecimiento: number
   ): Observable<AddComentarioResponse> {
-    // Crear el cuerpo de la solicitud
     const body: AddComentarioRequest = {
       ID_Usuario,
       Calificacion_Establecimiento,
@@ -54,7 +51,6 @@ export class CalificacionesService {
       ID_Establecimiento,
     };
 
-    // Realizar la solicitud POST
     return this.http.post<AddComentarioResponse>(
       this.urlApiCalificaciones + 'establecimientos/add',
       body

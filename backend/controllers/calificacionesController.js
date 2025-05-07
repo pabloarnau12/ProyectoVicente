@@ -1,6 +1,5 @@
 const connection = require("../config/db");
 
-// Obtener todas las calificaciones
 exports.getAllCalificacionesEstablecimientos = (req, res) => {
   connection.query(
     "SELECT * FROM calificaciones_establecimientos",
@@ -37,7 +36,6 @@ exports.getAllCalificacionesEstablecimientosbyID = (req, res) => {
   });
 };
 
-// Obtener la calificación promedio de una tienda
 exports.getCalificacionPromedioEstablecimientos = (req, res) => {
   const { id } = req.params;
   connection.query(
@@ -64,7 +62,6 @@ exports.addComentarioEstablecimiento = (req, res) => {
     ID_Establecimiento,
   } = req.body;
 
-  // Validar que todos los campos estén presentes
   if (
     !ID_Usuario ||
     !Calificacion_Establecimiento ||
@@ -76,7 +73,6 @@ exports.addComentarioEstablecimiento = (req, res) => {
       .json({ message: "Todos los campos son obligatorios" });
   }
 
-  // Validar que la calificación esté entre 1 y 5
   if (
     isNaN(Calificacion_Establecimiento) ||
     Calificacion_Establecimiento < 1 ||
@@ -101,7 +97,6 @@ exports.addComentarioEstablecimiento = (req, res) => {
           .json({ message: "Error al insertar en la base de datos" });
       }
 
-      // Responder con éxito al cliente
       return res
         .status(201)
         .json({ message: "Comentario agregado correctamente" });

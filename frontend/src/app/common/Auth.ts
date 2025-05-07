@@ -1,44 +1,44 @@
 export interface LoginRequest {
-  email: string; // Correo electrónico del usuario
-  password: string; // Contraseña del usuario
+  email: string;
+  password: string;
 }
 
 export interface LoginResponse {
-  token: string; // Token JWT devuelto por el servidor
+  token: string;
   user: {
-    id: number; // ID del usuario
-    email: string; // Correo electrónico del usuario
-    rol: number; // Rol del usuario (por ejemplo, administrador, cliente, etc.)
+    id: number;
+    email: string;
+    rol: number;
   };
 }
 
 export interface RegisterRequest {
-  nombre: string; // Nombre del usuario
-  apellidos: string; // Apellidos del usuario
-  email: string; // Correo electrónico del usuario
-  telefono: string; // Teléfono del usuario
-  password: string; // Contraseña del usuario
+  nombre: string;
+  apellidos: string;
+  email: string;
+  telefono: string;
+  password: string;
 }
 
 export interface RegisterResponse {
-  message: string; // Mensaje de éxito o error del servidor
+  message: string;
 }
 
 export interface UserProfile {
-  ID_Usuario: number; // ID único del usuario
-  Nombre: string; // Nombre del usuario
-  Apellidos: string; // Apellidos del usuario
-  Email: string; // Correo electrónico del usuario
-  Telefono: string; // Teléfono del usuario
-  Direccion: string; // Dirección del usuario
-  Rol: number; // Rol del usuario (por ejemplo, cliente, administrador)
-  Estado?: string; // Estado del usuario (opcional)
-  Profile_Picture?: string; // URL de la foto de perfil (opcional)
+  ID_Usuario: number;
+  Nombre: string;
+  Apellidos: string;
+  Email: string;
+  Telefono: string;
+  Direccion: string;
+  Rol: number;
+  Estado?: string;
+  Profile_Picture?: string;
 }
 
 export interface UpdateUserProfileRequest {
-  Nombre: string; // Nombre del usuario
-  Apellidos: string; // Apellidos del usuario
+  Nombre: string;
+  Apellidos: string;
 }
 
 export interface UpdateAddressRequest {
@@ -46,16 +46,16 @@ export interface UpdateAddressRequest {
 }
 
 export interface UpdateStatusRequest {
-  status: string; // Estado del usuario (por ejemplo, "activo", "ocupado", etc.)
+  status: string;
 }
 
 export interface UpdateHorarioRequest {
-  Horario_Apertura: string; // Hora de apertura del establecimiento (formato HH:mm)
-  Horario_Cierre: string; // Hora de cierre del establecimiento (formato HH:mm)
-  ID_Establecimiento: number; // ID único del establecimiento
+  Horario_Apertura: string;
+  Horario_Cierre: string;
+  ID_Establecimiento: number;
 }
 
 export interface UpdateDescripcionRequest {
-  Descripcion: string; // Nueva descripción del establecimiento
-  ID_Establecimiento: number; // ID único del establecimiento
+  Descripcion: string;
+  ID_Establecimiento: number;
 }

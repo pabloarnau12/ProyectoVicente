@@ -10,7 +10,7 @@ import { ProductostiendaComponent } from './component/tiendas/productostienda/pr
 import { LoginComponent } from './component/Session/login/login.component';
 import { RegisterComponent } from './component/Session/register/register.component';
 import { PerfilComponent } from './component/Session/perfil/perfil.component';
-import { authGuard } from './auth/auth.guard'; // Asegúrate de que el guard está configurado
+import { authGuard } from './auth/auth.guard';
 import { ProductDetailComponent } from './component/tiendas/product-detail/product-detail.component';
 import { TramitarPagosComponent } from './component/tramitar-pagos/tramitar-pagos.component';
 

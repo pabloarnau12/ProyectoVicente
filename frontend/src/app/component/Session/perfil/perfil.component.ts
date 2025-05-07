@@ -51,7 +51,6 @@ export class PerfilComponent implements OnInit {
   onLogout(): void {
     this.authService.logout();
     this.router.navigate(['/home']).then(() => {
-      // Forzar la recarga de la página
       window.location.reload();
     });
   }

@@ -1,9 +1,9 @@
 const cloudinary = require("cloudinary").v2;
 const connection = require("../config/db");
 exports.uploadProfileImage = (req, res) => {
-  const file = req.file; // La imagen cargada
-  const id = req.user.id; // ID del usuario (opcional, si lo necesitas para la lógica)
-  const customName = req.body.customName || `user_${id}`; // Nombre personalizado
+  const file = req.file;
+  const id = req.user.id;
+  const customName = req.body.customName || `user_${id}`;
 
   if (!file) {
     return res
@@ -24,7 +24,7 @@ exports.uploadProfileImage = (req, res) => {
     file.path,
     {
       folder: "profile_pictures",
-      public_id: customName, // Nombre personalizado
+      public_id: customName,
     },
     (err, result) => {
       if (err) {
@@ -32,7 +32,6 @@ exports.uploadProfileImage = (req, res) => {
         return res.status(500).json({ message: "Error al subir la imagen" });
       }
 
-      // Aquí puedes actualizar la base de datos con la URL de la imagen
       const imageUrl = result.secure_url;
       const query = `
         UPDATE usuarios SET profile_picture = ? WHERE ID_Usuario = ?
@@ -55,10 +54,10 @@ exports.uploadProfileImage = (req, res) => {
 };
 
 exports.uploadProductImage = (req, res) => {
-  const file = req.file; // La imagen cargada
-  const ID_Producto = req.body.ID_Producto; // ID del producto (opcional, si lo necesitas para la lógica)
-  const id = req.user.id; // ID del usuario (opcional, si lo necesitas para la lógica)
-  const customName = req.body.customName || `product_${id}`; // Nombre personalizado
+  const file = req.file;
+  const ID_Producto = req.body.ID_Producto;
+  const id = req.user.id;
+  const customName = req.body.customName || `product_${id}`;
 
   if (!file) {
     return res
@@ -78,7 +77,7 @@ exports.uploadProductImage = (req, res) => {
     file.path,
     {
       folder: "products",
-      public_id: customName, // Nombre personalizado
+      public_id: customName,
     },
     (err, result) => {
       if (err) {
@@ -86,7 +85,6 @@ exports.uploadProductImage = (req, res) => {
         return res.status(500).json({ message: "Error al subir la imagen" });
       }
 
-      // Aquí puedes actualizar la base de datos con la URL de la imagen
       const imageUrl = result.secure_url;
       const query = `
         UPDATE productos SET Foto = ? WHERE ID_Producto = ?
@@ -110,9 +108,9 @@ exports.uploadProductImage = (req, res) => {
 };
 
 exports.uploadShopImage = (req, res) => {
-  const file = req.file; // La imagen cargada
-  const ID_Establecimiento = req.body.ID_Establecimiento; // ID del establecimiento
-  const customName = req.body.customName || `shop_${ID_Establecimiento}`; // Nombre personalizado
+  const file = req.file;
+  const ID_Establecimiento = req.body.ID_Establecimiento;
+  const customName = req.body.customName || `shop_${ID_Establecimiento}`;
 
   if (!file) {
     return res
@@ -120,12 +118,11 @@ exports.uploadShopImage = (req, res) => {
       .json({ message: "No se proporcionó ninguna imagen" });
   }
 
-  // Subir la imagen a Cloudinary
   cloudinary.uploader.upload(
     file.path,
     {
-      folder: "shops", // Carpeta en Cloudinary
-      public_id: customName, // Nombre personalizado
+      folder: "shops",
+      public_id: customName,
     },
     (err, result) => {
       if (err) {
@@ -133,10 +130,8 @@ exports.uploadShopImage = (req, res) => {
         return res.status(500).json({ message: "Error al subir la imagen" });
       }
 
-      // URL de la imagen subida
       const imageUrl = result.secure_url;
 
-      // Actualizar la base de datos con la URL de la imagen
       const query = `
         UPDATE establecimientos SET Foto = ? WHERE ID_Establecimiento = ?
       `;

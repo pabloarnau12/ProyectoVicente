@@ -100,7 +100,6 @@ export class PaginaProductoComponent implements OnInit {
         .getCalificacionesEstablecimientosbyID(this.id)
         .subscribe(
           (data: CalificacionEstablecimiento[]) => {
-            // Cambiar `any[]` a `calificacion[]`
             this.comentarios = data;
           },
           (error) => {
@@ -116,7 +115,6 @@ export class PaginaProductoComponent implements OnInit {
         .getCalificacionPromedioEstablecimientos(this.id)
         .subscribe(
           (data: CalificacionPromedio) => {
-            // Cambiar `any` a `CalificacionPromedio`
             this.media = data.media_calificacion;
           },
           (error) => {
@@ -129,22 +127,20 @@ export class PaginaProductoComponent implements OnInit {
   }
 
   addFavorite(): void {
-    const token = localStorage.getItem('token'); // Obteniendo el token del localStorage
+    const token = localStorage.getItem('token');
     if (token) {
       this.authService.getProfile(token).subscribe(
         (profile) => {
-          const user = profile; // Perfil del usuario
+          const user = profile;
 
-          // Crear un objeto que cumpla con la interfaz AddFavoriteShopRequest
           const favoriteData = {
             ID_Usuario: user.ID_Usuario.toString(),
             ID_Establecimiento: this.tienda.ID_Establecimiento.toString(),
           };
 
-          // Llamar al servicio con el objeto
           this.apiFavoriteShops.addFavoriteShop(favoriteData).subscribe(
             (response) => {
-              this.isFavorite = true; // Marcar como favorito
+              this.isFavorite = true;
             },
             (error) => {
               console.error('Error al añadir la tienda a favoritos:', error);
@@ -176,7 +172,7 @@ export class PaginaProductoComponent implements OnInit {
             )
             .subscribe(
               (response) => {
-                this.isFavorite = false; // Marcar como favorito
+                this.isFavorite = false;
               },
               (error) => {
                 console.error(
@@ -226,7 +222,6 @@ export class PaginaProductoComponent implements OnInit {
             );
         },
         (error) => {
-          // this.router.navigate(['/iniciarsesion'])
           console.error('Error al cargar el perfil', error);
         }
       );

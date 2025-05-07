@@ -30,10 +30,10 @@ export class PerfilRepartidorComponent implements OnInit {
   selectedFile: File | null = null;
   isloading: Boolean = false;
   pedidos: any[] = [];
-  pedidoSeleccionado: any = null; // Variable para almacenar el pedido seleccionado
-  mostrarProductos: boolean = false; // Controla la visibilidad de los productos
+  pedidoSeleccionado: any = null; 
+  mostrarProductos: boolean = false; 
 
-  // Método para alternar la visibilidad de los productos
+ 
   toggleProductos(): void {
     this.mostrarProductos = !this.mostrarProductos;
   }
@@ -50,7 +50,7 @@ export class PerfilRepartidorComponent implements OnInit {
   verificarPedidoAsignado(): void {
     this.pedidosService.getPedidoAsignado(this.user.ID_Usuario).subscribe(
       (pedido) => {
-        this.pedidoSeleccionado = pedido; // Si hay un pedido asignado, lo guardamos
+        this.pedidoSeleccionado = pedido;
       },
       (error) => {
         if (error.status === 404) {
@@ -68,9 +68,7 @@ export class PerfilRepartidorComponent implements OnInit {
         (profile) => {
           this.user = profile;
 
-          this.verificarPedidoAsignado(); // Verificar si hay un pedido asignado
-
-          // this.loadOrders();
+          this.verificarPedidoAsignado(); 
         },
         (error) => {
           console.error('Error al cargar el perfil', error);
@@ -86,7 +84,6 @@ export class PerfilRepartidorComponent implements OnInit {
   onLogout(): void {
     this.authService.logout();
     this.router.navigate(['/home']).then(() => {
-      // Forzar la recarga de la página
       window.location.reload();
     });
   }
@@ -101,7 +98,7 @@ export class PerfilRepartidorComponent implements OnInit {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isDenied) {
-        this.onLogout(); // Llama a la función para cerrar sesión
+        this.onLogout(); 
       }
     });
   }
@@ -131,7 +128,7 @@ export class PerfilRepartidorComponent implements OnInit {
     if (token) {
       this.authService.updateStatus({ status: newStatus }, token).subscribe(
         (response) => {
-          this.user.estado = newStatus; // Actualiza el estado en el front
+          this.user.estado = newStatus;
           Swal.fire(
             'Estado actualizado',
             `Tu estado ahora es: ${newStatus}`,
@@ -217,9 +214,9 @@ export class PerfilRepartidorComponent implements OnInit {
                 'Has finalizado el pedido con éxito.',
                 'success'
               );
-              this.pedidoSeleccionado = null; // Eliminar el pedido seleccionado
-              this.updateStatus('activo'); // Cambiar el estado a 'Ocupado'
-              this.loadOrders(); // Recargar la lista de pedidos disponibles
+              this.pedidoSeleccionado = null; 
+              this.updateStatus('activo'); 
+              this.loadOrders(); 
             },
             (error) => {
               console.error('Error al finalizar el pedido', error);
@@ -249,7 +246,7 @@ export class PerfilRepartidorComponent implements OnInit {
                 'El pedido ahora está "En Camino".',
                 'success'
               );
-              this.pedidoSeleccionado.Estado_Pedido = 'En Camino'; // Actualizar el estado localmente
+              this.pedidoSeleccionado.Estado_Pedido = 'En Camino'; 
             },
             (error) => {
               console.error('Error al actualizar el estado del pedido', error);

@@ -10,33 +10,33 @@ export interface Tienda {
   foto: string;
 }
 export interface Producto {
-  ID_Producto: number; // ID único del producto
-  ID_Establecimiento: number; // ID del establecimiento al que pertenece el producto
-  Nombre: string; // Nombre del producto
-  Descripcion: string; // Descripción del producto
-  Precio: number; // Precio del producto
-  Disponibilidad: number; // Disponibilidad del producto
-  Foto: string; // URL de la imagen del producto
-  Tipo: string; // Tipo o categoría del producto
-  Precio_Promocion?: number | null; // Precio en promoción (opcional)
+  ID_Producto: number;
+  ID_Establecimiento: number;
+  Nombre: string;
+  Descripcion: string;
+  Precio: number;
+  Disponibilidad: number;
+  Foto: string;
+  Tipo: string;
+  Precio_Promocion?: number | null;
 }
 
 export interface GetShopByIdResponse {
-  tienda: Tienda; // Tienda específica
+  tienda: Tienda;
 }
 
 export interface GetProductsByShopResponse {
-  productos: Producto[]; // Lista de productos de la tienda
+  productos: Producto[];
 }
 
 export interface GetProductDetailsResponse {
-  producto: Producto; // Detalles del producto
+  producto: Producto;
 }
 
 export interface GetMostValoratedShopsResponse {
-  tiendas: Tienda[]; // Lista de tiendas mejor valoradas
+  tiendas: Tienda[];
 }
 
 export interface GetShopByAdminResponse {
-  tienda: Tienda; // Tienda asociada al administrador
+  tienda: Tienda;
 }

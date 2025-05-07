@@ -1,19 +1,19 @@
 export interface AcceptOrderRequest {
-  idRepartidor: number; // ID del repartidor que acepta el pedido
+  idRepartidor: number;
 }
 
 export interface AcceptOrderResponse {
-  message: string; // Mensaje de éxito o error
+  message: string;
 }
 
 export interface FinishOrderResponse {
-  message: string; // Mensaje de éxito o error
+  message: string;
 }
 
 export interface UpdateOrderStatusRequest {
-  Estado: string; // Nuevo estado del pedido
+  Estado: string;
 }
 
 export interface UpdateOrderStatusResponse {
-  message: string; // Mensaje de éxito o error
+  message: string;
 }

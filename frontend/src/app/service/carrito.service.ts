@@ -5,49 +5,45 @@ import { Injectable, signal } from '@angular/core';
 })
 export class CarritoService {
   private key = 'carrito';
-  private cart = signal<any[]>([]); // Usamos una señal para el carrito
+  private cart = signal<any[]>([]);
 
   constructor() {
-    this.loadCartFromStorage(); // Carga el carrito desde localStorage al iniciar el servicio
+    this.loadCartFromStorage();
   }
 
   private loadCartFromStorage() {
     const storedCart = localStorage.getItem(this.key);
     if (storedCart) {
-      this.cart.set(JSON.parse(storedCart)); // Inicializa la señal desde localStorage
+      this.cart.set(JSON.parse(storedCart));
     }
   }
 
   getCart() {
-    return this.cart(); // Devuelve la señal actualizada
+    return this.cart();
   }
 
   addToCart(product: any) {
     const currentCart = this.cart();
     if (currentCart.length === 0) {
-      // Si el carrito está vacío, añadimos el producto directamente
       currentCart.push({ ...product, quantity: 1 });
     } else {
       const primerProducto = currentCart[0];
       if (product.ID_Establecimiento === primerProducto.ID_Establecimiento) {
-        // El producto es del mismo establecimiento
         const existingProduct = currentCart.find(
           (item: any) => item.ID_Producto === product.ID_Producto
         );
         if (existingProduct) {
-          // Si el producto ya está en el carrito, aumentamos la cantidad
           existingProduct.quantity += 1;
         } else {
-          // Si es un nuevo producto del mismo establecimiento, lo añadimos
           currentCart.push({ ...product, quantity: 1 });
         }
       } else {
-        return; // Salimos de la función sin añadir el producto
+        return;
       }
     }
 
-    this.cart.set(currentCart); // Actualizamos el estado del carrito
-    this.saveCart(currentCart); // Guardar en localStorage
+    this.cart.set(currentCart);
+    this.saveCart(currentCart);
   }
 
   removeFromCart(productId: number) {
@@ -58,12 +54,12 @@ export class CarritoService {
     );
 
     this.saveCart(updatedCart);
-    this.cart.set(updatedCart); // Actualiza el estado del carrito en la señal
+    this.cart.set(updatedCart);
   }
 
   clearCart() {
-    this.cart.set([]); // Limpiamos el carrito
-    localStorage.removeItem(this.key); // Eliminamos el carrito de localStorage
+    this.cart.set([]);
+    localStorage.removeItem(this.key);
   }
 
   saveCart(cart: any) {
@@ -77,9 +73,9 @@ export class CarritoService {
     );
 
     if (existingProduct) {
-      existingProduct.quantity += 1; // Aumenta la cantidad en 1
-      this.cart.set(currentCart); // Actualiza la señal
-      this.saveCart(currentCart); // Guarda el nuevo estado en localStorage
+      existingProduct.quantity += 1;
+      this.cart.set(currentCart);
+      this.saveCart(currentCart);
     }
   }
 
@@ -90,9 +86,9 @@ export class CarritoService {
     );
 
     if (existingProduct) {
-      existingProduct.quantity -= 1; // Aumenta la cantidad en 1
-      this.cart.set(currentCart); // Actualiza la señal
-      this.saveCart(currentCart); // Guarda el nuevo estado en localStorage
+      existingProduct.quantity -= 1;
+      this.cart.set(currentCart);
+      this.saveCart(currentCart);
     }
   }
 }

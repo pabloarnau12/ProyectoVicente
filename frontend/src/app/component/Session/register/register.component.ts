@@ -3,7 +3,7 @@ import { AuthService } from '../../../service/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegisterRequest } from '../../../common/Auth'; // Importar la interfaz
+import { RegisterRequest } from '../../../common/Auth';
 import Swal from 'sweetalert2';
 
 @Component({

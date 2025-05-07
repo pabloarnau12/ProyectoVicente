@@ -2,7 +2,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const connection = require("../config/db");
 
-// Registro de usuario
 exports.register = (req, res) => {
   const { nombre, apellidos, email, telefono, password } = req.body;
   const profile_picture =
@@ -33,7 +32,6 @@ exports.register = (req, res) => {
   });
 };
 
-// Login de usuario
 exports.login = (req, res) => {
   const { email, password } = req.body;
 
@@ -65,11 +63,6 @@ exports.login = (req, res) => {
             errorcode: "INVALID_CREDENTIALS",
           });
 
-        // connection.query('SELECT ID_ROL FROM usuarios WHERE Email = ?', [email], (err, results) => {
-        //   if (err) return res.status(500).json({ message: 'Error al buscar el usuario' });
-
-        //   const ID_ROL = results[0];
-        // })
         const token = jwt.sign(
           { id: user.ID_Usuario, email: user.Email, rol: user.ID_ROL },
           process.env.JWT_SECRET,
@@ -82,7 +75,7 @@ exports.login = (req, res) => {
 };
 
 exports.getPerfil = (req, res) => {
-  const { id } = req.user; // `req.user` es el resultado de la validación del token JWT
+  const { id } = req.user;
 
   connection.query(
     "SELECT * FROM usuarios WHERE ID_Usuario = ?",

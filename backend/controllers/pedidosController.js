@@ -22,10 +22,9 @@ exports.getPedidosById = (req, res) => {
 };
 
 exports.getPedidosByUserAndState = (req, res) => {
-  const { id } = req.params; // ID del usuario
-  const { estado } = req.query; // Estado del pedido pasado como query param
+  const { id } = req.params;
+  const { estado } = req.query;
 
-  // Validar que el estado sea válido
   const estadosValidos = [
     "Entregado",
     "Cancelado",
@@ -39,7 +38,6 @@ exports.getPedidosByUserAndState = (req, res) => {
       .json({ error: "El estado proporcionado no es válido." });
   }
 
-  // Determinar los estados a incluir en la consulta
   let estadosConsulta = [];
   if (estado === "Entregado" || estado === "Cancelado") {
     estadosConsulta = ["Entregado", "Cancelado"];
@@ -47,7 +45,6 @@ exports.getPedidosByUserAndState = (req, res) => {
     estadosConsulta = ["En Proceso", "Pendiente", "En Camino"];
   }
 
-  // Construir la consulta
   const query = `
     SELECT 
       pedidos.*, 
@@ -104,11 +101,9 @@ exports.getPedidosByState = (req, res) => {
   });
 };
 
-// Obtener pedidos por tienda y añadir imágenes de productos
 exports.getPedidosbyShop = (req, res) => {
   const { id } = req.params;
 
-  // Consulta para obtener los pedidos de la tienda
   const queryPedidos = `
     SELECT 
       pedidos.*, 
@@ -131,7 +126,6 @@ exports.getPedidosbyShop = (req, res) => {
         .status(404)
         .send("No se encontraron pedidos para el establecimiento especificado");
 
-    // Obtener los IDs de los productos en los pedidos
     const productIds = pedidos.flatMap((pedido) =>
       JSON.parse(pedido.productos).map((producto) => producto.sku)
     );
@@ -140,7 +134,6 @@ exports.getPedidosbyShop = (req, res) => {
       return res.json(pedidos);
     }
 
-    // Consulta para obtener las imágenes de los productos
     const queryProductos = `
       SELECT ID_Producto, Foto 
       FROM productos 
@@ -150,7 +143,6 @@ exports.getPedidosbyShop = (req, res) => {
     connection.query(queryProductos, [productIds], (err, productos) => {
       if (err) return res.status(500).send(err);
 
-      // Crear un mapa de productos con sus imágenes
       const productosMap = productos.reduce((map, producto) => {
         map[producto.ID_Producto] = producto.Foto;
         return map;
@@ -174,12 +166,10 @@ exports.getPedidosbyShop = (req, res) => {
   });
 };
 
-// Obtener pedidos por tienda y estado
 exports.getPedidosByStateShop = (req, res) => {
   const { id } = req.params;
   const Estado_Pedido = req.query.estado;
 
-  // Consulta para obtener los pedidos de la tienda
   const queryPedidos = `
     SELECT 
       pedidos.*, 
@@ -211,7 +201,7 @@ exports.getPedidosByStateShop = (req, res) => {
   connection.query(queryPedidos, [id, Estado_Pedido], (err, pedidos) => {
     if (err) return res.status(500).send(err);
     if (pedidos.length === 0) {
-      return res.status(200).json([]); // Devuelve un arreglo vacío
+      return res.status(200).json([]);
     }
 
     const productIds = pedidos.flatMap((pedido) =>
@@ -256,8 +246,8 @@ exports.getPedidosByStateShop = (req, res) => {
 };
 
 exports.acceptOrder = (req, res) => {
-  const { id } = req.params; // ID del pedido
-  const { idRepartidor } = req.body; // ID del repartidor enviado en el cuerpo de la solicitud
+  const { id } = req.params;
+  const { idRepartidor } = req.body;
 
   if (!idRepartidor) {
     return res
@@ -265,7 +255,6 @@ exports.acceptOrder = (req, res) => {
       .json({ message: "El ID del repartidor es obligatorio." });
   }
 
-  // Verificar si el pedido está disponible
   const queryCheck = `
     SELECT Estado_Pedido 
     FROM pedidos 
@@ -279,7 +268,6 @@ exports.acceptOrder = (req, res) => {
         .json({ message: "El pedido no está disponible o ya fue aceptado." });
     }
 
-    // Actualizar el estado del pedido y asignarlo al repartidor
     const queryUpdate = `
       UPDATE pedidos
       SET Estado_Pedido = "En Proceso", ID_Repartidor = ?
@@ -299,7 +287,7 @@ exports.acceptOrder = (req, res) => {
 };
 
 exports.finishOrder = (req, res) => {
-  const { id } = req.params; // ID del pedido
+  const { id } = req.params;
 
   const query = `
     UPDATE pedidos
@@ -320,7 +308,7 @@ exports.finishOrder = (req, res) => {
 };
 
 exports.getPedidoAsignado = (req, res) => {
-  const { id } = req.params; // ID del repartidor autenticado
+  const { id } = req.params;
 
   const query = `
     SELECT 
@@ -348,10 +336,10 @@ exports.getPedidoAsignado = (req, res) => {
     try {
       const pedido = results[0];
       if (pedido.productos) {
-        pedido.productos = JSON.parse(pedido.productos); // Convertir productos a JSON
+        pedido.productos = JSON.parse(pedido.productos);
       }
 
-      res.status(200).json(pedido); // Devolver el pedido con los productos procesados
+      res.status(200).json(pedido);
     } catch (error) {
       console.error("Error al procesar los productos del pedido:", error);
       return res
