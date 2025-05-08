@@ -37,9 +37,13 @@
         <h1 class="display-5 fw-bolder">{{ product.Nombre }}</h1>
         <p class="lead">{{ product.Descripcion }}</p>
         <div class="mb-3">
-          <span class="fs-5 text-primary">{{
-            product.Precio | currency : "EUR"
-          }}</span>
+          <span class="fs-5 text-primary">
+            {{
+              product.Precio_Promocion != null
+                ? (product.Precio_Promocion | currency : "EUR")
+                : (product.Precio | currency : "EUR")
+            }}
+          </span>
         </div>
         <!-- Mostrar disponibilidad -->
         <div class="mb-3">
