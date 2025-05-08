@@ -1,7 +1,6 @@
 @if (product) {
 <section class="py-5">
   <div class="container px-4 px-lg-5 my-5">
-    <!-- Botón de regreso -->
     <button
       class="btn"
       [routerLink]="['/catalogo/' + product.ID_Establecimiento + '/productos']"
@@ -21,9 +20,7 @@
       </svg>
     </button>
 
-    <!-- Detalles del producto -->
     <div class="row gx-4 gx-lg-5 align-items-center">
-      <!-- Imagen del producto -->
       <div class="col-md-6">
         <img
           class="card-img-top mb-5 mb-md-0"
@@ -32,7 +29,6 @@
         />
       </div>
 
-      <!-- Información del producto -->
       <div class="col-md-6">
         <h1 class="display-5 fw-bolder">{{ product.Nombre }}</h1>
         <p class="lead">{{ product.Descripcion }}</p>
@@ -45,13 +41,13 @@
             }}
           </span>
         </div>
-        <!-- Mostrar disponibilidad -->
+
         <div class="mb-3">
           <span class="text-muted"
             >Disponibilidad: {{ product.Disponibilidad }}</span
           >
         </div>
-        <!-- Botones de acción -->
+
         <div class="d-flex">
           <button
             (click)="addToCart()"

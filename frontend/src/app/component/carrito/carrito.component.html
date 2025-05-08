@@ -25,7 +25,6 @@
             /ud.
           </div>
           <div class="quantity-control d-flex align-items-center">
-            <!-- Botón para restar cantidad -->
             <button
               class="btn btn-outline-danger btn-sm me-2"
               (click)="decreaseQuantity(item.ID_Producto)"
@@ -33,7 +32,7 @@
               <mat-icon>remove</mat-icon>
             </button>
             <strong class="quantity-text">{{ item.quantity }} ud.</strong>
-            <!-- Botón para aumentar cantidad -->
+
             <button
               class="btn btn-outline-success btn-sm ms-2"
               (click)="increaseQuantity(item.ID_Producto)"
@@ -53,7 +52,7 @@
         </div>
         <div class="total mb-3">{{ getTotal() }}€</div>
       </div>
-      <!-- Botón de tramitar pedido debajo del total -->
+
       <button
         class="btn btn-primary w-100 checkout-btn"
         [routerLink]="'/payment'"

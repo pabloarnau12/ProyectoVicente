@@ -1,35 +1,77 @@
-<nav class="navbar navbar-expand-lg ">
-    <img src="./assets/images/logoreparto.png" style="width: 50px; height: 50px;" class="img-fluid m-2" alt="Logo">
-  <!-- <div class="container-fluid"> -->
-    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" [ngClass]="{'show': !isCollapsed}" id="navbar">
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 nav-links">
-        <li class="nav-item">
-          <a class="nav-link m-2 " aria-current="page" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-        </li>
-        <li class="nav-item m-2">
-          <a class="nav-link" aria-current="page" routerLink="/catalogo" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Catálogo</a>
-        </li>
-        <li class="nav-item m-2">
-          <a class="nav-link" aria-current="page" routerLink="/contacto" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Contacto</a>
-        </li>
-      </ul>
+<nav class="navbar navbar-expand-lg">
+  <img
+    src="./assets/images/logoreparto.png"
+    style="width: 50px; height: 50px"
+    class="img-fluid m-2"
+    alt="Logo"
+  />
 
-      <ul  class="navbar-nav nav-links">
-      <!-- <form class="d-flex me-3" role="search"> -->
-        <li *ngIf="isLoggedIn;" class="nav-item m-2">
-          <mat-icon aria-current="page" routerLink="/perfil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">account_circle</mat-icon>
-        </li>
-        <li *ngIf="!isLoggedIn;" class="nav-item m-2">
-          <a class="nav-link " aria-current="page" routerLink="/iniciarsesion" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Iniciar Sesión</a>
-        </li>
-      <!-- </form> -->
-       <li class="nav-item m-2">
-      <app-carrito></app-carrito>
-        </li>
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div
+    class="collapse navbar-collapse"
+    [ngClass]="{ show: !isCollapsed }"
+    id="navbar"
+  >
+    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 nav-links">
+      <li class="nav-item">
+        <a
+          class="nav-link m-2"
+          aria-current="page"
+          routerLink="/home"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
+      </li>
+      <li class="nav-item m-2">
+        <a
+          class="nav-link"
+          aria-current="page"
+          routerLink="/catalogo"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Catálogo</a
+        >
+      </li>
+      <li class="nav-item m-2">
+        <a
+          class="nav-link"
+          aria-current="page"
+          routerLink="/contacto"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Contacto</a
+        >
+      </li>
     </ul>
-    </div>
+
+    <ul class="navbar-nav nav-links">
+      <li *ngIf="isLoggedIn" class="nav-item m-2">
+        <mat-icon
+          aria-current="page"
+          routerLink="/perfil"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >account_circle</mat-icon
+        >
+      </li>
+      <li *ngIf="!isLoggedIn" class="nav-item m-2">
+        <a
+          class="nav-link"
+          aria-current="page"
+          routerLink="/iniciarsesion"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Iniciar Sesión</a
+        >
+      </li>
+
+      <li class="nav-item m-2">
+        <app-carrito></app-carrito>
+      </li>
+    </ul>
+  </div>
 </nav>

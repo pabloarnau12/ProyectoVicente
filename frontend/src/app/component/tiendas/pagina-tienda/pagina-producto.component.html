@@ -1,7 +1,6 @@
 @if (tienda) {
 <section class="py-5 bg-light">
   <div class="container px-4 px-lg-5 my-5">
-    <!-- Botón para regresar al catálogo -->
     <button class="btn btn-outline-primary mb-4" [routerLink]="['/catalogo']">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +19,6 @@
     </button>
 
     <div class="row gx-4 gx-lg-5 align-items-center">
-      <!-- Imagen de la tienda -->
       <div class="col-md-6">
         <img
           class="card-img-top mb-5 mb-md-0 rounded shadow-lg"
@@ -33,7 +31,7 @@
 
         <div class="d-flex align-items-center mb-3">
           <h1 class="display-5 fw-bolder mb-0">{{ tienda.Nombre }}</h1>
-          <!-- Botón de favoritos -->
+
           <div class="ms-3">
             <mat-icon
               class="favorite-icon"
@@ -44,7 +42,6 @@
           </div>
         </div>
 
-        <!-- Horarios -->
         <p
           class="lead mb-4"
           [ngClass]="{ 'text-success': isOpen(), 'text-danger': !isOpen() }"
@@ -52,7 +49,6 @@
           {{ tienda.Horario_Apertura }} - {{ tienda.Horario_Cierre }}
         </p>
 
-        <!-- Botón para ver productos -->
         <div class="d-flex justify-content-start">
           <button
             class="btn btn-success"
@@ -65,7 +61,6 @@
           </button>
         </div>
 
-        <!-- Valoración de la tienda -->
         <div class="mt-4">
           <div class="small mb-1">Media de valoración:</div>
           <div
@@ -103,7 +98,6 @@
       {
       <div class="col mb-5">
         <div class="card h-100 shadow-lg border-light rounded">
-          <!-- Imagen de tienda relacionada -->
           <img
             class="card-img-top"
             src="{{ tiendaRelacionada.foto }}"

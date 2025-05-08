@@ -1,8 +1,6 @@
 <div class="container-fluid mt-5">
   <div class="row">
-    <!-- Menú Lateral -->
     <div class="col-md-3">
-      <!-- Encabezado del menú lateral -->
       <div class="list-group mb-4">
         <div
           class="d-flex align-items-center justify-content-between p-3 bg-light rounded shadow-sm"
@@ -16,7 +14,6 @@
           </button>
         </div>
 
-        <!-- Opciones del menú lateral -->
         <div class="list-group">
           <a
             (click)="scrollTo('vista-previa')"
@@ -47,20 +44,18 @@
       </div>
     </div>
 
-    <!-- Contenido Principal -->
     <div class="col-md-9">
       <div id="vista-previa" class="card shadow mb-5">
         <div class="card-body">
           <h4>Vista Previa</h4>
           <div class="row gx-4 gx-lg-5 align-items-center">
-            <!-- Imagen de la tienda -->
             <div class="col-md-6">
               <img
                 class="card-img-top mb-5 mb-md-0 rounded shadow-lg"
                 src="{{ tienda.foto }}"
                 alt="Imagen Tienda"
               />
-              <!-- Formulario para cambiar la imagen -->
+
               <form (submit)="updateShopImage()" class="mt-3">
                 <div class="mb-3">
                   <label for="imagenTienda" class="form-label"
@@ -91,16 +86,16 @@
               <div class="small mb-1 text-muted">{{ tienda.Tipo }}</div>
               <div class="d-flex align-items-center mb-3">
                 <h1 class="display-5 fw-bolder mb-0">{{ tienda.Nombre }}</h1>
-                <!-- Botón de favoritos -->
+
                 <div class="ms-3">
                   <mat-icon>favorite_icon</mat-icon>
                 </div>
               </div>
-              <!-- Horarios -->
+
               <p class="lead mb-4">
                 {{ tienda.Horario_Apertura }} - {{ tienda.Horario_Cierre }}
               </p>
-              <!-- Botón para ver productos -->
+
               <div class="d-flex justify-content-start">
                 <button
                   class="btn btn-success"
@@ -112,7 +107,7 @@
                   Ver Productos
                 </button>
               </div>
-              <!-- Valoración de la tienda -->
+
               <div class="mt-4">
                 <div class="small mb-1">Media de valoración:</div>
                 <div class="strong">
@@ -202,7 +197,6 @@
         <div
           class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center"
         >
-          <!-- Mostrar mensaje si no hay productos -->
           @if(productos.length == 0) {
           <div class="text-center py-5">
             <h3 class="text-muted">No hay productos disponibles</h3>
@@ -252,9 +246,7 @@
       <div class="text-center py-5">
         <mat-spinner></mat-spinner>
       </div>
-      }
-      <!-- Formulario de edición -->
-      @if(editingProduct) {
+      } @if(editingProduct) {
       <div class="card shadow mb-4">
         <div class="card-body">
           <h4 class="mb-4">Editar Producto</h4>
@@ -448,9 +440,7 @@
             </select>
           </div>
 
-          @if(Pedidos.length > 0){
-          <!-- Recorre los pedidos usando @for -->
-          @for (pedido of Pedidos; track $index) {
+          @if(Pedidos.length > 0){ @for (pedido of Pedidos; track $index) {
           <div class="border rounded p-3 mb-4">
             <h5 class="font-weight-bold">Pedido #{{ pedido.ID_Pedido }}</h5>
             <p>
@@ -465,7 +455,6 @@
             </p>
             <p><strong>ID de pago:</strong> {{ pedido.payment_id }}</p>
 
-            <!-- Información del usuario -->
             <h6 class="mt-3">Información del Usuario:</h6>
             <ul class="list-group">
               <li class="list-group-item">
@@ -479,7 +468,6 @@
               </li>
             </ul>
 
-            <!-- Mostrar productos del pedido -->
             <h6 class="mt-3">Productos:</h6>
             <div class="row">
               @for (producto of pedido.productos; track $index) {

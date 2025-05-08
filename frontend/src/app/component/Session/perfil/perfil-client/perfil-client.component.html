@@ -1,8 +1,6 @@
 <div class="container mt-5">
-  <!-- Información Personal -->
   <div class="card shadow mb-5">
     <div class="row m-3 align-items-center">
-      <!-- Foto de perfil -->
       <div class="col-md-3 text-center">
         @if(user.profile_picture) {
         <img
@@ -54,7 +52,6 @@
         } }
       </div>
 
-      <!-- Información Personal -->
       <div class="col-md-8">
         <h4>Información Personal</h4>
         <form [formGroup]="FormUser" (ngSubmit)="onUpdateUser()">
@@ -117,7 +114,6 @@
     </div>
   </div>
 
-  <!-- Mi Dirección -->
   <div class="card shadow mb-5">
     <div class="card-body">
       <h4>Mi Dirección</h4>
@@ -133,21 +129,16 @@
             >
               Editar
             </button>
-            <!-- <button class="btn btn-sm btn-outline-danger">Eliminar</button> -->
           </div>
         </li>
       </ul>
     </div>
   </div>
 
-  <!-- Pedidos Activos -->
-
-  <!-- Pedidos Activos -->
   <div class="card shadow mb-5">
     <div class="card-body">
       <h3 class="text-center mb-4">Pedidos Activos</h3>
 
-      <!-- Mostrar pedidos activos -->
       @if(ActiveOrders().length == 0) {
       <p class="text-muted text-center">
         No tienes pedidos activos en este momento.
@@ -161,7 +152,6 @@
               <h5 class="mb-0">Pedido #{{ order.ID_Pedido }}</h5>
             </div>
             <div class="card-body">
-              <!-- Información del pedido -->
               <p>
                 <strong>Estado:</strong>
                 <span class="badge bg-info text-dark">{{
@@ -183,14 +173,10 @@
     </div>
   </div>
 
-  <!-- Historial de Pedidos -->
-
-  <!-- Pedidos Realizados -->
   <div class="card shadow mb-5">
     <div class="card-body">
       <h3 class="text-center mb-4">Pedidos Realizados</h3>
 
-      <!-- Botón para mostrar/ocultar pedidos realizados -->
       <button
         class="btn btn-primary w-100 mb-3"
         (click)="togglePedidosRealizados()"
@@ -202,7 +188,6 @@
         }}
       </button>
 
-      <!-- Mostrar pedidos realizados si mostrarPedidosRealizados es true -->
       @if(mostrarPedidosRealizados) { @if(CompletedOrders.length == 0) {
       <p class="text-muted text-center">
         No tienes pedidos realizados en este momento.
@@ -216,7 +201,6 @@
               <h5 class="mb-0">Pedido #{{ order.ID_Pedido }}</h5>
             </div>
             <div class="card-body">
-              <!-- Información del pedido -->
               <p>
                 <strong>Estado:</strong>
                 <span class="badge bg-success">{{ order.Estado_Pedido }}</span>
@@ -236,7 +220,6 @@
     </div>
   </div>
 
-  <!-- Restaurantes Favoritos -->
   <div class="card shadow mb-5">
     <div class="card-body">
       <h4>Mis Tiendas Favoritas</h4>
@@ -276,7 +259,6 @@
     </div>
   </div>
 
-  <!-- Preferencias -->
   <div class="card shadow mb-5">
     <div class="card-body">
       <h4>Mis Preferencias</h4>
