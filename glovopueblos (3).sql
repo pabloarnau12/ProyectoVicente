@@ -20,7 +20,11 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `glovopueblos`
 --
+CREATE DATABASE IF NOT EXISTS glovopueblos
+  DEFAULT CHARACTER SET utf8mb4
+  COLLATE utf8mb4_general_ci;
 
+USE glovopueblos;
 -- --------------------------------------------------------
 
 --
@@ -389,7 +393,7 @@ INSERT INTO `productos` (`ID_Producto`, `ID_Establecimiento`, `Nombre`, `Descrip
 (42, 15, '1', 'castañas', 0.00, 1, '10', '', NULL),
 (43, 15, '1', 'castañas', 0.00, 1, '10', '', NULL),
 (55, 4, 'agua', 'agua mineral templada', 2.90, 13, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1737556745/products/agua_4.jpg', 'agua', 2.47),
-(58, 1, 'Paella Casera', 'Paella casera', 12.00, 26, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746629129/products/product_6.png', 'Consumible', NULL),
+(58, 1, 'Paella Casera', 'Paella casera', 12.00, 26, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746629128/products/vmxurofv8pirvzrajxzg.png', 'Consumible', NULL),
 (59, 1, 'tortilla de patatas', 'tortilla de patatas casera', 20.00, 32, 'https://res.cloudinary.com/dvrcoi13p/image/upload/v1746629172/products/product_6.png', 'Consumible', 16.00);
 
 -- --------------------------------------------------------
